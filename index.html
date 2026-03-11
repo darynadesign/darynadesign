@@ -32,7 +32,7 @@
     </div>
     <div class="menu-overlay-nav">
       <a href="#about" class="menu-overlay-link">ABOUT</a>
-      <a href="#cases" class="menu-overlay-link">CASES</a>
+      <a href="#work" class="menu-overlay-link">CASES</a>
       <a href="#skills" class="menu-overlay-link">SKILLS</a>
     </div>
     <div class="menu-overlay-footer">
@@ -428,50 +428,10 @@
     }
 
     inlineJitter('assets/buildings.svg', 'buildings-svg');
-    inlineJitter('assets/architectural plan.svg', 'plan-svg');
+    inlineJitter('assets/architectural%20plan.svg', 'plan-svg');
 
     inlineJitter('assets/globe.svg', 'globe-svg');
     inlineJitter('assets/violin.svg', 'violin-svg');
-
-    // Arrow hover jitter
-    function inlineHoverJitter(srcAttr) {
-      fetch(srcAttr)
-        .then(r => r.text())
-        .then(markup => {
-          document.querySelectorAll(`img[src="${srcAttr}"]`).forEach(img => {
-            const tmp = document.createElement('div');
-            tmp.innerHTML = markup;
-            const svg = tmp.querySelector('svg');
-            svg.className = img.className;
-            const paths = [...svg.querySelectorAll('path')];
-            img.replaceWith(svg);
-
-            const parent = svg.closest('a');
-            if (!parent) return;
-
-            let jitterInterval;
-
-            function jitterFrame() {
-              paths.forEach(path => {
-                const x = (Math.random() - 0.5) * 2;
-                const y = (Math.random() - 0.5) * 2;
-                path.style.transform = `translate(${x}px, ${y}px)`;
-              });
-            }
-
-            parent.addEventListener('mouseenter', () => {
-              jitterFrame();
-              jitterInterval = setInterval(jitterFrame, 280);
-            });
-
-            parent.addEventListener('mouseleave', () => {
-              clearInterval(jitterInterval);
-              paths.forEach(p => p.style.transform = '');
-            });
-          });
-        })
-        .catch(() => {});
-    }
 
     // Shared speed for all squiggly arrows — change once, applies everywhere
     const ARROW_SPEED = 0.055;
