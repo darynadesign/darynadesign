@@ -512,8 +512,6 @@ nav.dark .nav-cta {
 
 .skills-grid {
   position: relative;
-  max-width: var(--grid-width);
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
@@ -521,7 +519,7 @@ nav.dark .nav-cta {
 }
 
 .skills-left-wrap {
-  grid-column: 1 / 7;
+  grid-column: 1 / 6;
   align-self: start;
   padding-bottom: calc(5 * 328px + 5 * 64px); /* 1960px — wrapper height = sidebar content + 1960px, so sticky falls off exactly when row 6 top is at pin position */
 }
@@ -530,6 +528,7 @@ nav.dark .nav-cta {
   padding: 0;
   position: sticky;
   top: 106px;
+  width: 100%;
 }
 
 .skills-label {
