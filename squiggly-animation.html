@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squiggly Arrow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f0;
+    }
+  </style>
+</head>
+<body>
+  <svg width="536" height="192" viewBox="0 -6 134 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path id="wave"
+      fill="none"
+      stroke="#7274FF"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- Arrowhead from original SVG, verbatim -->
+    <path id="arrowhead"
+      fill="#7274FF"
+    />
+  </svg>
+
+  <script>
+    // Centerline waypoints extracted from original SVG band path
+    const BASE = [
+      { x: 2,      y: 14.73 },
+      { x: 29.12,  y: 15.17 },
+      { x: 47.2,   y: 16.70 },
+      { x: 65.28,  y: 14.82 },
+      { x: 83.36,  y: 11.13 },
+      { x: 101.44, y: 14.18 },
+      { x: 119.52, y: 14.42 },
+    ];
+
+    const AMPLITUDE = 2.5;
+    const SPEED     = 0.055;
+
+    const wavePath     = document.getElementById('wave');
+    const arrowhead    = document.getElementById('arrowhead');
+
+    // Build a smooth Catmull-Rom spline through points
+    function catmullRom(pts) {
+      let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[Math.max(0, i - 1)];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = pts[Math.min(pts.length - 1, i + 2)];
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+        d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+      }
+      return d;
+    }
+
+    // Build arrowhead matching original SVG exactly.
+    // All offsets are (dx, dy) relative to the notch point, in arrow-local space.
+    // Positive dx = forward, positive dy = downward (SVG convention).
+    // Derived by subtracting notch (129.172, 14.728) from every coordinate in the original path.
+    function buildArrowhead(pts) {
+      const last  = pts[pts.length - 1];
+      const ref   = pts[pts.length - 2];
+      const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
+      const cos = Math.cos(angle), sin = Math.sin(angle);
+
+      function r(dx, dy) {
+        return `${(last.x + dx*cos - dy*sin).toFixed(3)},${(last.y + dx*sin + dy*cos).toFixed(3)}`;
+      }
+
+      // Exact sequence from original SVG path, all coords relative to notch:
+      return [
+        `M ${r( 4.242,  1.414)}`,                                              // start: lower tip corner
+        `C ${r( 5.023,  0.633)} ${r( 5.023, -0.633)} ${r( 4.242, -1.414)}`,   // bezier: rounded tip → upper tip corner
+        `L ${r(-8.486, -14.142)}`,                                              // upper outer back
+        `C ${r(-9.267,-14.923)} ${r(-10.533,-14.923)} ${r(-11.314,-14.142)}`,  // round outer-back top corner
+        `C ${r(-12.095,-13.361)} ${r(-12.095,-12.095)} ${r(-11.314,-11.314)}`, // round inner-back top corner
+        `L ${r( 0,      0)}`,                                                   // notch
+        `L ${r(-11.314, 11.314)}`,                                              // inner back bottom
+        `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`, // round inner-back bottom corner
+        `C ${r(-10.533, 14.923)} ${r(-9.267,  14.923)} ${r( -8.486, 14.142)}`, // round outer-back bottom corner
+        `Z`,                                                                    // close back to start
+      ].join(' ');
+    }
+
+    let phase = 0;
+
+    function animate() {
+      phase += SPEED;
+
+      // Displace each point's y sinusoidally based on its x position
+      const pts = BASE.map(p => ({
+        x: p.x,
+        y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 134) * 2 - phase),
+      }));
+
+      wavePath.setAttribute('d', catmullRom(pts));
+      arrowhead.setAttribute('d', buildArrowhead(pts));
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

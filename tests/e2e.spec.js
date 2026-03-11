@@ -192,8 +192,8 @@ test.describe('Who Am I section', () => {
     await expect(page.locator('.wai-headline')).toContainText("Hey, I'm Daria");
   });
 
-  test('"Jump to cases" link points to #cases', async ({ page }) => {
-    await expect(page.locator('.wai-jump')).toHaveAttribute('href', '#cases');
+  test('"Jump to cases" link points to #work', async ({ page }) => {
+    await expect(page.locator('.wai-jump')).toHaveAttribute('href', '#work');
   });
 
   test('photo is rendered', async ({ page }) => {
@@ -282,6 +282,153 @@ test.describe('Grid alignment: nav vs hero-info', () => {
 
     expect(Math.abs(rects.navLabel.left - rects.heroLeft.left)).toBeLessThanOrEqual(1);
     expect(Math.abs(rects.navLinks.left - rects.heroRight.left)).toBeLessThanOrEqual(1);
+  });
+});
+
+// ─── Breakpoint layout: no overflow / white bleed ──────────────────────────────
+
+test.describe('Breakpoint layout', () => {
+  test('no horizontal overflow (no white right-edge strip)', async ({ page }) => {
+    const overflows = await page.evaluate(() =>
+      document.documentElement.scrollWidth > window.innerWidth,
+    );
+    expect(overflows).toBe(false);
+  });
+
+  test('no element bleeds beyond viewport right edge (unclipped)', async ({ page }) => {
+    const offending = await page.evaluate(() => {
+      const vw = window.innerWidth;
+
+      function hasClippingAncestor(el) {
+        let node = el.parentElement;
+        while (node && node !== document.body) {
+          const ovx = window.getComputedStyle(node).overflowX;
+          if (ovx === 'hidden' || ovx === 'clip') {
+            // clipping ancestor found — check if the ancestor itself is within viewport
+            return node.getBoundingClientRect().right <= vw + 2;
+          }
+          node = node.parentElement;
+        }
+        return false;
+      }
+
+      return [...document.querySelectorAll('*')]
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && r.right > vw + 2 && !hasClippingAncestor(el);
+        })
+        .map((el) => ({
+          tag: el.tagName,
+          cls: el.className.toString().slice(0, 60),
+          right: Math.round(el.getBoundingClientRect().right),
+        }))
+        .slice(0, 10);
+    });
+    if (offending.length) console.log('Bleeding elements:', JSON.stringify(offending, null, 2));
+    expect(offending).toEqual([]);
+  });
+
+  test('skills section has correct blue background (no white bleed)', async ({ page }) => {
+    const bg = await page.evaluate(
+      () => window.getComputedStyle(document.querySelector('.skills')).backgroundColor,
+    );
+    expect(bg).toBe('rgb(13, 8, 197)');
+  });
+
+  test('skills items layout: single column on mobile, two columns on desktop', async ({
+    page,
+    viewport,
+  }) => {
+    const cols = await page.evaluate(
+      () => window.getComputedStyle(document.querySelector('.skills-items')).gridTemplateColumns,
+    );
+    const colCount = cols.trim().split(/\s+/).length;
+    if (viewport && viewport.width <= 900) {
+      expect(colCount).toBe(1);
+    } else {
+      expect(colCount).toBe(2);
+    }
+  });
+
+  test('hero-name does not overflow hero section', async ({ page }) => {
+    const overflow = await page.evaluate(() => {
+      const name = document.querySelector('.hero-name');
+      const hero = document.querySelector('.hero');
+      return name.getBoundingClientRect().right > hero.getBoundingClientRect().right + 2;
+    });
+    expect(overflow).toBe(false);
+  });
+
+  test('nav stays within viewport bounds', async ({ page }) => {
+    const outside = await page.evaluate(() => {
+      const nav = document.querySelector('nav');
+      const r = nav.getBoundingClientRect();
+      return r.right > window.innerWidth + 2 || r.left < -2;
+    });
+    expect(outside).toBe(false);
+  });
+});
+
+// ─── Accessibility ──────────────────────────────────────────────────────────────
+
+test.describe('Accessibility', () => {
+  test('page lang attribute is set', async ({ page }) => {
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  });
+
+  test('all images have alt attributes', async ({ page }) => {
+    const missing = await page.evaluate(() =>
+      [...document.querySelectorAll('img')]
+        .filter((img) => !img.hasAttribute('alt'))
+        .map((img) => img.src),
+    );
+    expect(missing).toEqual([]);
+  });
+
+  test('nav landmark is present', async ({ page }) => {
+    await expect(page.locator('nav')).toBeVisible();
+  });
+
+  test('page has exactly one h1', async ({ page }) => {
+    await expect(page.locator('h1')).toHaveCount(1);
+  });
+
+  test('interactive elements are keyboard-focusable', async ({ page }) => {
+    const notFocusable = await page.evaluate(() => {
+      const interactives = [...document.querySelectorAll('a[href], button')];
+      return interactives
+        .filter((el) => {
+          // Skip elements intentionally hidden by responsive layout or closed overlays
+          if (el.closest('.menu-overlay')) return false; // overlay hidden when closed — expected
+          if (el.closest('.nav-links')) return false;     // desktop-only, hidden via CSS on mobile
+          const s = window.getComputedStyle(el);
+          return s.display === 'none' && !el.closest('nav'); // nav items hidden on mobile are fine
+        })
+        .map((el) => el.textContent.trim().slice(0, 40) || el.className);
+    });
+    expect(notFocusable).toEqual([]);
+  });
+
+  test('colour contrast: skills section text not invisible', async ({ page }) => {
+    // Checks that .skills-desc opacity is not 0 (i.e. text is visible)
+    const opacities = await page.evaluate(() =>
+      [...document.querySelectorAll('.skills-desc')].map(
+        (el) => parseFloat(window.getComputedStyle(el).opacity),
+      ),
+    );
+    opacities.forEach((op) => expect(op).toBeGreaterThan(0));
+  });
+
+  test('no text elements overlap nav', async ({ page }) => {
+    const navBottom = await page.evaluate(
+      () => document.querySelector('nav').getBoundingClientRect().bottom,
+    );
+    // The hero is fixed-height full-screen; its text elements start below nav
+    const heroNameTop = await page.evaluate(
+      () => document.querySelector('.hero-name').getBoundingClientRect().top,
+    );
+    // hero-name is flush to bottom of viewport so it will be well below nav
+    expect(heroNameTop).toBeGreaterThan(navBottom);
   });
 });
 

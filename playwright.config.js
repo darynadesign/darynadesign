@@ -19,6 +19,21 @@ export default defineConfig({
       },
     },
     {
+      name: 'laptop-1280',
+      use: {
+        viewport: { width: 1280, height: 800 },
+        isMobile: false,
+      },
+    },
+    {
+      name: 'tablet-768',
+      use: {
+        viewport: { width: 768, height: 1024 },
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
+    {
       name: 'mobile-360',
       use: {
         viewport: { width: 360, height: 800 },
