@@ -95,6 +95,9 @@ Portfolio website for Daria Forsiuk. Plain HTML + CSS, no frameworks, no build t
 - Spaces in `srcset` attribute break `<picture>` parsing → URL-encode them
 - `text-wrap: pretty` only fixes last-line orphans, not mid-paragraph single letters → use `&nbsp;` manually
 
+## Figma
+https://www.figma.com/design/29ep1HAtd5PXg3mduKCw1l/Portfolio?node-id=1499-85144&t=b3XBVySzegzhzjqV-1
+
 ## LinkedIn
 https://www.linkedin.com/in/daria-forsiuk/
 
