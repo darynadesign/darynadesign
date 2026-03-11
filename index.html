@@ -68,7 +68,7 @@
         <p class="wai-headline">Hey, I'm Daria! I used to design buildings&nbsp;— now I design digital experiences. I strive to create emotionally resonant design that will not only improve metrics but delight the user, making a lasting and memorable impact.</p>
         <a href="#work" class="wai-jump">
           <span>JUMP TO CASES</span>
-          <svg class="wai-arrow-img" viewBox="0 -6 134 42" fill="none" xmlns="http://www.w3.org/2000/svg" id="wai-squiggly" aria-hidden="true">
+          <svg class="wai-arrow-img" viewBox="0 -6 138.41 42" fill="none" xmlns="http://www.w3.org/2000/svg" id="wai-squiggly" aria-hidden="true">
             <path id="wai-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
             <path id="wai-arrowhead" fill="#7274FF"/>
           </svg>
@@ -101,7 +101,10 @@
         <p class="case-desc">Redesign for a charity foundation to boost donor engagement and donation flows; selected among 15 entries, now in development.</p>
         <a href="#" class="case-link">
           <span>VIEW CASE</span>
-          <img src="assets/squiggly arrow cases.svg" alt="" class="case-arrow-img" />
+          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="cases-arrowhead" fill="#7274FF"/>
+          </svg>
         </a>
       </div>
     </div>
@@ -117,7 +120,10 @@
         <p class="case-desc">Landing page for a stylist to strengthen their personal brand and draw in clients.</p>
         <a href="landing.html" class="case-link">
           <span>VIEW CASE</span>
-          <img src="assets/squiggly arrow cases.svg" alt="" class="case-arrow-img" />
+          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="cases-arrowhead" fill="#7274FF"/>
+          </svg>
         </a>
       </div>
     </div>
@@ -133,7 +139,10 @@
         <p class="case-desc">Redesign for a home appliance store. Improved UI, navigation, and product discoverability.</p>
         <a href="#" class="case-link">
           <span>VIEW CASE</span>
-          <img src="assets/squiggly arrow cases.svg" alt="" class="case-arrow-img" />
+          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="cases-arrowhead" fill="#7274FF"/>
+          </svg>
         </a>
       </div>
     </div>
@@ -314,31 +323,34 @@
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
-    // Skills sticky: freeze left panel when viewport bottom reaches section bottom
+    // Skills sticky: CSS sticky scrolls with user, JS releases it at last row
     const skillsSection = document.querySelector('.skills');
-    const skillsLeft   = document.querySelector('.skills-left');
-    const skillsGrid   = document.querySelector('.skills-grid');
+    const skillsLeft    = document.querySelector('.skills-left');
+    const skillsGrid    = document.querySelector('.skills-grid');
+    const skillsLastRow = document.querySelectorAll('.skills-items > *')[10];
     let skillsFrozen = false;
 
     function updateSkillsSticky() {
       if (window.innerWidth <= 900) return;
-      const sectionBottom = skillsSection.getBoundingClientRect().bottom;
+      const stickyTop  = nav.getBoundingClientRect().bottom + 34;
+      const lastRowTop = skillsLastRow.getBoundingClientRect().top;
 
-      if (sectionBottom <= window.innerHeight && !skillsFrozen) {
+      if (lastRowTop <= stickyTop && !skillsFrozen) {
         const frozenTop = skillsLeft.getBoundingClientRect().top
                         - skillsGrid.getBoundingClientRect().top;
         skillsLeft.style.position = 'absolute';
         skillsLeft.style.top = frozenTop + 'px';
         skillsFrozen = true;
-      } else if (sectionBottom > window.innerHeight && skillsFrozen) {
+      } else if (lastRowTop > stickyTop && skillsFrozen) {
         skillsLeft.style.position = '';
         skillsLeft.style.top = '';
         skillsFrozen = false;
       }
     }
 
-      window.addEventListener('scroll', updateSkillsSticky, { passive: true });
+    window.addEventListener('scroll', updateSkillsSticky, { passive: true });
     updateSkillsSticky();
+
 
     // Hide nav when footer is visible
     new IntersectionObserver(
@@ -461,21 +473,118 @@
         .catch(() => {});
     }
 
-    inlineHoverJitter('assets/squiggly arrow cases.svg');
+    // Shared speed for all squiggly arrows — change once, applies everywhere
+    const ARROW_SPEED = 0.055;
+
+    // Squiggly wave animation for "view case" buttons
+    (function() {
+      const BASE = [
+        { x: 1.57,  y: 14.73 },
+        { x: 22.87, y: 15.17 },
+        { x: 37.08, y: 16.70 },
+        { x: 51.28, y: 14.82 },
+        { x: 65.49, y: 11.13 },
+        { x: 79.69, y: 14.18 },
+        { x: 93.88, y: 14.42 },
+      ];
+      const AMPLITUDE = 3.04;
+      const FREQUENCY = 2.8;
+      const SPEED = ARROW_SPEED;
+
+      function catmullRom(pts) {
+        let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[Math.max(0, i - 1)];
+          const p1 = pts[i];
+          const p2 = pts[i + 1];
+          const p3 = pts[Math.min(pts.length - 1, i + 2)];
+          const cp1x = p1.x + (p2.x - p0.x) / 6;
+          const cp1y = p1.y + (p2.y - p0.y) / 6;
+          const cp2x = p2.x - (p3.x - p1.x) / 6;
+          const cp2y = p2.y - (p3.y - p1.y) / 6;
+          d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+        }
+        return d;
+      }
+
+      function buildArrowhead(pts) {
+        const last  = pts[pts.length - 1];
+        const ref   = pts[pts.length - 2];
+        const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
+        const cos = Math.cos(angle), sin = Math.sin(angle);
+        function r(dx, dy) {
+          return `${(last.x + dx*cos - dy*sin).toFixed(3)},${(last.y + dx*sin + dy*cos).toFixed(3)}`;
+        }
+        return [
+          `M ${r( 4.242,  1.414)}`,
+          `C ${r( 5.023,  0.633)} ${r( 5.023, -0.633)} ${r( 4.242, -1.414)}`,
+          `L ${r(-8.486, -14.142)}`,
+          `C ${r(-9.267,-14.923)} ${r(-10.533,-14.923)} ${r(-11.314,-14.142)}`,
+          `C ${r(-12.095,-13.361)} ${r(-12.095,-12.095)} ${r(-11.314,-11.314)}`,
+          `L ${r( 0,      0)}`,
+          `L ${r(-11.314, 11.314)}`,
+          `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`,
+          `C ${r(-10.533, 14.923)} ${r(-9.267,  14.923)} ${r( -8.486, 14.142)}`,
+          `Z`,
+        ].join(' ');
+      }
+
+      function drawStatic(wavePath, arrowhead) {
+        const pts = BASE.map(p => ({
+          x: p.x,
+          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY),
+        }));
+        wavePath.setAttribute('d', catmullRom(pts));
+        arrowhead.setAttribute('d', buildArrowhead(pts));
+      }
+
+      document.querySelectorAll('.case-link').forEach(link => {
+        const wavePath  = link.querySelector('.cases-wave');
+        const arrowhead = link.querySelector('.cases-arrowhead');
+        if (!wavePath || !arrowhead) return;
+
+        drawStatic(wavePath, arrowhead);
+
+        let phase = 0, rafId = null, animating = false;
+
+        function animateFrame() {
+          if (!animating) return;
+          phase += SPEED;
+          const pts = BASE.map(p => ({
+            x: p.x,
+            y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase),
+          }));
+          wavePath.setAttribute('d', catmullRom(pts));
+          arrowhead.setAttribute('d', buildArrowhead(pts));
+          rafId = requestAnimationFrame(animateFrame);
+        }
+
+        link.addEventListener('mouseenter', () => {
+          animating = true;
+          if (!rafId) rafId = requestAnimationFrame(animateFrame);
+        });
+
+        link.addEventListener('mouseleave', () => {
+          animating = false;
+          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        });
+      });
+    }());
 
     // Squiggly wave animation for "jump to cases" button
     (function() {
       const BASE = [
-        { x: 2,      y: 14.73 },
-        { x: 29.12,  y: 15.17 },
-        { x: 47.2,   y: 16.70 },
-        { x: 65.28,  y: 14.82 },
-        { x: 83.36,  y: 11.13 },
-        { x: 101.44, y: 14.18 },
-        { x: 119.52, y: 14.42 },
+        { x: 2.07,   y: 14.73 },
+        { x: 30.19,  y: 15.17 },
+        { x: 48.94,  y: 16.70 },
+        { x: 67.69,  y: 14.82 },
+        { x: 86.44,  y: 11.13 },
+        { x: 105.18, y: 14.18 },
+        { x: 123.93, y: 14.42 },
       ];
-      const AMPLITUDE = 2.5;
-      const SPEED = 0.055;
+      const AMPLITUDE = 3.8;
+      const FREQUENCY = 2.8;
+      const SPEED = ARROW_SPEED;
 
       const wavePath = document.getElementById('wai-wave');
       const arrowhead = document.getElementById('wai-arrowhead');
@@ -520,8 +629,12 @@
       }
 
       function drawStatic() {
-        wavePath.setAttribute('d', catmullRom(BASE));
-        arrowhead.setAttribute('d', buildArrowhead(BASE));
+        const pts = BASE.map(p => ({
+          x: p.x,
+          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY),
+        }));
+        wavePath.setAttribute('d', catmullRom(pts));
+        arrowhead.setAttribute('d', buildArrowhead(pts));
       }
 
       drawStatic();
@@ -533,7 +646,7 @@
         phase += SPEED;
         const pts = BASE.map(p => ({
           x: p.x,
-          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 134) * 2 - phase),
+          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase),
         }));
         wavePath.setAttribute('d', catmullRom(pts));
         arrowhead.setAttribute('d', buildArrowhead(pts));
@@ -548,7 +661,6 @@
       jumpLink.addEventListener('mouseleave', () => {
         animating = false;
         if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-        drawStatic();
       });
     }());
 </script>
