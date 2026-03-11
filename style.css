@@ -2,20 +2,20 @@
    TOKENS
    ============================================================ */
 :root {
-  --black:        #0a0a0a;
-  --white:        #ffffff;
-  --blue:         #0500ff;
-  --gray:         #888888;
-  --light-bg:     #f4f4f4;
-  --font:         'Inter Tight', sans-serif;
-  --font-mono:    'IBM Plex Mono', monospace;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --blue: #0500ff;
+  --gray: #888888;
+  --light-bg: #f4f4f4;
+  --font: "Inter Tight", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 
   /* Grid */
-  --cols:         12;
-  --col-width:    96px;
-  --gutter:       20px;
-  --grid-width:   1372px; /* 12×96 + 11×20 */
-  --margin:       34px;
+  --cols: 12;
+  --col-width: 96px;
+  --gutter: 20px;
+  --grid-width: 1372px; /* 12×96 + 11×20 */
+  --margin: 34px;
 }
 
 .container {
@@ -36,7 +36,9 @@
 /* ============================================================
    RESET
    ============================================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -76,19 +78,30 @@ nav {
   left: 10px;
   right: 10px;
   width: auto;
-  height: 70px;
   z-index: 1000;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
   align-items: center;
   padding: 14px 24px;
   box-sizing: border-box;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, opacity 0.3s ease;
+}
+
+nav.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+nav.has-bg {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .logo {
   grid-column: 1;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 32px;
   font-weight: 500;
   line-height: 1;
@@ -111,11 +124,15 @@ nav.dark .nav-cta {
 .nav-label,
 .nav-links li a,
 .nav-cta {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
+}
+
+.nav-links li a,
+.nav-cta {
   transition: opacity 0.2s;
 }
 
@@ -129,7 +146,6 @@ nav.dark .nav-cta {
   opacity: 1;
 }
 
-.nav-label:hover,
 .nav-links li a:hover,
 .nav-cta:hover {
   opacity: 0.5;
@@ -150,7 +166,7 @@ nav.dark .nav-cta {
   grid-column: 12;
   justify-self: end;
   border: 1px solid var(--white);
-  padding: 12px 24px;
+  padding: 10px 24px;
   width: fit-content;
 }
 
@@ -165,7 +181,7 @@ nav.dark .nav-cta {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: url('assets/back photo.png');
+  background-image: url("assets/back photo.png");
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -175,10 +191,12 @@ nav.dark .nav-cta {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 24px;
-  right: 24px;
+  left: 0;
+  right: 0;
+  padding: 0 34px;
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
   z-index: 2;
 }
@@ -192,7 +210,7 @@ nav.dark .nav-cta {
 }
 
 .hero-info-block p {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
@@ -242,7 +260,7 @@ nav.dark .nav-cta {
   left: 0;
   right: 0;
   z-index: 2;
-  font-family: 'Inter Tight', sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-size: 17.15vw;
   font-weight: 600;
   letter-spacing: 0;
@@ -254,8 +272,9 @@ nav.dark .nav-cta {
   padding: 0 34px;
   box-sizing: border-box;
   margin: 0;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
-
 
 /* ============================================================
    WHO AM I
@@ -283,7 +302,7 @@ nav.dark .nav-cta {
 }
 
 .wai-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   font-weight: 400;
   color: var(--blue);
@@ -293,10 +312,11 @@ nav.dark .nav-cta {
 }
 
 .wai-headline {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-size: 32px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.1;
+  text-wrap: balance;
   color: var(--black);
   letter-spacing: 0;
 }
@@ -306,7 +326,7 @@ nav.dark .nav-cta {
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   font-weight: 500;
   color: var(--black);
@@ -361,10 +381,11 @@ nav.dark .nav-cta {
 }
 
 .wai-bio p {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  text-wrap: pretty;
   color: var(--black);
   opacity: 0.6;
   letter-spacing: 0;
@@ -377,11 +398,12 @@ nav.dark .nav-cta {
   background: var(--white);
   color: var(--black);
   margin-top: 120px;
+  scroll-margin-top: 90px;
 }
 
 .case-item {
   display: grid;
-  grid-template-columns: 344px 1fr;
+  grid-template-columns: 382px 1fr;
   grid-template-areas:
     "label image"
     "bottom image";
@@ -431,6 +453,7 @@ nav.dark .nav-cta {
   font-size: 20px;
   font-weight: 400;
   line-height: 1.3;
+  text-wrap: pretty;
   color: var(--black);
   margin-top: 24px;
 }
@@ -475,6 +498,330 @@ nav.dark .nav-cta {
   object-fit: cover;
   object-position: center;
   display: block;
+}
+
+/* ============================================================
+   SKILLS / WHAT CAN I DO FOR YOU
+   ============================================================ */
+.skills {
+  background: #0d08c5;
+  color: var(--white);
+  margin-top: 120px;
+  padding: 34px 0;
+}
+
+.skills-grid {
+  position: relative;
+  max-width: var(--grid-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  padding: 0 34px;
+}
+
+.skills-left-wrap {
+  grid-column: 1 / 7;
+  align-self: start;
+  padding-bottom: calc(5 * 328px + 5 * 64px); /* 1960px — wrapper height = sidebar content + 1960px, so sticky falls off exactly when row 6 top is at pin position */
+}
+
+.skills-left {
+  padding: 0;
+  position: sticky;
+  top: 106px;
+}
+
+.skills-label {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.skills-headline {
+  font-family: var(--font);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+  color: var(--white);
+  letter-spacing: 0;
+}
+
+.skills-items {
+  grid-column: 7 / 13;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px 20px;
+  align-self: start;
+}
+
+.skills-item {
+  background: #0d08c5;
+  aspect-ratio: 1 / 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.skills-item--white {
+  background: var(--white);
+  align-items: center;
+  justify-content: center;
+  border-left: none;
+}
+
+.skills-illus {
+  width: 65%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+img[src="assets/buildings.svg"].skills-illus,
+img[src="assets/violin.svg"].skills-illus {
+  width: 52%;
+}
+
+/* Illustration animation — stroke jitter via JS */
+.globe-svg,
+.violin-svg,
+.buildings-svg,
+.plan-svg {
+  display: block;
+}
+
+.skills-item-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skills-num {
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0;
+}
+
+.skills-title {
+  font-family: var(--font);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+  color: var(--white);
+  letter-spacing: 0;
+}
+
+.skills-desc {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-wrap: pretty;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0;
+}
+
+.skills-note {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  margin: 120px 10px 10px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: center;
+  padding: 14px 34px;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  color: var(--black);
+}
+
+.site-footer-logo {
+  grid-column: 1;
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.site-footer-copy {
+  grid-column: 4 / 7;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.site-footer-links {
+  grid-column: 9 / span 3;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.site-footer-links a {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.site-footer-links a:hover {
+  opacity: 0.4;
+}
+
+.site-footer-top {
+  grid-column: 12;
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.site-footer-top:hover {
+  opacity: 0.4;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact {
+  background: var(--white);
+  color: var(--black);
+  padding: 140px 34px 120px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+.contact-label {
+  grid-column: 1;
+  width: 184px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.contact-content {
+  grid-column: 6 / 13;
+  max-width: calc(7 * var(--col-width) + 6 * var(--gutter));
+}
+
+.contact-headline {
+  font-family: var(--font);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--black);
+  letter-spacing: 0;
+}
+
+.contact-marked {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.contact-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(-50%);
+  display: block;
+  object-fit: fill;
+}
+
+.contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.contact-cta {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 12px 32px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.contact-cta:hover {
+  opacity: 0.5;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.contact-link:hover {
+  opacity: 0.5;
+}
+
+.contact-arrow {
+  display: block;
+  width: 22px;
+  height: 21px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 /* ============================================================
@@ -585,7 +932,7 @@ nav.dark .nav-cta {
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 2.5rem;
 }
 
@@ -712,7 +1059,7 @@ nav.dark .nav-cta {
   top: 0;
   left: 0;
   right: 0;
-  height: 62vh;
+  height: auto;
   z-index: 2000;
   background: var(--white);
   color: var(--black);
@@ -722,8 +1069,9 @@ nav.dark .nav-cta {
   transform: translateY(-100%);
   visibility: hidden;
   pointer-events: none;
-  transition: transform 0.4s ease-in-out,
-              visibility 0.4s ease-in-out;
+  transition:
+    transform 0.4s ease-in-out,
+    visibility 0.4s ease-in-out;
 }
 
 .menu-overlay.is-open {
@@ -740,7 +1088,7 @@ nav.dark .nav-cta {
 }
 
 .menu-overlay-logo {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 32px;
   font-weight: 500;
   line-height: 1;
@@ -754,20 +1102,24 @@ nav.dark .nav-cta {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   font-weight: 400;
   color: var(--black);
+  letter-spacing: 0;
+  line-height: 80%;
   padding: 0;
   gap: 8px;
 }
 
 .menu-close-dot {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 14px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid black;
+  flex-shrink: 0;
 }
 
 .menu-overlay-nav {
@@ -780,7 +1132,7 @@ nav.dark .nav-cta {
 }
 
 .menu-overlay-link {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   font-weight: 400;
   color: var(--black);
@@ -799,7 +1151,7 @@ nav.dark .nav-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   font-weight: 500;
   color: var(--black);
@@ -820,7 +1172,7 @@ nav.dark .nav-cta {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   font-weight: 400;
   color: var(--black);
@@ -843,7 +1195,7 @@ nav.dark .nav-cta {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   font-weight: 400;
   color: var(--white);
@@ -851,20 +1203,20 @@ nav.dark .nav-cta {
   padding: 0;
   transition: opacity 0.2s;
   align-items: center;
-      line-height: 80%;
+  line-height: 80%;
 }
 
 .nav-hamburger::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: white;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    line-height: 1;
-    display: block;
-    margin-left: 8px;
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 1;
+  display: block;
+  margin-left: 8px;
 }
 
 .nav-hamburger:hover {
@@ -885,10 +1237,14 @@ nav.dark .nav-hamburger {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-.desk-br { display: block; }
+.desk-br {
+  display: block;
+}
 
 @media (max-width: 900px) {
-  .desk-br { display: none; }
+  .desk-br {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1081,6 +1437,33 @@ nav.dark .nav-hamburger {
 
   .case-link {
     margin-top: 24px;
+  }
+
+  /* CONTACT — mobile */
+  .contact {
+    padding: 0 24px 80px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-label {
+    grid-column: 1;
+  }
+
+  .contact-content {
+    grid-column: 1;
+    margin-top: 32px;
+  }
+
+  .contact-headline {
+    font-size: 24px;
+  }
+
+  .contact-actions {
+    flex-wrap: wrap;
+    gap: 24px;
   }
 }
 
