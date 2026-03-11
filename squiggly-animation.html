@@ -29,7 +29,7 @@
 
     // ─── CONSTANTS ───────────────────────────────────────────────────────────
     const AMPLITUDE       = 2.5;
-    const SPEED           = 0.055;
+    const SPEED           = 0.096;
     const SCALE           = 4;   // display px per viewBox unit
     const ARROWHEAD_ROOM  = 14.48; // viewBox units needed past last BASE point
 
@@ -117,9 +117,19 @@
     const arrow2 = initArrow(document.getElementById('svg2'), WIDTH_2);
 
     // ─── ANIMATION ───────────────────────────────────────────────────────────
-    let phase = 0;
+    const FPS      = 60;
+    const INTERVAL = 1000 / FPS;
 
-    function animate() {
+    let phase    = 0;
+    let lastTime = 0;
+
+    function animate(timestamp) {
+      requestAnimationFrame(animate);
+
+      const elapsed = timestamp - lastTime;
+      if (elapsed < INTERVAL) return;
+      lastTime = timestamp - (elapsed % INTERVAL);
+
       phase += SPEED;
 
       [arrow1, arrow2].forEach(({ wavePath, arrowhead, base, vbWidth }) => {
@@ -130,11 +140,9 @@
         wavePath.setAttribute('d', catmullRom(pts));
         arrowhead.setAttribute('d', buildArrowhead(pts));
       });
-
-      requestAnimationFrame(animate);
     }
 
-    animate();
+    requestAnimationFrame(animate);
   </script>
 </body>
 </html>
