@@ -116,6 +116,18 @@
     const arrow1 = initArrow(document.getElementById('svg1'), WIDTH_1);
     const arrow2 = initArrow(document.getElementById('svg2'), WIDTH_2);
 
+    const TARGET_WIDTH_1 = 130;
+    const scale1 = TARGET_WIDTH_1 / WIDTH_1;
+    const svg1 = document.getElementById('svg1');
+    svg1.style.transform = `scale(${scale1}, ${scale1})`;
+    svg1.style.transformOrigin = 'top left';
+
+    const TARGET_WIDTH_2 = 100;
+    const scale2 = TARGET_WIDTH_2 / WIDTH_2;
+    const svg2 = document.getElementById('svg2');
+    svg2.style.transform = `scale(${scale2}, ${scale2})`;
+    svg2.style.transformOrigin = 'top left';
+
     // ─── ANIMATION ───────────────────────────────────────────────────────────
     const FPS      = 60;
     const INTERVAL = 1000 / FPS;
