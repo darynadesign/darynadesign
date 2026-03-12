@@ -92,7 +92,7 @@
       <span class="case-section-label">HERE'S SOME OF MY WORK</span>
       <div class="case-image">
         <picture>
-          <source srcset="assets/case%20cover%20wave%20mob.png" media="(max-width: 900px)" />
+          <source srcset="assets/case%20cover%20wave%20mob.png" media="(max-width: 1023px)" />
           <img src="assets/case cover wave.png" alt="WAVE case" />
         </picture>
       </div>
@@ -111,7 +111,7 @@
     <div class="case-item case-item--no-label">
       <div class="case-image">
         <picture>
-          <source srcset="assets/case%20cover%20mm%20mob.png" media="(max-width: 900px)" />
+          <source srcset="assets/case%20cover%20mm%20mob.png" media="(max-width: 1023px)" />
           <img src="assets/case cover mm.png" alt="MM case" />
         </picture>
       </div>
@@ -130,7 +130,7 @@
     <div class="case-item case-item--no-label">
       <div class="case-image">
         <picture>
-          <source srcset="assets/case%20cover%20tehno%20mob.png" media="(max-width: 900px)" />
+          <source srcset="assets/case%20cover%20tehno%20mob.png" media="(max-width: 1023px)" />
           <img src="assets/case cover tehno.png" alt="Tehno case" />
         </picture>
       </div>
@@ -331,7 +331,7 @@
     let skillsFrozen = false;
 
     function updateSkillsSticky() {
-      if (window.innerWidth <= 900) return;
+      if (window.innerWidth < 1024) return;
       const stickyTop  = nav.getBoundingClientRect().bottom + 34;
       const lastRowTop = skillsLastRow.getBoundingClientRect().top;
 
