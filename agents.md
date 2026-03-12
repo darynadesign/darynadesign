@@ -90,9 +90,16 @@ Portfolio website for Daria Forsiuk. Plain HTML + CSS, no frameworks, no build t
 - `squiggly arrow cases.svg` (106px) — used on "VIEW CASE" buttons
 - SVG arrow centreline sits 14px below button text (`margin-top: -1px`)
 
-## Reference Docs
-- `qa.md` — recurring bugs and their fixes. Read before touching JS selectors, asset paths, or nav links.
-- `arch.md` — site architecture, naming conventions, and recommended improvements. Read before restructuring HTML, CSS, or JS.
+## Reference Docs (READ THESE FIRST)
+- **`arch.md`** — **MUST READ before writing any CSS.** Contains the layout system, grid rules, mobile-first approach, breakpoints, section templates, and why things break. Covers every section's intended layout pattern.
+- **`qa.md`** — recurring bugs and their fixes. Read before touching JS selectors, asset paths, or nav links.
+
+## Layout Rules (summary — see arch.md for full detail)
+- **Mobile-first CSS**: base styles = mobile (no media query). Add desktop layout inside `@media (min-width: 1024px)`.
+- **Use `var(--margin)` for side padding** (24px mobile, 34px desktop). Never hardcode.
+- **Use `var(--section-gap)` for vertical spacing** (72px mobile, 120px desktop). Never hardcode.
+- **Use `fr` units for grid column splits** (e.g. `4fr 8fr`), never fixed `px` column widths.
+- **Keep each section's responsive rules next to its base rules**, not in a giant `@media` block at the bottom.
 
 ## Known Issues / Gotchas
 - `overflow-x: hidden` on `body` (not `html`) creates a scroll container, which breaks `position: fixed` nav at mid-range viewports if any child overflows → always clip overflow at the section level
