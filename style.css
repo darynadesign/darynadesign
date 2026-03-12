@@ -90,11 +90,11 @@ nav {
   padding: 8px;
   box-sizing: border-box;
   gap: 0;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, opacity 0.3s ease;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, transform 0.3s ease;
 }
 
 nav.hidden {
-  opacity: 0;
+  transform: translateY(-120%);
   pointer-events: none;
 }
 
@@ -651,7 +651,8 @@ nav.dark .nav-hamburger::after {
 /* CASES — desktop */
 @media (min-width: 1024px) {
   .case-item {
-    grid-template-columns: 4fr 8fr;
+    grid-template-columns: 344px 1fr;
+    column-gap: 38px;
     grid-template-areas:
       "label image"
       "bottom image";
@@ -684,8 +685,19 @@ nav.dark .nav-hamburger::after {
 
   .case-image {
     aspect-ratio: auto;
+    max-height: 100vh;
+    overflow: visible;
     margin: 0;
     margin-right: var(--margin);
+  }
+
+  .case-image img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    margin-left: auto;
   }
 }
 
@@ -876,11 +888,11 @@ img[src="assets/violin.svg"].skills-illus {
   }
 }
 
-/* SKILLS — wide desktop sticky */
-@media (min-width: 1440px) {
+/* SKILLS — desktop sticky */
+@media (min-width: 1024px) {
   .skills-left-wrap {
     position: sticky;
-    top: 106px;
+    top: 34px;
   }
 }
 

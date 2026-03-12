@@ -45,7 +45,7 @@ Portfolio website for Daria Forsiuk. Plain HTML + CSS, no frameworks, no build t
 - `text-wrap: balance` on headings
 - `text-wrap: pretty` on body paragraphs
 - Em dash (—) must never start a line → use `&nbsp;—` before it
-- Standalone "I" and "a" must never end a line → use `&nbsp;` after them
+- Standalone "I", "a", "an", "the", and "to" must never end a line → use `&nbsp;` after them to tie to the next word
 - Letter-spacing: 0 on all text (no tracking)
 - `desk-br` class for desktop-only line breaks (hidden at ≤900px)
 
