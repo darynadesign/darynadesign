@@ -452,7 +452,8 @@
     inlineJitter('assets/violin.svg', 'violin-svg');
 
     // Shared speed for all squiggly arrows — change once, applies everywhere
-    const ARROW_SPEED = 0.055;
+    const ARROW_SPEED = 0.165;
+    const FRAME_MS = 1000 / 60; // lock animations to 60 fps
 
     // Squiggly wave animation for "view case" buttons
     (function() {
@@ -523,10 +524,12 @@
 
         drawStatic(wavePath, arrowhead);
 
-        let phase = 0, rafId = null, animating = false;
+        let phase = 0, rafId = null, animating = false, lastTime = 0;
 
-        function animateFrame() {
+        function animateFrame(now) {
           if (!animating) return;
+          if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
+          lastTime = now;
           phase += SPEED;
           const pts = BASE.map(p => ({
             x: p.x,
@@ -617,10 +620,12 @@
 
       drawStatic();
 
-      let phase = 0, rafId = null, animating = false;
+      let phase = 0, rafId = null, animating = false, lastTime = 0;
 
-      function animateFrame() {
+      function animateFrame(now) {
         if (!animating) return;
+        if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
+        lastTime = now;
         phase += SPEED;
         const pts = BASE.map(p => ({
           x: p.x,
@@ -630,6 +635,15 @@
         arrowhead.setAttribute('d', buildArrowhead(pts));
         rafId = requestAnimationFrame(animateFrame);
       }
+
+      jumpLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('work');
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - 34;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
 
       jumpLink.addEventListener('mouseenter', () => {
         animating = true;
