@@ -293,6 +293,14 @@
     const menuOpen = document.querySelector('.nav-hamburger');
     const menuClose = document.getElementById('menuClose');
 
+    // Expose nav height for CSS sticky calc
+    function setNavH() {
+      const r = nav.getBoundingClientRect();
+      document.documentElement.style.setProperty('--nav-h', (r.top + r.height) + 'px');
+    }
+    setNavH();
+    window.addEventListener('resize', setNavH);
+
     const navSections = [
       { el: document.querySelector('.hero'),     dark: false },
       { el: document.querySelector('.who-am-i'), dark: true  },

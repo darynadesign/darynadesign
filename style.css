@@ -722,7 +722,8 @@ nav.dark .nav-hamburger::after {
 .skills-left-wrap {
   grid-column: 1;
   align-self: start;
-  padding: 0 var(--margin) 24px;
+  padding: 0 var(--margin) 40px;
+  max-width: 560px;
 }
 
 .skills-left {
@@ -754,9 +755,10 @@ nav.dark .nav-hamburger::after {
 .skills-items {
   grid-column: 1;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 328px));
+  gap: 24px;
   align-self: start;
+  justify-content: start;
   min-width: 0;
   overflow-x: clip;
   padding: 0 var(--margin);
@@ -764,8 +766,8 @@ nav.dark .nav-hamburger::after {
 
 .skills-item {
   background: #0d08c5;
-  aspect-ratio: auto;
-  height: 252px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -846,8 +848,15 @@ img[src="assets/violin.svg"].skills-illus {
   letter-spacing: 0;
 }
 
+/* SKILLS — tablet */
+@media (min-width: 768px) {
+  .skills-left-wrap {
+    padding-bottom: 64px;
+  }
+}
+
 /* SKILLS — desktop */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .skills {
     padding: 34px 0;
   }
@@ -856,10 +865,13 @@ img[src="assets/violin.svg"].skills-illus {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--gutter);
     padding: 0 var(--margin);
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   .skills-left-wrap {
     grid-column: 1 / 6;
+    max-width: 560px;
     padding: 0;
   }
 
@@ -874,25 +886,25 @@ img[src="assets/violin.svg"].skills-illus {
     padding: 0;
   }
 
-  .skills-item {
-    aspect-ratio: 1 / 1;
-    height: auto;
-  }
-
   .skills-title {
     font-size: 32px;
   }
 
   .skills-desc {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
 /* SKILLS — desktop sticky */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .skills-left-wrap {
     position: sticky;
     top: 34px;
+    transition: top 0.3s ease;
+  }
+
+  nav:not(.hidden) ~ .skills .skills-left-wrap {
+    top: calc(var(--nav-h, 55px) + 34px);
   }
 }
 
@@ -902,7 +914,7 @@ img[src="assets/violin.svg"].skills-illus {
 .contact {
   background: var(--white);
   color: var(--black);
-  padding: 0 var(--margin) 80px;
+  padding: 72px var(--margin) 80px;
 }
 
 .contact-grid {
