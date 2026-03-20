@@ -988,6 +988,12 @@ img[src="assets/violin.svg"].skills-illus {
   flex-direction: column;
 }
 
+@media (min-width: 768px) {
+  .contact-footer-wrap {
+    margin-top: 0;
+  }
+}
+
 .contact {
   background: var(--white);
   color: var(--black);
