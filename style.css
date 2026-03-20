@@ -871,7 +871,6 @@ img[src="assets/violin.svg"].skills-illus {
 
   .skills-left-wrap {
     grid-column: 1 / 6;
-    max-width: 560px;
     padding: 0;
   }
 
@@ -1281,3 +1280,4 @@ img[src="assets/violin.svg"].skills-illus {
   flex-shrink: 0;
   object-fit: fill;
 }
+
