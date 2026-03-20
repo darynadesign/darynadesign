@@ -529,6 +529,10 @@ nav.dark .nav-hamburger::after {
 
 /* WHO AM I — tablet: row layout with desktop sizes */
 @media (min-width: 768px) {
+  .wai-headline {
+    max-width: 560px;
+  }
+
   .wai-bottom {
     flex-direction: row;
     align-items: flex-start;
@@ -589,7 +593,7 @@ nav.dark .nav-hamburger::after {
   color: var(--black);
   margin-top: var(--section-gap);
   padding-bottom: var(--section-gap);
-  scroll-margin-top: 90px;
+  scroll-margin-top: 60px;
 }
 
 .case-item {
@@ -977,10 +981,18 @@ img[src="assets/violin.svg"].skills-illus {
 /* ============================================================
    CONTACT — mobile base
    ============================================================ */
+.contact-footer-wrap {
+  margin-top: var(--section-gap);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
 .contact {
   background: var(--white);
   color: var(--black);
-  padding: var(--section-gap) var(--margin) 80px;
+  padding: 24px var(--margin) 80px;
+  flex: 1;
 }
 
 .contact-grid {
@@ -1087,6 +1099,14 @@ img[src="assets/violin.svg"].skills-illus {
 
 /* CONTACT — tablet */
 @media (min-width: 768px) {
+  .contact {
+    padding-top: var(--section-gap);
+  }
+
+  .contact-headline {
+    max-width: 560px;
+  }
+
   .contact-cta {
     width: auto;
   }
@@ -1140,7 +1160,7 @@ img[src="assets/violin.svg"].skills-illus {
    FOOTER — mobile base (flexbox wrap)
    ============================================================ */
 .site-footer {
-  margin: var(--section-gap) 10px 10px;
+  margin: 0 10px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
