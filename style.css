@@ -876,7 +876,7 @@ img[src="assets/violin.svg"].skills-illus {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--gutter);
     padding: 0 var(--margin);
-    max-width: 1440px;
+    max-width: 1920px;
     margin: 0 auto;
   }
 
@@ -902,8 +902,16 @@ img[src="assets/violin.svg"].skills-illus {
     padding: 0;
   }
 
+  .skills-item {
+    max-width: 448px;
+  }
+
   .skills-title {
     font-size: clamp(24px, 10cqi, 32px);
+  }
+
+  .skills-desc {
+    font-size: clamp(16px, 3.3cqi + 5px, 20px);
   }
 }
 

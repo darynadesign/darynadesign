@@ -164,7 +164,7 @@
             <span class="skills-num">01/</span>
             <h3 class="skills-title">I think in systems</h3>
           </div>
-          <p class="skills-desc">Accounting for interdependencies between parts of the&nbsp;project during the&nbsp;design and execution.</p>
+          <p class="skills-desc">Rooted in&nbsp;architecture, I&nbsp;design for structure, flow, and how everything holds together when one thing changes (ideally without collapsing).</p>
         </div>
         <div class="skills-item skills-item--white">
           <img src="assets/buildings.svg" alt="" class="skills-illus" />
@@ -199,8 +199,7 @@
         <div class="skills-item">
           <div class="skills-item-top">
             <span class="skills-num">05/</span>
-            <h3 class="skills-title">I design experiences that resonate*</h3>
-            <p class="skills-note">*(pun intended)</p>
+            <h3 class="skills-title">I design experiences that resonate</h3>
           </div>
           <p class="skills-desc">On stage, the&nbsp;goal was to&nbsp;make people feel. In design, it's the&nbsp;same, just with fewer violins.</p>
         </div>
@@ -331,34 +330,22 @@
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
-    // Skills sticky: CSS sticky scrolls with user, JS releases it at last row
-    const skillsSection = document.querySelector('.skills');
-    const skillsLeft    = document.querySelector('.skills-left-wrap');
-    const skillsGrid    = document.querySelector('.skills-grid');
-    const skillsLastRow = document.querySelectorAll('.skills-items > *')[10];
-    let skillsFrozen = false;
-
-    function updateSkillsSticky() {
-      if (window.innerWidth < 1024) return;
-      const stickyTop  = 34;
-      const lastRowTop = skillsLastRow.getBoundingClientRect().top;
-
-      if (lastRowTop <= stickyTop && !skillsFrozen) {
-        const frozenTop = skillsLeft.getBoundingClientRect().top
-                        - skillsGrid.getBoundingClientRect().top;
-        skillsLeft.style.position = 'absolute';
-        skillsLeft.style.top = frozenTop + 'px';
-        skillsFrozen = true;
-      } else if (lastRowTop > stickyTop && skillsFrozen) {
-        skillsLeft.style.position = '';
-        skillsLeft.style.top = '';
-        skillsFrozen = false;
+    // Skills sticky: constrain left-wrap height so sticky stops at last row
+    function setSkillsWrapHeight() {
+      if (window.innerWidth < 1200) {
+        document.querySelector('.skills-left-wrap').style.height = '';
+        return;
       }
+      const wrap    = document.querySelector('.skills-left-wrap');
+      const lastRow = document.querySelector('.skills-items > :nth-last-child(2)'); // globe
+      const heading = document.querySelector('.skills-left');
+      const wrapTop = wrap.getBoundingClientRect().top + window.scrollY;
+      const rowTop  = lastRow.getBoundingClientRect().top + window.scrollY;
+      wrap.style.height = (rowTop - wrapTop + heading.offsetHeight) + 'px';
     }
 
-    window.addEventListener('scroll', updateSkillsSticky, { passive: true });
-    updateSkillsSticky();
-
+    window.addEventListener('resize', setSkillsWrapHeight);
+    setSkillsWrapHeight();
 
     // Hide nav on scroll-down, show on scroll-up / mouse-move
     let lastScrollY = window.scrollY;
@@ -677,7 +664,7 @@
   }
   #gridOverlay .grid-cols {
     width:100%;
-    max-width:1440px;
+    max-width:1920px;
     height:100%;
     margin:0 auto;
     display:grid;
