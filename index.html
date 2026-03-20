@@ -239,9 +239,9 @@
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact-grid">
-      <span class="contact-label">WHAT ELSE IS THERE<br>TO BE DONE?</span>
+      <span class="contact-label">WHAT ELSE IS THERE TO BE DONE?</span>
       <div class="contact-content">
-        <p class="contact-headline">Connect to&nbsp;make <span class="contact-marked">this world a&nbsp;better place<img src="assets/blue line.svg" class="contact-line" alt="" /></span> some memorable and impactful designs that will (hopefully) move it in the&nbsp;right direction.</p>
+        <p class="contact-headline">Connect to&nbsp;make <span class="contact-marked">this world a&nbsp;better place<svg class="contact-line" viewBox="0 0 353 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="contact-wave" d="" stroke="#3638FF" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" fill="none"/></svg></span> some memorable and impactful designs that will (hopefully) move it in the&nbsp;right direction.</p>
         <div class="contact-actions">
           <a href="mailto:daria@example.com" class="contact-cta">GET IN TOUCH</a>
           <a href="https://www.linkedin.com/in/daria-forsiuk/" class="contact-link" target="_blank">
@@ -264,7 +264,7 @@
       <li><a href="#work">Work</a></li>
       <li><a href="#skills">Skills</a></li>
     </ul>
-    <a href="#" class="site-footer-top">go to top</a>
+    <a href="#" class="site-footer-top">to top</a>
   </footer>
 
   <script>
@@ -646,6 +646,90 @@
       });
 
       jumpLink.addEventListener('mouseleave', () => {
+        animating = false;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      });
+    }());
+
+    // Squiggly wave animation for contact "blue line"
+    (function() {
+      const wavePath = document.querySelector('.contact-wave');
+      if (!wavePath) return;
+
+      const W = 353;
+      const BASE = [
+        { x: 0,    y: 10.2 },
+        { x: 14,   y: 8.1  },
+        { x: 32,   y: 11.8 },
+        { x: 50,   y: 7.4  },
+        { x: 71,   y: 12.3 },
+        { x: 89,   y: 7.9  },
+        { x: 110,  y: 11.1 },
+        { x: 130,  y: 8.5  },
+        { x: 152,  y: 12.6 },
+        { x: 170,  y: 7.2  },
+        { x: 192,  y: 11.5 },
+        { x: 213,  y: 8.0  },
+        { x: 234,  y: 12.1 },
+        { x: 253,  y: 7.6  },
+        { x: 275,  y: 11.9 },
+        { x: 294,  y: 8.3  },
+        { x: 315,  y: 12.4 },
+        { x: 333,  y: 7.8  },
+        { x: 353,  y: 10.5 },
+      ];
+
+      const AMPLITUDE = 3.04;
+      const FREQUENCY = 2.8;
+      const SPEED = ARROW_SPEED;
+
+      function catmullRom(pts) {
+        let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[Math.max(0, i - 1)];
+          const p1 = pts[i];
+          const p2 = pts[i + 1];
+          const p3 = pts[Math.min(pts.length - 1, i + 2)];
+          const cp1x = p1.x + (p2.x - p0.x) / 6;
+          const cp1y = p1.y + (p2.y - p0.y) / 6;
+          const cp2x = p2.x - (p3.x - p1.x) / 6;
+          const cp2y = p2.y - (p3.y - p1.y) / 6;
+          d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+        }
+        return d;
+      }
+
+      function drawStatic() {
+        const pts = BASE.map(p => ({
+          x: p.x,
+          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY),
+        }));
+        wavePath.setAttribute('d', catmullRom(pts));
+      }
+
+      drawStatic();
+
+      let phase = 0, rafId = null, animating = false, lastTime = 0;
+
+      function animateFrame(now) {
+        if (!animating) return;
+        if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
+        lastTime = now;
+        phase += SPEED;
+        const pts = BASE.map(p => ({
+          x: p.x,
+          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - phase),
+        }));
+        wavePath.setAttribute('d', catmullRom(pts));
+        rafId = requestAnimationFrame(animateFrame);
+      }
+
+      const marked = document.querySelector('.contact-marked');
+      marked.addEventListener('mouseenter', () => {
+        animating = true;
+        if (!rafId) rafId = requestAnimationFrame(animateFrame);
+      });
+      marked.addEventListener('mouseleave', () => {
         animating = false;
         if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       });
