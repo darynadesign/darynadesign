@@ -712,7 +712,6 @@ nav.dark .nav-hamburger::after {
 }
 
 .skills-grid {
-  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
@@ -721,8 +720,7 @@ nav.dark .nav-hamburger::after {
 
 .skills-left-wrap {
   grid-column: 1;
-  align-self: start;
-  padding: 0 var(--margin) 40px;
+  padding: 0 var(--margin) 64px;
   max-width: 560px;
 }
 
@@ -765,6 +763,7 @@ nav.dark .nav-hamburger::after {
 }
 
 .skills-item {
+  container-type: inline-size;
   background: #0d08c5;
   aspect-ratio: 1 / 1;
   height: auto;
@@ -813,7 +812,7 @@ img[src="assets/violin.svg"].skills-illus {
 
 .skills-num {
   font-family: var(--font);
-  font-size: 24px;
+  font-size: clamp(18px, 7.5cqi, 24px);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0;
@@ -821,7 +820,7 @@ img[src="assets/violin.svg"].skills-illus {
 
 .skills-title {
   font-family: var(--font);
-  font-size: 24px;
+  font-size: clamp(20px, 10cqi, 24px);
   font-weight: 400;
   line-height: 1.1;
   text-wrap: balance;
@@ -848,10 +847,22 @@ img[src="assets/violin.svg"].skills-illus {
   letter-spacing: 0;
 }
 
+/* SKILLS — single-column (boxes stack) */
+@media (max-width: 599px) {
+  .skills-left-wrap {
+    padding-bottom: 40px;
+  }
+}
+
 /* SKILLS — tablet */
 @media (min-width: 768px) {
-  .skills-left-wrap {
-    padding-bottom: 64px;
+  .skills-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px var(--gutter);
+  }
+
+  .skills-item {
+    max-width: 328px;
   }
 }
 
@@ -871,6 +882,10 @@ img[src="assets/violin.svg"].skills-illus {
 
   .skills-left-wrap {
     grid-column: 1 / 6;
+    grid-row: 1;
+    align-self: stretch;
+    position: relative;
+    z-index: 1;
     padding: 0;
   }
 
@@ -880,29 +895,27 @@ img[src="assets/violin.svg"].skills-illus {
 
   .skills-items {
     grid-column: 7 / 13;
+    grid-row: 1;
+    align-self: stretch;
     grid-template-columns: 1fr 1fr;
     gap: 64px 20px;
     padding: 0;
   }
 
   .skills-title {
-    font-size: 32px;
-  }
-
-  .skills-desc {
-    font-size: 16px;
+    font-size: clamp(24px, 10cqi, 32px);
   }
 }
 
 /* SKILLS — desktop sticky */
 @media (min-width: 1200px) {
-  .skills-left-wrap {
+  .skills-left {
     position: sticky;
     top: 34px;
     transition: top 0.3s ease;
   }
 
-  nav:not(.hidden) ~ .skills .skills-left-wrap {
+  nav:not(.hidden) ~ .skills .skills-left {
     top: calc(var(--nav-h, 55px) + 34px);
   }
 }
