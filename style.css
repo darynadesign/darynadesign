@@ -452,7 +452,6 @@ nav.dark .nav-hamburger::after {
   font-size: 24px;
   font-weight: 400;
   line-height: 1.1;
-  text-wrap: balance;
   color: var(--black);
   letter-spacing: 0;
 }
@@ -530,7 +529,11 @@ nav.dark .nav-hamburger::after {
 /* WHO AM I — tablet: row layout with desktop sizes */
 @media (min-width: 768px) {
   .wai-headline {
-    max-width: 560px;
+    max-width: 580px;
+  }
+
+  .mob-br {
+    display: none;
   }
 
   .wai-bottom {
@@ -571,7 +574,7 @@ nav.dark .nav-hamburger::after {
   }
 
   .wai-top {
-    max-width: calc(6 * 96px + 5 * 20px); /* 6 columns */
+    max-width: 660px;
   }
 
   .wai-jump {
@@ -582,6 +585,7 @@ nav.dark .nav-hamburger::after {
 @media (min-width: 1200px) {
   .wai-headline {
     font-size: 32px;
+    max-width: 690px;
   }
 }
 
@@ -883,7 +887,6 @@ img[src="assets/violin.svg"].skills-illus {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
-  text-wrap: pretty;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0;
 }
