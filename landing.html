@@ -70,6 +70,22 @@
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
+    // Hide nav on scroll-down, show on scroll-up / mouse-move
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY && currentY > 80) {
+        nav.classList.add('hidden');
+      } else {
+        nav.classList.remove('hidden');
+      }
+      lastScrollY = currentY;
+    }, { passive: true });
+
+    document.addEventListener('mousemove', () => {
+      nav.classList.remove('hidden');
+    });
+
     function openMenu() {
       menuOverlay.classList.add('is-open');
       menuOverlay.setAttribute('aria-hidden', 'false');
@@ -97,6 +113,130 @@
           !menuOverlay.contains(e.target) &&
           !menuOpen.contains(e.target)) {
         closeMenu();
+      }
+    });
+  </script>
+
+  <!-- CASE HERO -->
+  <section class="case-hero">
+    <div class="case-hero-grid">
+      <p class="case-hero-label">PERSONAL LANDING PAGE<br>FOR A FASHION STYLIST</p>
+      <h1 class="case-hero-title">landing for mm</h1>
+    </div>
+  </section>
+
+  <picture>
+    <source media="(min-width: 768px)" srcset="assets/Landing/Scene 1.png">
+    <img class="case-full-img" src="assets/Landing/Scene 1 mob.png" alt="MM Landing mockup">
+  </picture>
+
+  <!-- PROJECT OVERVIEW -->
+  <section class="case-overview">
+    <div class="case-overview-grid">
+      <div class="case-overview-label">
+        <span class="case-label-dot"></span>
+        <span>PROJECT OVERVIEW</span>
+      </div>
+      <div class="case-overview-body">
+        <div class="case-overview-desc">
+          <p>I&nbsp;designed a&nbsp;landing page for a&nbsp;stylist who needed a&nbsp;cohesive space to showcase her work and services. The&nbsp;goal was to strengthen her personal brand and create a&nbsp;clear path for attracting clients.</p>
+          <p>I&nbsp;approached the&nbsp;design as a&nbsp;story using the&nbsp;AIDA model, which allowed me to highlight her personality and skills while guiding visitors toward action. This project also gave me the&nbsp;chance to refine my skills in narrative-driven landing page design and explore a&nbsp;new subject area and visual style.</p>
+        </div>
+        <dl class="case-overview-meta">
+          <div class="case-meta-row">
+            <dt>Client</dt>
+            <dd>Student project</dd>
+          </div>
+          <div class="case-meta-row">
+            <dt>Field</dt>
+            <dd>Fashion/personal site</dd>
+          </div>
+          <div class="case-meta-row">
+            <dt>Role</dt>
+            <dd>Sole designer</dd>
+          </div>
+          <div class="case-meta-row">
+            <dt>Tools</dt>
+            <dd>Figma</dd>
+          </div>
+          <div class="case-meta-row">
+            <dt>Timeline</dt>
+            <dd>1 week (jan 2025)</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <picture class="case-full-img--gap">
+    <source media="(min-width: 768px)" srcset="assets/Landing/scene 2.png">
+    <img class="case-full-img" src="assets/Landing/scene 2 mob.png" alt="MM Landing mockup">
+  </picture>
+
+  <!-- INSPIRATION -->
+  <section class="case-overview">
+    <div class="case-overview-grid">
+      <div class="case-overview-label">
+        <span class="case-label-dot"></span>
+        <span>INSPIRATION</span>
+      </div>
+      <div class="case-overview-body">
+        <div class="case-overview-desc">
+          <p>Given the&nbsp;nature of the&nbsp;styling industry, I&nbsp;began by curating strong visuals, making imagery the&nbsp;cornerstone of the&nbsp;design. Photographs carried the&nbsp;personality and aesthetic, so I&nbsp;drew inspiration from fashion editorials&nbsp;— minimalist, clean layouts where visuals take centre stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-inspiration">
+    <div class="case-inspiration-line"></div>
+    <div class="case-inspiration-line"></div>
+    <picture>
+      <source media="(min-width: 768px)" srcset="assets/Landing/inspiration.png">
+      <img src="assets/Landing/inspiration mob.png" alt="Inspiration moodboard">
+    </picture>
+  </div>
+
+  <!-- TYPOGRAPHY & COLOUR -->
+  <section class="case-typo">
+    <div class="case-typo-grid">
+      <div class="case-typo-text">
+        <div class="case-overview-label">
+          <span class="case-label-dot"></span>
+          <span>TYPOGRAPHY &amp; COLOUR</span>
+        </div>
+        <div class="case-overview-desc">
+          <p>I&nbsp;opted for a&nbsp;neutral typographic and minimal colour palette, using bold red accents on key CTAs to maintain visual hierarchy without distracting from the&nbsp;photography. The&nbsp;restraint in colour and type allowed the&nbsp;images to carry the&nbsp;brand's personality, while carefully placed red details injected energy and guided the&nbsp;eye through the&nbsp;page.</p>
+        </div>
+      </div>
+      <div class="case-typo-desktop">
+        <picture>
+          <source media="(min-width: 768px)" srcset="assets/Landing/typo&amp;colour.png">
+          <img src="assets/Landing/typo&amp;colour mob.png" alt="Landing page typography and colour">
+        </picture>
+      </div>
+      <div class="case-typo-mobile">
+        <img src="assets/Landing/typo&amp;colour mob.png" alt="Landing page mobile view">
+        <div class="case-typo-cta">
+          <img src="assets/Landing/vector red arrow.svg" alt="" class="case-typo-arrow">
+          <p class="case-typo-cta-text">BOOK<br>A&nbsp;SERVICE</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEBUG GRID OVERLAY (toggle with G key) -->
+  <div class="grid-debug" id="gridDebug" aria-hidden="true">
+    <div class="grid-debug-inner">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+  <script>
+    const gridDebug = document.getElementById('gridDebug');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'g' || e.key === 'G') {
+        gridDebug.classList.toggle('is-visible');
       }
     });
   </script>
