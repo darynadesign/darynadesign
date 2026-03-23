@@ -1495,7 +1495,32 @@ img[src="assets/violin.svg"].skills-illus {
   display: block;
   width: 100%;
   height: auto;
-  margin-top: 16px;
+}
+
+.case-full-img--square-mob .case-full-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.case-full-img--curtain {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 85% center;
+}
+
+@media (min-width: 1024px) {
+  .case-full-img--curtain {
+    aspect-ratio: auto;
+    object-fit: initial;
+    object-position: initial;
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-full-img--square-mob .case-full-img {
+    aspect-ratio: auto;
+    object-fit: initial;
+  }
 }
 
 picture.case-full-img--gap,
@@ -1511,12 +1536,60 @@ picture.case-full-img--gap,
 }
 
 /* ============================================================
+   SCENE 1 — BACKGROUND + BROWSER OVERLAY
+   ============================================================ */
+.scene1 {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  background: #DACFCC;
+}
+
+.scene1-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scene1-browser {
+  position: relative;
+  width: calc(100% - 48px);
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .scene1 {
+    aspect-ratio: 1440 / 900;
+  }
+
+  .scene1-browser {
+    width: 75%;
+  }
+}
+
+/* ============================================================
    CASE STUDY — PROJECT OVERVIEW
    ============================================================ */
 .case-overview {
   background: var(--white);
   color: var(--black);
   padding: 34px var(--margin) 0;
+}
+
+.case-overview--po {
+  padding-bottom: 72px;
+}
+
+@media (min-width: 768px) {
+  .case-overview--po {
+    padding-bottom: 120px;
+  }
 }
 
 .case-overview-grid {
@@ -1746,7 +1819,7 @@ picture.case-full-img--gap,
 
 .case-typo-cta-text {
   font-family: var(--font);
-  font-weight: 500;
+  font-weight: 600;
   font-size: min(1.6vw, 23px);
   line-height: 1.2;
   text-transform: uppercase;
