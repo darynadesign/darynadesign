@@ -1,4 +1,31 @@
 /* ============================================================
+   FONTS
+   ============================================================ */
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Misto';
+  src: url('assets/fonts/Misto.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modelista Signature';
+  src: url('assets/fonts/Modelistasignature-ownAV.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
    TOKENS
    ============================================================ */
 :root {
@@ -1879,6 +1906,211 @@ picture.case-full-img--gap,
 @media (min-width: 1200px) {
   .case-typo-text .case-overview-desc {
     max-width: 560px;
+  }
+}
+
+/* ============================================================
+   LANDING — TYPOGRAPHY SHOWCASE
+   ============================================================ */
+.landing-typo {
+  display: flex;
+  flex-direction: column;
+  color: var(--black);
+}
+
+.landing-typo-left {
+  padding: 0 var(--margin) 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-typo-heading {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding-top: 58px;
+}
+
+.landing-typo-items {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.landing-typo-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile reorder: Neue Haas → Modelista → Misto */
+.landing-typo-item--neue { order: 1; }
+.landing-typo-item--modelista { order: 2; }
+.landing-typo-item--misto { order: 3; }
+
+.landing-typo-num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 8px;
+}
+
+.landing-typo-label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.landing-typo-sample {
+  font-size: 36px;
+  line-height: 1.1;
+  margin-top: 8px;
+}
+
+.landing-typo-sample--neue {
+  font-family: 'Neue Haas Grotesk', sans-serif;
+}
+
+.landing-typo-sample--misto {
+  font-family: 'Misto', sans-serif;
+}
+
+.landing-typo-sample--modelista {
+  font-family: 'Modelista Signature', cursive;
+  letter-spacing: -0.01em;
+}
+
+.landing-typo-right {
+  background: #ebe4e2;
+}
+
+.landing-typo-right img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .landing-typo {
+    flex-direction: row;
+  }
+
+  .landing-typo-left {
+    flex: 1;
+    padding: 97px;
+    max-width: 50%;
+  }
+
+  .landing-typo-heading {
+    font-size: 16px;
+    padding-top: 0;
+  }
+
+  .landing-typo-items {
+    gap: 36px;
+    margin-top: 56px;
+  }
+
+  /* Desktop order: Neue Haas → Misto → Modelista */
+  .landing-typo-item--neue { order: 1; }
+  .landing-typo-item--misto { order: 2; }
+  .landing-typo-item--modelista { order: 3; }
+
+  .landing-typo-num {
+    font-size: 16px;
+  }
+
+  .landing-typo-label {
+    font-size: 16px;
+  }
+
+  .landing-typo-sample {
+    font-size: 64px;
+    margin-top: 32px;
+  }
+
+  .landing-typo-right {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .landing-typo-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: auto;
+  }
+}
+
+/* ============================================================
+   SCENE — CLOTHES / DESKTOP ANIMATION
+   ============================================================ */
+.scene-clothes {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-clothes-back {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  object-fit: cover;
+  filter: blur(2px);
+}
+
+.scene-clothes-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(254, 241, 225, 0.1);
+}
+
+.scene-clothes-logo {
+  position: absolute;
+  top: 4.4%;
+  left: 13.3%;
+  font-family: 'Misto', sans-serif;
+  font-size: 7.7vw;
+  color: #fff;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+}
+
+.scene-clothes-desktop {
+  position: relative;
+  width: 71%;
+  height: auto;
+  margin-left: auto;
+  margin-right: 7%;
+  margin-top: 12%;
+}
+
+@media (min-width: 1024px) {
+  .scene-clothes {
+    aspect-ratio: 1440 / 810;
+  }
+
+  .scene-clothes-logo {
+    top: 32px;
+    left: 44px;
+    font-size: 44px;
+  }
+
+  .scene-clothes-desktop {
+    width: 47%;
+    margin-top: 0;
   }
 }
 
