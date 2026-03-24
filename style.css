@@ -2013,7 +2013,7 @@ picture.case-full-img--gap,
 
   .landing-typo-items {
     gap: 36px;
-    margin-top: 56px;
+    margin-top: 24px;
   }
 
   /* Desktop order: Neue Haas → Misto → Modelista */
@@ -2112,6 +2112,160 @@ picture.case-full-img--gap,
     width: 47%;
     margin-top: 0;
   }
+}
+
+/* ============================================================
+   COLOUR PALETTE
+   ============================================================ */
+.colour-palette {
+  background: var(--white);
+  color: var(--black);
+  padding: 72px var(--margin);
+}
+
+.colour-palette-heading {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 24px;
+  text-align: right;
+}
+
+@media (min-width: 1024px) {
+  .colour-palette-heading {
+    margin-bottom: 24px;
+  }
+}
+
+.colour-palette-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.colour-palette-card {
+  position: relative;
+  overflow: hidden;
+  width: 75%;
+}
+
+.colour-palette-card:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.colour-palette-card:nth-child(even) {
+  align-self: flex-end;
+}
+
+.colour-palette-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(0.8);
+  transition: filter 0.4s ease;
+}
+
+.colour-palette-card:hover img {
+  filter: grayscale(0%) contrast(1);
+}
+
+.colour-palette-circle {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  width: 63%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15%;
+  font-size: 14px;
+  line-height: 1.1;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .colour-palette-circle {
+    width: 208px;
+    padding: 32px;
+    font-size: 17.8px;
+  }
+}
+
+.colour-palette-circle--red {
+  background: #b70600;
+  color: #fff;
+}
+
+.colour-palette-circle--white {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: var(--black);
+}
+
+.colour-palette-circle--black {
+  background: #000;
+  color: #fff;
+}
+
+.colour-palette-name {
+  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-weight: 400;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+
+.colour-palette-values {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.colour-palette-row {
+  display: flex;
+  gap: 14px;
+  font-family: 'Neue Haas Grotesk', sans-serif;
+  white-space: nowrap;
+}
+
+.colour-palette-key {
+  font-weight: 600;
+  min-width: 2em;
+}
+
+@media (min-width: 1024px) {
+  .colour-palette {
+    padding: 120px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .colour-palette-heading {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 24px;
+    width: 1022px;
+  }
+
+  .colour-palette-cards {
+    flex-direction: row;
+    gap: 16px;
+    width: 1022px;
+  }
+
+  .colour-palette-card {
+    width: 330px;
+    flex: none;
+  }
+
+  .colour-palette-card:nth-child(odd),
+  .colour-palette-card:nth-child(even) {
+    align-self: auto;
+  }
+
 }
 
 /* ============================================================
