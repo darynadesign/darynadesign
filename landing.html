@@ -315,6 +315,14 @@
     </div>
   </div>
   <script>
+    if (!window.matchMedia('(hover: hover)').matches) {
+      const cards = document.querySelectorAll('.colour-palette-card');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => e.target.classList.toggle('is-visible', e.isIntersecting));
+      }, { threshold: 0.5 });
+      cards.forEach(card => io.observe(card));
+    }
+
     const gridDebug = document.getElementById('gridDebug');
     document.addEventListener('keydown', (e) => {
       if (e.key === 'g' || e.key === 'G') {
