@@ -1696,6 +1696,12 @@ picture.case-full-img--gap,
   white-space: nowrap;
 }
 
+@media (max-width: 374px) {
+  .case-overview-meta {
+    font-size: 14px;
+  }
+}
+
 @media (min-width: 768px) {
   .case-overview-desc {
     max-width: 540px;
@@ -2566,6 +2572,71 @@ picture.case-full-img--gap,
   }
 }
 
+
+/* ============================================================
+   ABOUT & PUBLICATIONS
+   ============================================================ */
+.about-pub {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.about-pub-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-pub-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about-pub-mockup {
+  position: absolute;
+  width: 38.86%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .about-pub {
+    flex-direction: row;
+  }
+
+  .about-pub-col {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-pub {
+    gap: 34px;
+    padding: 34px;
+  }
+}
+
+/* ============================================================
+   RED BAG MOCKUP
+   ============================================================ */
+.red-bag-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .red-bag-section img {
+    aspect-ratio: auto;
+  }
+}
 
 /* ============================================================
    DEBUG GRID OVERLAY
