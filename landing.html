@@ -307,6 +307,11 @@
     </div>
   </section>
 
+  <!-- RUNWAY -->
+  <section class="runway-section">
+    <img src="assets/Landing/runway.png" alt="MM Landing runway" width="2880" height="1764">
+  </section>
+
   <!-- DEBUG GRID OVERLAY (toggle with G key) -->
   <div class="grid-debug" id="gridDebug" aria-hidden="true">
     <div class="grid-debug-inner">
@@ -315,10 +320,17 @@
     </div>
   </div>
   <script>
-    if (!window.matchMedia('(hover: hover)').matches) {
+    if (window.matchMedia('(max-width: 1023px)').matches) {
       const cards = document.querySelectorAll('.colour-palette-card');
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => e.target.classList.toggle('is-visible', e.isIntersecting));
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            cards.forEach(c => { if (c !== e.target) c.classList.remove('is-visible'); });
+            e.target.classList.add('is-visible');
+          } else {
+            e.target.classList.remove('is-visible');
+          }
+        });
       }, { threshold: 0.5 });
       cards.forEach(card => io.observe(card));
     }
