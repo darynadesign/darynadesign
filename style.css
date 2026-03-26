@@ -2786,6 +2786,69 @@ picture.case-full-img--gap,
   }
 }
 
+/* ============================================================
+   LANDING FOOTER
+   ============================================================ */
+.landing-footer-links {
+  display: none;
+}
+.landing-footer-link {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.landing-footer-link:hover {
+  opacity: 0.4;
+}
+.landing-footer-link .arrow-icon {
+  width: 22px;
+  height: 21px;
+}
+
+@media (min-width: 768px) {
+  .landing-footer-links {
+    display: flex;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-footer {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--gutter);
+    padding: 14px 24px;
+  }
+  .landing-footer .site-footer-logo {
+    grid-column: 1;
+  }
+  .landing-footer .site-footer-copy {
+    grid-column: 6;
+    font-size: 14px;
+    width: auto;
+    white-space: nowrap;
+  }
+  .landing-footer .landing-footer-links {
+    grid-column: 9 / span 3;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+  }
+  .landing-footer .site-footer-top {
+    grid-column: 12;
+    font-size: 14px;
+    justify-self: end;
+  }
+}
 
 /* ============================================================
    DEBUG GRID OVERLAY
