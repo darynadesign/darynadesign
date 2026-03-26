@@ -694,13 +694,14 @@ nav.dark .nav-hamburger::after {
   text-wrap: pretty;
   color: var(--black);
   margin-top: 16px;
+  max-width: 430px;
 }
 
 .case-link {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 24px;
+  margin-top: 28px;
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 500;
@@ -1230,7 +1231,6 @@ img[src="assets/violin.svg"].skills-illus {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.7);
   letter-spacing: 0;
-  width: 109px;
 }
 
 .site-footer-links {
@@ -2651,6 +2651,141 @@ picture.case-full-img--gap,
     aspect-ratio: auto;
   }
 }
+
+/* ============================================================
+   ACTIVE PROJECTS
+   ============================================================ */
+.active-projects {
+  background: #EBE4E2;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--margin);
+}
+.active-projects img {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .active-projects {
+    aspect-ratio: auto;
+    padding: 120px var(--margin);
+  }
+}
+
+/* ============================================================
+   FITTING ROOM
+   ============================================================ */
+.fitting-room {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.fitting-room-bg {
+  display: block;
+  width: 110%;
+  height: auto;
+  margin-left: -10%;
+}
+.fitting-room-spread {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 8%);
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: auto;
+}
+
+/* ============================================================
+   KEEP EXPLORING
+   ============================================================ */
+.keep-exploring {
+  padding: 80px var(--margin) 120px;
+}
+.keep-exploring-label {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #3638FF;
+  margin-bottom: 32px;
+}
+.keep-exploring-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.keep-exploring-info {
+  margin-top: 24px;
+}
+.keep-exploring-tags {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  opacity: 0.6;
+  line-height: 1.2;
+  color: var(--black);
+}
+.keep-exploring-desc {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: pretty;
+  color: var(--black);
+  margin-top: 16px;
+  max-width: 430px;
+}
+.keep-exploring-info .case-link {
+  margin-top: 28px;
+}
+
+@media (min-width: 1024px) {
+  .keep-exploring {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 20px;
+    align-items: start;
+    padding: 120px var(--margin) 120px;
+  }
+  .keep-exploring-label {
+    grid-column: 1 / 6;
+    margin-bottom: 0;
+  }
+  .keep-exploring-right {
+    grid-column: 6 / 13;
+    display: flex;
+    justify-content: flex-end;
+    gap: 48px;
+    align-items: start;
+  }
+  .keep-exploring-image {
+    flex: 0 0 420px;
+    overflow: hidden;
+  }
+  .keep-exploring-image img {
+    width: 420px;
+    max-width: none;
+  }
+  .keep-exploring-info {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
+    flex: 0 0 290px;
+  }
+  .keep-exploring-desc {
+    margin-top: 24px;
+  }
+}
+
 
 /* ============================================================
    DEBUG GRID OVERLAY

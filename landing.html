@@ -380,6 +380,53 @@
     </div>
   </section>
 
+  <!-- ACTIVE PROJECTS -->
+  <section class="active-projects">
+    <img src="assets/Landing/active%20projects.png" alt="Active projects" width="2000" height="1310">
+  </section>
+
+  <!-- FITTING ROOM -->
+  <section class="fitting-room">
+    <img class="fitting-room-bg" src="assets/Landing/fitting%20room%20back.png" alt="" width="2880" height="4538">
+    <img class="fitting-room-spread" src="assets/Landing/long%20spread.png" alt="MM Landing full page mockup" width="1120" height="3612">
+  </section>
+
+  <!-- KEEP EXPLORING -->
+  <section class="keep-exploring">
+    <p class="keep-exploring-label">KEEP EXPLORING</p>
+    <div class="keep-exploring-right">
+      <div class="keep-exploring-image">
+        <picture>
+          <source srcset="assets/case%20cover%20wave%20mob.webp" media="(max-width: 1023px)" />
+          <img src="assets/case cover wave.webp" alt="WAVE case" width="2048" height="1400">
+        </picture>
+      </div>
+      <div class="keep-exploring-info">
+        <p class="keep-exploring-tags">#REDESIGN / #USER TESTING / #UX/UI<br>#CHARITY / #VISUAL STORYTELLING</p>
+        <p class="keep-exploring-desc">Redesign for a&nbsp;charity foundation to&nbsp;boost donor engagement and donation flows; selected among 15 entries, now in development.</p>
+        <a href="#" class="case-link">
+          <span>VIEW CASE</span>
+          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="cases-arrowhead" fill="#7274FF"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <a href="index.html" class="site-footer-logo">df.</a>
+    <span class="site-footer-copy">@2026_all rights reserved</span>
+    <ul class="site-footer-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+    </ul>
+    <a href="#" class="site-footer-top">to top</a>
+  </footer>
+
   <!-- DEBUG GRID OVERLAY (toggle with G key) -->
   <div class="grid-debug" id="gridDebug" aria-hidden="true">
     <div class="grid-debug-inner">
@@ -409,6 +456,105 @@
         gridDebug.classList.toggle('is-visible');
       }
     });
+
+    // Squiggly wave animation for "view case" button
+    (function() {
+      const ARROW_SPEED = 0.165;
+      const FRAME_MS = 1000 / 60;
+      const BASE = [
+        { x: 1.57,  y: 14.73 },
+        { x: 22.87, y: 15.17 },
+        { x: 37.08, y: 16.70 },
+        { x: 51.28, y: 14.82 },
+        { x: 65.49, y: 11.13 },
+        { x: 79.69, y: 14.18 },
+        { x: 93.88, y: 14.42 },
+      ];
+      const AMPLITUDE = 3.04;
+      const FREQUENCY = 2.8;
+      const SPEED = ARROW_SPEED;
+
+      function catmullRom(pts) {
+        let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[Math.max(0, i - 1)];
+          const p1 = pts[i];
+          const p2 = pts[i + 1];
+          const p3 = pts[Math.min(pts.length - 1, i + 2)];
+          const cp1x = p1.x + (p2.x - p0.x) / 6;
+          const cp1y = p1.y + (p2.y - p0.y) / 6;
+          const cp2x = p2.x - (p3.x - p1.x) / 6;
+          const cp2y = p2.y - (p3.y - p1.y) / 6;
+          d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+        }
+        return d;
+      }
+
+      function buildArrowhead(pts) {
+        const last  = pts[pts.length - 1];
+        const ref   = pts[pts.length - 2];
+        const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
+        const cos = Math.cos(angle), sin = Math.sin(angle);
+        function r(dx, dy) {
+          return `${(last.x + dx*cos - dy*sin).toFixed(3)},${(last.y + dx*sin + dy*cos).toFixed(3)}`;
+        }
+        return [
+          `M ${r( 4.242,  1.414)}`,
+          `C ${r( 5.023,  0.633)} ${r( 5.023, -0.633)} ${r( 4.242, -1.414)}`,
+          `L ${r(-8.486, -14.142)}`,
+          `C ${r(-9.267,-14.923)} ${r(-10.533,-14.923)} ${r(-11.314,-14.142)}`,
+          `C ${r(-12.095,-13.361)} ${r(-12.095,-12.095)} ${r(-11.314,-11.314)}`,
+          `L ${r( 0,      0)}`,
+          `L ${r(-11.314, 11.314)}`,
+          `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`,
+          `C ${r(-10.533, 14.923)} ${r(-9.267,  14.923)} ${r( -8.486, 14.142)}`,
+          `Z`,
+        ].join(' ');
+      }
+
+      function drawStatic(wavePath, arrowhead) {
+        const pts = BASE.map(p => ({
+          x: p.x,
+          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY),
+        }));
+        wavePath.setAttribute('d', catmullRom(pts));
+        arrowhead.setAttribute('d', buildArrowhead(pts));
+      }
+
+      document.querySelectorAll('.case-link').forEach(link => {
+        const wavePath  = link.querySelector('.cases-wave');
+        const arrowhead = link.querySelector('.cases-arrowhead');
+        if (!wavePath || !arrowhead) return;
+
+        drawStatic(wavePath, arrowhead);
+
+        let phase = 0, rafId = null, animating = false, lastTime = 0;
+
+        function animateFrame(now) {
+          if (!animating) return;
+          if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
+          lastTime = now;
+          phase += SPEED;
+          const pts = BASE.map(p => ({
+            x: p.x,
+            y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase),
+          }));
+          wavePath.setAttribute('d', catmullRom(pts));
+          arrowhead.setAttribute('d', buildArrowhead(pts));
+          rafId = requestAnimationFrame(animateFrame);
+        }
+
+        link.addEventListener('mouseenter', () => {
+          animating = true;
+          if (!rafId) rafId = requestAnimationFrame(animateFrame);
+        });
+
+        link.addEventListener('mouseleave', () => {
+          animating = false;
+          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        });
+      });
+    }());
   </script>
 </body>
 </html>
