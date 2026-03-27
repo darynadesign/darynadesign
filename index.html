@@ -46,6 +46,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
+      <source src="assets/hero%20video%20slow.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-info">
       <div class="hero-info-block hero-info-block--left">
@@ -287,6 +290,9 @@
 
     updateLondonTime();
     setInterval(updateLondonTime, 60000);
+
+    document.getElementById('heroVideo').playbackRate = 1.15;
+
 
     const nav = document.querySelector('nav');
     const hero = document.querySelector('.hero');
