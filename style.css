@@ -2126,7 +2126,7 @@ picture.case-full-img--gap,
   margin-right: 7%;
   margin-top: 12%;
   background: url('assets/Landing/long%20page%20for%20scroll.webp') top / 100% auto no-repeat;
-  animation: clothes-scroll 18s cubic-bezier(0.1, 0.6, 0.3, 1) infinite;
+  animation: clothes-scroll 14s cubic-bezier(0.1, 0.6, 0.3, 1) 0.5s infinite;
 }
 
 @keyframes clothes-scroll {
