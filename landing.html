@@ -318,12 +318,6 @@
           <p class="price-list-duration">10-14 days</p>
           <div class="price-list-meta">
             <p class="price-list-format">online</p>
-            <a class="price-list-cta" href="#">
-              <span class="price-list-cta-inner">
-                <img src="assets/Landing/arrow-upright.svg" alt="" class="price-list-cta-arrow">
-                <span class="price-list-cta-text">BOOK<br>A&nbsp;SERVICE</span>
-              </span>
-            </a>
             <p class="price-list-price">$800</p>
           </div>
         </div>
@@ -361,6 +355,12 @@
         </div>
       </div>
     </div>
+    <a class="price-list-cursor" href="#" aria-hidden="true">
+      <span class="price-list-cta-inner">
+        <img src="assets/Landing/arrow-upright.svg" alt="" class="price-list-cta-arrow">
+        <span class="price-list-cta-text">BOOK<br>A&nbsp;SERVICE</span>
+      </span>
+    </a>
   </section>
 
   <!-- RED BAG MOCKUP -->
@@ -485,6 +485,56 @@
         gridDebug.classList.toggle('is-visible');
       }
     });
+
+    // Price-list interactive cursor (desktop only)
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+      const section = document.querySelector('.price-list');
+      const cursor  = document.querySelector('.price-list-cursor');
+      const rows    = section.querySelectorAll('.price-list-row');
+
+      section.addEventListener('mouseenter', () => {
+        section.classList.add('is-tracking');
+      });
+
+      section.addEventListener('mouseleave', () => {
+        section.classList.remove('is-tracking');
+        cursor.classList.remove('is-expanded');
+        rows.forEach(r => r.classList.remove('is-hovered'));
+      });
+
+      let cursorX = 0, cursorY = 0, dotX = 0, dotY = 0;
+      const EASE = 0.1;
+
+      section.addEventListener('mousemove', (e) => {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+      });
+
+      (function followCursor() {
+        dotX += (cursorX - dotX) * EASE;
+        dotY += (cursorY - dotY) * EASE;
+        cursor.style.left = dotX + 'px';
+        cursor.style.top  = dotY + 'px';
+        requestAnimationFrame(followCursor);
+      }());
+
+      const table = section.querySelector('.price-list-table');
+
+      table.addEventListener('mouseenter', () => {
+        cursor.classList.add('is-in-table');
+      });
+      table.addEventListener('mouseleave', () => {
+        cursor.classList.remove('is-in-table');
+        rows.forEach(r => r.classList.remove('is-hovered'));
+      });
+
+      rows.forEach(row => {
+        row.addEventListener('mouseenter', () => {
+          rows.forEach(r => r.classList.remove('is-hovered'));
+          row.classList.add('is-hovered');
+        });
+      });
+    }
 
     // Squiggly wave animation for "view case" button
     (function() {
