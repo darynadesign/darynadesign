@@ -263,7 +263,7 @@
     <img class="scene-clothes-back" src="assets/Landing/clothes%20back.webp" alt="" width="2880" height="1620">
     <div class="scene-clothes-overlay"></div>
     <p class="scene-clothes-logo">ММ</p>
-    <img class="scene-clothes-desktop" src="assets/Landing/desktop%20animation.webp" alt="MM Landing desktop animation" width="1352" height="938">
+    <div class="scene-clothes-desktop" role="img" aria-label="MM Landing desktop animation"></div>
   </div>
 
   <!-- COLOUR PALETTE -->
@@ -382,7 +382,37 @@
 
   <!-- ACTIVE PROJECTS -->
   <section class="active-projects">
-    <img src="assets/Landing/active%20projects.png" alt="Active projects" width="2000" height="1310">
+    <div class="active-projects-inner">
+      <p class="active-projects-label">ACTIVE PROJECTS & SERVICES</p>
+
+      <div class="active-projects-body">
+        <div class="active-projects-list">
+          <span class="active-projects-item">PUMP YOUR STYLE school</span>
+          <span class="active-projects-item is-active" data-slide="0">FÉMATCH platform</span>
+          <span class="active-projects-item">Wardrobe analysis</span>
+          <span class="active-projects-item">Capsule wardrobe</span>
+          <span class="active-projects-item">Complex service</span>
+          <span class="active-projects-item">Brand campaign</span>
+          <span class="active-projects-item" data-slide="1">Photoshoot concept</span>
+        </div>
+
+        <div class="active-projects-right">
+          <img class="active-projects-img is-active" data-slide="0" src="assets/Landing/red%20bag.webp" alt="FÉMATCH platform" width="962" height="1141">
+          <img class="active-projects-img" data-slide="1" src="assets/Landing/photoshoot.webp" alt="Photoshoot concept" width="1384" height="1642">
+        </div>
+
+        <p class="active-projects-desc is-active" data-slide="0">A fashion platform created for industry experts and clients. A place where the perfect match happens — Fashion Expert Match</p>
+        <p class="active-projects-desc" data-slide="1">Complete brand photoshoot concept: from analysing your brand identity and choosing the right location to styling full looks, guiding poses and emotions, and coordinating all details.</p>
+
+        <a class="active-projects-cta" href="#">
+          <span class="active-projects-cta-inner">
+            <img class="active-projects-cta-arrow" src="assets/Landing/arrow-upright.svg" alt="">
+            <span class="active-projects-cta-text is-active" data-slide="0">explore<br>fÉmatch</span>
+            <span class="active-projects-cta-text" data-slide="1">book<br>a service</span>
+          </span>
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- FITTING ROOM -->
@@ -404,7 +434,7 @@
       <div class="keep-exploring-info">
         <p class="keep-exploring-tags">#REDESIGN / #USER TESTING / #UX/UI<br>#CHARITY / #VISUAL STORYTELLING</p>
         <p class="keep-exploring-desc">Redesign for a&nbsp;charity foundation to&nbsp;boost donor engagement and donation flows; selected among 15 entries, now in development.</p>
-        <a href="#" class="case-link">
+        <a href="wave.html" class="case-link">
           <span>VIEW CASE</span>
           <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -553,6 +583,98 @@
           if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
         });
       });
+    }());
+
+    // Active Projects cycling with fluid wave
+    (function() {
+      var body = document.querySelector('.active-projects-body');
+      var allItems = [].slice.call(document.querySelectorAll('.active-projects-item'));
+      if (!body || allItems.length < 7) return;
+
+      var linePositions = ['16.5%', '59.5%'];
+      var ctaPositions = ['36.8%', '32.2%'];
+      var current = 0;
+      var HOLD = 1250;
+
+      // Max offsets per position: ramp 20→50
+      var maxOffsets = allItems.map(function(_, i) {
+        return 20 + (50 - 20) * (i / (allItems.length - 1));
+      });
+
+      function activate(idx) {
+        allItems.forEach(function(el) { el.classList.remove('is-active'); });
+        document.querySelectorAll('.active-projects-img').forEach(function(el) { el.classList.remove('is-active'); });
+        document.querySelectorAll('.active-projects-desc').forEach(function(el) { el.classList.remove('is-active'); });
+        document.querySelectorAll('.active-projects-cta-text').forEach(function(el) { el.classList.remove('is-active'); });
+
+        var slide = idx.toString();
+        document.querySelector('.active-projects-item[data-slide="' + slide + '"]').classList.add('is-active');
+        document.querySelector('.active-projects-img[data-slide="' + slide + '"]').classList.add('is-active');
+        document.querySelector('.active-projects-desc[data-slide="' + slide + '"]').classList.add('is-active');
+        document.querySelector('.active-projects-cta-text[data-slide="' + slide + '"]').classList.add('is-active');
+        body.style.setProperty('--line-top', linePositions[idx]);
+        body.style.setProperty('--cta-top', ctaPositions[idx]);
+      }
+
+      // Continuous wave: sine bell travels through items
+      function wave(fromIdx, toIdx, callback) {
+        var dir = fromIdx < toIdx ? 1 : -1;
+        var count = Math.abs(toIdx - fromIdx) + 1;
+        var duration = count * 300; // total wave time
+        var spread = 3.5; // how many items the bell covers at once
+        var start = performance.now();
+
+        function frame(now) {
+          var t = (now - start) / duration; // 0→1
+          if (t > 1) t = 1;
+          // Wave center position (in item-index space, relative to sequence)
+          // Extra padding so the bell approaches and leaves items gradually
+          var pad = spread;
+          var center = t * (count - 1 + spread + pad * 2) - spread / 2 - pad;
+
+          for (var i = 0; i < count; i++) {
+            var itemIdx = fromIdx + i * dir;
+            var dist = Math.abs(i - center);
+            // Bell curve: items near center get displaced
+            var factor = dist < spread ? Math.cos((dist / spread) * Math.PI * 0.5) : 0;
+            factor = factor * factor; // sharper bell
+            var offset = maxOffsets[itemIdx] * factor;
+            allItems[itemIdx].style.transform = offset > 0.5
+              ? 'translateX(' + offset.toFixed(1) + 'px)'
+              : '';
+          }
+
+          if (t < 1) {
+            requestAnimationFrame(frame);
+          } else {
+            // Clean up
+            for (var j = 0; j < count; j++) {
+              allItems[fromIdx + j * dir].style.transform = '';
+            }
+            callback();
+          }
+        }
+        requestAnimationFrame(frame);
+      }
+
+      function cycle() {
+        if (current === 0) {
+          wave(2, 6, function() {
+            current = 1;
+            activate(1);
+            setTimeout(cycle, HOLD);
+          });
+        } else {
+          wave(5, 1, function() {
+            current = 0;
+            activate(0);
+            setTimeout(cycle, HOLD);
+          });
+        }
+      }
+
+      activate(0);
+      setTimeout(cycle, HOLD);
     }());
   </script>
 </body>
