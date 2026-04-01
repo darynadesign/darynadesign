@@ -1594,7 +1594,10 @@ picture.case-full-img--gap,
 }
 
 .scene1-browser {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: calc(100% - 48px);
   height: auto;
 }
@@ -1606,6 +1609,209 @@ picture.case-full-img--gap,
 
   .scene1-browser {
     width: 75%;
+  }
+}
+
+
+
+/* ---- Before / After ---- */
+
+.before-after {
+  background: #F1F4F9;
+  padding: 40px var(--margin) 56px;
+}
+
+.before-after-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.before-after-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.before-after-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  color: var(--black);
+}
+
+.before-after-img-wrap {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .before-after-img-wrap {
+    width: 75%;
+  }
+}
+
+.before-after-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.before-after-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.sensitive-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.sensitive-icon {
+  width: 42px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.sensitive-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--black);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.sensitive-desc {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--black);
+  letter-spacing: 1px;
+  max-width: 380px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+.sensitive-btn {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--black);
+  background: none;
+  border: 1.4px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 10px 28px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+
+  .before-after-col:first-child {
+    grid-column: 1 / 7;
+  }
+
+  .before-after-col:last-child {
+    grid-column: 7 / 13;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — PROBLEM & GOALS
+   ============================================================ */
+
+.case-prob-goals {
+  background: var(--white);
+  color: var(--black);
+  padding: 34px var(--margin) 120px;
+}
+
+.case-prob-goals-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.case-prob-goals-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 560px;
+}
+
+.case-prob-goals-head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-prob-goals-label {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.case-prob-goals-title {
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.case-prob-goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-prob-goals-item {
+  display: flex;
+  align-items: flex-start;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-prob-goals-num {
+  flex-shrink: 0;
+  width: 50px;
+}
+
+@media (min-width: 1024px) {
+  .case-prob-goals-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+
+  .case-prob-goals-col:first-child {
+    grid-column: 1 / 7;
+  }
+
+  .case-prob-goals-col:last-child {
+    grid-column: 7 / 13;
   }
 }
 
@@ -1694,7 +1900,6 @@ picture.case-full-img--gap,
 
 .case-meta-row dd {
   font-weight: 500;
-  white-space: nowrap;
 }
 
 @media (max-width: 374px) {
