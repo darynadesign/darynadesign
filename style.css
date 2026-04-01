@@ -2296,7 +2296,7 @@ picture.case-full-img--gap,
   }
 
   .case-meta-row {
-    gap: 64px;
+    gap: 48px;
   }
 
   .case-overview-body {
@@ -2310,6 +2310,7 @@ picture.case-full-img--gap,
   .case-overview-desc {
     grid-column: 1 / span 6;
     max-width: 540px;
+    padding-right: 60px;
   }
 
   .case-overview-meta {
@@ -2320,6 +2321,10 @@ picture.case-full-img--gap,
 @media (min-width: 1200px) {
   .case-overview-desc {
     max-width: 560px;
+  }
+
+  .case-meta-row {
+    gap: 64px;
   }
 }
 
