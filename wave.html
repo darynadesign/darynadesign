@@ -239,6 +239,97 @@
     </div>
   </section>
 
+  <picture>
+    <img class="case-full-img" src="assets/Wave/drone%20mock.webp" alt="Drone mockup" width="5760" height="4064">
+  </picture>
+
+  <!-- PRELIMINARY IA & WIREFRAMING -->
+  <section class="case-ia">
+    <div class="case-ia-grid">
+      <div class="case-ia-left">
+        <div class="case-ia-text">
+          <div class="case-overview-label">
+            <span class="case-label-dot case-label-dot--light"></span>
+            <span>PRELIMINARY IA &amp; WIREFRAMING</span>
+          </div>
+          <p class="case-ia-desc">I&nbsp;initially mapped out IA&nbsp;and wireframes based on&nbsp;competitor analysis and client input. Having tested a&nbsp;prototype with both military and donor user groups, I&nbsp;later modified the&nbsp;architecture and content order to&nbsp;suit user needs better, like adding a&nbsp;separate page for the&nbsp;military and adding dedicated CTA banners for each user group.</p>
+        </div>
+        <img class="case-ia-img" src="assets/Wave/IA.png" alt="Information architecture diagram" width="720" height="410">
+      </div>
+      <div class="case-ia-right">
+        <img class="case-ia-img" src="assets/Wave/wireframes.svg" alt="Wireframes">
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEPT DEVELOPMENT -->
+  <section class="case-concept">
+    <div class="case-concept-text">
+      <div class="case-overview-label">
+        <span class="case-label-dot"></span>
+        <span>CONCEPT DEVELOPMENT</span>
+      </div>
+      <p class="case-concept-desc">Inspired by&nbsp;the&nbsp;folding logo geometry and bold, rough aesthetics of&nbsp;the&nbsp;military style, I&nbsp;arrived at&nbsp;the&nbsp;key stylistic decisions: chamfered corners, juxtaposed composition, large typography, and bold colours.</p>
+    </div>
+    <div class="case-concept-sketches">
+      <div class="case-concept-sketch case-concept-sketch--1">
+        <img src="assets/Wave/sketch%201.webp" alt="Concept sketches" width="1184" height="706">
+      </div>
+      <div class="case-concept-sketch case-concept-sketch--2">
+        <img src="assets/Wave/sketch%202.webp" alt="Concept sketches" width="1540" height="700">
+      </div>
+    </div>
+  </section>
+
+  <!-- CARD DESIGN ITERATIONS -->
+  <section class="case-cards">
+    <div class="case-cards-header">
+      <p class="case-cards-label">CARD DESIGN ITERATIONS</p>
+      <p class="case-cards-label case-cards-label--final">FINAL VERSION</p>
+    </div>
+    <div class="case-cards-grid">
+      <div class="case-cards-item">
+        <img src="assets/Wave/card%201.webp" alt="Card iteration 1">
+      </div>
+      <div class="case-cards-item">
+        <img src="assets/Wave/card%202.webp" alt="Card iteration 2">
+      </div>
+      <div class="case-cards-item">
+        <img src="assets/Wave/card%203.webp" alt="Card iteration 3">
+      </div>
+      <div class="case-cards-item">
+        <img src="assets/Wave/card%204.webp" alt="Final card version">
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTON DESIGN & COLOUR PALETTE -->
+  <section class="case-btn-colour">
+    <div class="case-btn-colour-col case-btn-colour-col--dark">
+      <p class="case-btn-colour-label">BUTTON DESIGN</p>
+      <img class="case-btn-colour-back" src="assets/Wave/button%20design%20back.webp" alt="">
+      <img class="case-btn-colour-overlay" src="assets/Wave/button%20donate.svg" alt="Donate button design breakdown">
+    </div>
+    <div class="case-btn-colour-col case-btn-colour-col--light">
+      <p class="case-btn-colour-label case-btn-colour-label--dark">COLOUR PALETTE</p>
+      <img class="case-btn-colour-colours" src="assets/Wave/colours.svg" alt="Colour palette">
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="case-wave-typo">
+    <div class="case-wave-typo-inner">
+      <div class="case-wave-typo-top">
+        <p class="case-wave-typo-tag">[&ensp;TYPOGRAPHY&ensp;]</p>
+        <h2 class="case-wave-typo-heading">I&nbsp;used <span class="case-wave-typo-blue">Kharkiv Tone</span> for <span class="case-wave-typo-blue">large headings &amp;&nbsp;copy.</span> Named after the&nbsp;city of&nbsp;Kharkiv, it&nbsp;reflects the&nbsp;spirit of&nbsp;resilience &amp;&nbsp;forward-looking energy.</h2>
+      </div>
+      <div class="case-wave-typo-body">
+        <p class="case-wave-typo-desc">I&nbsp;used Onest for body copy. Designed for digital use, it remains legible and consistent at&nbsp;small sizes. It's clean, understated design intentionally contrasts with the&nbsp;bold, confident character of&nbsp;the&nbsp;Kharkiv typeface, creating a&nbsp;clear hierarchy and balanced typographic system.</p>
+        <img class="case-wave-typo-btn" src="assets/Wave/typo%20button.svg" alt="Onest button copy example">
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer landing-footer">
     <a href="index.html" class="site-footer-logo">df.</a>
@@ -263,6 +354,13 @@
       if (e.key === 'g' || e.key === 'G') {
         gridDebug.classList.toggle('is-visible');
       }
+    });
+
+    // "See Anyway" button — reveal before image
+    document.querySelector('.sensitive-btn').addEventListener('click', function() {
+      const wrap = this.closest('.before-after-img-wrap');
+      wrap.querySelector('.before-after-blur').style.display = 'none';
+      wrap.querySelector('.sensitive-overlay').style.display = 'none';
     });
 
     // Squiggly wave animation for "view case" button

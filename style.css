@@ -1618,7 +1618,7 @@ picture.case-full-img--gap,
 
 .before-after {
   background: #F1F4F9;
-  padding: 40px var(--margin) 56px;
+  padding: 120px var(--margin);
 }
 
 .before-after-grid {
@@ -1716,6 +1716,11 @@ picture.case-full-img--gap,
   border-radius: 5px;
   padding: 10px 28px;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sensitive-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 @media (min-width: 768px) {
@@ -1816,6 +1821,363 @@ picture.case-full-img--gap,
 }
 
 /* ============================================================
+   CASE STUDY — PRELIMINARY IA & WIREFRAMING
+   ============================================================ */
+
+.case-ia {
+  overflow: hidden;
+}
+
+.case-ia-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-ia-left {
+  background: #060d2d;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.case-ia-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px var(--margin) 0;
+  max-width: 594px;
+}
+
+
+
+.case-ia-desc {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.case-ia-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-ia-right {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .case-ia-grid {
+    flex-direction: row;
+  }
+
+  .case-ia-left,
+  .case-ia-right {
+    width: 50%;
+    flex-shrink: 0;
+  }
+
+  .case-ia-right .case-ia-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — CONCEPT DEVELOPMENT
+   ============================================================ */
+
+.case-concept {
+  background: var(--white);
+  color: var(--black);
+  padding: 34px var(--margin) 0;
+}
+
+.case-concept-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 560px;
+}
+
+.case-concept-desc {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-concept-sketches {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.case-concept-sketch {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.case-concept-sketch img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .case-concept-sketches {
+    flex-direction: row;
+    gap: 31px;
+    margin-left: calc(-1 * var(--margin));
+    margin-right: calc(-1 * var(--margin));
+    padding: 0 var(--margin);
+  }
+
+  .case-concept-sketch {
+    padding: 120px 0;
+  }
+
+  .case-concept-sketch--1 {
+    flex: 592;
+  }
+
+  .case-concept-sketch--2 {
+    flex: 742;
+  }
+}
+
+/* ---- Card Design Iterations ---- */
+
+.case-cards {
+  background: #F1F4F9;
+  padding: 120px var(--margin);
+}
+
+.case-cards-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.case-cards-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  color: var(--black);
+}
+
+.case-cards-label--final {
+  display: none;
+  text-align: right;
+}
+
+.case-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
+.case-cards-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 19px rgba(6, 29, 96, 0.1);
+}
+
+@media (min-width: 768px) {
+  .case-cards {
+    padding: 120px;
+  }
+
+  .case-cards-grid {
+    display: flex;
+    gap: 20px;
+  }
+
+  .case-cards-label--final {
+    display: block;
+  }
+
+  .case-cards-item {
+    flex: 1;
+  }
+}
+
+/* ---- Button Design & Colour Palette ---- */
+
+.case-btn-colour {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-btn-colour-col {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.case-btn-colour-col--dark {
+  background: #060D2D;
+}
+
+.case-btn-colour-col--light {
+  background: #BFCCEA;
+}
+
+.case-btn-colour-label {
+  position: absolute;
+  top: 34px;
+  left: 34px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  color: white;
+  z-index: 1;
+}
+
+.case-btn-colour-label--dark {
+  color: var(--black);
+}
+
+.case-btn-colour-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-btn-colour-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  height: auto;
+}
+
+.case-btn-colour-colours {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .case-btn-colour {
+    flex-direction: row;
+  }
+
+  .case-btn-colour-col {
+    flex: 1;
+  }
+}
+
+/* ---- Wave Typography ---- */
+
+.case-wave-typo {
+  background: #ffffff;
+  color: var(--black);
+  padding: 80px var(--margin);
+}
+
+.case-wave-typo-tag {
+  font-family: 'Onest', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #3638FF;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.case-wave-typo-heading {
+  font-family: 'Kharkiv Tone', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 32px;
+}
+
+.case-wave-typo-blue {
+  color: #3638FF;
+}
+
+.case-wave-typo-body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.case-wave-typo-desc {
+  font-family: 'Onest', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  opacity: 0.5;
+  color: var(--black);
+}
+
+.case-wave-typo-btn {
+  height: 48px;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .case-wave-typo {
+    padding: 140px var(--margin) 120px;
+  }
+
+  .case-wave-typo-top {
+    position: relative;
+  }
+
+  .case-wave-typo-tag {
+    font-size: 20px;
+    position: absolute;
+    top: 0.15em;
+    left: 0;
+    margin-bottom: 0;
+  }
+
+  .case-wave-typo-heading {
+    font-size: 48px;
+    text-indent: calc((100% - var(--gutter) * 11) / 12 * 5 + var(--gutter) * 5);
+  }
+
+  .case-wave-typo-inner {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+
+  .case-wave-typo-top {
+    grid-column: 1 / -1;
+  }
+
+  .case-wave-typo-body {
+    grid-column: 6 / 13;
+    max-width: 441px;
+  }
+}
+
+/* ============================================================
    CASE STUDY — PROJECT OVERVIEW
    ============================================================ */
 .case-overview {
@@ -1858,6 +2220,10 @@ picture.case-full-img--gap,
   background: var(--black);
   flex-shrink: 0;
   align-self: center;
+}
+
+.case-label-dot--light {
+  background: var(--white);
 }
 
 .case-overview-body {
@@ -1947,7 +2313,7 @@ picture.case-full-img--gap,
   }
 
   .case-overview-meta {
-    grid-column: 8 / -1;
+    grid-column: 7 / -1;
   }
 }
 
