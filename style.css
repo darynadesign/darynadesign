@@ -1825,7 +1825,6 @@ picture.case-full-img--gap,
    ============================================================ */
 
 .case-ia {
-  overflow: hidden;
 }
 
 .case-ia-grid {
@@ -1863,6 +1862,10 @@ picture.case-full-img--gap,
   display: block;
   width: 100%;
   height: auto;
+}
+
+.case-ia-left .case-ia-img {
+  padding: 0 34px 34px;
 }
 
 .case-ia-right {
