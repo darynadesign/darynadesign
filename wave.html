@@ -330,6 +330,31 @@
     </div>
   </section>
 
+  <!-- SUBSCRIPTION / FUNDRAISER -->
+  <section class="case-wave-sub">
+    <div class="case-wave-sub-bg">
+      <div class="case-wave-sub-inner">
+        <img class="case-wave-sub-wave" src="assets/Wave/wave%20above%20subscription.svg" alt="" aria-hidden="true">
+        <div class="case-wave-sub-photo">
+          <img src="assets/Wave/drone%20subscription%20clean.webp" alt="Drone fundraiser for the UAF">
+
+          <div id="progress" data-target="100" data-current="53" data-animation-duration-ms="2500">
+            <span id="target">_</span>
+            <div class="fill-line-top"></div>
+            <div class="percent-wrap" id="percentWrap">
+              <span class="percent-stroke" id="percentStroke">0%</span>
+              <span class="percent-fill" id="percentFill">0%</span>
+              <div class="fill-line">
+                <span id="current">_</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer landing-footer">
     <a href="index.html" class="site-footer-logo">df.</a>
@@ -463,6 +488,63 @@
     }());
 
 
+  </script>
+  <script>
+    const hryvnya = '₴';
+    const formatter = new Intl.NumberFormat('uk-UA', {
+        maximumFractionDigits: 0,
+    });
+
+    const progressContainer = document.getElementById('progress');
+    const targetText = document.getElementById('target');
+    const currentText = document.getElementById('current');
+
+    const target = Number(progressContainer.getAttribute('data-target'));
+    const current = Number(progressContainer.getAttribute('data-current'));
+    const duration = Number(progressContainer.getAttribute('data-animation-duration-ms'));
+    const targetPerc = parseInt(100*current/target);
+
+    targetText.textContent = `${hryvnya}${formatter.format(target)}`;
+
+    const wrap = document.getElementById('percentWrap');
+    const stroke = document.getElementById('percentStroke');
+    const fill = document.getElementById('percentFill');
+
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+
+    const FPS = 60;
+    const FRAME_TIME = 1000 / FPS;
+
+    const start = performance.now();
+    let lastFrameTime = start;
+
+    function tick(now) {
+        if (now - lastFrameTime >= FRAME_TIME) {
+            lastFrameTime = now - ((now - lastFrameTime) % FRAME_TIME);
+
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = easeOutCubic(progress);
+            const value = Math.round(targetPerc * eased);
+
+            stroke.textContent = value + '';
+            fill.textContent = value + '';
+            wrap.style.setProperty('--fill', value + '%');
+            currentText.textContent = `${hryvnya}${formatter.format(Math.round(progress * current))}`;
+        }
+
+        if ((now - start) < duration) {
+            requestAnimationFrame(tick);
+        } else {
+            stroke.textContent = targetPerc + '';
+            fill.textContent = targetPerc + '';
+            wrap.style.setProperty('--fill', targetPerc + '%');
+            currentText.textContent = `${hryvnya}${formatter.format(current)}`;
+        }
+    }
+
+    requestAnimationFrame(tick);
   </script>
 </body>
 </html>

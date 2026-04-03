@@ -1847,7 +1847,7 @@ picture.case-full-img--gap,
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-top: 48px;
+  margin-top: 100px;
 }
 
 .case-competitor-card {
@@ -1866,6 +1866,9 @@ picture.case-full-img--gap,
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: calc(254px * 5 + 12px * 4);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .case-competitor-card {
@@ -1927,7 +1930,8 @@ picture.case-full-img--gap,
   font-family: var(--font);
   font-size: 16px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.2;
+  opacity: 0.8;
 }
 
 .case-competitor-takeaway-num {
@@ -1942,6 +1946,212 @@ picture.case-full-img--gap,
 
   .case-competitor-takeaway {
     flex: 1;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — USER PERSONA
+   ============================================================ */
+.case-persona {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-persona-text {
+  background: #4F3A3A;
+  color: #ffffff;
+  padding: 32px var(--margin);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.case-persona-card .case-overview-label,
+.case-persona-goals-label {
+  color: #ffffff;
+}
+
+
+.case-persona-name {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 32px;
+  text-transform: uppercase;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.case-persona-desc,
+.case-persona-goal {
+  opacity: 0.8;
+}
+
+.case-persona-desc {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.case-persona-goals {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-persona-quote {
+  display: none;
+}
+
+.case-persona-goals-label {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.case-persona-goals-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-persona-goal {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.case-persona-photo {
+  overflow: hidden;
+}
+
+.case-persona-photo img {
+  display: block;
+  width: 140%;
+  margin-left: -20%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .case-persona {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-persona-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none;
+    padding: 0;
+    flex-direction: row;
+    gap: 0;
+    z-index: 1;
+  }
+
+  .case-persona-card {
+    position: absolute;
+    left: 162px;
+    top: 68px;
+    background: rgba(79, 58, 58, 0.6);
+    border-radius: 16px;
+    padding: 32px;
+    width: 406px;
+  }
+
+  .case-persona-desc,
+  .case-persona-goal {
+    opacity: 1;
+  }
+
+  .case-persona-name {
+    font-size: 40px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  .case-persona-goals {
+    position: absolute;
+    left: calc(var(--margin) + (100% - var(--margin) * 2) / 12 * 7 + var(--gutter) * 7);
+    top: 68px;
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+
+  .case-persona-quote {
+    display: block;
+    width: 80px;
+    height: auto;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  .case-persona-goals-inner {
+    width: 219px;
+    gap: 24px;
+  }
+
+  .case-persona-photo img {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — USER FLOW MAPPING
+   ============================================================ */
+.case-flow {
+  background: var(--white);
+  color: var(--black);
+  padding: 34px var(--margin) 80px;
+}
+
+.case-flow-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 560px;
+}
+
+.case-flow-desc {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-flow-img {
+  margin-top: 48px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.case-flow-img img {
+  display: block;
+  min-width: 800px;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .case-flow-img {
+    margin-top: 64px;
+    overflow: visible;
+  }
+
+  .case-flow-img img {
+    width: 100%;
+    max-width: 1230px;
+    margin: 0 auto;
+    min-width: 0;
   }
 }
 
@@ -2348,7 +2558,7 @@ picture.case-full-img--gap,
 .case-wave-sub-progress {
   position: absolute;
   left: 37.2%;
-  bottom: 14px;
+  bottom: -30px;
   --fill: 0%;
 }
 
@@ -3948,3 +4158,78 @@ picture.case-full-img--gap,
   background: rgba(255, 0, 0, 0.08);
 }
 
+ #progress {
+            width: 625px;
+    position: relative;
+    top: -240px;
+    right: -50%;
+        }
+
+        #target, #current {
+            display: block;
+            font-size: 16px;
+            line-height: 11px;
+            color: #FFFFFF;
+            text-align: right;
+            width: 100%;
+            display: none;
+        }
+
+        #current {
+            line-height: 17px;
+        }
+
+        .percent-wrap {
+            position: relative;
+            display: inline-block;
+            height: 200px;
+            width: 100%;
+            --fill: 0%;
+        }
+
+        .percent-stroke,
+        .percent-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            height: 280px;
+            font-family: 'Kharkiv Tone';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 290px;
+            line-height: 280px;
+            letter-spacing: -0.03em;
+            white-space: nowrap;
+        }
+
+        .percent-stroke {
+            position: relative;
+            color: transparent;
+            -webkit-text-stroke: 1px white;
+        }
+
+        .percent-fill {
+            color: white;
+            clip-path: inset(calc(100% - var(--fill)) 0 0 0);
+        }
+
+        .fill-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: var(--fill);
+            height: 1px;
+            background: white;
+            pointer-events: none;
+            transform: translateY(1px)
+        }
+
+        .fill-line-top {
+        display:none;
+            height: 1px;
+            background: white;
+            pointer-events: none;
+        }
