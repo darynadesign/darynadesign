@@ -1746,7 +1746,7 @@ picture.case-full-img--gap,
 .case-prob-goals {
   background: var(--white);
   color: var(--black);
-  padding: 34px var(--margin) 120px;
+  padding: 34px var(--margin) 200px;
 }
 
 .case-prob-goals-grid {
@@ -1817,6 +1817,131 @@ picture.case-full-img--gap,
 
   .case-prob-goals-col:last-child {
     grid-column: 7 / 13;
+  }
+}
+
+/* ---- Competitor UI Analysis ---- */
+
+.case-competitor {
+  background: #F5F2F3;
+  color: var(--black);
+  padding: 34px var(--margin) 120px;
+}
+
+.case-competitor-top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 560px;
+}
+
+.case-competitor-desc {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-competitor-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.case-competitor-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@media (min-width: 1024px) {
+  .case-competitor-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .case-competitor-card {
+    width: 254px;
+    height: 317px;
+    gap: 0;
+  }
+}
+
+.case-competitor-card-img {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.case-competitor-card-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-competitor-card-label {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.case-competitor-arrow {
+  opacity: 0.4;
+}
+
+.case-competitor-takeaways {
+  margin-top: 80px;
+  max-width: 1318px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-competitor-takeaways-label {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.case-competitor-takeaways-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.case-competitor-takeaway {
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.case-competitor-takeaway-num {
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .case-competitor-takeaways-grid {
+    flex-direction: row;
+  }
+
+  .case-competitor-takeaway {
+    flex: 1;
   }
 }
 
@@ -2177,6 +2302,157 @@ picture.case-full-img--gap,
   .case-wave-typo-body {
     grid-column: 6 / 13;
     max-width: 441px;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — SUBSCRIPTION / FUNDRAISER
+   ============================================================ */
+.case-wave-sub {
+  position: relative;
+}
+
+.case-wave-sub-wave {
+  display: block;
+  width: 89.4%;
+  height: auto;
+  margin-top: 32px;
+  margin-bottom: -110px;
+  margin-left: 16.75%;
+  position: relative;
+  z-index: 2;
+}
+
+.case-wave-sub-bg {
+  background: url('assets/Wave/subscription%20background.svg') repeat;
+  background-size: cover;
+  padding: 0 10.42% 80px;
+}
+
+.case-wave-sub-inner {
+  position: relative;
+}
+
+.case-wave-sub-photo {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.case-wave-sub-photo > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-wave-sub-progress {
+  position: absolute;
+  left: 37.2%;
+  bottom: 14px;
+  --fill: 0%;
+}
+
+.sub-progress-row {
+  display: flex;
+  align-items: flex-end;
+}
+
+.sub-percent-wrap {
+  position: relative;
+  display: inline-block;
+  height: 15.1vw;
+}
+
+.sub-percent-stroke,
+.sub-percent-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  height: 15.1vw;
+  font-family: 'Kharkiv Tone', sans-serif;
+  font-weight: 400;
+  font-size: 20.14vw;
+  line-height: 14.4vw;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.sub-percent-stroke {
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}
+
+.sub-percent-fill {
+  color: white;
+  -webkit-text-stroke: 1px white;
+  clip-path: inset(calc(100% - var(--fill)) 0 0 0);
+}
+
+.sub-fill-line {
+  position: absolute;
+  left: 0;
+  width: 300%;
+  clip-path: inset(0 0 0 20px);
+  bottom: var(--fill);
+  height: 1px;
+  background: white;
+  pointer-events: none;
+}
+
+.sub-drone-wrap {
+  position: relative;
+  width: 19.1vw;
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: 12px;
+}
+
+.sub-drone-outline {
+  width: 100%;
+  aspect-ratio: 271 / 123;
+  background: url('assets/Wave/drone%20to%20fill.svg') no-repeat center / contain;
+}
+
+.sub-drone-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 271 / 123;
+  background: url('assets/Wave/drone%20to%20fill%20filled.svg') no-repeat center / contain;
+  clip-path: inset(calc(100% - var(--fill)) 0 0 0);
+}
+
+.case-wave-sub-stats {
+  color: #ffffff;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+.case-wave-sub-raised,
+.case-wave-sub-amount {
+  font-family: 'Onest', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 768px) {
+  .case-wave-sub-raised,
+  .case-wave-sub-amount {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .case-wave-sub-raised,
+  .case-wave-sub-amount {
+    font-size: 24px;
   }
 }
 
