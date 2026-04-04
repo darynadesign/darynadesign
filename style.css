@@ -4220,17 +4220,27 @@ picture.case-full-img--gap,
   height: var(--height);
 }
 
-
 .case-wave-sub-photo > img {
   display: block;
   width: 100%;
   height: auto;
-  margin-right: -600px;
+  margin-right: -800px;
 }
 
-.percent-stroke > img,
-.percent-fill > img {
-   width: 275px;
+.drone-stroke {
+  background-image: url("assets/Wave/drone to fill.svg");
+}
+.drone-fill {
+  background-image: url("assets/Wave/drone to fill filled.svg");
+}
+.drone-stroke,
+.drone-fill {
+  width: 275px;
+
+  aspect-ratio: 273 / 125;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* or cover */
 }
 
 .percent-stroke,
