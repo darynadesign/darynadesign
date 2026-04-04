@@ -33,18 +33,19 @@ npx playwright test --headed --project=mobile-360
 
 ## Breakpoints covered
 
-| Project        | Width | Height | Type    |
-|----------------|-------|--------|---------|
-| mobile-360     | 360px | 800px  | mobile  |
-| tablet-768     | 768px | 1024px | tablet  |
-| laptop-1280    | 1280px| 800px  | laptop  |
-| desktop-1440   | 1440px| 900px  | desktop |
+| Project      | Width  | Height | Type    |
+| ------------ | ------ | ------ | ------- |
+| mobile-360   | 360px  | 800px  | mobile  |
+| tablet-768   | 768px  | 1024px | tablet  |
+| laptop-1280  | 1280px | 800px  | laptop  |
+| desktop-1440 | 1440px | 900px  | desktop |
 
 CSS breakpoint: `≤900px` triggers mobile layout (hamburger nav, single-col skills, etc.)
 
 ## What the tests check
 
 ### Breakpoint layout
+
 - No horizontal overflow (white strip on the right)
 - No element bleeds beyond viewport right edge
 - Skills section has correct blue background
@@ -53,6 +54,7 @@ CSS breakpoint: `≤900px` triggers mobile layout (hamburger nav, single-col ski
 - Nav stays within viewport bounds
 
 ### Accessibility
+
 - `<html lang="en">` present
 - All `<img>` have `alt` attributes
 - `<nav>` landmark visible
@@ -63,9 +65,9 @@ CSS breakpoint: `≤900px` triggers mobile layout (hamburger nav, single-col ski
 
 ## Common failure patterns
 
-| Symptom | Likely cause |
-|---------|-------------|
-| Horizontal overflow | A new element has fixed px width wider than viewport, or negative margin |
-| Skills layout 2-col on mobile | Missing `grid-template-columns: 1fr` in `@media (max-width: 900px)` |
-| Blue background missing | `background` overridden somewhere in mobile styles |
-| Image missing alt | New `<img>` added without `alt=""` attribute |
+| Symptom                       | Likely cause                                                             |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| Horizontal overflow           | A new element has fixed px width wider than viewport, or negative margin |
+| Skills layout 2-col on mobile | Missing `grid-template-columns: 1fr` in `@media (max-width: 900px)`      |
+| Blue background missing       | `background` overridden somewhere in mobile styles                       |
+| Image missing alt             | New `<img>` added without `alt=""` attribute                             |

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wave91 Progress Component</title>
+
+    <style>
+      @font-face {
+        font-family: "Kharkiv Tone";
+        src: url("pages/home/assets/fonts/Kharkiv-Tone-04.10.2020.ttf")
+          format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        font-family: "Onest", sans-serif;
+        margin: 40px;
+        background: #8e9eb7;
+      }
+
+      #progress {
+        width: 625px;
+      }
+
+      #target,
+      #current {
+        display: block;
+        font-size: 16px;
+        line-height: 11px;
+        color: #ffffff;
+        text-align: right;
+        width: 100%;
+      }
+
+      #current {
+        line-height: 17px;
+      }
+
+      .percent-wrap {
+        position: relative;
+        display: inline-block;
+        height: 145px;
+        width: 100%;
+        --fill: 0%;
+      }
+
+      .percent-stroke,
+      .percent-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        height: 145px;
+        font-family: "Kharkiv Tone";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 190px;
+        line-height: 180px;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+      }
+
+      .percent-stroke {
+        position: relative;
+        color: transparent;
+        -webkit-text-stroke: 1px white;
+      }
+
+      .percent-fill {
+        color: white;
+        clip-path: inset(calc(100% - var(--fill)) 0 0 0);
+      }
+
+      .fill-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: var(--fill);
+        height: 1px;
+        background: white;
+        pointer-events: none;
+        transform: translateY(1px);
+      }
+
+      .fill-line-top {
+        height: 1px;
+        background: white;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="progress"
+      data-target="50000000"
+      data-current="43000000"
+      data-animation-duration-ms="2500"
+    >
+      <span id="target">_</span>
+      <div class="fill-line-top"></div>
+      <div class="percent-wrap" id="percentWrap">
+        <span class="percent-stroke" id="percentStroke">0%</span>
+        <span class="percent-fill" id="percentFill">0%</span>
+        <div class="fill-line">
+          <span id="current">_</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const hryvnya = "₴";
+      const formatter = new Intl.NumberFormat("uk-UA", {
+        maximumFractionDigits: 0,
+      });
+
+      const progressContainer = document.getElementById("progress");
+      const targetText = document.getElementById("target");
+      const currentText = document.getElementById("current");
+
+      const target = Number(progressContainer.getAttribute("data-target"));
+      const current = Number(progressContainer.getAttribute("data-current"));
+      const duration = Number(
+        progressContainer.getAttribute("data-animation-duration-ms"),
+      );
+      const targetPerc = parseInt((100 * current) / target);
+
+      targetText.textContent = `${hryvnya}${formatter.format(target)}`;
+
+      const wrap = document.getElementById("percentWrap");
+      const stroke = document.getElementById("percentStroke");
+      const fill = document.getElementById("percentFill");
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      const FPS = 60;
+      const FRAME_TIME = 1000 / FPS;
+
+      const start = performance.now();
+      let lastFrameTime = start;
+
+      function tick(now) {
+        if (now - lastFrameTime >= FRAME_TIME) {
+          lastFrameTime = now - ((now - lastFrameTime) % FRAME_TIME);
+
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = easeOutCubic(progress);
+          const value = Math.round(targetPerc * eased);
+
+          stroke.textContent = value + "%";
+          fill.textContent = value + "%";
+          wrap.style.setProperty("--fill", value + "%");
+          currentText.textContent = `${hryvnya}${formatter.format(Math.round(progress * current))}`;
+        }
+
+        if (now - start < duration) {
+          requestAnimationFrame(tick);
+        } else {
+          stroke.textContent = targetPerc + "%";
+          fill.textContent = targetPerc + "%";
+          wrap.style.setProperty("--fill", targetPerc + "%");
+          currentText.textContent = `${hryvnya}${formatter.format(current)}`;
+        }
+      }
+
+      requestAnimationFrame(tick);
+    </script>
+  </body>
+</html>

@@ -1,813 +1,1085 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daria Forsiuk</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daria Forsiuk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html" class="logo">df.</a>
+      <span class="nav-label">PORTFOLIO '26</span>
+      <ul class="nav-links">
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#work">WORK</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+      <a href="assets/cv.pdf" class="nav-cta" target="_blank">VIEW MY CV</a>
+      <button class="nav-hamburger" aria-label="Open menu">MENU</button>
+    </nav>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="logo">df.</a>
-    <span class="nav-label">PORTFOLIO '26</span>
-    <ul class="nav-links">
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#work">WORK</a></li>
-      <li><a href="#contact">CONTACT</a></li>
-    </ul>
-    <a href="assets/cv.pdf" class="nav-cta" target="_blank">VIEW MY CV</a>
-    <button class="nav-hamburger" aria-label="Open menu">MENU</button>
-  </nav>
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+      <div class="menu-overlay-header">
+        <a href="index.html" class="menu-overlay-logo">df.</a>
+        <button
+          class="menu-overlay-close"
+          id="menuClose"
+          aria-label="Close menu"
+        >
+          MENU <span class="menu-close-dot"></span>
+        </button>
+      </div>
+      <div class="menu-overlay-nav">
+        <a href="#about" class="menu-overlay-link">ABOUT</a>
+        <a href="#work" class="menu-overlay-link">CASES</a>
+        <a href="#skills" class="menu-overlay-link">SKILLS</a>
+      </div>
+      <div class="menu-overlay-footer">
+        <a href="#contact" class="menu-overlay-cta">GET IN TOUCH</a>
+        <div class="menu-overlay-externals">
+          <a
+            href="https://www.linkedin.com/in/daria-forsiuk/"
+            class="menu-overlay-external"
+            target="_blank"
+            >LINKEDIN <img src="assets/arrow 1.svg" alt="" class="arrow-icon"
+          /></a>
+          <a href="assets/cv.pdf" class="menu-overlay-external" target="_blank"
+            >VIEW MY CV <img src="assets/arrow 2.svg" alt="" class="arrow-icon"
+          /></a>
+        </div>
+      </div>
+    </div>
 
-  <!-- MOBILE MENU OVERLAY -->
-  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-    <div class="menu-overlay-header">
-      <a href="index.html" class="menu-overlay-logo">df.</a>
-      <button class="menu-overlay-close" id="menuClose" aria-label="Close menu">MENU <span class="menu-close-dot"></span></button>
-    </div>
-    <div class="menu-overlay-nav">
-      <a href="#about" class="menu-overlay-link">ABOUT</a>
-      <a href="#work" class="menu-overlay-link">CASES</a>
-      <a href="#skills" class="menu-overlay-link">SKILLS</a>
-    </div>
-    <div class="menu-overlay-footer">
-      <a href="#contact" class="menu-overlay-cta">GET IN TOUCH</a>
-      <div class="menu-overlay-externals">
-        <a href="https://www.linkedin.com/in/daria-forsiuk/" class="menu-overlay-external" target="_blank">LINKEDIN <img src="assets/arrow 1.svg" alt="" class="arrow-icon" /></a>
-        <a href="assets/cv.pdf" class="menu-overlay-external" target="_blank">VIEW MY CV <img src="assets/arrow 2.svg" alt="" class="arrow-icon" /></a>
+    <!-- HERO -->
+    <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
+        <source src="assets/hero%20video%20slow.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-info">
+        <div class="hero-info-block hero-info-block--left">
+          <p>london, uk</p>
+          <p id="london-time"></p>
+        </div>
+        <div class="hero-info-block hero-info-block--right">
+          <p>ui/ux designer</p>
+          <p>ex-arch. designer</p>
+        </div>
       </div>
-    </div>
-  </div>
+      <h1 class="hero-name">daria forsiuk</h1>
+    </section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
-      <source src="assets/hero%20video%20slow.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-info">
-      <div class="hero-info-block hero-info-block--left">
-        <p>london, uk</p>
-        <p id="london-time"></p>
-      </div>
-      <div class="hero-info-block hero-info-block--right">
-        <p>ui/ux designer</p>
-        <p>ex-arch. designer</p>
-      </div>
-    </div>
-    <h1 class="hero-name">daria forsiuk</h1>
-  </section>
-
-  <!-- WHO AM I -->
-  <section class="who-am-i" id="about">
-    <div class="wai-grid">
-      <div class="wai-top">
-        <span class="wai-label">WHO AM I?</span>
-        <p class="wai-headline">UI/UX designer, curious mind, and enthusiastic human.<br class="mob-br"> I&nbsp;strive to create emotionally resonant experiences that will solve problems but also pull at the&nbsp;heartstrings, making a&nbsp;lasting and memorable impact.</p>
-        <a href="#work" class="wai-jump">
-          <span>JUMP TO CASES</span>
-          <svg class="wai-arrow-img" viewBox="0 -6 138.41 42" fill="none" xmlns="http://www.w3.org/2000/svg" id="wai-squiggly" aria-hidden="true">
-            <path id="wai-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="wai-arrowhead" fill="#7274FF"/>
-          </svg>
-        </a>
-      </div>
-      <div class="wai-bottom">
-        <div class="wai-photo">
-          <img src="assets/kid.webp" alt="Daria Forsiuk" width="656" height="560" />
-        </div>
-        <div class="wai-bio">
-          <p>When&nbsp;I was a&nbsp;kid playing in a&nbsp;school band, I&nbsp;wanted to&nbsp;become a&nbsp;rockstar. At least that's what I&nbsp;wrote in my English essay in seventh grade. And&nbsp;then added, "In case that doesn't work out, my second best option would be a&nbsp;web designer."</p>
-          <p>Since then, I've taken a&nbsp;few detours&nbsp;— a&nbsp;degree in project management, five years in architectural design, and a&nbsp;few wedding gigs&nbsp;— but I've come full circle to&nbsp;those childhood resolutions. I'm not quite a&nbsp;design rockstar (yet) but my twelve-year old self would be proud.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASES -->
-  <section class="cases" id="work">
-    <div class="case-item">
-      <span class="case-section-label">HERE'S SOME OF MY WORK</span>
-      <div class="case-image">
-        <picture>
-          <source srcset="assets/case%20cover%20wave%20mob.webp" media="(max-width: 1023px)" />
-          <img src="assets/case cover wave 2x.webp" alt="WAVE case" width="3072" height="2100" />
-        </picture>
-      </div>
-      <div class="case-bottom">
-        <p class="case-tags">#REDESIGN / #USER TESTING / #UX/UI<br>#CHARITY / #VISUAL STORYTELLING</p>
-        <p class="case-desc">Redesign for a&nbsp;charity foundation to&nbsp;boost donor engagement and donation flows; selected among 15 entries, now in development.</p>
-        <a href="wave.html" class="case-link">
-          <span>VIEW CASE</span>
-          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path class="cases-arrowhead" fill="#7274FF"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-    <div class="case-item case-item--no-label">
-      <div class="case-image">
-        <picture>
-          <source srcset="assets/case%20cover%20mm%20mob.webp" media="(max-width: 1023px)" />
-          <img src="assets/case cover mm 2x.webp" alt="MM case" width="3075" height="2100" />
-        </picture>
-      </div>
-      <div class="case-bottom">
-        <p class="case-tags">#LANDING / #PERSONAL BRAND / #UI<br>#FASHION / #VISUAL STORYTELLING</p>
-        <p class="case-desc">Landing page for a&nbsp;stylist to&nbsp;strengthen their personal brand and draw in clients.</p>
-        <a href="landing.html" class="case-link">
-          <span>VIEW CASE</span>
-          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path class="cases-arrowhead" fill="#7274FF"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-    <div class="case-item case-item--no-label">
-      <div class="case-image">
-        <picture>
-          <source srcset="assets/case%20cover%20tehno%20mob.webp" media="(max-width: 1023px)" />
-          <img src="assets/case cover tehno 2x.webp" alt="Tehno case" width="3072" height="2100" />
-        </picture>
-      </div>
-      <div class="case-bottom">
-        <p class="case-tags">#RESEARCH / #USER TESTING / #UX/UI<br>#E-COMMERCE / #REDESIGN</p>
-        <p class="case-desc">Redesign for a&nbsp;home appliance store. Improved UI, navigation, and&nbsp;product discoverability.</p>
-        <a href="tehnohata.html" class="case-link">
-          <span>VIEW CASE</span>
-          <svg class="case-arrow-img" viewBox="0 -6 108.36 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path class="cases-wave" fill="none" stroke="#7274FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path class="cases-arrowhead" fill="#7274FF"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT CAN I DO FOR YOU -->
-  <section class="skills" id="skills">
-    <div class="skills-grid">
-      <div class="skills-left-wrap">
-        <div class="skills-left">
-          <span class="skills-label">WHAT CAN I DO FOR YOU?</span>
-          <p class="skills-headline">My previous experience in architecture and music performance resulted in a&nbsp;unique blend of skills and strengths I bring to&nbsp;the&nbsp;table:</p>
-        </div>
-      </div>
-      <div class="skills-items">
-        <!-- Row 1 -->
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">01/</span>
-            <h3 class="skills-title">I think in systems</h3>
-          </div>
-          <p class="skills-desc">Rooted in&nbsp;architecture, I&nbsp;design for structure, flow, and how everything holds together when one thing changes (ideally without collapsing).</p>
-        </div>
-        <div class="skills-item skills-item--white">
-          <img src="assets/buildings.svg" alt="" class="skills-illus" />
-        </div>
-        <!-- Row 2 -->
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">02/</span>
-            <h3 class="skills-title">I have an&nbsp;intuitive feel for composition</h3>
-          </div>
-          <p class="skills-desc">Developed through composition in architectural drawings, now applied to&nbsp;guiding the&nbsp;eye through intuitive layouts.</p>
-        </div>
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">03/</span>
-            <h3 class="skills-title">I work with constraints in mind</h3>
-          </div>
-          <p class="skills-desc">Honed in architecture, finding creative solutions while balancing technical requirements, deadlines, and budgets.</p>
-        </div>
-        <!-- Row 3 -->
-        <div class="skills-item skills-item--white">
-          <img src="assets/new%20plan.svg" alt="" class="skills-illus" />
-        </div>
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">04/</span>
-            <h3 class="skills-title">I notice the small things</h3>
-          </div>
-          <p class="skills-desc">Refined through architectural drawing, where accuracy was essential to&nbsp;bring ideas to&nbsp;life. After all, if I&nbsp;can align walls perfectly, I&nbsp;can do so with pixels.</p>
-        </div>
-        <!-- Row 4 -->
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">05/</span>
-            <h3 class="skills-title">I design experiences that resonate</h3>
-          </div>
-          <p class="skills-desc">On stage, the&nbsp;goal was to&nbsp;make people feel. In design, it's the&nbsp;same, just with fewer violins.</p>
-        </div>
-        <div class="skills-item skills-item--white">
-          <img src="assets/violin.svg" alt="" class="skills-illus" />
-        </div>
-        <!-- Row 5 -->
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">06/</span>
-            <h3 class="skills-title">I spot patterns everywhere</h3>
-          </div>
-          <p class="skills-desc">Years of classical music trained me to&nbsp;recognise rhythm, flow, and repetition. Handy when designing interfaces that shouldn't feel like improvised jazz.</p>
-        </div>
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">07/</span>
-            <h3 class="skills-title">I design with empathy</h3>
-          </div>
-          <p class="skills-desc">Living abroad made me more aware of how differently people experience the&nbsp;same thing. Now this mindset helps me understand user struggles and frustrations.</p>
-        </div>
-        <!-- Row 6 -->
-        <div class="skills-item skills-item--white">
-          <img src="assets/globe.svg" alt="" class="skills-illus" />
-        </div>
-        <div class="skills-item">
-          <div class="skills-item-top">
-            <span class="skills-num">08/</span>
-            <h3 class="skills-title">I adapt quickly</h3>
-          </div>
-          <p class="skills-desc">Built through adapting to&nbsp;new countries and careers, staying resourceful and focused under uncertainty.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <div class="contact-footer-wrap">
-  <section class="contact" id="contact">
-    <div class="contact-grid">
-      <span class="contact-label">WHAT ELSE IS THERE TO BE DONE?</span>
-      <div class="contact-content">
-        <p class="contact-headline">Connect to&nbsp;make <span class="contact-marked">this world a&nbsp;better place<svg class="contact-line" viewBox="0 0 353 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="contact-wave" d="" stroke="#3638FF" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" fill="none"/></svg></span> some memorable and impactful designs that will (hopefully) move it in the&nbsp;right direction.</p>
-        <div class="contact-actions">
-          <a href="mailto:daria@example.com" class="contact-cta">GET IN TOUCH</a>
-          <a href="https://www.linkedin.com/in/daria-forsiuk/" class="contact-link" target="_blank">
-            LINKEDIN <img src="assets/arrow 1.svg" alt="" class="contact-arrow" />
+    <!-- WHO AM I -->
+    <section class="who-am-i" id="about">
+      <div class="wai-grid">
+        <div class="wai-top">
+          <span class="wai-label">WHO AM I?</span>
+          <p class="wai-headline">
+            UI/UX designer, curious mind, and enthusiastic human.<br
+              class="mob-br"
+            />
+            I&nbsp;strive to create emotionally resonant experiences that will
+            solve problems but also pull at the&nbsp;heartstrings, making
+            a&nbsp;lasting and memorable impact.
+          </p>
+          <a href="#work" class="wai-jump">
+            <span>JUMP TO CASES</span>
+            <svg
+              class="wai-arrow-img"
+              viewBox="0 -6 138.41 42"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              id="wai-squiggly"
+              aria-hidden="true"
+            >
+              <path
+                id="wai-wave"
+                fill="none"
+                stroke="#7274FF"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path id="wai-arrowhead" fill="#7274FF" />
+            </svg>
           </a>
-          <a href="assets/cv.pdf" class="contact-link" target="_blank">
-            VIEW MY CV <img src="assets/arrow 2.svg" alt="" class="contact-arrow" />
+        </div>
+        <div class="wai-bottom">
+          <div class="wai-photo">
+            <img
+              src="assets/kid.webp"
+              alt="Daria Forsiuk"
+              width="656"
+              height="560"
+            />
+          </div>
+          <div class="wai-bio">
+            <p>
+              When&nbsp;I was a&nbsp;kid playing in a&nbsp;school band,
+              I&nbsp;wanted to&nbsp;become a&nbsp;rockstar. At least that's what
+              I&nbsp;wrote in my English essay in seventh grade. And&nbsp;then
+              added, "In case that doesn't work out, my second best option would
+              be a&nbsp;web designer."
+            </p>
+            <p>
+              Since then, I've taken a&nbsp;few detours&nbsp;— a&nbsp;degree in
+              project management, five years in architectural design, and
+              a&nbsp;few wedding gigs&nbsp;— but I've come full circle
+              to&nbsp;those childhood resolutions. I'm not quite a&nbsp;design
+              rockstar (yet) but my twelve-year old self would be proud.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section class="cases" id="work">
+      <div class="case-item">
+        <span class="case-section-label">HERE'S SOME OF MY WORK</span>
+        <div class="case-image">
+          <picture>
+            <source
+              srcset="assets/case%20cover%20wave%20mob.webp"
+              media="(max-width: 1023px)"
+            />
+            <img
+              src="assets/case cover wave 2x.webp"
+              alt="WAVE case"
+              width="3072"
+              height="2100"
+            />
+          </picture>
+        </div>
+        <div class="case-bottom">
+          <p class="case-tags">
+            #REDESIGN / #USER TESTING / #UX/UI<br />#CHARITY / #VISUAL
+            STORYTELLING
+          </p>
+          <p class="case-desc">
+            Redesign for a&nbsp;charity foundation to&nbsp;boost donor
+            engagement and donation flows; selected among 15 entries, now in
+            development.
+          </p>
+          <a href="wave.html" class="case-link">
+            <span>VIEW CASE</span>
+            <svg
+              class="case-arrow-img"
+              viewBox="0 -6 108.36 42"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                class="cases-wave"
+                fill="none"
+                stroke="#7274FF"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path class="cases-arrowhead" fill="#7274FF" />
+            </svg>
           </a>
         </div>
       </div>
+      <div class="case-item case-item--no-label">
+        <div class="case-image">
+          <picture>
+            <source
+              srcset="assets/case%20cover%20mm%20mob.webp"
+              media="(max-width: 1023px)"
+            />
+            <img
+              src="assets/case cover mm 2x.webp"
+              alt="MM case"
+              width="3075"
+              height="2100"
+            />
+          </picture>
+        </div>
+        <div class="case-bottom">
+          <p class="case-tags">
+            #LANDING / #PERSONAL BRAND / #UI<br />#FASHION / #VISUAL
+            STORYTELLING
+          </p>
+          <p class="case-desc">
+            Landing page for a&nbsp;stylist to&nbsp;strengthen their personal
+            brand and draw in clients.
+          </p>
+          <a href="landing.html" class="case-link">
+            <span>VIEW CASE</span>
+            <svg
+              class="case-arrow-img"
+              viewBox="0 -6 108.36 42"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                class="cases-wave"
+                fill="none"
+                stroke="#7274FF"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path class="cases-arrowhead" fill="#7274FF" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="case-item case-item--no-label">
+        <div class="case-image">
+          <picture>
+            <source
+              srcset="assets/case%20cover%20tehno%20mob.webp"
+              media="(max-width: 1023px)"
+            />
+            <img
+              src="assets/case cover tehno 2x.webp"
+              alt="Tehno case"
+              width="3072"
+              height="2100"
+            />
+          </picture>
+        </div>
+        <div class="case-bottom">
+          <p class="case-tags">
+            #RESEARCH / #USER TESTING / #UX/UI<br />#E-COMMERCE / #REDESIGN
+          </p>
+          <p class="case-desc">
+            Redesign for a&nbsp;home appliance store. Improved UI, navigation,
+            and&nbsp;product discoverability.
+          </p>
+          <a href="tehnohata.html" class="case-link">
+            <span>VIEW CASE</span>
+            <svg
+              class="case-arrow-img"
+              viewBox="0 -6 108.36 42"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                class="cases-wave"
+                fill="none"
+                stroke="#7274FF"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path class="cases-arrowhead" fill="#7274FF" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT CAN I DO FOR YOU -->
+    <section class="skills" id="skills">
+      <div class="skills-grid">
+        <div class="skills-left-wrap">
+          <div class="skills-left">
+            <span class="skills-label">WHAT CAN I DO FOR YOU?</span>
+            <p class="skills-headline">
+              My previous experience in architecture and music performance
+              resulted in a&nbsp;unique blend of skills and strengths I bring
+              to&nbsp;the&nbsp;table:
+            </p>
+          </div>
+        </div>
+        <div class="skills-items">
+          <!-- Row 1 -->
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">01/</span>
+              <h3 class="skills-title">I think in systems</h3>
+            </div>
+            <p class="skills-desc">
+              Rooted in&nbsp;architecture, I&nbsp;design for structure, flow,
+              and how everything holds together when one thing changes (ideally
+              without collapsing).
+            </p>
+          </div>
+          <div class="skills-item skills-item--white">
+            <img src="assets/buildings.svg" alt="" class="skills-illus" />
+          </div>
+          <!-- Row 2 -->
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">02/</span>
+              <h3 class="skills-title">
+                I have an&nbsp;intuitive feel for composition
+              </h3>
+            </div>
+            <p class="skills-desc">
+              Developed through composition in architectural drawings, now
+              applied to&nbsp;guiding the&nbsp;eye through intuitive layouts.
+            </p>
+          </div>
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">03/</span>
+              <h3 class="skills-title">I work with constraints in mind</h3>
+            </div>
+            <p class="skills-desc">
+              Honed in architecture, finding creative solutions while balancing
+              technical requirements, deadlines, and budgets.
+            </p>
+          </div>
+          <!-- Row 3 -->
+          <div class="skills-item skills-item--white">
+            <img src="assets/new%20plan.svg" alt="" class="skills-illus" />
+          </div>
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">04/</span>
+              <h3 class="skills-title">I notice the small things</h3>
+            </div>
+            <p class="skills-desc">
+              Refined through architectural drawing, where accuracy was
+              essential to&nbsp;bring ideas to&nbsp;life. After all, if
+              I&nbsp;can align walls perfectly, I&nbsp;can do so with pixels.
+            </p>
+          </div>
+          <!-- Row 4 -->
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">05/</span>
+              <h3 class="skills-title">I design experiences that resonate</h3>
+            </div>
+            <p class="skills-desc">
+              On stage, the&nbsp;goal was to&nbsp;make people feel. In design,
+              it's the&nbsp;same, just with fewer violins.
+            </p>
+          </div>
+          <div class="skills-item skills-item--white">
+            <img src="assets/violin.svg" alt="" class="skills-illus" />
+          </div>
+          <!-- Row 5 -->
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">06/</span>
+              <h3 class="skills-title">I spot patterns everywhere</h3>
+            </div>
+            <p class="skills-desc">
+              Years of classical music trained me to&nbsp;recognise rhythm,
+              flow, and repetition. Handy when designing interfaces that
+              shouldn't feel like improvised jazz.
+            </p>
+          </div>
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">07/</span>
+              <h3 class="skills-title">I design with empathy</h3>
+            </div>
+            <p class="skills-desc">
+              Living abroad made me more aware of how differently people
+              experience the&nbsp;same thing. Now this mindset helps me
+              understand user struggles and frustrations.
+            </p>
+          </div>
+          <!-- Row 6 -->
+          <div class="skills-item skills-item--white">
+            <img src="assets/globe.svg" alt="" class="skills-illus" />
+          </div>
+          <div class="skills-item">
+            <div class="skills-item-top">
+              <span class="skills-num">08/</span>
+              <h3 class="skills-title">I adapt quickly</h3>
+            </div>
+            <p class="skills-desc">
+              Built through adapting to&nbsp;new countries and careers, staying
+              resourceful and focused under uncertainty.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="contact-footer-wrap">
+      <section class="contact" id="contact">
+        <div class="contact-grid">
+          <span class="contact-label">WHAT ELSE IS THERE TO BE DONE?</span>
+          <div class="contact-content">
+            <p class="contact-headline">
+              Connect to&nbsp;make
+              <span class="contact-marked"
+                >this world a&nbsp;better place<svg
+                  class="contact-line"
+                  viewBox="0 0 353 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="contact-wave"
+                    d=""
+                    stroke="#3638FF"
+                    stroke-opacity="0.7"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    fill="none"
+                  /></svg
+              ></span>
+              some memorable and impactful designs that will (hopefully) move it
+              in the&nbsp;right direction.
+            </p>
+            <div class="contact-actions">
+              <a href="mailto:daria@example.com" class="contact-cta"
+                >GET IN TOUCH</a
+              >
+              <a
+                href="https://www.linkedin.com/in/daria-forsiuk/"
+                class="contact-link"
+                target="_blank"
+              >
+                LINKEDIN
+                <img src="assets/arrow 1.svg" alt="" class="contact-arrow" />
+              </a>
+              <a href="assets/cv.pdf" class="contact-link" target="_blank">
+                VIEW MY CV
+                <img src="assets/arrow 2.svg" alt="" class="contact-arrow" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <a href="index.html" class="site-footer-logo">df.</a>
+        <span class="site-footer-copy">@2026_all rights reserved</span>
+        <ul class="site-footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#skills">Skills</a></li>
+        </ul>
+        <a href="#" class="site-footer-top">to top</a>
+      </footer>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <a href="index.html" class="site-footer-logo">df.</a>
-    <span class="site-footer-copy">@2026_all rights reserved</span>
-    <ul class="site-footer-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#skills">Skills</a></li>
-    </ul>
-    <a href="#" class="site-footer-top">to top</a>
-  </footer>
-  </div>
+    <script>
+      function updateLondonTime() {
+        const now = new Date();
+        const offset = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/London",
+          timeZoneName: "short",
+        })
+          .formatToParts(now)
+          .find((p) => p.type === "timeZoneName").value;
+        const time = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/London",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(now);
+        document.getElementById("london-time").textContent =
+          offset + ", " + time;
+      }
 
-  <script>
-    function updateLondonTime() {
-      const now = new Date();
-      const offset = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London',
-        timeZoneName: 'short'
-      }).formatToParts(now).find(p => p.type === 'timeZoneName').value;
-      const time = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }).format(now);
-      document.getElementById('london-time').textContent = offset + ', ' + time;
-    }
+      updateLondonTime();
+      setInterval(updateLondonTime, 60000);
 
-    updateLondonTime();
-    setInterval(updateLondonTime, 60000);
+      document.getElementById("heroVideo").playbackRate = 1.15;
 
-    document.getElementById('heroVideo').playbackRate = 1.15;
+      const nav = document.querySelector("nav");
+      const hero = document.querySelector(".hero");
+      const menuOverlay = document.getElementById("menuOverlay");
+      const menuOpen = document.querySelector(".nav-hamburger");
+      const menuClose = document.getElementById("menuClose");
 
+      // Expose nav height for CSS sticky calc
+      function setNavH() {
+        const r = nav.getBoundingClientRect();
+        document.documentElement.style.setProperty(
+          "--nav-h",
+          r.top + r.height + "px",
+        );
+      }
+      setNavH();
+      window.addEventListener("resize", setNavH);
 
-    const nav = document.querySelector('nav');
-    const hero = document.querySelector('.hero');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const menuOpen = document.querySelector('.nav-hamburger');
-    const menuClose = document.getElementById('menuClose');
+      const navSections = [
+        { el: document.querySelector(".hero"), dark: false },
+        { el: document.querySelector(".who-am-i"), dark: true },
+        { el: document.querySelector(".cases"), dark: true },
+        { el: document.querySelector(".skills"), dark: false },
+        { el: document.querySelector(".contact"), dark: true },
+      ];
 
-    // Expose nav height for CSS sticky calc
-    function setNavH() {
-      const r = nav.getBoundingClientRect();
-      document.documentElement.style.setProperty('--nav-h', (r.top + r.height) + 'px');
-    }
-    setNavH();
-    window.addEventListener('resize', setNavH);
+      function updateNav() {
+        const navRect = nav.getBoundingClientRect();
+        const navMidY = navRect.top + navRect.height / 2;
 
-    const navSections = [
-      { el: document.querySelector('.hero'),     dark: false },
-      { el: document.querySelector('.who-am-i'), dark: true  },
-      { el: document.querySelector('.cases'),    dark: true  },
-      { el: document.querySelector('.skills'),   dark: false },
-      { el: document.querySelector('.contact'),  dark: true  },
-    ];
+        // Frosted bg: once hero scrolls above the nav
+        const heroRect = hero.getBoundingClientRect();
+        nav.classList.toggle("has-bg", heroRect.bottom < navRect.bottom);
 
-    function updateNav() {
-      const navRect = nav.getBoundingClientRect();
-      const navMidY = navRect.top + navRect.height / 2;
+        // Text colour: based on which section the nav centre is over
+        for (const section of navSections) {
+          if (!section.el) continue;
+          const rect = section.el.getBoundingClientRect();
+          if (rect.top <= navMidY && rect.bottom > navMidY) {
+            nav.classList.toggle("dark", section.dark);
+            return;
+          }
+        }
+      }
 
-      // Frosted bg: once hero scrolls above the nav
-      const heroRect = hero.getBoundingClientRect();
-      nav.classList.toggle('has-bg', heroRect.bottom < navRect.bottom);
+      window.addEventListener("scroll", updateNav, { passive: true });
+      updateNav();
 
-      // Text colour: based on which section the nav centre is over
-      for (const section of navSections) {
-        if (!section.el) continue;
-        const rect = section.el.getBoundingClientRect();
-        if (rect.top <= navMidY && rect.bottom > navMidY) {
-          nav.classList.toggle('dark', section.dark);
+      // Skills sticky: constrain left-wrap height so sticky stops at last row
+      function setSkillsWrapHeight() {
+        if (window.innerWidth < 1200) {
+          document.querySelector(".skills-left-wrap").style.height = "";
           return;
         }
+        const wrap = document.querySelector(".skills-left-wrap");
+        const lastRow = document.querySelector(
+          ".skills-items > :nth-last-child(2)",
+        ); // globe
+        const heading = document.querySelector(".skills-left");
+        const wrapTop = wrap.getBoundingClientRect().top + window.scrollY;
+        const rowTop = lastRow.getBoundingClientRect().top + window.scrollY;
+        wrap.style.height = rowTop - wrapTop + heading.offsetHeight + "px";
       }
-    }
 
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
+      window.addEventListener("resize", setSkillsWrapHeight);
+      setSkillsWrapHeight();
 
-    // Skills sticky: constrain left-wrap height so sticky stops at last row
-    function setSkillsWrapHeight() {
-      if (window.innerWidth < 1200) {
-        document.querySelector('.skills-left-wrap').style.height = '';
-        return;
+      // Hide nav on scroll-down, show on scroll-up / mouse-move
+      let lastScrollY = window.scrollY;
+      let footerVisible = false;
+
+      new IntersectionObserver(
+        ([entry]) => {
+          footerVisible = entry.isIntersecting;
+          if (footerVisible) nav.classList.add("hidden");
+        },
+        { threshold: 0 },
+      ).observe(document.querySelector(".site-footer"));
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const currentY = window.scrollY;
+          if (footerVisible) {
+            lastScrollY = currentY;
+            return;
+          }
+          if (currentY > lastScrollY && currentY > 80) {
+            nav.classList.add("hidden");
+          } else {
+            nav.classList.remove("hidden");
+          }
+          lastScrollY = currentY;
+        },
+        { passive: true },
+      );
+
+      document.addEventListener("mousemove", () => {
+        if (!footerVisible) nav.classList.remove("hidden");
+      });
+
+      function openMenu() {
+        menuOverlay.classList.add("is-open");
+        menuOverlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
       }
-      const wrap    = document.querySelector('.skills-left-wrap');
-      const lastRow = document.querySelector('.skills-items > :nth-last-child(2)'); // globe
-      const heading = document.querySelector('.skills-left');
-      const wrapTop = wrap.getBoundingClientRect().top + window.scrollY;
-      const rowTop  = lastRow.getBoundingClientRect().top + window.scrollY;
-      wrap.style.height = (rowTop - wrapTop + heading.offsetHeight) + 'px';
-    }
 
-    window.addEventListener('resize', setSkillsWrapHeight);
-    setSkillsWrapHeight();
-
-    // Hide nav on scroll-down, show on scroll-up / mouse-move
-    let lastScrollY = window.scrollY;
-    let footerVisible = false;
-
-    new IntersectionObserver(
-      ([entry]) => { footerVisible = entry.isIntersecting; if (footerVisible) nav.classList.add('hidden'); },
-      { threshold: 0 }
-    ).observe(document.querySelector('.site-footer'));
-
-    window.addEventListener('scroll', () => {
-      const currentY = window.scrollY;
-      if (footerVisible) { lastScrollY = currentY; return; }
-      if (currentY > lastScrollY && currentY > 80) {
-        nav.classList.add('hidden');
-      } else {
-        nav.classList.remove('hidden');
+      function closeMenu() {
+        menuOverlay.classList.remove("is-open");
+        menuOverlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
       }
-      lastScrollY = currentY;
-    }, { passive: true });
 
-    document.addEventListener('mousemove', () => {
-      if (!footerVisible) nav.classList.remove('hidden');
-    });
+      menuOpen.addEventListener("click", () => {
+        menuOverlay.classList.contains("is-open") ? closeMenu() : openMenu();
+      });
 
-    function openMenu() {
-      menuOverlay.classList.add('is-open');
-      menuOverlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+      menuClose.addEventListener("click", closeMenu);
 
-    function closeMenu() {
-      menuOverlay.classList.remove('is-open');
-      menuOverlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+      menuOverlay
+        .querySelectorAll(".menu-overlay-link, .menu-overlay-cta")
+        .forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
 
-    menuOpen.addEventListener('click', () => {
-      menuOverlay.classList.contains('is-open') ? closeMenu() : openMenu();
-    });
-
-    menuClose.addEventListener('click', closeMenu);
-
-    menuOverlay.querySelectorAll('.menu-overlay-link, .menu-overlay-cta').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    document.addEventListener('click', (e) => {
-      if (menuOverlay.classList.contains('is-open') &&
+      document.addEventListener("click", (e) => {
+        if (
+          menuOverlay.classList.contains("is-open") &&
           !menuOverlay.contains(e.target) &&
-          !menuOpen.contains(e.target)) {
-        closeMenu();
+          !menuOpen.contains(e.target)
+        ) {
+          closeMenu();
+        }
+      });
+
+      // Shared helper: inline an SVG and apply stop-motion stroke jitter
+      function inlineJitter(srcAttr, cssClass) {
+        fetch(srcAttr)
+          .then((r) => r.text())
+          .then((markup) => {
+            const tmp = document.createElement("div");
+            tmp.innerHTML = markup;
+            const svg = tmp.querySelector("svg");
+            svg.removeAttribute("width");
+            svg.removeAttribute("height");
+            svg.classList.add("skills-illus", cssClass);
+
+            const strokePaths = [...svg.querySelectorAll("[stroke]")];
+
+            document.querySelector(`img[src="${srcAttr}"]`).replaceWith(svg);
+
+            let jitterInterval;
+
+            function jitterFrame() {
+              strokePaths.forEach((path) => {
+                const x = (Math.random() - 0.5) * 2;
+                const y = (Math.random() - 0.5) * 2;
+                path.style.transform = `translate(${x}px, ${y}px)`;
+              });
+            }
+
+            new IntersectionObserver(
+              ([e]) => {
+                if (e.isIntersecting) {
+                  jitterFrame();
+                  jitterInterval = setInterval(jitterFrame, 280);
+                } else {
+                  clearInterval(jitterInterval);
+                  strokePaths.forEach((p) => (p.style.transform = ""));
+                }
+              },
+              { threshold: 0.2 },
+            ).observe(svg);
+          })
+          .catch(() => {});
       }
-    });
 
-    // Shared helper: inline an SVG and apply stop-motion stroke jitter
-    function inlineJitter(srcAttr, cssClass) {
-      fetch(srcAttr)
-        .then(r => r.text())
-        .then(markup => {
-          const tmp = document.createElement('div');
-          tmp.innerHTML = markup;
-          const svg = tmp.querySelector('svg');
-          svg.removeAttribute('width');
-          svg.removeAttribute('height');
-          svg.classList.add('skills-illus', cssClass);
+      inlineJitter("assets/buildings.svg", "buildings-svg");
+      inlineJitter("assets/new%20plan.svg", "plan-svg");
 
-          const strokePaths = [...svg.querySelectorAll('[stroke]')];
+      inlineJitter("assets/globe.svg", "globe-svg");
+      inlineJitter("assets/violin.svg", "violin-svg");
 
-          document.querySelector(`img[src="${srcAttr}"]`).replaceWith(svg);
+      // Shared speed for all squiggly arrows — change once, applies everywhere
+      const ARROW_SPEED = 0.165;
+      const FRAME_MS = 1000 / 60; // lock animations to 60 fps
 
-          let jitterInterval;
+      // Squiggly wave animation for "view case" buttons
+      (function () {
+        const BASE = [
+          { x: 1.57, y: 14.73 },
+          { x: 22.87, y: 15.17 },
+          { x: 37.08, y: 16.7 },
+          { x: 51.28, y: 14.82 },
+          { x: 65.49, y: 11.13 },
+          { x: 79.69, y: 14.18 },
+          { x: 93.88, y: 14.42 },
+        ];
+        const AMPLITUDE = 3.04;
+        const FREQUENCY = 2.8;
+        const SPEED = ARROW_SPEED;
 
-          function jitterFrame() {
-            strokePaths.forEach(path => {
-              const x = (Math.random() - 0.5) * 2;
-              const y = (Math.random() - 0.5) * 2;
-              path.style.transform = `translate(${x}px, ${y}px)`;
-            });
+        function catmullRom(pts) {
+          let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+          for (let i = 0; i < pts.length - 1; i++) {
+            const p0 = pts[Math.max(0, i - 1)];
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+            const p3 = pts[Math.min(pts.length - 1, i + 2)];
+            const cp1x = p1.x + (p2.x - p0.x) / 6;
+            const cp1y = p1.y + (p2.y - p0.y) / 6;
+            const cp2x = p2.x - (p3.x - p1.x) / 6;
+            const cp2y = p2.y - (p3.y - p1.y) / 6;
+            d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+          }
+          return d;
+        }
+
+        function buildArrowhead(pts) {
+          const last = pts[pts.length - 1];
+          const ref = pts[pts.length - 2];
+          const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
+          const cos = Math.cos(angle),
+            sin = Math.sin(angle);
+          function r(dx, dy) {
+            return `${(last.x + dx * cos - dy * sin).toFixed(3)},${(last.y + dx * sin + dy * cos).toFixed(3)}`;
+          }
+          return [
+            `M ${r(4.242, 1.414)}`,
+            `C ${r(5.023, 0.633)} ${r(5.023, -0.633)} ${r(4.242, -1.414)}`,
+            `L ${r(-8.486, -14.142)}`,
+            `C ${r(-9.267, -14.923)} ${r(-10.533, -14.923)} ${r(-11.314, -14.142)}`,
+            `C ${r(-12.095, -13.361)} ${r(-12.095, -12.095)} ${r(-11.314, -11.314)}`,
+            `L ${r(0, 0)}`,
+            `L ${r(-11.314, 11.314)}`,
+            `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`,
+            `C ${r(-10.533, 14.923)} ${r(-9.267, 14.923)} ${r(-8.486, 14.142)}`,
+            `Z`,
+          ].join(" ");
+        }
+
+        function drawStatic(wavePath, arrowhead) {
+          const pts = BASE.map((p) => ({
+            x: p.x,
+            y:
+              p.y +
+              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY),
+          }));
+          wavePath.setAttribute("d", catmullRom(pts));
+          arrowhead.setAttribute("d", buildArrowhead(pts));
+        }
+
+        document.querySelectorAll(".case-link").forEach((link) => {
+          const wavePath = link.querySelector(".cases-wave");
+          const arrowhead = link.querySelector(".cases-arrowhead");
+          if (!wavePath || !arrowhead) return;
+
+          drawStatic(wavePath, arrowhead);
+
+          let phase = 0,
+            rafId = null,
+            animating = false,
+            lastTime = 0;
+
+          function animateFrame(now) {
+            if (!animating) return;
+            if (now - lastTime < FRAME_MS) {
+              rafId = requestAnimationFrame(animateFrame);
+              return;
+            }
+            lastTime = now;
+            phase += SPEED;
+            const pts = BASE.map((p) => ({
+              x: p.x,
+              y:
+                p.y +
+                AMPLITUDE *
+                  Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase),
+            }));
+            wavePath.setAttribute("d", catmullRom(pts));
+            arrowhead.setAttribute("d", buildArrowhead(pts));
+            rafId = requestAnimationFrame(animateFrame);
           }
 
-          new IntersectionObserver(([e]) => {
-            if (e.isIntersecting) {
-              jitterFrame();
-              jitterInterval = setInterval(jitterFrame, 280);
-            } else {
-              clearInterval(jitterInterval);
-              strokePaths.forEach(p => p.style.transform = '');
+          link.addEventListener("mouseenter", () => {
+            animating = true;
+            if (!rafId) rafId = requestAnimationFrame(animateFrame);
+          });
+
+          link.addEventListener("mouseleave", () => {
+            animating = false;
+            if (rafId) {
+              cancelAnimationFrame(rafId);
+              rafId = null;
             }
-          }, { threshold: 0.2 }).observe(svg);
-        })
-        .catch(() => {});
-    }
+          });
+        });
+      })();
 
-    inlineJitter('assets/buildings.svg', 'buildings-svg');
-    inlineJitter('assets/new%20plan.svg', 'plan-svg');
+      // Squiggly wave animation for "jump to cases" button
+      (function () {
+        const BASE = [
+          { x: 2.07, y: 14.73 },
+          { x: 30.19, y: 15.17 },
+          { x: 48.94, y: 16.7 },
+          { x: 67.69, y: 14.82 },
+          { x: 86.44, y: 11.13 },
+          { x: 105.18, y: 14.18 },
+          { x: 123.93, y: 14.42 },
+        ];
+        const AMPLITUDE = 3.8;
+        const FREQUENCY = 2.8;
+        const SPEED = ARROW_SPEED;
 
-    inlineJitter('assets/globe.svg', 'globe-svg');
-    inlineJitter('assets/violin.svg', 'violin-svg');
+        const wavePath = document.getElementById("wai-wave");
+        const arrowhead = document.getElementById("wai-arrowhead");
+        const jumpLink = document.querySelector(".wai-jump");
 
-    // Shared speed for all squiggly arrows — change once, applies everywhere
-    const ARROW_SPEED = 0.165;
-    const FRAME_MS = 1000 / 60; // lock animations to 60 fps
-
-    // Squiggly wave animation for "view case" buttons
-    (function() {
-      const BASE = [
-        { x: 1.57,  y: 14.73 },
-        { x: 22.87, y: 15.17 },
-        { x: 37.08, y: 16.70 },
-        { x: 51.28, y: 14.82 },
-        { x: 65.49, y: 11.13 },
-        { x: 79.69, y: 14.18 },
-        { x: 93.88, y: 14.42 },
-      ];
-      const AMPLITUDE = 3.04;
-      const FREQUENCY = 2.8;
-      const SPEED = ARROW_SPEED;
-
-      function catmullRom(pts) {
-        let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
-        for (let i = 0; i < pts.length - 1; i++) {
-          const p0 = pts[Math.max(0, i - 1)];
-          const p1 = pts[i];
-          const p2 = pts[i + 1];
-          const p3 = pts[Math.min(pts.length - 1, i + 2)];
-          const cp1x = p1.x + (p2.x - p0.x) / 6;
-          const cp1y = p1.y + (p2.y - p0.y) / 6;
-          const cp2x = p2.x - (p3.x - p1.x) / 6;
-          const cp2y = p2.y - (p3.y - p1.y) / 6;
-          d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+        function catmullRom(pts) {
+          let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+          for (let i = 0; i < pts.length - 1; i++) {
+            const p0 = pts[Math.max(0, i - 1)];
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+            const p3 = pts[Math.min(pts.length - 1, i + 2)];
+            const cp1x = p1.x + (p2.x - p0.x) / 6;
+            const cp1y = p1.y + (p2.y - p0.y) / 6;
+            const cp2x = p2.x - (p3.x - p1.x) / 6;
+            const cp2y = p2.y - (p3.y - p1.y) / 6;
+            d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+          }
+          return d;
         }
-        return d;
-      }
 
-      function buildArrowhead(pts) {
-        const last  = pts[pts.length - 1];
-        const ref   = pts[pts.length - 2];
-        const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
-        const cos = Math.cos(angle), sin = Math.sin(angle);
-        function r(dx, dy) {
-          return `${(last.x + dx*cos - dy*sin).toFixed(3)},${(last.y + dx*sin + dy*cos).toFixed(3)}`;
+        function buildArrowhead(pts) {
+          const last = pts[pts.length - 1];
+          const ref = pts[pts.length - 2];
+          const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
+          const cos = Math.cos(angle),
+            sin = Math.sin(angle);
+          function r(dx, dy) {
+            return `${(last.x + dx * cos - dy * sin).toFixed(3)},${(last.y + dx * sin + dy * cos).toFixed(3)}`;
+          }
+          return [
+            `M ${r(4.242, 1.414)}`,
+            `C ${r(5.023, 0.633)} ${r(5.023, -0.633)} ${r(4.242, -1.414)}`,
+            `L ${r(-8.486, -14.142)}`,
+            `C ${r(-9.267, -14.923)} ${r(-10.533, -14.923)} ${r(-11.314, -14.142)}`,
+            `C ${r(-12.095, -13.361)} ${r(-12.095, -12.095)} ${r(-11.314, -11.314)}`,
+            `L ${r(0, 0)}`,
+            `L ${r(-11.314, 11.314)}`,
+            `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`,
+            `C ${r(-10.533, 14.923)} ${r(-9.267, 14.923)} ${r(-8.486, 14.142)}`,
+            `Z`,
+          ].join(" ");
         }
-        return [
-          `M ${r( 4.242,  1.414)}`,
-          `C ${r( 5.023,  0.633)} ${r( 5.023, -0.633)} ${r( 4.242, -1.414)}`,
-          `L ${r(-8.486, -14.142)}`,
-          `C ${r(-9.267,-14.923)} ${r(-10.533,-14.923)} ${r(-11.314,-14.142)}`,
-          `C ${r(-12.095,-13.361)} ${r(-12.095,-12.095)} ${r(-11.314,-11.314)}`,
-          `L ${r( 0,      0)}`,
-          `L ${r(-11.314, 11.314)}`,
-          `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`,
-          `C ${r(-10.533, 14.923)} ${r(-9.267,  14.923)} ${r( -8.486, 14.142)}`,
-          `Z`,
-        ].join(' ');
-      }
 
-      function drawStatic(wavePath, arrowhead) {
-        const pts = BASE.map(p => ({
-          x: p.x,
-          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY),
-        }));
-        wavePath.setAttribute('d', catmullRom(pts));
-        arrowhead.setAttribute('d', buildArrowhead(pts));
-      }
+        function drawStatic() {
+          const pts = BASE.map((p) => ({
+            x: p.x,
+            y:
+              p.y +
+              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY),
+          }));
+          wavePath.setAttribute("d", catmullRom(pts));
+          arrowhead.setAttribute("d", buildArrowhead(pts));
+        }
 
-      document.querySelectorAll('.case-link').forEach(link => {
-        const wavePath  = link.querySelector('.cases-wave');
-        const arrowhead = link.querySelector('.cases-arrowhead');
-        if (!wavePath || !arrowhead) return;
+        drawStatic();
 
-        drawStatic(wavePath, arrowhead);
-
-        let phase = 0, rafId = null, animating = false, lastTime = 0;
+        let phase = 0,
+          rafId = null,
+          animating = false,
+          lastTime = 0;
 
         function animateFrame(now) {
           if (!animating) return;
-          if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
+          if (now - lastTime < FRAME_MS) {
+            rafId = requestAnimationFrame(animateFrame);
+            return;
+          }
           lastTime = now;
           phase += SPEED;
-          const pts = BASE.map(p => ({
+          const pts = BASE.map((p) => ({
             x: p.x,
-            y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase),
+            y:
+              p.y +
+              AMPLITUDE *
+                Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase),
           }));
-          wavePath.setAttribute('d', catmullRom(pts));
-          arrowhead.setAttribute('d', buildArrowhead(pts));
+          wavePath.setAttribute("d", catmullRom(pts));
+          arrowhead.setAttribute("d", buildArrowhead(pts));
           rafId = requestAnimationFrame(animateFrame);
         }
 
-        link.addEventListener('mouseenter', () => {
+        jumpLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.getElementById("work");
+          if (target) {
+            const top =
+              target.getBoundingClientRect().top + window.scrollY - 34;
+            window.scrollTo({ top, behavior: "smooth" });
+          }
+        });
+
+        jumpLink.addEventListener("mouseenter", () => {
           animating = true;
           if (!rafId) rafId = requestAnimationFrame(animateFrame);
         });
 
-        link.addEventListener('mouseleave', () => {
+        jumpLink.addEventListener("mouseleave", () => {
           animating = false;
-          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
         });
-      });
-    }());
+      })();
 
-    // Squiggly wave animation for "jump to cases" button
-    (function() {
-      const BASE = [
-        { x: 2.07,   y: 14.73 },
-        { x: 30.19,  y: 15.17 },
-        { x: 48.94,  y: 16.70 },
-        { x: 67.69,  y: 14.82 },
-        { x: 86.44,  y: 11.13 },
-        { x: 105.18, y: 14.18 },
-        { x: 123.93, y: 14.42 },
-      ];
-      const AMPLITUDE = 3.8;
-      const FREQUENCY = 2.8;
-      const SPEED = ARROW_SPEED;
+      // Squiggly wave animation for contact "blue line"
+      (function () {
+        const wavePath = document.querySelector(".contact-wave");
+        if (!wavePath) return;
 
-      const wavePath = document.getElementById('wai-wave');
-      const arrowhead = document.getElementById('wai-arrowhead');
-      const jumpLink = document.querySelector('.wai-jump');
+        const W = 353;
+        const BASE = [
+          { x: 0, y: 10.2 },
+          { x: 14, y: 8.1 },
+          { x: 32, y: 11.8 },
+          { x: 50, y: 7.4 },
+          { x: 71, y: 12.3 },
+          { x: 89, y: 7.9 },
+          { x: 110, y: 11.1 },
+          { x: 130, y: 8.5 },
+          { x: 152, y: 12.6 },
+          { x: 170, y: 7.2 },
+          { x: 192, y: 11.5 },
+          { x: 213, y: 8.0 },
+          { x: 234, y: 12.1 },
+          { x: 253, y: 7.6 },
+          { x: 275, y: 11.9 },
+          { x: 294, y: 8.3 },
+          { x: 315, y: 12.4 },
+          { x: 333, y: 7.8 },
+          { x: 353, y: 10.5 },
+        ];
 
-      function catmullRom(pts) {
-        let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
-        for (let i = 0; i < pts.length - 1; i++) {
-          const p0 = pts[Math.max(0, i - 1)];
-          const p1 = pts[i];
-          const p2 = pts[i + 1];
-          const p3 = pts[Math.min(pts.length - 1, i + 2)];
-          const cp1x = p1.x + (p2.x - p0.x) / 6;
-          const cp1y = p1.y + (p2.y - p0.y) / 6;
-          const cp2x = p2.x - (p3.x - p1.x) / 6;
-          const cp2y = p2.y - (p3.y - p1.y) / 6;
-          d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+        const AMPLITUDE = 3.04;
+        const FREQUENCY = 2.8;
+        const SPEED = ARROW_SPEED;
+
+        function catmullRom(pts) {
+          let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
+          for (let i = 0; i < pts.length - 1; i++) {
+            const p0 = pts[Math.max(0, i - 1)];
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+            const p3 = pts[Math.min(pts.length - 1, i + 2)];
+            const cp1x = p1.x + (p2.x - p0.x) / 6;
+            const cp1y = p1.y + (p2.y - p0.y) / 6;
+            const cp2x = p2.x - (p3.x - p1.x) / 6;
+            const cp2y = p2.y - (p3.y - p1.y) / 6;
+            d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+          }
+          return d;
         }
-        return d;
-      }
 
-      function buildArrowhead(pts) {
-        const last = pts[pts.length - 1];
-        const ref  = pts[pts.length - 2];
-        const angle = Math.atan2(last.y - ref.y, last.x - ref.x);
-        const cos = Math.cos(angle), sin = Math.sin(angle);
-        function r(dx, dy) {
-          return `${(last.x + dx*cos - dy*sin).toFixed(3)},${(last.y + dx*sin + dy*cos).toFixed(3)}`;
+        function drawStatic() {
+          const pts = BASE.map((p) => ({
+            x: p.x,
+            y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY),
+          }));
+          wavePath.setAttribute("d", catmullRom(pts));
         }
-        return [
-          `M ${r( 4.242,  1.414)}`,
-          `C ${r( 5.023,  0.633)} ${r( 5.023, -0.633)} ${r( 4.242, -1.414)}`,
-          `L ${r(-8.486, -14.142)}`,
-          `C ${r(-9.267,-14.923)} ${r(-10.533,-14.923)} ${r(-11.314,-14.142)}`,
-          `C ${r(-12.095,-13.361)} ${r(-12.095,-12.095)} ${r(-11.314,-11.314)}`,
-          `L ${r( 0,      0)}`,
-          `L ${r(-11.314, 11.314)}`,
-          `C ${r(-12.095, 12.095)} ${r(-12.095, 13.361)} ${r(-11.314, 14.142)}`,
-          `C ${r(-10.533, 14.923)} ${r(-9.267,  14.923)} ${r( -8.486, 14.142)}`,
-          `Z`,
-        ].join(' ');
-      }
 
-      function drawStatic() {
-        const pts = BASE.map(p => ({
-          x: p.x,
-          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY),
-        }));
-        wavePath.setAttribute('d', catmullRom(pts));
-        arrowhead.setAttribute('d', buildArrowhead(pts));
-      }
+        drawStatic();
 
-      drawStatic();
+        let phase = 0,
+          rafId = null,
+          animating = false,
+          lastTime = 0;
 
-      let phase = 0, rafId = null, animating = false, lastTime = 0;
-
-      function animateFrame(now) {
-        if (!animating) return;
-        if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
-        lastTime = now;
-        phase += SPEED;
-        const pts = BASE.map(p => ({
-          x: p.x,
-          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase),
-        }));
-        wavePath.setAttribute('d', catmullRom(pts));
-        arrowhead.setAttribute('d', buildArrowhead(pts));
-        rafId = requestAnimationFrame(animateFrame);
-      }
-
-      jumpLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.getElementById('work');
-        if (target) {
-          const top = target.getBoundingClientRect().top + window.scrollY - 34;
-          window.scrollTo({ top, behavior: 'smooth' });
+        function animateFrame(now) {
+          if (!animating) return;
+          if (now - lastTime < FRAME_MS) {
+            rafId = requestAnimationFrame(animateFrame);
+            return;
+          }
+          lastTime = now;
+          phase += SPEED;
+          const pts = BASE.map((p) => ({
+            x: p.x,
+            y:
+              p.y +
+              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - phase),
+          }));
+          wavePath.setAttribute("d", catmullRom(pts));
+          rafId = requestAnimationFrame(animateFrame);
         }
-      });
 
-      jumpLink.addEventListener('mouseenter', () => {
-        animating = true;
-        if (!rafId) rafId = requestAnimationFrame(animateFrame);
-      });
+        const marked = document.querySelector(".contact-marked");
+        marked.addEventListener("mouseenter", () => {
+          animating = true;
+          if (!rafId) rafId = requestAnimationFrame(animateFrame);
+        });
+        marked.addEventListener("mouseleave", () => {
+          animating = false;
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+        });
+      })();
+    </script>
 
-      jumpLink.addEventListener('mouseleave', () => {
-        animating = false;
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-      });
-    }());
-
-    // Squiggly wave animation for contact "blue line"
-    (function() {
-      const wavePath = document.querySelector('.contact-wave');
-      if (!wavePath) return;
-
-      const W = 353;
-      const BASE = [
-        { x: 0,    y: 10.2 },
-        { x: 14,   y: 8.1  },
-        { x: 32,   y: 11.8 },
-        { x: 50,   y: 7.4  },
-        { x: 71,   y: 12.3 },
-        { x: 89,   y: 7.9  },
-        { x: 110,  y: 11.1 },
-        { x: 130,  y: 8.5  },
-        { x: 152,  y: 12.6 },
-        { x: 170,  y: 7.2  },
-        { x: 192,  y: 11.5 },
-        { x: 213,  y: 8.0  },
-        { x: 234,  y: 12.1 },
-        { x: 253,  y: 7.6  },
-        { x: 275,  y: 11.9 },
-        { x: 294,  y: 8.3  },
-        { x: 315,  y: 12.4 },
-        { x: 333,  y: 7.8  },
-        { x: 353,  y: 10.5 },
-      ];
-
-      const AMPLITUDE = 3.04;
-      const FREQUENCY = 2.8;
-      const SPEED = ARROW_SPEED;
-
-      function catmullRom(pts) {
-        let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
-        for (let i = 0; i < pts.length - 1; i++) {
-          const p0 = pts[Math.max(0, i - 1)];
-          const p1 = pts[i];
-          const p2 = pts[i + 1];
-          const p3 = pts[Math.min(pts.length - 1, i + 2)];
-          const cp1x = p1.x + (p2.x - p0.x) / 6;
-          const cp1y = p1.y + (p2.y - p0.y) / 6;
-          const cp2x = p2.x - (p3.x - p1.x) / 6;
-          const cp2y = p2.y - (p3.y - p1.y) / 6;
-          d += ` C ${cp1x.toFixed(3)} ${cp1y.toFixed(3)} ${cp2x.toFixed(3)} ${cp2y.toFixed(3)} ${p2.x.toFixed(3)} ${p2.y.toFixed(3)}`;
+    <!-- Grid overlay toggle -->
+    <style>
+      #gridOverlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 99999;
+        padding: 0 var(--margin);
+      }
+      #gridOverlay .grid-cols {
+        width: 100%;
+        max-width: 1920px;
+        height: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 20px;
+      }
+      #gridOverlay .grid-col {
+        background: rgba(255, 0, 0, 0.08);
+      }
+      @media (min-width: 1024px) {
+        #gridOverlay .grid-cols {
+          grid-template-columns: repeat(12, 1fr);
         }
-        return d;
       }
+    </style>
+    <div id="gridOverlay">
+      <div class="grid-cols">
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+      </div>
+    </div>
 
-      function drawStatic() {
-        const pts = BASE.map(p => ({
-          x: p.x,
-          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY),
-        }));
-        wavePath.setAttribute('d', catmullRom(pts));
-      }
-
-      drawStatic();
-
-      let phase = 0, rafId = null, animating = false, lastTime = 0;
-
-      function animateFrame(now) {
-        if (!animating) return;
-        if (now - lastTime < FRAME_MS) { rafId = requestAnimationFrame(animateFrame); return; }
-        lastTime = now;
-        phase += SPEED;
-        const pts = BASE.map(p => ({
-          x: p.x,
-          y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - phase),
-        }));
-        wavePath.setAttribute('d', catmullRom(pts));
-        rafId = requestAnimationFrame(animateFrame);
-      }
-
-      const marked = document.querySelector('.contact-marked');
-      marked.addEventListener('mouseenter', () => {
-        animating = true;
-        if (!rafId) rafId = requestAnimationFrame(animateFrame);
-      });
-      marked.addEventListener('mouseleave', () => {
-        animating = false;
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-      });
-    }());
-</script>
-
-<!-- Grid overlay toggle -->
-<style>
-  #gridOverlay {
-    display:none;
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    pointer-events:none;
-    z-index:99999;
-    padding: 0 var(--margin);
-  }
-  #gridOverlay .grid-cols {
-    width:100%;
-    max-width:1920px;
-    height:100%;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:0 20px;
-  }
-  #gridOverlay .grid-col {
-    background:rgba(255,0,0,0.08);
-  }
-  @media (min-width:1024px) {
-    #gridOverlay .grid-cols {
-      grid-template-columns:repeat(12, 1fr);
-    }
-  }
-</style>
-<div id="gridOverlay">
-  <div class="grid-cols">
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-    <div class="grid-col"></div>
-  </div>
-</div>
-
-<button id="gridToggle" onclick="
-  var g=document.getElementById('gridOverlay');
-  var on=g.style.display==='block';
-  g.style.display=on?'none':'block';
-  this.textContent=on?'Grid':'Grid ✕';
-" style="
-  position:fixed;
-  bottom:16px;right:16px;
-  z-index:100000;
-  padding:6px 12px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12px;
-  background:#222;
-  color:#fff;
-  border:1px solid #555;
-  border-radius:4px;
-  cursor:pointer;
-  opacity:0.7;
-">Grid</button>
-
-</body>
+    <button
+      id="gridToggle"
+      onclick="
+        var g = document.getElementById('gridOverlay');
+        var on = g.style.display === 'block';
+        g.style.display = on ? 'none' : 'block';
+        this.textContent = on ? 'Grid' : 'Grid ✕';
+      "
+      style="
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+        z-index: 100000;
+        padding: 6px 12px;
+        font-family: &quot;IBM Plex Mono&quot;, monospace;
+        font-size: 12px;
+        background: #222;
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.7;
+      "
+    >
+      Grid
+    </button>
+  </body>
 </html>

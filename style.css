@@ -2,32 +2,32 @@
    FONTS
    ============================================================ */
 @font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-family: "Neue Haas Grotesk";
+  src: url("assets/fonts/NeueHaasDisplayRoman.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('assets/fonts/NeueHaasDisplayMediu.ttf') format('truetype');
+  font-family: "Neue Haas Grotesk";
+  src: url("assets/fonts/NeueHaasDisplayMediu.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Misto';
-  src: url('assets/fonts/Misto.ttf') format('truetype');
+  font-family: "Misto";
+  src: url("assets/fonts/Misto.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Modelista Signature';
-  src: url('assets/fonts/Modelistasignature-ownAV.otf') format('opentype');
+  font-family: "Modelista Signature";
+  src: url("assets/fonts/Modelistasignature-ownAV.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -131,7 +131,10 @@ nav {
   padding: 12px 16px;
   box-sizing: border-box;
   gap: 0;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    backdrop-filter 0.3s ease,
+    transform 0.3s ease;
 }
 
 nav.hidden {
@@ -335,7 +338,12 @@ nav.dark .nav-hamburger::after {
   display: block;
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8, 8, 21, 0) 0%, rgba(8, 8, 21, 0.18) 59.62%, rgba(8, 8, 21, 0.45) 83.17%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 21, 0) 0%,
+    rgba(8, 8, 21, 0.18) 59.62%,
+    rgba(8, 8, 21, 0.45) 83.17%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -1186,7 +1194,6 @@ img[src="assets/violin.svg"].skills-illus {
     margin-top: 0;
   }
 
-
   .contact-headline {
     max-width: 625px;
   }
@@ -1582,7 +1589,7 @@ picture.case-full-img--gap,
   align-items: center;
   justify-content: center;
   margin-top: 16px;
-  background: #DACFCC;
+  background: #dacfcc;
 }
 
 .scene1-back {
@@ -1612,12 +1619,10 @@ picture.case-full-img--gap,
   }
 }
 
-
-
 /* ---- Before / After ---- */
 
 .before-after {
-  background: #F1F4F9;
+  background: #f1f4f9;
   padding: 120px var(--margin);
 }
 
@@ -1634,7 +1639,7 @@ picture.case-full-img--gap,
 }
 
 .before-after-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   text-transform: uppercase;
   opacity: 0.5;
@@ -1687,7 +1692,7 @@ picture.case-full-img--gap,
 }
 
 .sensitive-title {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-weight: 500;
   font-size: 20px;
   color: var(--black);
@@ -1696,7 +1701,7 @@ picture.case-full-img--gap,
 }
 
 .sensitive-desc {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: var(--black);
@@ -1707,7 +1712,7 @@ picture.case-full-img--gap,
 }
 
 .sensitive-btn {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-weight: 700;
   font-size: 15px;
   color: var(--black);
@@ -1823,7 +1828,7 @@ picture.case-full-img--gap,
 /* ---- Competitor UI Analysis ---- */
 
 .case-competitor {
-  background: #F5F2F3;
+  background: #f5f2f3;
   color: var(--black);
   padding: 34px var(--margin) 120px;
 }
@@ -1958,7 +1963,7 @@ picture.case-full-img--gap,
 }
 
 .case-persona-text {
-  background: #4F3A3A;
+  background: #4f3a3a;
   color: #ffffff;
   padding: 32px var(--margin);
   display: flex;
@@ -1970,7 +1975,6 @@ picture.case-full-img--gap,
 .case-persona-goals-label {
   color: #ffffff;
 }
-
 
 .case-persona-name {
   font-family: var(--font);
@@ -2076,7 +2080,9 @@ picture.case-full-img--gap,
 
   .case-persona-goals {
     position: absolute;
-    left: calc(var(--margin) + (100% - var(--margin) * 2) / 12 * 7 + var(--gutter) * 7);
+    left: calc(
+      var(--margin) + (100% - var(--margin) * 2) / 12 * 7 + var(--gutter) * 7
+    );
     top: 68px;
     flex-direction: row;
     gap: 40px;
@@ -2182,8 +2188,6 @@ picture.case-full-img--gap,
   padding: 32px var(--margin) 0;
   max-width: 594px;
 }
-
-
 
 .case-ia-desc {
   font-family: var(--font);
@@ -2293,7 +2297,7 @@ picture.case-full-img--gap,
 /* ---- Card Design Iterations ---- */
 
 .case-cards {
-  background: #F1F4F9;
+  background: #f1f4f9;
   padding: 120px var(--margin);
 }
 
@@ -2304,7 +2308,7 @@ picture.case-full-img--gap,
 }
 
 .case-cards-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   text-transform: uppercase;
   opacity: 0.5;
@@ -2364,18 +2368,18 @@ picture.case-full-img--gap,
 }
 
 .case-btn-colour-col--dark {
-  background: #060D2D;
+  background: #060d2d;
 }
 
 .case-btn-colour-col--light {
-  background: #BFCCEA;
+  background: #bfccea;
 }
 
 .case-btn-colour-label {
   position: absolute;
   top: 34px;
   left: 34px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   text-transform: uppercase;
   opacity: 0.7;
@@ -2432,17 +2436,17 @@ picture.case-full-img--gap,
 }
 
 .case-wave-typo-tag {
-  font-family: 'Onest', sans-serif;
+  font-family: "Onest", sans-serif;
   font-weight: 500;
   font-size: 16px;
   text-transform: uppercase;
-  color: #3638FF;
+  color: #3638ff;
   display: block;
   margin-bottom: 16px;
 }
 
 .case-wave-typo-heading {
-  font-family: 'Kharkiv Tone', sans-serif;
+  font-family: "Kharkiv Tone", sans-serif;
   font-size: 28px;
   font-weight: 400;
   line-height: 1.2;
@@ -2453,7 +2457,7 @@ picture.case-full-img--gap,
 }
 
 .case-wave-typo-blue {
-  color: #3638FF;
+  color: #3638ff;
 }
 
 .case-wave-typo-body {
@@ -2464,7 +2468,7 @@ picture.case-full-img--gap,
 }
 
 .case-wave-typo-desc {
-  font-family: 'Onest', sans-serif;
+  font-family: "Onest", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.3;
@@ -2534,7 +2538,7 @@ picture.case-full-img--gap,
 }
 
 .case-wave-sub-bg {
-  background: url('assets/Wave/subscription%20background.svg') repeat;
+  background: url("assets/Wave/subscription%20background.svg") repeat;
   background-size: cover;
   padding: 0 10.42% 80px;
 }
@@ -2547,12 +2551,9 @@ picture.case-full-img--gap,
   position: relative;
   border-radius: 4px;
   overflow: hidden;
-}
-
-.case-wave-sub-photo > img {
-  display: block;
-  width: 100%;
-  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .case-wave-sub-progress {
@@ -2582,7 +2583,7 @@ picture.case-full-img--gap,
   padding: 0;
   display: inline-block;
   height: 15.1vw;
-  font-family: 'Kharkiv Tone', sans-serif;
+  font-family: "Kharkiv Tone", sans-serif;
   font-weight: 400;
   font-size: 20.14vw;
   line-height: 14.4vw;
@@ -2624,7 +2625,8 @@ picture.case-full-img--gap,
 .sub-drone-outline {
   width: 100%;
   aspect-ratio: 271 / 123;
-  background: url('assets/Wave/drone%20to%20fill.svg') no-repeat center / contain;
+  background: url("assets/Wave/drone%20to%20fill.svg") no-repeat center /
+    contain;
 }
 
 .sub-drone-fill {
@@ -2633,7 +2635,8 @@ picture.case-full-img--gap,
   left: 0;
   width: 100%;
   aspect-ratio: 271 / 123;
-  background: url('assets/Wave/drone%20to%20fill%20filled.svg') no-repeat center / contain;
+  background: url("assets/Wave/drone%20to%20fill%20filled.svg") no-repeat
+    center / contain;
   clip-path: inset(calc(100% - var(--fill)) 0 0 0);
 }
 
@@ -2645,7 +2648,7 @@ picture.case-full-img--gap,
 
 .case-wave-sub-raised,
 .case-wave-sub-amount {
-  font-family: 'Onest', sans-serif;
+  font-family: "Onest", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.1;
@@ -3026,9 +3029,15 @@ picture.case-full-img--gap,
 }
 
 /* Mobile reorder: Neue Haas → Modelista → Misto */
-.landing-typo-item--neue { order: 1; }
-.landing-typo-item--modelista { order: 2; }
-.landing-typo-item--misto { order: 3; }
+.landing-typo-item--neue {
+  order: 1;
+}
+.landing-typo-item--modelista {
+  order: 2;
+}
+.landing-typo-item--misto {
+  order: 3;
+}
 
 .landing-typo-num {
   font-family: var(--font-mono);
@@ -3052,15 +3061,15 @@ picture.case-full-img--gap,
 }
 
 .landing-typo-sample--neue {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
 }
 
 .landing-typo-sample--misto {
-  font-family: 'Misto', sans-serif;
+  font-family: "Misto", sans-serif;
 }
 
 .landing-typo-sample--modelista {
-  font-family: 'Modelista Signature', cursive;
+  font-family: "Modelista Signature", cursive;
   letter-spacing: -0.01em;
 }
 
@@ -3121,9 +3130,15 @@ picture.case-full-img--gap,
   }
 
   /* Desktop order: Neue Haas → Misto → Modelista */
-  .landing-typo-item--neue { order: 1; }
-  .landing-typo-item--misto { order: 2; }
-  .landing-typo-item--modelista { order: 3; }
+  .landing-typo-item--neue {
+    order: 1;
+  }
+  .landing-typo-item--misto {
+    order: 2;
+  }
+  .landing-typo-item--modelista {
+    order: 3;
+  }
 
   .landing-typo-num {
     font-size: 16px;
@@ -3178,7 +3193,7 @@ picture.case-full-img--gap,
   position: absolute;
   top: 4.4%;
   left: 24px;
-  font-family: 'Misto', sans-serif;
+  font-family: "Misto", sans-serif;
   font-size: 7.7vw;
   color: #fff;
   letter-spacing: -0.03em;
@@ -3192,20 +3207,39 @@ picture.case-full-img--gap,
   margin-left: auto;
   margin-right: 7%;
   margin-top: 12%;
-  background: url('assets/Landing/long%20page%20for%20scroll.webp') top / 100% auto no-repeat;
+  background: url("assets/Landing/long%20page%20for%20scroll.webp") top / 100%
+    auto no-repeat;
   animation: clothes-scroll 14s cubic-bezier(0.1, 0.6, 0.3, 1) 0.5s infinite;
 }
 
 @keyframes clothes-scroll {
-  0%      { background-position: 0 0%; }
-  12.5%   { background-position: 0 13.11%; }
-  25%     { background-position: 0 26.23%; }
-  37.5%   { background-position: 0 39.34%; }
-  50%     { background-position: 0 52.46%; }
-  62.5%   { background-position: 0 65.57%; }
-  75%     { background-position: 0 78.69%; }
-  87.5%   { background-position: 0 91.80%; }
-  100%    { background-position: 0 100%; }
+  0% {
+    background-position: 0 0%;
+  }
+  12.5% {
+    background-position: 0 13.11%;
+  }
+  25% {
+    background-position: 0 26.23%;
+  }
+  37.5% {
+    background-position: 0 39.34%;
+  }
+  50% {
+    background-position: 0 52.46%;
+  }
+  62.5% {
+    background-position: 0 65.57%;
+  }
+  75% {
+    background-position: 0 78.69%;
+  }
+  87.5% {
+    background-position: 0 91.8%;
+  }
+  100% {
+    background-position: 0 100%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -3300,7 +3334,7 @@ picture.case-full-img--gap,
 }
 
 .colour-palette-circle::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
@@ -3359,7 +3393,7 @@ picture.case-full-img--gap,
 }
 
 .colour-palette-name {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 400;
   opacity: 0.5;
   margin-bottom: 16px;
@@ -3378,7 +3412,7 @@ picture.case-full-img--gap,
 .colour-palette-row {
   display: flex;
   gap: 14px;
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   white-space: nowrap;
 }
 
@@ -3458,7 +3492,7 @@ picture.case-full-img--gap,
 }
 
 .price-list-heading {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   opacity: 0.5;
@@ -3491,14 +3525,14 @@ picture.case-full-img--gap,
 }
 
 .price-list-service {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 400;
   font-size: 12px;
   width: 42%;
 }
 
 .price-list-duration {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-size: 10px;
   width: 25%;
 }
@@ -3511,12 +3545,12 @@ picture.case-full-img--gap,
 }
 
 .price-list-format {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-size: 10px;
 }
 
 .price-list-price {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 400;
   font-size: 12px;
 }
@@ -3538,7 +3572,7 @@ picture.case-full-img--gap,
 }
 
 .price-list-cta-text {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 500;
   font-size: 5px;
   text-transform: uppercase;
@@ -3570,7 +3604,6 @@ picture.case-full-img--gap,
   .price-list-price {
     font-size: 24px;
   }
-
 }
 
 @media (min-width: 1024px) {
@@ -3636,7 +3669,10 @@ picture.case-full-img--gap,
     z-index: 10;
     opacity: 0;
     transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease, opacity 0.2s ease;
+    transition:
+      width 0.3s ease,
+      height 0.3s ease,
+      opacity 0.2s ease;
     text-decoration: none;
     color: #fff;
     box-sizing: border-box;
@@ -3677,7 +3713,6 @@ picture.case-full-img--gap,
     transition-delay: 0.1s;
   }
 }
-
 
 /* ============================================================
    ABOUT & PUBLICATIONS
@@ -3762,7 +3797,7 @@ picture.case-full-img--gap,
    ACTIVE PROJECTS
    ============================================================ */
 .active-projects {
-  background: #EBE4E2;
+  background: #ebe4e2;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -3782,7 +3817,7 @@ picture.case-full-img--gap,
 
 /* ---- Label ---- */
 .active-projects-label {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 400;
   font-size: 1.1cqi;
   text-transform: uppercase;
@@ -3808,7 +3843,7 @@ picture.case-full-img--gap,
 }
 
 .active-projects-item {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 500;
   font-size: 2.78cqi;
   letter-spacing: -0.01em;
@@ -3827,7 +3862,7 @@ picture.case-full-img--gap,
 
 /* Line above active item */
 .active-projects-body::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 1.4%;
   top: var(--line-top, 16.5%);
@@ -3896,7 +3931,7 @@ picture.case-full-img--gap,
 }
 
 .active-projects-cta-text {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 500;
   font-size: 1.1cqi;
   text-transform: uppercase;
@@ -3911,7 +3946,7 @@ picture.case-full-img--gap,
 
 /* ---- Description ---- */
 .active-projects-desc {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 400;
   font-size: 1.39cqi;
   line-height: 1.1;
@@ -3974,7 +4009,7 @@ picture.case-full-img--gap,
   font-family: var(--font-mono);
   font-size: 16px;
   text-transform: uppercase;
-  color: #3638FF;
+  color: #3638ff;
   margin-bottom: 32px;
 }
 .keep-exploring-image img {
@@ -4158,78 +4193,91 @@ picture.case-full-img--gap,
   background: rgba(255, 0, 0, 0.08);
 }
 
- #progress {
-            width: 625px;
-    position: relative;
-    top: -240px;
-    right: -50%;
-        }
+#progress {
+}
 
-        #target, #current {
-            display: block;
-            font-size: 16px;
-            line-height: 11px;
-            color: #FFFFFF;
-            text-align: right;
-            width: 100%;
-            display: none;
-        }
+#target,
+#current {
+  display: block;
+  font-size: 16px;
+  line-height: 11px;
+  color: #ffffff;
+  text-align: right;
+  width: 100%;
+  display: none;
+}
 
-        #current {
-            line-height: 17px;
-        }
+#current {
+  line-height: 17px;
+}
 
-        .percent-wrap {
-            position: relative;
-            display: inline-block;
-            height: 200px;
-            width: 100%;
-            --fill: 0%;
-        }
+.percent-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  --height: 212px;
+  --fill: 0%;
+  height: var(--height);
+}
 
-        .percent-stroke,
-        .percent-fill {
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 0;
-            display: inline-block;
-            height: 280px;
-            font-family: 'Kharkiv Tone';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 290px;
-            line-height: 280px;
-            letter-spacing: -0.03em;
-            white-space: nowrap;
-        }
 
-        .percent-stroke {
-            position: relative;
-            color: transparent;
-            -webkit-text-stroke: 1px white;
-        }
+.case-wave-sub-photo > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-right: -600px;
+}
 
-        .percent-fill {
-            color: white;
-            clip-path: inset(calc(100% - var(--fill)) 0 0 0);
-        }
+.percent-stroke > img,
+.percent-fill > img {
+   width: 275px;
+}
 
-        .fill-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: var(--fill);
-            height: 1px;
-            background: white;
-            pointer-events: none;
-            transform: translateY(1px)
-        }
+.percent-stroke,
+.percent-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: inline-block;
+  height: var(--height);
+  font-family: "Kharkiv Tone";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 290px;
+  line-height: 265px;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  display: flex;
+}
 
-        .fill-line-top {
-        display:none;
-            height: 1px;
-            background: white;
-            pointer-events: none;
-        }
+.percent-stroke {
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}
+
+.percent-fill {
+  color: white;
+  clip-path: inset(calc(100% - var(--fill)) 0 0 0);
+}
+
+.fill-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--fill);
+  height: 1px;
+  background: white;
+  pointer-events: none;
+  transform: translateY(1px);
+}
+
+.fill-line-top {
+  display: none;
+  height: 1px;
+  background: white;
+  pointer-events: none;
+}
