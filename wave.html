@@ -527,19 +527,24 @@
               <span id="target">_</span>
               <div class="fill-line-top"></div>
               <div class="percent-wrap" id="percentWrap">
-                <span class="percent-stroke">
-                  <span id="percentStroke">0</span>
-                  <span class="drone-stroke"></span>
-                </span>
-
-                <span class="percent-fill">
-                  <span id="percentFill">0</span>
-                  <span class="drone-fill"></span>
-                </span>
-
-                <div class="fill-line">
-                  <span id="current">_</span>
+                <div class="percent-number">
+                  <svg class="percent-svg" overflow="visible" aria-hidden="true">
+                    <defs>
+                      <clipPath id="fillClip">
+                        <rect id="fillClipRect" x="-9999" y="9999" width="99999" height="0"/>
+                      </clipPath>
+                    </defs>
+                    <text id="percentStroke" x="0" y="0" dominant-baseline="text-before-edge">0</text>
+                    <g clip-path="url(#fillClip)">
+                      <text id="percentFill" x="0" y="0" dominant-baseline="text-before-edge">0</text>
+                    </g>
+                  </svg>
+                  <div class="drone-wrap">
+                    <span class="drone-stroke"></span>
+                    <span class="drone-fill"></span>
+                  </div>
                 </div>
+                <div class="fill-line" id="fillLine"></div>
               </div>
             </div>
           </div>
@@ -738,6 +743,8 @@
       const wrap = document.getElementById("percentWrap");
       const stroke = document.getElementById("percentStroke");
       const fill = document.getElementById("percentFill");
+      const fillClipRect = document.getElementById("fillClipRect");
+      const fillLine = document.getElementById("fillLine");
 
       function easeOutCubic(t) {
         return 1 - Math.pow(1 - t, 3);
@@ -747,6 +754,28 @@
       const FRAME_TIME = 1000 / FPS;
 
       function startAnimation() {
+        // Get actual rendered text bounds so clip and fill-line stay in sync
+        const bbox = stroke.getBBox();
+        const textBottom = bbox.y + bbox.height;
+        const wrapH = wrap.getBoundingClientRect().height;
+
+        function setFill(value) {
+          stroke.textContent = value + "";
+          fill.textContent = value + "";
+
+          // SVG clip: reveal fill text bottom-up based on actual font bounds
+          const clipH = textBottom * (value / 100);
+          fillClipRect.setAttribute("y", textBottom - clipH);
+          fillClipRect.setAttribute("height", clipH);
+
+          // Drone clip uses --fill % (drone has explicit dimensions, % is correct)
+          wrap.style.setProperty("--fill", value + "%");
+
+          // Fill-line driven by same pixel math as clip, converted back to %
+          // fill-line: position relative to percent-wrap top, accounting for text overflow below wrap
+          fillLine.style.bottom = ((wrapH - textBottom + clipH) / wrapH * 100) + "%";
+        }
+
         const start = performance.now();
         let lastFrameTime = start;
 
@@ -755,20 +784,13 @@
             lastFrameTime = now - ((now - lastFrameTime) % FRAME_TIME);
 
             const progress = Math.min((now - start) / duration, 1);
-            const eased = easeOutCubic(progress);
-            const value = Math.round(targetPerc * eased);
-
-            stroke.textContent = value + "";
-            fill.textContent = value + "";
-            wrap.style.setProperty("--fill", value + "%");
+            setFill(Math.round(targetPerc * easeOutCubic(progress)));
           }
 
           if (now - start < duration) {
             requestAnimationFrame(tick);
           } else {
-            stroke.textContent = targetPerc + "";
-            fill.textContent = targetPerc + "";
-            wrap.style.setProperty("--fill", targetPerc + "%");
+            setFill(targetPerc);
           }
         }
 

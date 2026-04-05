@@ -4228,6 +4228,7 @@ picture.case-full-img--gap,
 }
 
 .drone-stroke {
+  display: block;
   background-image: url("assets/Wave/drone to fill.svg");
 }
 .drone-fill {
@@ -4242,37 +4243,55 @@ picture.case-full-img--gap,
   background-size: contain;
 }
 
-.percent-stroke,
-.percent-fill {
+.percent-number {
+  display: flex;
+  gap: 1.667vw;
+  padding-right: 0.833vw;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.percent-svg {
+  height: var(--height);
+  width: 28vw;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+#percentStroke {
+  font-family: "Kharkiv Tone", sans-serif;
+  font-weight: 400;
+  font-size: 20.14vw;
+  letter-spacing: -0.03em;
+  fill: none;
+  stroke: white;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+#percentFill {
+  font-family: "Kharkiv Tone", sans-serif;
+  font-weight: 400;
+  font-size: 20.14vw;
+  letter-spacing: -0.03em;
+  fill: white;
+  stroke: none;
+}
+
+.drone-wrap {
+  position: relative;
+  width: 19.1vw;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 3.68vw;
+}
+
+.drone-fill {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 0;
-  padding: 0;
-  padding-right: 0.833vw;
   width: 100%;
-  display: inline-block;
-  height: var(--height);
-  font-family: "Kharkiv Tone";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20.14vw;
-  line-height: 18.4vw;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-  display: flex;
-  gap: 1.667vw;
-  box-sizing: border-box;
-}
-
-.percent-stroke {
-  position: relative;
-  color: transparent;
-  -webkit-text-stroke: 1px white;
-}
-
-.percent-fill {
-  color: white;
   clip-path: inset(calc(100% - var(--fill)) 0 0 0);
 }
 
@@ -4296,13 +4315,13 @@ picture.case-full-img--gap,
 }
 
 #progress {
-  padding-bottom: 1.979vw;
-  margin-left: -0.694vw;
+  padding-bottom: 28.5px;
+  margin-left: -10px;
 }
 
 @media (min-width: 1024px) {
-  .percent-stroke {
-    -webkit-text-stroke: 2px white;
+  #percentStroke {
+    stroke-width: 2;
   }
 
   .drone-stroke {
