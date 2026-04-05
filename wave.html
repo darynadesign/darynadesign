@@ -754,26 +754,23 @@
       const FRAME_TIME = 1000 / FPS;
 
       function startAnimation() {
-        // Get actual rendered text bounds so clip and fill-line stay in sync
-        const bbox = stroke.getBBox();
-        const textBottom = bbox.y + bbox.height;
-        const wrapH = wrap.getBoundingClientRect().height;
-
         function setFill(value) {
           stroke.textContent = value + "";
           fill.textContent = value + "";
 
-          // SVG clip: reveal fill text bottom-up based on actual font bounds
-          const clipH = textBottom * (value / 100);
-          fillClipRect.setAttribute("y", textBottom - clipH);
-          fillClipRect.setAttribute("height", clipH);
+          // Recompute on every frame so clip stays correct on viewport resize
+          const bbox = stroke.getBBox();
+          const textBottom = bbox.y + bbox.height;
+          const wrapH = wrap.getBoundingClientRect().height;
 
-          // Drone clip uses --fill % (drone has explicit dimensions, % is correct)
+          // SVG clip: same % reference as drone (wrapH = 14.72vw), matches original behaviour
+          const clipTop = wrapH * (1 - value / 100);
+          fillClipRect.setAttribute("y", clipTop);
+          fillClipRect.setAttribute("height", textBottom - clipTop);
+
+          // Drone and fill-line use same % of wrapH
           wrap.style.setProperty("--fill", value + "%");
-
-          // Fill-line driven by same pixel math as clip, converted back to %
-          // fill-line: position relative to percent-wrap top, accounting for text overflow below wrap
-          fillLine.style.bottom = ((wrapH - textBottom + clipH) / wrapH * 100) + "%";
+          fillLine.style.bottom = value + "%";
         }
 
         const start = performance.now();
@@ -807,7 +804,7 @@
         { threshold: 0.1 }
       );
 
-      observer.observe(document.querySelector(".case-wave-sub-inner"));
+      observer.observe(document.getElementById("percentWrap"));
     </script>
   </body>
 </html>
