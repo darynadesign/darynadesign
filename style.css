@@ -1981,11 +1981,19 @@ picture.case-full-img--gap,
   gap: 24px;
 }
 
+.case-persona-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .case-persona-name {
   font-family: var(--font);
   font-weight: 600;
   font-size: 40px;
+  line-height: normal;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .case-persona-desc,
@@ -2033,7 +2041,7 @@ picture.case-full-img--gap,
     position: absolute;
     left: 34px;
     top: 34px;
-    width: 340px;
+    width: 344px;
     padding: 32px;
     border-radius: 16px;
     background: rgba(79, 58, 58, 0.9);
@@ -2049,6 +2057,34 @@ picture.case-full-img--gap,
     width: 100%;
     height: auto;
     margin-left: 0;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — YOUR ORDER
+   ============================================================ */
+.case-your-order {
+  position: relative;
+}
+
+.case-your-order-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-your-order-card {
+  position: absolute;
+  left: 14.5%;
+  top: 21%;
+  width: 23%;
+}
+
+@media (min-width: 1024px) {
+  .case-your-order-card {
+    left: 2.36vw;
+    top: 17.29vw;
+    width: 24.86vw;
   }
 }
 
@@ -4253,6 +4289,19 @@ picture.case-full-img--gap,
   display: none;
   height: 1px;
   background: white;
+  pointer-events: none;
+}
+
+.raised-label {
+  position: absolute;
+  top: 11px;
+  left: calc(28vw + 1.667vw); /* left edge of drone-wrap */
+  font-family: "Onest", sans-serif;
+  font-weight: 400;
+  font-size: 1.25vw; /* 18px at 1440 */
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
   pointer-events: none;
 }
 
