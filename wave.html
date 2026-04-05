@@ -745,6 +745,8 @@
       const fill = document.getElementById("percentFill");
       const fillClipRect = document.getElementById("fillClipRect");
       const fillLine = document.getElementById("fillLine");
+      const droneFill = document.querySelector(".drone-fill");
+      const droneWrap = document.querySelector(".drone-wrap");
 
       function easeOutCubic(t) {
         return 1 - Math.pow(1 - t, 3);
@@ -753,26 +755,41 @@
       const FPS = 60;
       const FRAME_TIME = 1000 / FPS;
 
+      let currentValue = 0;
+
+      function setFill(value) {
+        currentValue = value;
+        stroke.textContent = value + "";
+        fill.textContent = value + "";
+
+        // Recompute geometry every call so clip stays correct after resize
+        const bbox = stroke.getBBox();
+        const textBottom = bbox.y + bbox.height;
+        const wrapRect = wrap.getBoundingClientRect();
+        const wrapH = wrapRect.height;
+
+        // SVG number clip: from clipTop downward (same % reference as fill-line)
+        const clipTop = wrapH * (1 - value / 100);
+        fillClipRect.setAttribute("y", clipTop);
+        fillClipRect.setAttribute("height", textBottom - clipTop);
+
+        // Fill-line: bottom edge at value% of wrapH from wrap bottom
+        fillLine.style.bottom = value + "%";
+
+        // Drone clip: align with fill-line Y position (not % of drone height)
+        // fill-line viewport Y = wrap bottom - value% * wrapH
+        const fillLineY = wrapRect.bottom - (value / 100) * wrapH;
+        const droneRect = droneWrap.getBoundingClientRect();
+        const droneClipPx = Math.max(0, Math.min(droneRect.height, fillLineY - droneRect.top));
+        droneFill.style.clipPath = "inset(" + (droneClipPx / droneRect.height * 100).toFixed(2) + "% 0 0 0)";
+      }
+
+      // Re-apply on resize so SVG clip stays in sync with CSS-driven elements
+      window.addEventListener("resize", function () {
+        if (currentValue > 0) setFill(currentValue);
+      }, { passive: true });
+
       function startAnimation() {
-        function setFill(value) {
-          stroke.textContent = value + "";
-          fill.textContent = value + "";
-
-          // Recompute on every frame so clip stays correct on viewport resize
-          const bbox = stroke.getBBox();
-          const textBottom = bbox.y + bbox.height;
-          const wrapH = wrap.getBoundingClientRect().height;
-
-          // SVG clip: same % reference as drone (wrapH = 14.72vw), matches original behaviour
-          const clipTop = wrapH * (1 - value / 100);
-          fillClipRect.setAttribute("y", clipTop);
-          fillClipRect.setAttribute("height", textBottom - clipTop);
-
-          // Drone and fill-line use same % of wrapH
-          wrap.style.setProperty("--fill", value + "%");
-          fillLine.style.bottom = value + "%";
-        }
-
         const start = performance.now();
         let lastFrameTime = start;
 

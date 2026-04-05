@@ -1968,7 +1968,7 @@ picture.case-full-img--gap,
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 48px;
 }
 
 .case-persona-card .case-overview-label {
@@ -2003,8 +2003,8 @@ picture.case-full-img--gap,
 }
 
 .case-persona-quote {
-  width: 32px;
-  height: auto;
+  width: 42px;
+  height: 32px;
 }
 
 .case-persona-goals-inner {
@@ -2033,7 +2033,7 @@ picture.case-full-img--gap,
     position: absolute;
     left: 34px;
     top: 34px;
-    width: 400px;
+    width: 340px;
     padding: 32px;
     border-radius: 16px;
     background: rgba(79, 58, 58, 0.9);
@@ -4234,7 +4234,7 @@ picture.case-full-img--gap,
   top: 0;
   left: 0;
   width: 100%;
-  clip-path: inset(calc(100% - var(--fill)) 0 0 0);
+  clip-path: inset(100% 0 0 0); /* initial: hidden; JS overrides on animation */
 }
 
 .fill-line {
