@@ -4246,7 +4246,7 @@ picture.case-full-img--gap,
   background: white;
   pointer-events: none;
   transform: translateY(1px);
-  clip-path: inset(0 0 0 calc(2.22vw - 7px));
+  clip-path: inset(0 0 0 calc(2.22vw - 10px));
 }
 
 .fill-line-top {
