@@ -4257,7 +4257,7 @@ picture.case-full-img--gap,
 }
 
 #progress {
-  padding-bottom: 28.5px;
+  padding-bottom: 1.979vw; /* 28.5px at 1440 */
   margin-left: -10px;
 }
 
