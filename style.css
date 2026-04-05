@@ -4215,7 +4215,7 @@ picture.case-full-img--gap,
   position: relative;
   display: inline-block;
   width: 100%;
-  --height: 15.5vw;
+  --height: 14.72vw;
   --fill: 0%;
   height: var(--height);
 }
@@ -4242,55 +4242,37 @@ picture.case-full-img--gap,
   background-size: contain;
 }
 
-.percent-number {
-  display: flex;
-  gap: 1.667vw;
-  padding-right: 0.833vw;
-  box-sizing: border-box;
-  transform: translateX(-31px);
-  align-items: flex-start;
-}
-
-.percent-svg {
-  height: var(--height);
-  width: 28vw;
-  flex-shrink: 0;
-  overflow: visible;
-}
-
-#percentStroke {
-  font-family: "Kharkiv Tone", sans-serif;
-  font-weight: 400;
-  font-size: 20.14vw;
-  letter-spacing: -0.03em;
-  fill: none;
-  stroke: white;
-  stroke-width: 1;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-}
-
-#percentFill {
-  font-family: "Kharkiv Tone", sans-serif;
-  font-weight: 400;
-  font-size: 20.14vw;
-  letter-spacing: -0.03em;
-  fill: white;
-  stroke: none;
-}
-
-.drone-wrap {
-  position: relative;
-  width: 19.1vw;
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.drone-fill {
+.percent-stroke,
+.percent-fill {
   position: absolute;
   top: 0;
   left: 0;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.833vw;
   width: 100%;
+  display: inline-block;
+  height: var(--height);
+  font-family: "Kharkiv Tone";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20.14vw;
+  line-height: 18.4vw;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  display: flex;
+  gap: 1.667vw;
+  box-sizing: border-box;
+}
+
+.percent-stroke {
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}
+
+.percent-fill {
+  color: white;
   clip-path: inset(calc(100% - var(--fill)) 0 0 0);
 }
 
@@ -4303,6 +4285,7 @@ picture.case-full-img--gap,
   background: white;
   pointer-events: none;
   transform: translateY(1px);
+  clip-path: inset(0 0 0 calc(2.22vw - 7px));
 }
 
 .fill-line-top {
@@ -4313,13 +4296,13 @@ picture.case-full-img--gap,
 }
 
 #progress {
-  padding-bottom: 28.5px;
-  margin-left: -10px;
+  padding-bottom: 1.979vw;
+  margin-left: -0.694vw;
 }
 
 @media (min-width: 1024px) {
-  #percentStroke {
-    stroke-width: 2;
+  .percent-stroke {
+    -webkit-text-stroke: 2px white;
   }
 
   .drone-stroke {
