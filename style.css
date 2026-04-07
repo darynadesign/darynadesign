@@ -1836,7 +1836,7 @@ picture.case-full-img--gap,
 .case-competitor-top {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   max-width: 560px;
 }
 
@@ -1978,7 +1978,7 @@ picture.case-full-img--gap,
 .case-persona-header {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .case-persona-name-block {
@@ -2119,7 +2119,7 @@ picture.case-full-img--gap,
 .case-flow-text {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   max-width: 560px;
 }
 
@@ -2161,15 +2161,16 @@ picture.case-full-img--gap,
    ============================================================ */
 .case-wireframe {
   background: #F5F2F3;
-  padding: 34px var(--margin) 48px;
+  color: var(--black);
+  padding: 34px var(--margin) 120px;
 }
 
 .case-wireframe-text {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   max-width: 560px;
-  margin-bottom: 48px;
+  margin-bottom: 60px;
 }
 
 .case-wireframe-desc {
@@ -2177,6 +2178,7 @@ picture.case-full-img--gap,
   font-weight: 400;
   font-size: 16px;
   line-height: 1.2;
+  opacity: 0.6;
 }
 
 .case-wireframe-grid {
@@ -2189,16 +2191,21 @@ picture.case-full-img--gap,
   width: 100%;
   height: auto;
   break-inside: avoid;
+  margin-bottom: 5px;
 }
 
 @media (min-width: 1024px) {
   .case-wireframe {
-    padding: 34px var(--margin) 34px;
+    padding: 34px var(--margin) 120px;
   }
 
   .case-wireframe-grid {
     columns: 4;
     gap: 11px;
+  }
+
+  .case-wireframe-grid img {
+    margin-bottom: 11px;
   }
 }
 
@@ -2225,7 +2232,7 @@ picture.case-full-img--gap,
 .case-ia-text {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   padding: 32px var(--margin) 0;
   max-width: 594px;
 }
@@ -2283,7 +2290,7 @@ picture.case-full-img--gap,
 .case-concept-text {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   max-width: 560px;
 }
 
@@ -2821,7 +2828,7 @@ picture.case-full-img--gap,
   }
 
   .case-overview-grid {
-    gap: 24px;
+    gap: 16px;
   }
 
   .case-overview-label {
@@ -4531,5 +4538,222 @@ picture.case-full-img--gap,
 @media (min-width: 1200px) {
   .case-wave-ut-cards {
     gap: 0 110px;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — CAROUSEL SHOWCASE
+   ============================================================ */
+
+.case-wave-carousel {
+  background: #060d2d;
+  overflow: hidden;
+  position: relative;
+  /* mobile/tablet: square */
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+}
+
+.case-wave-carousel-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: plus-lighter;
+  transform: rotate(180deg);
+  pointer-events: none;
+}
+
+.case-wave-carousel-track {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* mobile/tablet: scaled up */
+  gap: 4vw;
+  margin-left: -43vw;
+}
+
+.case-wave-carousel-slide {
+  flex: none;
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 850 / 511;
+}
+
+.case-wave-carousel-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* mobile/tablet sizes */
+.case-wave-carousel-slide--side {
+  width: 56vw;
+}
+
+.case-wave-carousel-slide--center {
+  width: 66vw;
+}
+
+@media (min-width: 1024px) {
+  .case-wave-carousel {
+    aspect-ratio: auto;
+    display: block;
+    padding: 10.69vw 0;
+  }
+
+  .case-wave-carousel-track {
+    gap: 3.68vw;
+    margin-left: -33.33vw;
+  }
+
+  .case-wave-carousel-slide--side {
+    width: 50.14vw;
+  }
+
+  .case-wave-carousel-slide--center {
+    width: 59.03vw;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — IMAGES & NUMBERS BUILD TRUST
+   ============================================================ */
+
+.case-wave-in {
+  background: #f1f4f9;
+  position: relative;
+  height: 181.39vw; /* 653/360 */
+  overflow: hidden;
+}
+
+.case-wave-in-header {
+  position: absolute;
+  top: 6.67vw; /* 24/360 */
+  left: var(--margin);
+  right: var(--margin);
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--black);
+  z-index: 4;
+}
+
+.case-wave-in-desc {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-wave-in-img {
+  position: absolute;
+  width: 75vw; /* 270/360 */
+  height: auto;
+}
+
+.case-wave-in-img--1 {
+  left: 6.67vw; /* 24/360 */
+  top: 70.84vw; /* 215/360 + 40px */
+  z-index: 2;
+}
+
+.case-wave-in-img--2 {
+  left: 18.33vw; /* 66/360 */
+  top: 105.83vw; /* 381/360 */
+  z-index: 1;
+}
+
+/* marquee */
+.case-wave-in-marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 172.5vw; /* 621/360 */
+  height: 40px;
+  background: #3638ff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+}
+
+.case-wave-in-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  white-space: nowrap;
+  animation: wave-marquee 15s linear infinite;
+  will-change: transform;
+}
+
+.case-wave-in-marquee-track span {
+  font-family: "Kharkiv Tone", sans-serif;
+  font-size: 19px;
+  color: white;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.case-wave-in-marquee-track img {
+  height: 22px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+@keyframes wave-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (min-width: 1024px) {
+  .case-wave-in {
+    height: 72.15vw; /* (879+40+120)/1440 */
+  }
+
+  .case-wave-in-header {
+    top: var(--margin);
+    width: 38.89vw; /* 560/1440 */
+    right: auto;
+  }
+
+  .case-wave-in-img {
+    width: 57.71vw; /* 831/1440 */
+  }
+
+  .case-wave-in-img--1 {
+    left: 6.11vw; /* 88/1440 */
+    top: 24.51vw; /* 353/1440 */
+    z-index: 2;
+  }
+
+  .case-wave-in-img--2 {
+    left: 36.18vw; /* 521/1440 */
+    top: 16.46vw; /* 237/1440 */
+    z-index: 1;
+  }
+
+  .case-wave-in-marquee {
+    top: 61.04vw; /* 879/1440 */
+  }
+
+  .case-wave-in-marquee-track {
+    gap: 35px;
+  }
+
+  .case-wave-in-marquee-track span {
+    font-size: 23px;
+  }
+
+  .case-wave-in-marquee-track img {
+    height: 27px;
   }
 }
