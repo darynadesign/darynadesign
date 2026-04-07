@@ -4680,6 +4680,7 @@ picture.case-full-img--gap,
   }
 }
 
+
 /* ============================================================
    CASE STUDY — CAROUSEL SHOWCASE
    ============================================================ */
@@ -4990,14 +4991,11 @@ picture.case-full-img--gap,
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  background: url("assets/Wave/defenders%20background.svg") center / cover no-repeat;
 }
 
 .case-wave-defenders-pattern {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: none;
 }
 
 .case-wave-defenders-card {
@@ -5177,12 +5175,154 @@ picture.case-full-img--gap,
     aspect-ratio: 16 / 9;
   }
 
-  .case-wave-footer-video {
-    position: static;
-    object-fit: none;
-  }
-
   .case-wave-footer-img {
     width: 62.5vw; /* 900/1440 */
   }
+}
+
+/* CHEVRONS */
+.case-wave-chevrons {
+  position: relative;
+  background: #f1f4f9;
+  height: 100vw;
+}
+
+@media (min-width: 768px) {
+  .case-wave-chevrons {
+    height: 56.25vw; /* 810/1440 */
+  }
+}
+
+.case-wave-chevrons-left {
+  position: absolute;
+  left: 5vw; /* 72/1440 */
+  top: calc(26.91vw + 5vw);
+  width: 63.06vw; /* 908/1440 */
+  height: auto;
+  border-radius: 4px;
+}
+
+.case-wave-chevrons-right {
+  position: absolute;
+  left: 77.64vw; /* 1118/1440 */
+  top: calc(26.91vw + 12.64vw);
+  width: 17.36vw; /* 250/1440 */
+  height: auto;
+  border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  .case-wave-chevrons-left {
+    top: 5vw; /* 72/1440 */
+  }
+
+  .case-wave-chevrons-right {
+    top: 12.64vw; /* 182/1440 */
+  }
+}
+
+/* CONTACT FORM */
+.case-wave-contact {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.case-wave-contact-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.case-wave-contact-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-wave-contact-cta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
+}
+
+.case-wave-contact-form {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: url("assets/Wave/contact%20background.svg") center / cover no-repeat;
+}
+
+.case-wave-contact-bg {
+  display: none;
+}
+
+.case-wave-contact-label {
+  display: none;
+}
+
+.case-wave-contact-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .case-wave-contact {
+    flex-direction: row;
+  }
+
+  .case-wave-contact-photo {
+    aspect-ratio: auto;
+    width: 50%;
+    height: 50vw; /* 720/1440 */
+  }
+
+  .case-wave-contact-cta {
+    width: 62.78%; /* 452/720 */
+  }
+
+  .case-wave-contact-form {
+    aspect-ratio: auto;
+    width: 50%;
+    height: 50vw;
+  }
+
+  .case-wave-contact-label {
+    display: block;
+    position: absolute;
+    top: var(--margin);
+    left: var(--margin);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.7;
+    z-index: 2;
+  }
+
+  .case-wave-contact-card {
+    width: 60.97%; /* 439/720 */
+    top: 50%;
+  }
+}
+
+/* LONG SPREADS */
+.case-wave-spreads {
+  display: flex;
+  gap: 24px;
+  padding: var(--margin);
+  background: #bfccea;
+}
+
+.case-wave-spreads-img {
+  flex: 1;
+  width: 0;
+  height: auto;
+  object-fit: contain;
 }
