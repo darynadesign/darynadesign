@@ -2065,26 +2065,45 @@ picture.case-full-img--gap,
    ============================================================ */
 .case-your-order {
   position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
 .case-your-order-bg {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
 }
 
 .case-your-order-card {
   position: absolute;
-  left: 14.5%;
-  top: 21%;
-  width: 23%;
+  left: 27.78%;
+  top: 21.11%;
+  width: 44.44%;
+  height: auto;
 }
 
 @media (min-width: 1024px) {
+  .case-your-order {
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .case-your-order-bg {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: fill;
+  }
+
   .case-your-order-card {
     left: 2.36vw;
     top: 17.29vw;
     width: 24.86vw;
+    height: auto;
   }
 }
 
@@ -2114,16 +2133,14 @@ picture.case-full-img--gap,
 
 .case-flow-img {
   margin-top: 48px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .case-flow-img img {
   display: block;
-  min-width: 800px;
   width: 100%;
   height: auto;
 }
+
 
 @media (min-width: 1024px) {
   .case-flow-img {
@@ -2136,6 +2153,52 @@ picture.case-full-img--gap,
     max-width: 1230px;
     margin: 0 auto;
     min-width: 0;
+  }
+}
+
+/* ============================================================
+   CASE STUDY — WIREFRAMING & INTERACTION DESIGN
+   ============================================================ */
+.case-wireframe {
+  background: #F5F2F3;
+  padding: 34px var(--margin) 48px;
+}
+
+.case-wireframe-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+
+.case-wireframe-desc {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.case-wireframe-grid {
+  columns: 2;
+  gap: 5px;
+}
+
+.case-wireframe-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  break-inside: avoid;
+}
+
+@media (min-width: 1024px) {
+  .case-wireframe {
+    padding: 34px var(--margin) 34px;
+  }
+
+  .case-wireframe-grid {
+    columns: 4;
+    gap: 11px;
   }
 }
 
@@ -4321,5 +4384,152 @@ picture.case-full-img--gap,
 
   .fill-line {
     height: 2px;
+  }
+}
+
+.case-wave-ut-before-label {
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.case-wave-ut-card:nth-child(2),
+.case-wave-ut-card:nth-child(3) {
+  padding-top: 40px; /* 16px label + 24px gap */
+}
+
+/* ============================================================
+   CASE STUDY — USER TESTING
+   ============================================================ */
+
+.case-wave-ut {
+  background: #bfccea;
+  color: var(--black);
+  padding: 34px var(--margin) 120px;
+}
+
+.case-wave-ut-header {
+  margin-bottom: 60px;
+}
+
+.case-wave-ut-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.case-wave-ut-intro {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-wave-ut-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.case-wave-ut-card-img {
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+
+.case-wave-ut-card-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-wave-ut-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.case-wave-ut-findings {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.case-wave-ut-finding {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.case-wave-ut-finding-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.case-wave-ut-finding-text {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .case-wave-ut {
+    padding: 34px var(--margin) 120px;
+  }
+
+  .case-wave-ut-header {
+    max-width: 560px;
+    margin-bottom: 60px;
+  }
+
+  .case-wave-ut-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 40px;
+  }
+
+  .case-wave-ut-card-img {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-wave-ut {
+    padding: 34px var(--margin) 120px;
+  }
+
+  .case-wave-ut-header {
+    margin-bottom: 60px;
+  }
+
+  .case-wave-ut-cards {
+    gap: 0 7.64vw; /* 110px at 1440 */
+  }
+
+  .case-wave-ut-num {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  .case-wave-ut-finding-label {
+    font-size: 16px;
+  }
+
+  .case-wave-ut-card-img {
+    margin-bottom: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .case-wave-ut-cards {
+    gap: 0 110px;
   }
 }
