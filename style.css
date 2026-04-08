@@ -4098,7 +4098,7 @@ picture.case-full-img--gap,
   text-wrap: pretty;
   color: var(--black);
   margin-top: 16px;
-  max-width: 430px;
+  max-width: 275px;
 }
 .keep-exploring-info .case-link {
   margin-top: 28px;
@@ -4119,7 +4119,7 @@ picture.case-full-img--gap,
   .keep-exploring-right {
     grid-column: 5 / 13;
     display: flex;
-    gap: 48px;
+    gap: 34px;
     align-items: start;
   }
   .keep-exploring-image {
@@ -4137,7 +4137,7 @@ picture.case-full-img--gap,
     justify-content: space-between;
     align-self: stretch;
     flex: 1 1 0;
-    min-width: 0;
+    min-width: 238px;
   }
   .keep-exploring-desc {
     margin-top: 24px;
@@ -4147,6 +4147,7 @@ picture.case-full-img--gap,
 @media (min-width: 1200px) {
   .keep-exploring-right {
     grid-column: 6 / 13;
+    gap: 48px;
   }
 }
 
@@ -4692,6 +4693,9 @@ picture.case-full-img--gap,
 .case-tehno-product-bg {
   position: absolute;
   inset: 0;
+}
+
+.case-tehno-product-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -4699,7 +4703,7 @@ picture.case-full-img--gap,
 
 .case-tehno-product-content {
   position: relative;
-  padding: 24px var(--margin);
+  padding: 24px var(--margin) 182px;
   color: var(--white);
 }
 
@@ -4730,7 +4734,7 @@ picture.case-full-img--gap,
 
 @media (min-width: 768px) {
   .case-tehno-product-content {
-    padding: 34px var(--margin);
+    padding: 34px var(--margin) 34px;
   }
 
   .case-tehno-product-header {
@@ -4863,6 +4867,107 @@ picture.case-full-img--gap,
     margin-top: 120px;
   }
 }
+
+/* ============================================================
+   CASE STUDY — TEHNOHATA PAYMENT PLANS
+   ============================================================ */
+
+.case-tehno-payment {
+  background: #E7E7E7;
+  color: var(--black);
+  padding: 72px var(--margin);
+}
+
+.case-tehno-payment .case-overview-label {
+  max-width: 560px;
+}
+
+.case-tehno-payment-img {
+  display: block;
+  margin-top: 32px;
+}
+
+.case-tehno-payment-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .case-tehno-payment {
+    padding: 120px var(--margin);
+  }
+}
+
+/* ============================================================
+   CASE STUDY — TEHNOHATA PRODUCT CARDS
+   ============================================================ */
+
+.case-tehno-cards {
+  padding: 72px var(--margin);
+}
+
+.case-tehno-cards-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.case-tehno-cards-desc {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+
+.case-tehno-cards-grid {
+  margin-top: 48px;
+}
+
+.case-tehno-cards-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-tehno-cards-right {
+  background: #E7E7E7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.case-tehno-cards-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .case-tehno-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .case-tehno-cards-photo {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .case-tehno-cards-right {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-tehno-cards {
+    padding: 120px var(--margin);
+  }
+}
+
 
 /* ============================================================
    CASE STUDY — TEHNOHATA POPULAR CATEGORIES
