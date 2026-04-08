@@ -5316,7 +5316,7 @@ picture.case-full-img--gap,
 .case-wave-spreads {
   display: flex;
   gap: 24px;
-  padding: var(--margin);
+  padding: 120px var(--margin);
   background: #bfccea;
 }
 
@@ -5325,4 +5325,126 @@ picture.case-full-img--gap,
   width: 0;
   height: auto;
   object-fit: contain;
+}
+
+/* PHONE SCREENS */
+.case-wave-phones {
+  background: #f1f4f9;
+  padding: 72px 24px;
+}
+
+.case-wave-phones-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.case-wave-phones-img {
+  width: 35.58%;
+  height: auto;
+}
+
+.case-wave-phones-img:nth-child(3) {
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .case-wave-phones {
+    padding: 120px 5.45vw;
+  }
+
+  .case-wave-phones-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 3.96vw;
+    align-items: start;
+  }
+
+  .case-wave-phones-img {
+    width: 100%;
+  }
+
+  .case-wave-phones-img:nth-child(3) {
+    margin-left: 0;
+  }
+
+  .case-wave-phones-img--tall {
+    margin-top: 6.11vw;
+  }
+}
+
+/* SPEC CARDS */
+.case-wave-specs {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-wave-specs-phone {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #fff;
+}
+
+.case-wave-specs-phone-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-wave-specs-cards {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: #060d2d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 34px;
+}
+
+.case-wave-specs-label {
+  display: none;
+}
+
+.case-wave-specs-card {
+  width: 69%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .case-wave-specs {
+    flex-direction: row;
+  }
+
+  .case-wave-specs-phone {
+    aspect-ratio: auto;
+    width: 50%;
+    height: 50vw;
+  }
+
+  .case-wave-specs-cards {
+    aspect-ratio: auto;
+    width: 50%;
+    height: 50vw;
+    gap: 24px;
+    padding: 34px;
+  }
+
+  .case-wave-specs-label {
+    display: block;
+    position: absolute;
+    top: 34px;
+    left: 34px;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.7;
+  }
+
+  .case-wave-specs-card {
+    width: 68.82%;
+  }
 }
