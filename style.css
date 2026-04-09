@@ -4688,24 +4688,24 @@ picture.case-full-img--gap,
 
 .case-tehno-product {
   position: relative;
-  overflow: hidden;
+  display: grid;
 }
 
 .case-tehno-product-bg {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
 }
 
 .case-tehno-product-bg img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .case-tehno-product-content {
-  position: relative;
+  grid-area: 1 / 1;
+  z-index: 1;
   padding: 24px var(--margin) 182px;
-  color: var(--black);
+  color: var(--white);
 }
 
 .case-tehno-product-header {
@@ -4715,14 +4715,14 @@ picture.case-full-img--gap,
 }
 
 .case-tehno-product .case-overview-label {
-  color: var(--black);
+  color: var(--white);
 }
 
 .case-tehno-product-desc {
   font-family: var(--font);
   font-size: 16px;
   line-height: 1.4;
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .case-tehno-product-img {
@@ -4739,7 +4739,7 @@ picture.case-full-img--gap,
   }
 
   .case-tehno-product-header {
-    max-width: 560px;
+    max-width: 512px;
   }
 }
 
@@ -4750,7 +4750,7 @@ picture.case-full-img--gap,
 
   .case-tehno-product-img {
     width: 69.44%;
-    margin: 40px auto 0;
+    margin: 72px auto 0;
   }
 }
 
@@ -4761,7 +4761,7 @@ picture.case-full-img--gap,
 .case-tehno-catalogue {
   background: #E7E7E7;
   color: var(--black);
-  padding: 24px var(--margin);
+  padding: 24px;
 }
 
 .case-tehno-catalogue-header {
@@ -4861,7 +4861,8 @@ picture.case-full-img--gap,
 
 @media (min-width: 1024px) {
   .case-tehno-catalogue {
-    padding: 34px var(--margin);
+    margin: 34px;
+    padding: 34px;
   }
 
   .case-tehno-catalogue-compare {
@@ -4919,7 +4920,7 @@ picture.case-full-img--gap,
    ============================================================ */
 
 .case-tehno-cards {
-  padding: 72px var(--margin);
+  padding: 24px var(--margin) 72px;
   color: var(--black);
 }
 
@@ -4980,7 +4981,7 @@ picture.case-full-img--gap,
 
 @media (min-width: 1024px) {
   .case-tehno-cards {
-    padding: 120px var(--margin);
+    padding: 34px var(--margin) 120px;
   }
 }
 
@@ -5044,13 +5045,14 @@ picture.case-full-img--gap,
 
 @media (min-width: 768px) {
   .case-tehno-mockups {
-    flex-direction: row;
-    gap: 34px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     padding: 34px;
   }
 
   .case-tehno-mockups-img {
-    width: 50%;
+    height: 100%;
     object-fit: cover;
   }
 }
