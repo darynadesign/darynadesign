@@ -4986,6 +4986,10 @@ picture.case-full-img--gap,
   .case-tehno-cards {
     padding: 34px var(--margin) 34px;
   }
+
+  .case-tehno-cards-grid {
+    margin-top: 72px;
+  }
 }
 
 
