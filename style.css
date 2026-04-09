@@ -4984,7 +4984,7 @@ picture.case-full-img--gap,
 
 @media (min-width: 1024px) {
   .case-tehno-cards {
-    padding: 34px var(--margin) 120px;
+    padding: 34px var(--margin) 34px;
   }
 }
 
