@@ -4081,13 +4081,16 @@ picture.case-full-img--gap,
   margin-top: 24px;
 }
 .keep-exploring-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 4px;
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0;
   opacity: 0.6;
-  line-height: 1.2;
+  line-height: normal;
   color: var(--black);
 }
 .keep-exploring-desc {
@@ -5027,34 +5030,464 @@ picture.case-full-img--gap,
 }
 
 /* ============================================================
+   CASE STUDY — TEHNOHATA INTERIOR FILTER
+   ============================================================ */
+
+.case-tehno-interior {
+  background: #4b4048;
+  padding: var(--margin);
+}
+
+@media (min-width: 1024px) {
+  .case-tehno-interior {
+    padding: 150px;
+  }
+}
+
+.case-tehno-interior-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.case-tehno-interior-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  text-transform: uppercase;
+  color: white;
+  opacity: 0.6;
+  max-width: 320px;
+}
+
+.case-tehno-interior-label .case-label-dot {
+  background: white;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.case-tehno-interior-content-wrap {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+@media (min-width: 1024px) {
+  .case-tehno-interior-content-wrap {
+    padding-bottom: calc(710 / 1100 * 100%);
+  }
+}
+
+.case-tehno-interior-content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1100px;
+  transform-origin: left center;
+}
+
+.case-tehno-interior-panels {
+  display: flex;
+  gap: 6px;
+  height: 644px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .case-tehno-interior-content {
+    top: 0;
+    transform-origin: top left;
+  }
+}
+
+.case-tehno-interior-card {
+  background: #e7e7e7;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px;
+}
+
+.case-tehno-interior-card-title {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.1;
+  color: var(--black);
+  max-width: 360px;
+  margin-bottom: 25px;
+}
+
+.case-tehno-interior-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.case-tehno-interior-tag {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
+  border-radius: 22px;
+  background: white;
+  color: rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+  padding: 8px 13px 7px;
+}
+
+.case-tehno-interior-tag.is-active {
+  background: black;
+  color: white;
+}
+
+.case-tehno-interior-card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.case-tehno-interior-card-hint {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgba(0, 0, 0, 0.7);
+  max-width: 175px;
+  display: flex;
+  gap: 8px;
+}
+
+.case-tehno-interior-card-dot {
+  flex-shrink: 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.case-tehno-interior-product {
+  background: white;
+  border: 0.795px solid rgba(0, 0, 0, 0.15);
+  border-radius: 19px;
+  width: 270px;
+  height: 326px;
+  flex-shrink: 0;
+}
+
+.case-tehno-interior-product-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12.72px;
+  gap: 12.72px;
+  height: 100%;
+  border-radius: 6px;
+}
+
+.case-tehno-interior-product-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.case-tehno-interior-product-img img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.case-tehno-interior-product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6.36px;
+  width: 100%;
+}
+
+.case-tehno-interior-product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.case-tehno-interior-product-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 6.36px;
+}
+
+.case-tehno-interior-product-reviews {
+  display: flex;
+  align-items: center;
+  gap: 3.18px;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 11.13px;
+  line-height: 13px;
+  color: rgba(29, 30, 28, 0.5);
+}
+
+.case-tehno-interior-product-reviews svg {
+  width: 12.72px;
+  height: 12.72px;
+  opacity: 0.5;
+}
+
+.case-tehno-interior-product-colors {
+  display: flex;
+  gap: 2.38px;
+  align-items: center;
+  width: 36.56px;
+  height: 12.72px;
+}
+
+.case-tehno-interior-color {
+  width: 9.54px;
+  height: 9.54px;
+  border-radius: 1.59px;
+  background: var(--color);
+}
+
+.case-tehno-interior-color.is-active {
+  width: 13px;
+  height: 13px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-tehno-interior-color.is-active::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--color);
+  flex-shrink: 0;
+}
+
+.case-tehno-interior-product-name {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 12.72px;
+  line-height: 1.1;
+  color: black;
+}
+
+.case-tehno-interior-product-price {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.case-tehno-interior-price {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 15.9px;
+  line-height: 19px;
+  color: black;
+}
+
+.case-tehno-interior-cart-btn img {
+  display: block;
+  width: 37px;
+  height: 37px;
+}
+
+.case-tehno-interior-photo {
+  border-radius: 13px;
+  overflow: hidden;
+  position: relative;
+}
+
+.case-tehno-interior-photo > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-tehno-interior-photo-overlay {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.case-tehno-interior-photo-text {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+  max-width: 126px;
+}
+
+.case-tehno-interior-photo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.case-tehno-interior-photo-btn img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-left: 5%;
+}
+
+.case-tehno-interior-card,
+.case-tehno-interior-photo {
+  flex: 1;
+}
+
+.case-tehno-interior-card {
+  min-height: 644px;
+}
+
+.case-tehno-interior-photo > img {
+  height: 100%;
+}
+
+
+/* ============================================================
    CASE STUDY — TEHNOHATA CROISSANTS & MOCKUPS
    ============================================================ */
 
 .case-tehno-mockups {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: var(--margin);
 }
 
 .case-tehno-mockups-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ============================================================
+   CASE STUDY — TEHNOHATA HOMEPAGE
+   ============================================================ */
+
+.case-tehno-homepage {
+  background: #D1C8C8;
+  padding: 24px var(--margin) 140px;
+}
+
+.case-tehno-homepage-header {
+  max-width: 560px;
+  color: var(--black);
+}
+
+.case-tehno-homepage-desc {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--black);
+  opacity: 0.6;
+  margin-top: 16px;
+}
+
+.case-tehno-homepage-mockups {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.case-tehno-homepage-mockups img {
   display: block;
   width: 100%;
   height: auto;
 }
 
 @media (min-width: 768px) {
-  .case-tehno-mockups {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 34px;
+  .case-tehno-homepage {
+    padding-right: 0;
   }
 
-  .case-tehno-mockups-img {
-    height: 100%;
-    object-fit: cover;
+  .case-tehno-homepage-mockups {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 56px;
+    margin-top: 100px;
   }
+
+  .case-tehno-homepage-mockups img:first-child {
+    width: calc(626 / 1440 * 100vw);
+  }
+
+  .case-tehno-homepage-mockups img:last-child {
+    width: calc(587 / 1440 * 100vw);
+  }
+}
+
+
+/* ============================================================
+   CASE STUDY — TEHNOHATA SPLIT (QUESTION FORM + MOBILE MOCKUP)
+   ============================================================ */
+
+.case-tehno-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.case-tehno-split img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .case-tehno-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   CASE STUDY — TEHNOHATA ZOOM ANIMATION
+   ============================================================ */
+
+.case-tehno-zoom {
+  overflow: hidden;
+  background: #E7E7E7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-tehno-zoom-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 26px;
+  padding: 26px;
+  transform: scale(1.1);
+}
+
+.case-tehno-zoom-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 
