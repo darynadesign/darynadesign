@@ -45,7 +45,7 @@
         <a href="index.html#skills" class="menu-overlay-link">SKILLS</a>
       </div>
       <div class="menu-overlay-footer">
-        <a href="index.html#contact" class="menu-overlay-cta">GET IN TOUCH</a>
+        <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-cta">GET IN TOUCH</a>
         <div class="menu-overlay-externals">
           <a
             href="https://www.linkedin.com/in/daria-forsiuk/"
@@ -746,7 +746,7 @@
           LINKEDIN
           <img src="assets/arrow 1.svg" alt="" class="arrow-icon" />
         </a>
-        <a href="index.html#contact" class="landing-footer-link">
+        <a href="mailto:daria.forsiuk@gmail.com" class="landing-footer-link">
           GET IN TOUCH
           <img src="assets/arrow 2.svg" alt="" class="arrow-icon" />
         </a>
@@ -754,23 +754,6 @@
       <a href="#" class="site-footer-top">to top</a>
     </footer>
 
-    <!-- DEBUG GRID OVERLAY (toggle with G key) -->
-    <div class="grid-debug" id="gridDebug" aria-hidden="true">
-      <div class="grid-debug-inner">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
     <script>
       if (window.matchMedia("(max-width: 1023px)").matches) {
         const cards = document.querySelectorAll(".colour-palette-card");
@@ -791,13 +774,6 @@
         );
         cards.forEach((card) => io.observe(card));
       }
-
-      const gridDebug = document.getElementById("gridDebug");
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "g" || e.key === "G") {
-          gridDebug.classList.toggle("is-visible");
-        }
-      });
 
       // Price-list interactive cursor (desktop only)
       if (window.matchMedia("(min-width: 1024px)").matches) {

@@ -45,7 +45,7 @@
         <a href="#skills" class="menu-overlay-link">SKILLS</a>
       </div>
       <div class="menu-overlay-footer">
-        <a href="#contact" class="menu-overlay-cta">GET IN TOUCH</a>
+        <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-cta">GET IN TOUCH</a>
         <div class="menu-overlay-externals">
           <a
             href="https://www.linkedin.com/in/daria-forsiuk/"
@@ -445,7 +445,7 @@
               in the&nbsp;right direction.
             </p>
             <div class="contact-actions">
-              <a href="mailto:daria@example.com" class="contact-cta">
+              <a href="mailto:daria.forsiuk@gmail.com" class="contact-cta">
                 GET IN TOUCH
               </a>
               <a
@@ -1016,79 +1016,5 @@
       })();
     </script>
 
-    <!-- Grid overlay toggle -->
-    <style>
-      #gridOverlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-        z-index: 99999;
-        padding: 0 var(--margin);
-      }
-      #gridOverlay .grid-cols {
-        width: 100%;
-        max-width: 1920px;
-        height: 100%;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0 20px;
-      }
-      #gridOverlay .grid-col {
-        background: rgba(255, 0, 0, 0.08);
-      }
-      @media (min-width: 1024px) {
-        #gridOverlay .grid-cols {
-          grid-template-columns: repeat(12, 1fr);
-        }
-      }
-    </style>
-    <div id="gridOverlay">
-      <div class="grid-cols">
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-        <div class="grid-col"></div>
-      </div>
-    </div>
-
-    <button
-      id="gridToggle"
-      onclick="
-        var g = document.getElementById('gridOverlay');
-        var on = g.style.display === 'block';
-        g.style.display = on ? 'none' : 'block';
-        this.textContent = on ? 'Grid' : 'Grid ✕';
-      "
-      style="
-        position: fixed;
-        bottom: 16px;
-        right: 16px;
-        z-index: 100000;
-        padding: 6px 12px;
-        font-family: &quot;IBM Plex Mono&quot;, monospace;
-        font-size: 12px;
-        background: #222;
-        color: #fff;
-        border: 1px solid #555;
-        border-radius: 4px;
-        cursor: pointer;
-        opacity: 0.7;
-      "
-    >
-      Grid
-    </button>
   </body>
 </html>
