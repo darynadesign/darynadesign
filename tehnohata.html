@@ -647,7 +647,11 @@
       <div class="case-tehno-ut-cards">
 
         <div class="case-tehno-ut-card">
-          <div class="case-tehno-ut-card-img"></div>
+          <p class="before-after-label case-tehno-ut-before-label">BEFORE</p>
+          <div class="case-tehno-ut-card-img">
+            <img class="case-tehno-ut-img-before" src="assets/Tehno/testing%201.png" alt="Product bundles — before user testing" />
+            <img class="case-tehno-ut-img-after" src="assets/Tehno/01%20product%20bundle.webp" alt="Product bundles — after user testing" />
+          </div>
           <div class="case-tehno-ut-card-body">
             <p class="case-tehno-ut-num">/01 PRODUCT BUNDLES</p>
             <div class="case-tehno-ut-findings">
@@ -664,7 +668,10 @@
         </div>
 
         <div class="case-tehno-ut-card">
-          <div class="case-tehno-ut-card-img"></div>
+          <div class="case-tehno-ut-card-img">
+            <img class="case-tehno-ut-img-before" src="assets/Tehno/testing%202.png" alt="Product specs — before user testing" />
+            <img class="case-tehno-ut-img-after" src="assets/Tehno/02%20product%20specs.webp" alt="Product specs — after user testing" />
+          </div>
           <div class="case-tehno-ut-card-body">
             <p class="case-tehno-ut-num">/02 PRODUCT SPECS</p>
             <div class="case-tehno-ut-findings">
@@ -681,7 +688,10 @@
         </div>
 
         <div class="case-tehno-ut-card">
-          <div class="case-tehno-ut-card-img"></div>
+          <div class="case-tehno-ut-card-img">
+            <img class="case-tehno-ut-img-before" src="assets/Tehno/testing%203.webp" alt="Top products — before user testing" />
+            <img class="case-tehno-ut-img-after" src="assets/Tehno/03%20top%20products.webp" alt="Top products — after user testing" />
+          </div>
           <div class="case-tehno-ut-card-body">
             <p class="case-tehno-ut-num">/03 TOP PRODUCTS</p>
             <div class="case-tehno-ut-findings">
@@ -1230,6 +1240,64 @@
 
     </script>
     <script>
+      (function () {
+        var section = document.querySelector(".case-tehno-ut");
+        var cards = section.querySelectorAll(".case-tehno-ut-card");
+        var label = section.querySelector(".case-tehno-ut-before-label");
+        var originalText = label.textContent;
+        var stagger = 120;
+        var timers = [];
+        var running = false;
+
+        function showAfter() {
+          label.textContent = "AFTER";
+          cards.forEach(function (card, i) {
+            timers.push(setTimeout(function () {
+              card.classList.add("case-tehno-ut-card--show-after");
+            }, i * stagger));
+          });
+        }
+
+        function showBefore() {
+          label.textContent = originalText;
+          cards.forEach(function (card, i) {
+            timers.push(setTimeout(function () {
+              card.classList.remove("case-tehno-ut-card--show-after");
+            }, i * stagger));
+          });
+        }
+
+        function loop() {
+          if (!running) return;
+          timers.push(setTimeout(function () {
+            showAfter();
+            timers.push(setTimeout(function () {
+              showBefore();
+              timers.push(setTimeout(loop, 3000));
+            }, 3000));
+          }, 1000));
+        }
+
+        function stop() {
+          running = false;
+          timers.forEach(clearTimeout);
+          timers = [];
+          cards.forEach(function (card) {
+            card.classList.remove("case-tehno-ut-card--show-after");
+          });
+          label.textContent = originalText;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            if (!running) { running = true; loop(); }
+          } else {
+            stop();
+          }
+        }, { threshold: 0.3 });
+        observer.observe(section);
+      })();
+
       (function () {
         const content = document.querySelector(".case-tehno-interior-content");
         const wrap = document.querySelector(".case-tehno-interior-content-wrap");
