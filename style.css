@@ -5846,7 +5846,7 @@ picture.case-full-img--gap,
 
 @media (min-width: 1024px) {
   .case-wave-in {
-    height: 72.15vw;
+    height: 68.47vw;
   }
 
   .case-wave-in-header {
@@ -5861,18 +5861,18 @@ picture.case-full-img--gap,
 
   .case-wave-in-img--1 {
     left: 6.11vw; /* 88/1440 */
-    top: 24.51vw; /* 353/1440 */
+    top: 20.83vw; /* 300/1440 */
     z-index: 2;
   }
 
   .case-wave-in-img--2 {
     left: 36.18vw; /* 521/1440 */
-    top: 16.46vw; /* 237/1440 */
+    top: 12.78vw; /* 184/1440 */
     z-index: 1;
   }
 
   .case-wave-in-marquee {
-    top: 59.93vw; /* 863/1440 */
+    top: 56.25vw; /* 810/1440 */
     height: 2.78vw; /* 40/1440 */
   }
 
