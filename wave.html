@@ -570,7 +570,6 @@
       <div class="case-wave-ut-cards">
 
         <div class="case-wave-ut-card">
-          <p class="before-after-label case-wave-ut-before-label">BEFORE</p>
           <div class="case-wave-ut-card-img">
             <img src="assets/Wave/user%20testing%201.webp" alt="For the military page — user testing finding" />
           </div>
@@ -634,13 +633,31 @@
     <section class="case-wave-carousel">
       <img src="assets/Wave/water%20back.webp" alt="" class="case-wave-carousel-bg" aria-hidden="true" />
       <div class="case-wave-carousel-track">
-        <div class="case-wave-carousel-slide case-wave-carousel-slide--side">
+        <div class="case-wave-carousel-slide">
           <img src="assets/Wave/carousel%201.webp" alt="Partnership application — carousel slide" />
         </div>
-        <div class="case-wave-carousel-slide case-wave-carousel-slide--center">
+        <div class="case-wave-carousel-slide">
           <img src="assets/Wave/carousel%202.webp" alt="Donation subscription — carousel slide" />
         </div>
-        <div class="case-wave-carousel-slide case-wave-carousel-slide--side">
+        <div class="case-wave-carousel-slide">
+          <img src="assets/Wave/carousel%203.webp" alt="Meet the team — carousel slide" />
+        </div>
+        <div class="case-wave-carousel-slide">
+          <img src="assets/Wave/carousel%201.webp" alt="Partnership application — carousel slide" />
+        </div>
+        <div class="case-wave-carousel-slide">
+          <img src="assets/Wave/carousel%202.webp" alt="Donation subscription — carousel slide" />
+        </div>
+        <div class="case-wave-carousel-slide">
+          <img src="assets/Wave/carousel%203.webp" alt="Meet the team — carousel slide" />
+        </div>
+        <div class="case-wave-carousel-slide">
+          <img src="assets/Wave/carousel%201.webp" alt="Partnership application — carousel slide" />
+        </div>
+        <div class="case-wave-carousel-slide">
+          <img src="assets/Wave/carousel%202.webp" alt="Donation subscription — carousel slide" />
+        </div>
+        <div class="case-wave-carousel-slide">
           <img src="assets/Wave/carousel%203.webp" alt="Meet the team — carousel slide" />
         </div>
       </div>
@@ -703,8 +720,8 @@
         <p class="case-wave-fundraiser-desc">To encourage momentum, I&nbsp;designed fundraiser cards that visually fill as donations grow, inviting users to&nbsp;chip in and help complete it, making their contribution feel tangible and immediately impactful.</p>
       </div>
       <div class="case-wave-fundraiser-cards">
-        <img src="assets/Wave/fundraiser%20card%201.webp" alt="Fundraiser card — 86% raised for drone delivery" class="case-wave-fundraiser-card" />
-        <img src="assets/Wave/fundraiser%20card%202.webp" alt="Fundraiser card — 53% raised for military equipment" class="case-wave-fundraiser-card" />
+        <img src="assets/Wave/fundraiser%20card%204.webp" alt="Fundraiser card — 53% raised for military equipment" class="case-wave-fundraiser-card" />
+        <img src="assets/Wave/fundraiser%20card%202.webp" alt="Fundraiser card — 86% raised for drone delivery" class="case-wave-fundraiser-card" />
       </div>
     </section>
 
@@ -1143,6 +1160,80 @@
         { threshold: 0.1 }
       );
       zoomObserver.observe(document.querySelector(".case-wave-zoom"));
+    </script>
+
+    <script>
+      (function () {
+        var track = document.querySelector(".case-wave-carousel-track");
+        var slides = Array.from(track.querySelectorAll(".case-wave-carousel-slide"));
+        var count = 3;
+        var current = count;
+        var running = false;
+        var timer;
+
+        function getOffset(index) {
+          var sw = slides[0].offsetWidth;
+          var gap = parseFloat(getComputedStyle(track).gap);
+          var sectionW = track.parentElement.offsetWidth;
+          return sectionW / 2 - index * (sw + gap) - sw / 2;
+        }
+
+        function position(animate) {
+          track.style.transition = animate ? "transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none";
+          track.style.transform = "translateX(" + getOffset(current) + "px)";
+          slides.forEach(function (s, i) {
+            s.classList.toggle("is-center", i === current);
+          });
+        }
+
+        function advance() {
+          if (!running) return;
+          current++;
+          position(true);
+          if (current >= count * 2) {
+            setTimeout(function () {
+              slides.forEach(function (s) { s.style.transition = "none"; });
+              current -= count;
+              position(false);
+              requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                  slides.forEach(function (s) { s.style.transition = ""; });
+                });
+              });
+            }, 1550);
+          }
+          timer = setTimeout(advance, 2800);
+        }
+
+        function start() {
+          if (running) return;
+          running = true;
+          current = count;
+          slides.forEach(function (s) { s.style.transition = "none"; });
+          position(false);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              slides.forEach(function (s) { s.style.transition = ""; });
+            });
+          });
+          timer = setTimeout(advance, 500);
+        }
+
+        function stop() {
+          running = false;
+          clearTimeout(timer);
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) start();
+          else stop();
+        }, { threshold: 0.1 });
+        observer.observe(track.parentElement);
+
+        window.addEventListener("resize", function () {
+          if (running) position(false);
+        });
+      })();
     </script>
   </body>
 </html>

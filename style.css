@@ -4437,15 +4437,6 @@ picture.case-full-img--gap,
   }
 }
 
-.case-wave-ut-before-label {
-  line-height: 1;
-  margin-bottom: 24px;
-}
-
-.case-wave-ut-card:nth-child(2),
-.case-wave-ut-card:nth-child(3) {
-  padding-top: 40px; /* 16px label + 24px gap */
-}
 
 /* ============================================================
    CASE STUDY — USER TESTING
@@ -4559,6 +4550,10 @@ picture.case-full-img--gap,
 
   .case-wave-ut-header {
     margin-bottom: 60px;
+  }
+
+  .case-wave-ut-card {
+    padding-top: 40px;
   }
 
   .case-wave-ut-cards {
@@ -5695,9 +5690,8 @@ picture.case-full-img--gap,
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* mobile/tablet: scaled up */
-  gap: 4vw;
-  margin-left: -43vw;
+  gap: 7vw;
+  will-change: transform;
 }
 
 .case-wave-carousel-slide {
@@ -5705,6 +5699,13 @@ picture.case-full-img--gap,
   overflow: hidden;
   border-radius: 2px;
   aspect-ratio: 850 / 511;
+  width: 56vw;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.case-wave-carousel-slide.is-center {
+  transform: scale(1.18);
 }
 
 .case-wave-carousel-slide img {
@@ -5715,15 +5716,6 @@ picture.case-full-img--gap,
   object-position: top center;
 }
 
-/* mobile/tablet sizes */
-.case-wave-carousel-slide--side {
-  width: 56vw;
-}
-
-.case-wave-carousel-slide--center {
-  width: 66vw;
-}
-
 @media (min-width: 1024px) {
   .case-wave-carousel {
     aspect-ratio: auto;
@@ -5732,16 +5724,11 @@ picture.case-full-img--gap,
   }
 
   .case-wave-carousel-track {
-    gap: 3.68vw;
-    margin-left: -33.33vw;
+    gap: 6vw;
   }
 
-  .case-wave-carousel-slide--side {
+  .case-wave-carousel-slide {
     width: 50.14vw;
-  }
-
-  .case-wave-carousel-slide--center {
-    width: 59.03vw;
   }
 }
 
@@ -5903,6 +5890,7 @@ picture.case-full-img--gap,
     height: 1.88vw; /* 27/1440 */
   }
 }
+
 
 /* WAVE IN MEDIA */
 .case-wave-media {
