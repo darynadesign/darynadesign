@@ -75,7 +75,7 @@
         <source src="" type="video/mp4" />
       </video>
       <script>
-        (function(){var s=document.querySelector("#heroVideo source");s.src=window.innerWidth<768?"assets/hero%20video%20upscale%20mobile%20slow.mp4":"assets/hero%20video%20upscale%20desktop%20slow.mp4";document.getElementById("heroVideo").load()})();
+        (function(){var v=document.getElementById("heroVideo");var s=v.querySelector("source");if(window.innerWidth<768){v.poster="assets/hero-poster-mobile.webp";v.preload="none";s.src="assets/hero%20video%20upscale%20mobile%20slow.mp4";v.load()}else{s.src="assets/hero%20video%20upscale%20desktop%20slow.mp4";v.load()}})();
       </script>
       <div class="hero-overlay"></div>
       <div class="hero-info">
