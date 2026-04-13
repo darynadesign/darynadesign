@@ -72,8 +72,11 @@
     <!-- HERO -->
     <section class="hero">
       <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
-        <source src="assets/hero%20video%20slow.mp4" type="video/mp4" />
+        <source src="" type="video/mp4" />
       </video>
+      <script>
+        (function(){var s=document.querySelector("#heroVideo source");s.src=window.innerWidth<768?"assets/hero%20video%20upscale%20mobile.mp4":"assets/hero%20video%20upscale%20desktop.mp4";document.getElementById("heroVideo").load()})();
+      </script>
       <div class="hero-overlay"></div>
       <div class="hero-info">
         <div class="hero-info-block hero-info-block--left">
