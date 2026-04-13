@@ -916,7 +916,7 @@
       <div class="case-tehno-interior-inner">
       <div class="case-tehno-interior-label">
         <span class="case-label-dot"></span>
-        <span>interior-style filtering for better product discoverability</span>
+        <span>interior-style filtering for<br>better product discoverability</span>
       </div>
       <div class="case-tehno-interior-content-wrap">
       <div class="case-tehno-interior-content">
@@ -940,6 +940,7 @@
               <span class="case-tehno-interior-card-dot">●</span>
               <span>neutral-toned appliances, integrated designs, and a clean, minimal aesthetic</span>
             </div>
+            <div class="case-tehno-interior-product-clip">
             <div class="case-tehno-interior-product">
               <div class="case-tehno-interior-product-inner">
                 <div class="case-tehno-interior-product-img">
@@ -974,6 +975,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -1417,16 +1419,183 @@
         const content = document.querySelector(".case-tehno-interior-content");
         const wrap = document.querySelector(".case-tehno-interior-content-wrap");
         function setScale() {
-          const scale = wrap.clientWidth / 1100;
-          const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-          if (isDesktop) {
-            content.style.transform = "scale(" + scale + ")";
-          } else {
-            content.style.transform = "translateY(-50%) scale(" + scale + ")";
-          }
+          content.style.zoom = wrap.clientWidth / 1100;
         }
         setScale();
         window.addEventListener("resize", setScale);
+      })();
+
+      (function () {
+        var section = document.querySelector(".case-tehno-interior");
+        var panels = section.querySelector(".case-tehno-interior-panels");
+        var content = section.querySelector(".case-tehno-interior-content");
+        var tags = section.querySelectorAll(".case-tehno-interior-tag");
+        var hintText = section.querySelector(".case-tehno-interior-card-hint span:last-child");
+        var productImg = section.querySelector(".case-tehno-interior-product-img img");
+        var productName = section.querySelector(".case-tehno-interior-product-name");
+        var colors = section.querySelectorAll(".case-tehno-interior-color");
+        var photoImg = section.querySelector(".case-tehno-interior-photo > img");
+        var photoText = section.querySelector(".case-tehno-interior-photo-text");
+
+        var states = [
+          {
+            tag: "Minimalist",
+            hint: "neutral-toned appliances, integrated designs, and a clean, minimal aesthetic",
+            productImg: "assets/Tehno/oven.webp",
+            productAlt: "Hotpoint-Ariston Oven FI7 861 SH BL HA",
+            productName: "Hotpoint-Ariston Oven<br>FI7 861 SH BL HA",
+            colors: [{ c: "#1D1E1C", active: true }, { c: "#d1d1d1" }, { c: "#888" }],
+            photoImg: "assets/Tehno/minimalist.webp",
+            photoAlt: "Minimalist kitchen interior",
+            photoText: "All products in minimalist style"
+          },
+          {
+            tag: "Scandinavian",
+            hint: "light-coloured appliances with wooden accents, characterised by simplicity and functionality",
+            productImg: "assets/Tehno/scandi oven.png",
+            productAlt: "Vento Oven MAK SD 861 SH",
+            productName: "Vento Oven<br>MAK SD 861 SH",
+            colors: [{ c: "#eee9d5", active: true }, { c: "#fff", border: "1px solid rgba(0,0,0,0.15)" }, { c: "#888" }],
+            photoImg: "assets/Tehno/scandinavian.png",
+            photoAlt: "Scandinavian kitchen interior",
+            photoText: "All products in Scandinavian style"
+          },
+          {
+            tag: "Retro / Vintage",
+            hint: "appliances in the style of the 1950s\u201370s, featuring pastel or bright colours and rounded shapes",
+            productImg: "assets/Tehno/vintage oven.png",
+            productAlt: "Kaiser Oven BER455120B",
+            productName: "Kaiser Oven<br>BER455120B",
+            colors: [{ c: "#611a14", active: true }, { c: "#000" }, { c: "#2768e2" }],
+            photoImg: "assets/Tehno/retro.png",
+            photoAlt: "Retro vintage kitchen interior",
+            photoText: "All products in Retro/Vintage style"
+          }
+        ];
+
+        // Preload all images
+        states.forEach(function (s) { new Image().src = s.productImg; new Image().src = s.photoImg; });
+
+        var sequence = [
+          { hover: "Scandinavian", activate: true, state: 1 },
+          { hover: "High-tech" },
+          { hover: "Neoclassic" },
+          { hover: "Loft" },
+          { hover: "Industrial" },
+          { hover: "Eco-style" },
+          { hover: "Retro / Vintage", activate: true, state: 2 },
+          { hover: "Minimalist", activate: true, state: 0 }
+        ];
+        var seqIndex = 0;
+
+        var productClip = section.querySelector(".case-tehno-interior-product-clip");
+        var productEl = section.querySelector(".case-tehno-interior-product");
+        var photoContainer = section.querySelector(".case-tehno-interior-photo");
+
+        function crossFade(state) {
+          // === Hint text: update directly ===
+          hintText.textContent = state.hint;
+
+          // === Product card: slide whole card inside clip ===
+          var newCard = productEl.cloneNode(true);
+          var npi = newCard.querySelector(".case-tehno-interior-product-img img");
+          npi.src = state.productImg;
+          npi.alt = state.productAlt;
+          newCard.querySelector(".case-tehno-interior-product-name").innerHTML = state.productName;
+          var nc = newCard.querySelectorAll(".case-tehno-interior-color");
+          state.colors.forEach(function (col, i) {
+            nc[i].style.setProperty("--color", col.c);
+            nc[i].style.border = col.border || "";
+            nc[i].classList.toggle("is-active", !!col.active);
+          });
+
+          newCard.style.cssText = "position:absolute;top:0;left:calc(100% + 16px);width:270px;height:326px";
+          productEl.style.position = "relative";
+          productClip.appendChild(newCard);
+          productEl.style.transition = "transform 0.5s ease";
+          newCard.style.transition = "transform 0.5s ease";
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              productEl.style.transform = "translateX(calc(-100% - 16px))";
+              newCard.style.transform = "translateX(calc(-100% - 16px))";
+            });
+          });
+
+          newCard.addEventListener("transitionend", function (e) {
+            if (e.target !== newCard) return;
+            productImg.src = state.productImg;
+            productImg.alt = state.productAlt;
+            productName.innerHTML = state.productName;
+            state.colors.forEach(function (col, i) {
+              colors[i].style.setProperty("--color", col.c);
+              colors[i].style.border = col.border || "";
+              colors[i].classList.toggle("is-active", !!col.active);
+            });
+            newCard.remove();
+            productEl.style.transform = "";
+            productEl.style.transition = "";
+            productEl.style.position = "";
+          }, { once: true });
+
+          // === Photo: cross-fade ===
+          var newPhoto = document.createElement("img");
+          newPhoto.src = state.photoImg;
+          newPhoto.alt = state.photoAlt;
+          newPhoto.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.5s";
+          photoContainer.appendChild(newPhoto);
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              newPhoto.style.opacity = "1";
+            });
+          });
+
+          newPhoto.addEventListener("transitionend", function () {
+            photoImg.src = state.photoImg;
+            photoImg.alt = state.photoAlt;
+            newPhoto.remove();
+          }, { once: true });
+
+          photoText.textContent = state.photoText;
+        }
+
+        function runStep() {
+          var step = sequence[seqIndex % sequence.length];
+
+          // Show hover on tag
+          tags.forEach(function (t) {
+            t.classList.toggle("is-hover", t.textContent.trim() === step.hover);
+          });
+
+          if (step.activate) {
+            // Hover → click → cross-fade
+            setTimeout(function () {
+              tags.forEach(function (t) {
+                t.classList.remove("is-hover");
+                t.classList.toggle("is-active", t.textContent.trim() === step.hover);
+              });
+              setTimeout(function () {
+                crossFade(states[step.state]);
+                seqIndex++;
+                var next = sequence[seqIndex % sequence.length];
+                setTimeout(runStep, next.activate ? 2500 : 1500);
+              }, 150);
+            }, 500);
+          } else {
+            // Hover only → next step
+            seqIndex++;
+            setTimeout(runStep, 250);
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            setTimeout(runStep, 1000);
+            observer.unobserve(section);
+          }
+        }, { threshold: 0.3 });
+        observer.observe(section);
       })();
     </script>
   </body>
