@@ -5127,14 +5127,80 @@ picture.case-full-img--gap,
   background: #4B4048;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 48px var(--margin);
-  aspect-ratio: 1 / 1;
 }
 
-.case-tehno-popular-svg {
+.case-tehno-popular-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  transition: grid-template-columns 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.case-tehno-popular-card {
+  background: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* 15.1px gap & padding at 1440 */
+  gap: 1.05vw;
+  padding: 1.05vw;
+  /* 75.02px at 1440 */
+  height: 5.21vw;
+  min-width: 0;
+  color: #D50000;
+  border: 1px solid transparent;
+  transition: background 0.6s ease, border-color 0.6s ease, color 0.6s ease, height 0.6s ease, margin 0.6s ease;
+}
+
+.case-tehno-popular-card--active {
+  background: #CFA8A8;
+  border-color: #CFA8A8;
+  color: #F6F6F6;
+  /* 5.21vw * 1.25 = 6.51vw, extra = 1.3vw, half = 0.65vw */
+  height: 6.51vw;
+  margin-top: -0.65vw;
+  margin-bottom: -0.65vw;
+  z-index: 1;
+}
+
+.case-tehno-popular-card--active .case-tehno-popular-label {
+  color: #F6F6F6;
+  font-size: 0.655vw;
+}
+
+.case-tehno-popular-card--active .case-tehno-popular-icon {
+  width: 2.36vw;
+  height: 2.36vw;
+}
+
+.case-tehno-popular-card--rect {
+  border-radius: 1.01vw;
+  transition: background 0.6s ease, border-color 0.6s ease, color 0.6s ease, height 0.6s ease, margin 0.6s ease, border-radius 0.6s ease;
+}
+
+.case-tehno-popular-card--pill {
+  border-radius: 9999px;
+  transition: background 0.6s ease, border-color 0.6s ease, color 0.6s ease, height 0.6s ease, margin 0.6s ease;
+}
+
+.case-tehno-popular-icon {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 1.89vw;
+  height: 1.89vw;
+  overflow: visible;
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.case-tehno-popular-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 600;
+  font-size: 0.524vw;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.6s ease, font-size 0.6s ease;
 }
 
 @media (min-width: 768px) {
@@ -5145,8 +5211,11 @@ picture.case-full-img--gap,
 
   .case-tehno-popular-left {
     order: -1;
-    padding: 0 var(--margin);
-    aspect-ratio: auto;
+    padding: 0 48px;
+  }
+
+  .case-tehno-popular-cards {
+    width: 100%;
   }
 
   .case-tehno-popular-photo {

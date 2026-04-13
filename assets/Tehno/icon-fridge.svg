@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 22.6474 22.6474" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="fridge" clip-path="url(#clip0_0_117)">
+<path id="Rectangle 12" d="M5.19043 1.41563C5.19043 1.15505 5.40167 0.943807 5.66225 0.943807H16.986C17.2465 0.943807 17.4578 1.15505 17.4578 1.41563V19.8166C17.4578 20.0772 17.2465 20.2885 16.986 20.2885H5.66225C5.40168 20.2885 5.19043 20.0772 5.19043 19.8166V1.41563Z" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linejoin="round"/>
+<path id="Vector 8" d="M16.5147 21.7043V20.2888M5.66284 21.7043V20.2888" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 7" d="M5.19043 8.02135L17.4578 8.02135" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linejoin="round"/>
+<path id="Vector 19" d="M5.19043 18.8731L17.4578 18.8731" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linejoin="round"/>
+<path id="Vector 17" d="M7.07805 12.2671V10.3799" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 18" d="M7.07805 5.19061V3.30332" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_117">
+<rect width="22.6474" height="22.6474" fill="white"/>
+</clipPath>
+</defs>
+</svg>

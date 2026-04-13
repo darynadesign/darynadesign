@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 22.6474 22.6474" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="oven" clip-path="url(#clip0_0_124)">
+<path id="Rectangle 12" d="M0.943807 1.41563C0.943807 1.15505 1.15505 0.943807 1.41563 0.943807H21.2321C21.4927 0.943807 21.7039 1.15505 21.7039 1.41563V21.2321C21.7039 21.4927 21.4927 21.7039 21.2321 21.7039H1.41563C1.15505 21.7039 0.943807 21.4927 0.943807 21.2321V1.41563Z" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linejoin="round"/>
+<path id="Rectangle 13" d="M4.24663 8.02135H18.4013V19.8169H4.24663V8.02135Z" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linejoin="round"/>
+<path id="Vector 7" d="M0.943807 6.13374L21.7039 6.13374" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linejoin="round"/>
+<path id="Vector 17" d="M15.5698 10.3799L7.07704 10.3799" stroke="var(--stroke-0, #D50000)" stroke-width="0.943642" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="Ellipse 13" cx="4.01055" cy="3.53814" r="0.707731" fill="var(--fill-0, #D50000)"/>
+<circle id="Ellipse 15" cx="15.8056" cy="3.53814" r="0.707731" fill="var(--fill-0, #D50000)"/>
+<circle id="Ellipse 14" cx="6.37007" cy="3.53814" r="0.707731" fill="var(--fill-0, #D50000)"/>
+<circle id="Ellipse 17" cx="8.72908" cy="3.53814" r="0.707731" fill="var(--fill-0, #D50000)"/>
+<circle id="Ellipse 16" cx="18.1656" cy="3.53814" r="0.707731" fill="var(--fill-0, #D50000)"/>
+</g>
+<defs>
+<clipPath id="clip0_0_124">
+<rect width="22.6474" height="22.6474" fill="white"/>
+</clipPath>
+</defs>
+</svg>
