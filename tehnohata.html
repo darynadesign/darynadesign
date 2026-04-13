@@ -738,7 +738,6 @@
         </div>
         <video
           class="case-tehno-product-img"
-          autoplay
           loop
           muted
           playsinline
@@ -1356,10 +1355,10 @@
         var running = false;
 
         var cols = [
-          "1.25fr 0.9167fr 0.9167fr 0.9167fr",
-          "0.875fr 1.25fr 0.9375fr 0.9375fr",
-          "0.9375fr 0.9375fr 1.25fr 0.875fr",
-          "0.9167fr 0.9167fr 0.9167fr 1.25fr"
+          "1.3fr 0.9fr 0.9fr 0.9fr",
+          "0.9fr 1.3fr 0.9fr 0.9fr",
+          "0.9fr 0.9fr 1.3fr 0.9fr",
+          "0.9fr 0.9fr 0.9fr 1.3fr"
         ];
 
         function step() {
@@ -1384,6 +1383,31 @@
             if (!running) { running = true; step(); }
           } else {
             stop();
+          }
+        }, { threshold: 0.3 });
+        observer.observe(section);
+      })();
+
+      (function () {
+        var video = document.querySelector(".case-tehno-product-img");
+        var section = document.querySelector(".case-tehno-product");
+        var delayTimer = null;
+
+        video.pause();
+        video.currentTime = 0;
+
+        var observer = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            if (video.paused && !delayTimer) {
+              delayTimer = setTimeout(function () {
+                video.play();
+              }, 1000);
+            }
+          } else {
+            clearTimeout(delayTimer);
+            delayTimer = null;
+            video.pause();
+            video.currentTime = 0;
           }
         }, { threshold: 0.3 });
         observer.observe(section);

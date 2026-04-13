@@ -4627,7 +4627,7 @@ picture.case-full-img--gap,
 
 .case-tehno-ut-img-before,
 .case-tehno-ut-img-after {
-  transition: opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .case-tehno-ut-img-after {
@@ -4646,7 +4646,7 @@ picture.case-full-img--gap,
 }
 
 .case-tehno-ut-before-label {
-  transition: opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .case-tehno-ut-card-img img {
@@ -4903,6 +4903,7 @@ picture.case-full-img--gap,
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  padding-right: 24px;
 }
 
 .case-tehno-catalogue-scroll::-webkit-scrollbar {
@@ -4945,6 +4946,7 @@ picture.case-full-img--gap,
 
   .case-tehno-catalogue-scroll {
     overflow-x: visible;
+    padding-right: 0;
   }
 
   .case-tehno-catalogue-scroll .case-tehno-catalogue-col-img {
@@ -5009,7 +5011,7 @@ picture.case-full-img--gap,
 
 @media (max-width: 767px) {
   .case-tehno-payment-img {
-    margin-top: 32px;
+    margin-top: 0;
   }
 }
 
@@ -5158,21 +5160,21 @@ picture.case-full-img--gap,
   background: #CFA8A8;
   border-color: #CFA8A8;
   color: #F6F6F6;
-  /* 5.21vw * 1.25 = 6.51vw, extra = 1.3vw, half = 0.65vw */
-  height: 6.51vw;
-  margin-top: -0.65vw;
-  margin-bottom: -0.65vw;
+  /* 5.21vw * 1.3 = 6.773vw, extra = 1.563vw, half = 0.78vw */
+  height: 6.773vw;
+  margin-top: -0.78vw;
+  margin-bottom: -0.78vw;
   z-index: 1;
 }
 
 .case-tehno-popular-card--active .case-tehno-popular-label {
   color: #F6F6F6;
-  font-size: 0.655vw;
+  font-size: 0.681vw;
 }
 
 .case-tehno-popular-card--active .case-tehno-popular-icon {
-  width: 2.36vw;
-  height: 2.36vw;
+  width: 2.457vw;
+  height: 2.457vw;
 }
 
 .case-tehno-popular-card--rect {
@@ -5203,6 +5205,52 @@ picture.case-full-img--gap,
   transition: color 0.6s ease, font-size 0.6s ease;
 }
 
+@media (max-width: 767px) {
+  .case-tehno-popular-left {
+    padding: 24px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .case-tehno-popular-cards {
+    width: 100%;
+  }
+
+  .case-tehno-popular-card {
+    gap: 2.1vw;
+    padding: 2.1vw;
+    height: 14vw;
+  }
+
+  .case-tehno-popular-card--rect {
+    border-radius: 2.02vw;
+  }
+
+  .case-tehno-popular-icon {
+    width: 3.78vw;
+    height: 3.78vw;
+  }
+
+  .case-tehno-popular-label {
+    font-size: 1.05vw;
+  }
+
+  .case-tehno-popular-card--active {
+    height: 18.2vw;
+    margin-top: -2.1vw;
+    margin-bottom: -2.1vw;
+    z-index: 1;
+  }
+
+  .case-tehno-popular-card--active .case-tehno-popular-icon {
+    width: 4.914vw;
+    height: 4.914vw;
+  }
+
+  .case-tehno-popular-card--active .case-tehno-popular-label {
+    font-size: 1.365vw;
+  }
+}
+
 @media (min-width: 768px) {
   .case-tehno-popular {
     display: grid;
@@ -5211,7 +5259,7 @@ picture.case-full-img--gap,
 
   .case-tehno-popular-left {
     order: -1;
-    padding: 0 48px;
+    padding: 0 24px;
   }
 
   .case-tehno-popular-cards {
@@ -5221,6 +5269,12 @@ picture.case-full-img--gap,
   .case-tehno-popular-photo {
     height: 100%;
     object-fit: cover;
+  }
+}
+
+@media (min-width: 1200px) {
+  .case-tehno-popular-left {
+    padding: 0 48px;
   }
 }
 
