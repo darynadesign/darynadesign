@@ -1833,14 +1833,13 @@
 
         function cycle() {
           var prev = current;
-          idx = (idx + 1) % sequence.length;
-          current = sequence[idx];
-          // Next card starts opening 100ms before previous starts closing
-          hoverSlots[current].classList.add('is-hovered');
+          if (prev >= 0) hoverSlots[prev].classList.remove('is-hovered');
           setTimeout(function () {
-            if (prev >= 0) hoverSlots[prev].classList.remove('is-hovered');
+            idx = (idx + 1) % sequence.length;
+            current = sequence[idx];
+            hoverSlots[current].classList.add('is-hovered');
+            setTimeout(cycle, 1200);
           }, 100);
-          setTimeout(cycle, 1000);
         }
         setTimeout(cycle, 1000);
       })();

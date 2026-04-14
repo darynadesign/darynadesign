@@ -5286,15 +5286,21 @@ picture.case-full-img--gap,
   right: 12px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
   z-index: 2;
   opacity: 0;
-  transition: opacity 400ms ease-out;
+  transition: opacity 600ms ease-out;
 }
 
 .case-tehno-hover-icons img {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+.case-tehno-hover-icons img:first-child {
+  width: 20px;
+  height: 20px;
 }
 
 .case-tehno-hover-img {
@@ -5306,7 +5312,7 @@ picture.case-full-img--gap,
   height: 120px;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 400ms ease-out;
+  transition: opacity 600ms ease-out;
   pointer-events: none;
 }
 
@@ -5318,7 +5324,7 @@ picture.case-full-img--gap,
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: opacity 0s, max-height 500ms ease;
+  transition: opacity 0s, max-height 600ms ease;
 }
 
 .case-tehno-product-spec-row {
@@ -5338,7 +5344,7 @@ picture.case-full-img--gap,
 
 /* Hover active state */
 .case-tehno-carousel-card-slot .case-tehno-interior-product {
-  transition: box-shadow 300ms ease-out;
+  transition: box-shadow 600ms ease-out;
 }
 
 .case-tehno-carousel-card-slot.is-hovered .case-tehno-interior-product {
@@ -5838,7 +5844,7 @@ picture.case-full-img--gap,
   width: 120px;
   height: 120px;
   object-fit: contain;
-  transition: opacity 400ms ease-out;
+  transition: opacity 600ms ease-out;
 }
 
 .case-tehno-interior-product-info {
@@ -5936,8 +5942,8 @@ picture.case-full-img--gap,
 
 .case-tehno-interior-cart-btn img {
   display: block;
-  width: 37px;
-  height: 37px;
+  width: 24px;
+  height: 24px;
 }
 
 .case-tehno-interior-photo {
