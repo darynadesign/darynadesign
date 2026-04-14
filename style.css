@@ -5878,7 +5878,7 @@ picture.case-full-img--gap,
 .case-tehno-interior-product-info {
   display: flex;
   flex-direction: column;
-  gap: 6.36px;
+  gap: 12px;
   width: 100%;
   flex: 1;
   justify-content: flex-end;
