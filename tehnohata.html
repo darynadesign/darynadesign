@@ -914,9 +914,14 @@
                   <!-- Card 1: Oven -->
                   <div class="case-tehno-carousel-card-slot">
                     <div class="case-tehno-interior-product">
+                      <div class="case-tehno-hover-icons">
+                        <img src="assets/Tehno/heart.svg" alt="" />
+                        <img src="assets/Tehno/Scales.svg" alt="" />
+                      </div>
                       <div class="case-tehno-interior-product-inner">
                         <div class="case-tehno-interior-product-img">
                           <img src="assets/Tehno/oven.webp" alt="Hotpoint-Ariston Oven FI7 861 SH BL HA" />
+                          <img class="case-tehno-hover-img" src="assets/Tehno/oven%20hover.webp" alt="" />
                         </div>
                         <div class="case-tehno-interior-product-info">
                           <div class="case-tehno-interior-product-meta">
@@ -945,6 +950,12 @@
                               <img src="assets/Tehno/cart.svg" alt="" />
                             </span>
                           </div>
+                          <div class="case-tehno-product-specs">
+                            <div class="case-tehno-product-spec-row"><span>Power source</span><span>electric</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Controls</span><span>electronic</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Volume (litres)</span><span>73</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Energy efficiency</span><span>A+</span></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -953,9 +964,14 @@
                   <!-- Card 2: Fridge -->
                   <div class="case-tehno-carousel-card-slot">
                     <div class="case-tehno-interior-product">
+                      <div class="case-tehno-hover-icons">
+                        <img src="assets/Tehno/heart.svg" alt="" />
+                        <img src="assets/Tehno/Scales.svg" alt="" />
+                      </div>
                       <div class="case-tehno-interior-product-inner">
                         <div class="case-tehno-interior-product-img">
                           <img src="assets/Tehno/fridge.webp" alt="Gorenje Fridge Freezer NRK620EABXL4" />
+                          <img class="case-tehno-hover-img" src="assets/Tehno/fridge%20hover.webp" alt="" />
                         </div>
                         <div class="case-tehno-interior-product-info">
                           <div class="case-tehno-interior-product-meta">
@@ -984,6 +1000,12 @@
                               <img src="assets/Tehno/cart.svg" alt="" />
                             </span>
                           </div>
+                          <div class="case-tehno-product-specs">
+                            <div class="case-tehno-product-spec-row"><span>Volume (litres)</span><span>331</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Controls</span><span>electronic</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Noise level (dB)</span><span>38</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Energy efficiency</span><span>A++</span></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -992,9 +1014,14 @@
                   <!-- Card 3: Cooker Hood -->
                   <div class="case-tehno-carousel-card-slot">
                     <div class="case-tehno-interior-product">
+                      <div class="case-tehno-hover-icons">
+                        <img src="assets/Tehno/heart.svg" alt="" />
+                        <img src="assets/Tehno/Scales.svg" alt="" />
+                      </div>
                       <div class="case-tehno-interior-product-inner">
                         <div class="case-tehno-interior-product-img">
                           <img src="assets/Tehno/hood.webp" alt="Minola Cooker Hood HTL 5614 BLF 1000 LED" />
+                          <img class="case-tehno-hover-img" src="assets/Tehno/cooker%20hood%20hover.webp" alt="" />
                         </div>
                         <div class="case-tehno-interior-product-info">
                           <div class="case-tehno-interior-product-meta">
@@ -1022,6 +1049,12 @@
                             <span class="case-tehno-interior-cart-btn">
                               <img src="assets/Tehno/cart.svg" alt="" />
                             </span>
+                          </div>
+                          <div class="case-tehno-product-specs">
+                            <div class="case-tehno-product-spec-row"><span>Type</span><span>telescopic</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Controls</span><span>mechanical</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Filter type</span><span>aluminium</span></div>
+                            <div class="case-tehno-product-spec-row"><span>Noise level (dB)</span><span>56-68</span></div>
                           </div>
                         </div>
                       </div>
@@ -1790,6 +1823,26 @@
         }
         fit();
         window.addEventListener('resize', fit);
+
+        // Hover animation cycle: cards 1, 2, 3
+        var slots = carousel.querySelectorAll('.case-tehno-carousel-card-slot');
+        var hoverSlots = [slots[0], slots[1], slots[2]];
+        var sequence = [0, 1, 2, 1];
+        var idx = -1;
+        var current = -1;
+
+        function cycle() {
+          var prev = current;
+          idx = (idx + 1) % sequence.length;
+          current = sequence[idx];
+          // Next card starts opening 100ms before previous starts closing
+          hoverSlots[current].classList.add('is-hovered');
+          setTimeout(function () {
+            if (prev >= 0) hoverSlots[prev].classList.remove('is-hovered');
+          }, 100);
+          setTimeout(cycle, 1000);
+        }
+        setTimeout(cycle, 1000);
       })();
     </script>
   </body>
