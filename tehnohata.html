@@ -586,10 +586,10 @@
           <picture>
             <source
               media="(max-width: 767px)"
-              srcset="assets/Tehno/flow%20chart%20mobile.webp"
+              srcset="assets/Tehno/user%20flow%20final%20mob.webp"
             />
             <img
-              src="assets/Tehno/flow%20chart.webp"
+              src="assets/Tehno/user%20flow%20final.webp"
               alt="User flow chart for purchasing an oven"
             />
           </picture>
@@ -1281,14 +1281,14 @@
         <img src="assets/Tehno/zoom%20animation/9.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/7.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/11.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/14.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/12.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/13.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/14.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/15.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/16.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/17.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/18.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/19.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/18.webp" alt="" class="case-tehno-zoom-img" />
         <img src="assets/Tehno/zoom%20animation/20.webp" alt="" class="case-tehno-zoom-img" />
       </div>
     </section>
@@ -1833,15 +1833,120 @@
 
         function cycle() {
           var prev = current;
+          idx = (idx + 1) % sequence.length;
+          current = sequence[idx];
           if (prev >= 0) hoverSlots[prev].classList.remove('is-hovered');
-          setTimeout(function () {
-            idx = (idx + 1) % sequence.length;
-            current = sequence[idx];
-            hoverSlots[current].classList.add('is-hovered');
-            setTimeout(cycle, 1200);
-          }, 100);
+          hoverSlots[current].classList.add('is-hovered');
+          setTimeout(cycle, 1500);
         }
         setTimeout(cycle, 1000);
+      })();
+    </script>
+    <script>
+      (function () {
+        var section = document.querySelector('.case-tehno-zoom');
+        var grid = document.querySelector('.case-tehno-zoom-grid');
+        if (!section || !grid) return;
+        var imgs = grid.querySelectorAll('.case-tehno-zoom-img');
+        var t1 = imgs[16]; // 17.webp — row 2, col 4
+        var t2 = imgs[6];  // 10.webp — row 2, col 2
+        var t3 = imgs[12]; // 13.webp — row 3, col 3
+        if (!t1 || !t2 || !t3) return;
+
+        function pct(el, gridRect) {
+          var r = el.getBoundingClientRect();
+          return {
+            x: 0.5 + (r.left + r.width / 2 - gridRect.left - gridRect.width / 2) / gridRect.width,
+            y: 0.5 + (r.top + r.height / 2 - gridRect.top - gridRect.height / 2) / gridRect.height
+          };
+        }
+
+        function ease(t) {
+          return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        }
+
+        function run(duration, tick, done) {
+          var start;
+          function frame(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / duration, 1);
+            tick(ease(p));
+            if (p < 1) requestAnimationFrame(frame);
+            else if (done) done();
+          }
+          requestAnimationFrame(frame);
+        }
+
+        function setTx(s, tx, ty) {
+          grid.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + s + ')';
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          if (!entries[0].isIntersecting) return;
+          observer.unobserve(section);
+
+          var s0 = 1.05;
+          var gr = grid.getBoundingClientRect();
+          var sr = section.getBoundingClientRect();
+          var gW = gr.width / s0;
+          var gH = gr.height / s0;
+
+          var c1 = pct(t1, gr);
+          var c2 = pct(t2, gr);
+          var c3 = pct(t3, gr);
+
+          var imgW = t1.getBoundingClientRect().width / s0;
+          var s1 = sr.width * 0.6655 / imgW;
+
+          var txA = -(c1.x - 0.5) * s1 * gW;
+          var tyA = -(c1.y - 0.5) * s1 * gH;
+          var sMid = s1 * 0.65;
+
+          function arc(from, to, done) {
+            run(2420, function (t) {
+              var camX = from.x + (to.x - from.x) * t;
+              var camY = from.y + (to.y - from.y) * t;
+              var s = s1 - (s1 - sMid) * Math.sin(Math.PI * t);
+              setTx(s, -(camX - 0.5) * s * gW, -(camY - 0.5) * s * gH);
+            }, done);
+          }
+
+          function zoomIn(done) {
+            run(1980, function (t) {
+              setTx(s0 + (s1 - s0) * t, txA * t, tyA * t);
+            }, done);
+          }
+
+          function zoomOut(done) {
+            var txC = -(c3.x - 0.5) * s1 * gW;
+            var tyC = -(c3.y - 0.5) * s1 * gH;
+            run(1980, function (t) {
+              setTx(s1 + (s0 - s1) * t, txC * (1 - t), tyC * (1 - t));
+            }, done);
+          }
+
+          function loop() {
+            zoomIn(function () {
+              setTimeout(function () {
+                arc(c1, c2, function () {
+                  setTimeout(function () {
+                    arc(c2, c3, function () {
+                      setTimeout(function () {
+                        zoomOut(function () {
+                          setTimeout(loop, 880);
+                        });
+                      }, 880);
+                    });
+                  }, 880);
+                });
+              }, 880);
+            });
+          }
+
+          setTimeout(loop, 440);
+        }, { threshold: 0.3 });
+
+        observer.observe(section);
       })();
     </script>
   </body>
