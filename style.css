@@ -894,7 +894,13 @@ img[src="assets/buildings.svg"].skills-illus {
 }
 
 img[src="assets/violin.svg"].skills-illus {
-  width: 41.6%;
+  width: 65%;
+}
+
+@media (min-width: 1200px) {
+  img[src="assets/violin.svg"].skills-illus {
+    width: 41.6%;
+  }
 }
 
 /* Illustration animation — stroke jitter via JS */
@@ -1140,6 +1146,10 @@ img[src="assets/violin.svg"].skills-illus {
   letter-spacing: 0;
   white-space: nowrap;
   transition: opacity 0.2s, color 0.2s;
+}
+
+.contact-link:last-child {
+  margin-left: auto;
 }
 
 .contact-link:hover {

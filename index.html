@@ -441,7 +441,7 @@
                     d=""
                     stroke="#3638FF"
                     stroke-opacity="0.7"
-                    stroke-width="4"
+                    stroke-width="5"
                     stroke-linecap="round"
                     fill="none"
                   />
@@ -931,26 +931,24 @@
         if (!wavePath) return;
 
         const W = 353;
+        // Based on original blue line.svg — smoothed, still irregular
         const BASE = [
-          { x: 0, y: 10.2 },
-          { x: 14, y: 8.1 },
-          { x: 32, y: 11.8 },
-          { x: 50, y: 7.4 },
-          { x: 71, y: 12.3 },
-          { x: 89, y: 7.9 },
-          { x: 110, y: 11.1 },
-          { x: 130, y: 8.5 },
-          { x: 152, y: 12.6 },
-          { x: 170, y: 7.2 },
-          { x: 192, y: 11.5 },
-          { x: 213, y: 8.0 },
-          { x: 234, y: 12.1 },
-          { x: 253, y: 7.6 },
-          { x: 275, y: 11.9 },
-          { x: 294, y: 8.3 },
-          { x: 315, y: 12.4 },
-          { x: 333, y: 7.8 },
-          { x: 353, y: 10.5 },
+          { x: 0, y: 9.5 },
+          { x: 20, y: 11.0 },
+          { x: 42, y: 13.2 },
+          { x: 65, y: 7.5 },
+          { x: 90, y: 5.8 },
+          { x: 115, y: 10.5 },
+          { x: 138, y: 13.5 },
+          { x: 160, y: 11.8 },
+          { x: 185, y: 6.0 },
+          { x: 210, y: 5.5 },
+          { x: 235, y: 8.0 },
+          { x: 258, y: 13.8 },
+          { x: 282, y: 14.2 },
+          { x: 308, y: 12.0 },
+          { x: 332, y: 11.5 },
+          { x: 353, y: 9.5 },
         ];
 
         const AMPLITUDE = 3.04;
@@ -973,20 +971,25 @@
           return d;
         }
 
-        function drawStatic() {
-          const pts = BASE.map((p) => ({
-            x: p.x,
-            y: p.y + AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY),
-          }));
-          wavePath.setAttribute("d", catmullRom(pts));
+        // Interpolate y along the BASE curve at any x (wraps around W)
+        function getY(xTarget) {
+          let x = ((xTarget % W) + W) % W;
+          for (let i = 0; i < BASE.length - 1; i++) {
+            if (x >= BASE[i].x && x <= BASE[i + 1].x) {
+              const t = (x - BASE[i].x) / (BASE[i + 1].x - BASE[i].x);
+              return BASE[i].y + t * (BASE[i + 1].y - BASE[i].y);
+            }
+          }
+          return BASE[BASE.length - 1].y;
         }
 
-        drawStatic();
+        // Draw static state
+        wavePath.setAttribute("d", catmullRom(BASE));
 
-        let phase = 0,
-          rafId = null,
+        let rafId = null,
           animating = false,
-          lastTime = 0;
+          lastTime = 0,
+          offset = 0;
 
         function animateFrame(now) {
           if (!animating) return;
@@ -995,12 +998,12 @@
             return;
           }
           lastTime = now;
-          phase += SPEED;
+          offset += SPEED;
+          // Shift base pattern + sine overlay (same approach as arrows)
           const pts = BASE.map((p) => ({
             x: p.x,
-            y:
-              p.y +
-              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - phase),
+            y: getY(p.x - offset * 8) +
+              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - offset),
           }));
           wavePath.setAttribute("d", catmullRom(pts));
           rafId = requestAnimationFrame(animateFrame);
