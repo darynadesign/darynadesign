@@ -33,6 +33,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Kharkiv Tone";
+  src: url("assets/fonts/Kharkiv Tone 04.10.2020.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ============================================================
    TOKENS
    ============================================================ */
@@ -4331,15 +4339,16 @@ picture.case-full-img--gap,
 }
 
 
-#progress {
+.progress-widget {
+  --progress-color: white;
 }
 
-#target,
+.progress-target,
 #current {
   display: block;
   font-size: 16px;
   line-height: 11px;
-  color: #ffffff;
+  color: var(--progress-color);
   text-align: right;
   width: 100%;
   display: none;
@@ -4396,24 +4405,24 @@ picture.case-full-img--gap,
   overflow: visible;
 }
 
-#percentStroke {
+.percent-stroke {
   font-family: "Kharkiv Tone", sans-serif;
   font-weight: 400;
   font-size: 20.14vw;
   letter-spacing: -0.03em;
   fill: none;
-  stroke: white;
+  stroke: var(--progress-color);
   stroke-width: 1;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
 
-#percentFill {
+.percent-fill {
   font-family: "Kharkiv Tone", sans-serif;
   font-weight: 400;
   font-size: 20.14vw;
   letter-spacing: -0.03em;
-  fill: white;
+  fill: var(--progress-color);
   stroke: none;
 }
 
@@ -4439,7 +4448,7 @@ picture.case-full-img--gap,
   right: 0;
   bottom: var(--fill);
   height: 1px;
-  background: white;
+  background: var(--progress-color);
   pointer-events: none;
   transform: translateY(1px);
   clip-path: inset(0 0 0 15px);
@@ -4448,7 +4457,7 @@ picture.case-full-img--gap,
 .fill-line-top {
   display: none;
   height: 1px;
-  background: white;
+  background: var(--progress-color);
   pointer-events: none;
 }
 
@@ -4461,17 +4470,17 @@ picture.case-full-img--gap,
   font-size: 1.25vw; /* 18px at 1440 */
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: var(--progress-color);
   pointer-events: none;
 }
 
-#progress {
+.progress-widget {
   padding-bottom: 1.979vw; /* 28.5px at 1440 */
   margin-left: -10px;
 }
 
 @media (min-width: 1024px) {
-  #percentStroke {
+  .percent-stroke {
     stroke-width: 2;
   }
 

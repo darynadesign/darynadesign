@@ -520,24 +520,24 @@
             />
 
             <div
-              id="progress"
+              class="progress-widget"
               data-target="100"
               data-current="53"
               data-animation-duration-ms="2500"
             >
-              <span id="target">_</span>
+              <span class="progress-target">_</span>
               <div class="fill-line-top"></div>
-              <div class="percent-wrap" id="percentWrap">
+              <div class="percent-wrap">
                 <div class="percent-number">
                   <svg class="percent-svg" overflow="visible" aria-hidden="true">
                     <defs>
-                      <clipPath id="fillClip">
-                        <rect id="fillClipRect" x="-9999" y="9999" width="99999" height="0"/>
+                      <clipPath>
+                        <rect class="fill-clip-rect" x="-9999" y="9999" width="99999" height="0"/>
                       </clipPath>
                     </defs>
-                    <text id="percentStroke" x="0" y="0" dominant-baseline="text-before-edge">0</text>
-                    <g clip-path="url(#fillClip)">
-                      <text id="percentFill" x="0" y="0" dominant-baseline="text-before-edge">0</text>
+                    <text class="percent-stroke" x="0" y="0" dominant-baseline="text-before-edge">0</text>
+                    <g>
+                      <text class="percent-fill" x="0" y="0" dominant-baseline="text-before-edge">0</text>
                     </g>
                   </svg>
                   <div class="drone-wrap">
@@ -545,7 +545,7 @@
                     <span class="drone-fill"></span>
                   </div>
                 </div>
-                <div class="fill-line" id="fillLine"></div>
+                <div class="fill-line"></div>
                 <div class="raised-label">
                   amount raised this month:<br>₴&nbsp;1&nbsp;529&nbsp;792
                 </div>
@@ -720,6 +720,39 @@
         <p class="case-wave-fundraiser-desc">To encourage momentum, I&nbsp;designed fundraiser cards that visually fill as donations grow, inviting users to&nbsp;chip in and help complete it, making their contribution feel tangible and immediately impactful.</p>
       </div>
       <div class="case-wave-fundraiser-cards">
+        <div
+          class="progress-widget"
+          data-target="100"
+          data-current="53"
+          data-animation-duration-ms="2500"
+        >
+          <span class="progress-target">_</span>
+          <div class="fill-line-top"></div>
+          <div class="percent-wrap">
+            <div class="percent-number">
+              <svg class="percent-svg" overflow="visible" aria-hidden="true">
+                <defs>
+                  <clipPath>
+                    <rect class="fill-clip-rect" x="-9999" y="9999" width="99999" height="0"/>
+                  </clipPath>
+                </defs>
+                <text class="percent-stroke" x="0" y="0" dominant-baseline="text-before-edge">0</text>
+                <g>
+                  <text class="percent-fill" x="0" y="0" dominant-baseline="text-before-edge">0</text>
+                </g>
+              </svg>
+              <div class="drone-wrap">
+                <span class="drone-stroke"></span>
+                <span class="drone-fill"></span>
+              </div>
+            </div>
+            <div class="fill-line"></div>
+            <div class="raised-label">
+              amount raised this month:<br>₴&nbsp;1&nbsp;529&nbsp;792
+            </div>
+          </div>
+        </div>
+
         <img src="assets/Wave/fundraiser%20card%204.webp" alt="Fundraiser card — 53% raised for military equipment" class="case-wave-fundraiser-card" />
         <img src="assets/Wave/fundraiser%20card%202.webp" alt="Fundraiser card — 86% raised for drone delivery" class="case-wave-fundraiser-card" />
       </div>
@@ -1047,106 +1080,103 @@
       })();
     </script>
     <script>
-      const hryvnya = "";
-      const formatter = new Intl.NumberFormat("uk-UA", {
-        maximumFractionDigits: 0,
-      });
+      (function () {
+        var hryvnya = "";
+        var formatter = new Intl.NumberFormat("uk-UA", {
+          maximumFractionDigits: 0,
+        });
 
-      const progressContainer = document.getElementById("progress");
-      const targetText = document.getElementById("target");
-      // const currentText = document.getElementById("current");
+        var FPS = 60;
+        var FRAME_TIME = 1000 / FPS;
 
-      const target = Number(progressContainer.getAttribute("data-target"));
-      const current = Number(progressContainer.getAttribute("data-current"));
-      const duration = Number(
-        progressContainer.getAttribute("data-animation-duration-ms"),
-      );
-      const targetPerc = parseInt((100 * current) / target);
-
-      targetText.textContent = `${hryvnya}${formatter.format(target)}`;
-
-      const wrap = document.getElementById("percentWrap");
-      const stroke = document.getElementById("percentStroke");
-      const fill = document.getElementById("percentFill");
-      const fillClipRect = document.getElementById("fillClipRect");
-      const fillLine = document.getElementById("fillLine");
-      const droneFill = document.querySelector(".drone-fill");
-      const droneWrap = document.querySelector(".drone-wrap");
-
-      function easeOutCubic(t) {
-        return 1 - Math.pow(1 - t, 3);
-      }
-
-      const FPS = 60;
-      const FRAME_TIME = 1000 / FPS;
-
-      let currentValue = 0;
-
-      function setFill(value) {
-        currentValue = value;
-        stroke.textContent = value + "";
-        fill.textContent = value + "";
-
-        // Recompute geometry every call so clip stays correct after resize
-        const bbox = stroke.getBBox();
-        const textBottom = bbox.y + bbox.height;
-        const wrapRect = wrap.getBoundingClientRect();
-        const wrapH = wrapRect.height;
-
-        // SVG number clip: from clipTop downward (same % reference as fill-line)
-        const clipTop = wrapH * (1 - value / 100);
-        fillClipRect.setAttribute("y", clipTop);
-        fillClipRect.setAttribute("height", textBottom - clipTop);
-
-        // Fill-line: bottom edge at value% of wrapH from wrap bottom
-        fillLine.style.bottom = value + "%";
-
-        // Drone clip: align with fill-line Y position (not % of drone height)
-        // fill-line viewport Y = wrap bottom - value% * wrapH
-        const fillLineY = wrapRect.bottom - (value / 100) * wrapH;
-        const droneRect = droneWrap.getBoundingClientRect();
-        const droneClipPx = Math.max(0, Math.min(droneRect.height, fillLineY - droneRect.top));
-        droneFill.style.clipPath = "inset(" + (droneClipPx / droneRect.height * 100).toFixed(2) + "% 0 0 0)";
-      }
-
-      // Re-apply on resize so SVG clip stays in sync with CSS-driven elements
-      window.addEventListener("resize", function () {
-        if (currentValue > 0) setFill(currentValue);
-      }, { passive: true });
-
-      function startAnimation() {
-        const start = performance.now();
-        let lastFrameTime = start;
-
-        function tick(now) {
-          if (now - lastFrameTime >= FRAME_TIME) {
-            lastFrameTime = now - ((now - lastFrameTime) % FRAME_TIME);
-
-            const progress = Math.min((now - start) / duration, 1);
-            setFill(Math.round(targetPerc * easeOutCubic(progress)));
-          }
-
-          if (now - start < duration) {
-            requestAnimationFrame(tick);
-          } else {
-            setFill(targetPerc);
-          }
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
         }
 
-        requestAnimationFrame(tick);
-      }
+        document.querySelectorAll(".progress-widget").forEach(function (container, index) {
+          var clipId = "fillClip-" + index;
+          var clipPath = container.querySelector("clipPath");
+          var fillClipRect = container.querySelector(".fill-clip-rect");
+          var fillGroup = container.querySelector("g");
+          clipPath.id = clipId;
+          fillGroup.setAttribute("clip-path", "url(#" + clipId + ")");
 
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          if (entries[0].isIntersecting) {
-            obs.disconnect();
-            startAnimation();
+          var targetText = container.querySelector(".progress-target");
+          var wrap = container.querySelector(".percent-wrap");
+          var stroke = container.querySelector(".percent-stroke");
+          var fill = container.querySelector(".percent-fill");
+          var fillLine = container.querySelector(".fill-line");
+          var droneFill = container.querySelector(".drone-fill");
+          var droneWrap = container.querySelector(".drone-wrap");
+
+          var target = Number(container.getAttribute("data-target"));
+          var current = Number(container.getAttribute("data-current"));
+          var duration = Number(container.getAttribute("data-animation-duration-ms"));
+          var targetPerc = parseInt((100 * current) / target);
+
+          targetText.textContent = hryvnya + formatter.format(target);
+
+          var currentValue = 0;
+
+          function setFill(value) {
+            currentValue = value;
+            stroke.textContent = value + "";
+            fill.textContent = value + "";
+
+            var bbox = stroke.getBBox();
+            var textBottom = bbox.y + bbox.height;
+            var wrapRect = wrap.getBoundingClientRect();
+            var wrapH = wrapRect.height;
+
+            var clipTop = wrapH * (1 - value / 100);
+            fillClipRect.setAttribute("y", clipTop);
+            fillClipRect.setAttribute("height", textBottom - clipTop);
+
+            fillLine.style.bottom = value + "%";
+
+            var fillLineY = wrapRect.bottom - (value / 100) * wrapH;
+            var droneRect = droneWrap.getBoundingClientRect();
+            var droneClipPx = Math.max(0, Math.min(droneRect.height, fillLineY - droneRect.top));
+            droneFill.style.clipPath = "inset(" + (droneClipPx / droneRect.height * 100).toFixed(2) + "% 0 0 0)";
           }
-        },
-        { threshold: 0.1 }
-      );
 
-      observer.observe(document.getElementById("percentWrap"));
+          window.addEventListener("resize", function () {
+            if (currentValue > 0) setFill(currentValue);
+          }, { passive: true });
+
+          function startAnimation() {
+            var start = performance.now();
+            var lastFrameTime = start;
+
+            function tick(now) {
+              if (now - lastFrameTime >= FRAME_TIME) {
+                lastFrameTime = now - ((now - lastFrameTime) % FRAME_TIME);
+                var progress = Math.min((now - start) / duration, 1);
+                setFill(Math.round(targetPerc * easeOutCubic(progress)));
+              }
+              if (now - start < duration) {
+                requestAnimationFrame(tick);
+              } else {
+                setFill(targetPerc);
+              }
+            }
+
+            requestAnimationFrame(tick);
+          }
+
+          var observer = new IntersectionObserver(
+            function (entries, obs) {
+              if (entries[0].isIntersecting) {
+                obs.disconnect();
+                startAnimation();
+              }
+            },
+            { threshold: 0.1 }
+          );
+
+          observer.observe(wrap);
+        });
+      })();
     </script>
 
     <script>
