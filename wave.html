@@ -1150,16 +1150,72 @@
     </script>
 
     <script>
-      const zoomGrid = document.querySelector(".case-wave-zoom-grid");
-      const zoomObserver = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            zoomGrid.classList.add("is-animating");
+      (function () {
+        var section = document.querySelector('.case-wave-zoom');
+        var grid = document.querySelector('.case-wave-zoom-grid');
+        if (!section || !grid) return;
+        var target = grid.querySelectorAll('.case-wave-zoom-img')[24]; // image 25
+        if (!target) return;
+
+        var s0 = 5;
+        var s1 = 1.05;
+
+        function easeOut(t) {
+          return 1 - Math.pow(1 - t, 2);
+        }
+
+        function run(duration, tick, done) {
+          var start;
+          function frame(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / duration, 1);
+            tick(easeOut(p));
+            if (p < 1) requestAnimationFrame(frame);
+            else if (done) done();
           }
-        },
-        { threshold: 0.1 }
-      );
-      zoomObserver.observe(document.querySelector(".case-wave-zoom"));
+          requestAnimationFrame(frame);
+        }
+
+        function setTx(s, tx, ty) {
+          grid.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          if (!entries[0].isIntersecting) return;
+          observer.unobserve(section);
+
+          var gr = grid.getBoundingClientRect();
+          var tr = target.getBoundingClientRect();
+          var gW = gr.width / s0;
+          var gH = gr.height / s0;
+          var cx = (tr.left + tr.width / 2 - gr.left - gr.width / 2) / gr.width;
+          var cy = (tr.top + tr.height / 2 - gr.top - gr.height / 2) / gr.height;
+          var tx0 = -cx * s0 * gW;
+          var ty0 = -cy * s0 * gH;
+
+          function zoomOut(done) {
+            run(8000, function (t) {
+              var s = s0 + (s1 - s0) * t;
+              setTx(s, tx0 * (1 - t), ty0 * (1 - t));
+            }, done);
+          }
+
+          function loop() {
+            setTx(s0, tx0, ty0);
+            requestAnimationFrame(function () {
+              zoomOut(function () {
+                setTimeout(loop, 2000);
+              });
+            });
+          }
+
+          zoomOut(function () {
+            setTimeout(loop, 2000);
+          });
+        }, { threshold: 0.1 });
+
+        observer.observe(section);
+      })();
     </script>
 
     <script>
