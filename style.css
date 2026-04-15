@@ -2176,7 +2176,7 @@ picture.case-full-img--gap,
 .case-flow {
   background: var(--white);
   color: var(--black);
-  padding: 34px var(--margin) 80px;
+  padding: 24px var(--margin) 80px;
 }
 
 .case-flow-text {
@@ -2206,6 +2206,10 @@ picture.case-full-img--gap,
 
 
 @media (min-width: 1024px) {
+  .case-flow {
+    padding-top: 34px;
+  }
+
   .case-flow-img {
     margin-top: 64px;
     overflow: visible;
@@ -2225,7 +2229,7 @@ picture.case-full-img--gap,
 .case-wireframe {
   background: #F5F2F3;
   color: var(--black);
-  padding: 34px var(--margin) 72px;
+  padding: 24px var(--margin) 72px;
 }
 
 .case-wireframe-text {
@@ -2296,7 +2300,7 @@ picture.case-full-img--gap,
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 32px var(--margin) 0;
+  padding: 24px var(--margin) 0;
   max-width: 594px;
 }
 
@@ -2315,7 +2319,7 @@ picture.case-full-img--gap,
 }
 
 .case-ia-left .case-ia-img {
-  padding: 0 34px 34px;
+  padding: 34px 24px 24px;
 }
 
 .case-ia-right {
@@ -2340,6 +2344,12 @@ picture.case-full-img--gap,
   }
 }
 
+@media (min-width: 1024px) {
+  .case-ia-left .case-ia-img {
+    padding: 0 34px 34px;
+  }
+}
+
 /* ============================================================
    CASE STUDY — CONCEPT DEVELOPMENT
    ============================================================ */
@@ -2347,7 +2357,7 @@ picture.case-full-img--gap,
 .case-concept {
   background: var(--white);
   color: var(--black);
-  padding: 34px var(--margin) 0;
+  padding: 24px var(--margin) 72px;
 }
 
 .case-concept-text {
@@ -2384,6 +2394,11 @@ picture.case-full-img--gap,
 }
 
 @media (min-width: 768px) {
+  .case-concept {
+    padding-bottom: 0;
+  }
+
+
   .case-concept-sketches {
     flex-direction: row;
     gap: 31px;
@@ -2409,7 +2424,7 @@ picture.case-full-img--gap,
 
 .case-cards {
   background: #f1f4f9;
-  padding: 120px var(--margin);
+  padding: 24px var(--margin) 120px;
 }
 
 .case-cards-header {
@@ -2798,7 +2813,7 @@ picture.case-full-img--gap,
 .case-overview {
   background: var(--white);
   color: var(--black);
-  padding: 34px var(--margin) 0;
+  padding: 24px var(--margin) 0;
 }
 
 .case-overview--po {
@@ -2896,6 +2911,18 @@ picture.case-full-img--gap,
 }
 
 @media (min-width: 1024px) {
+  .case-overview {
+    padding-top: 34px;
+  }
+
+  .case-concept {
+    padding-top: 34px;
+  }
+
+  .case-ia-text {
+    padding-top: 34px;
+  }
+
   .case-overview-grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -4455,7 +4482,7 @@ picture.case-full-img--gap,
 .case-wave-ut {
   background: #bfccea;
   color: var(--black);
-  padding: 34px var(--margin) 120px;
+  padding: 24px var(--margin) 120px;
 }
 
 .case-wave-ut-header {
@@ -4534,7 +4561,7 @@ picture.case-full-img--gap,
 
 @media (min-width: 768px) {
   .case-wave-ut {
-    padding: 34px var(--margin) 140px;
+    padding: 24px var(--margin) 140px;
   }
 
   .case-wave-ut-header {
@@ -4597,7 +4624,7 @@ picture.case-full-img--gap,
 .case-tehno-ut {
   background: #D1C8C8;
   color: var(--black);
-  padding: 34px var(--margin) 120px;
+  padding: 24px var(--margin) 120px;
 }
 
 .case-tehno-ut-header {
@@ -6704,6 +6731,17 @@ picture.case-full-img--gap,
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(0.5) saturate(0.8);
+}
+
+.case-wave-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #0f1e3d;
+  mix-blend-mode: color;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .case-wave-footer-img {
@@ -6713,6 +6751,7 @@ picture.case-full-img--gap,
   transform: translate(-50%, -50%);
   width: 85%;
   height: auto;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {
