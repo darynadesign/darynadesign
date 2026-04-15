@@ -4534,7 +4534,7 @@ picture.case-full-img--gap,
 
 @media (min-width: 768px) {
   .case-wave-ut {
-    padding: 34px var(--margin) 120px;
+    padding: 34px var(--margin) 140px;
   }
 
   .case-wave-ut-header {
@@ -4555,11 +4555,11 @@ picture.case-full-img--gap,
 
 @media (min-width: 1024px) {
   .case-wave-ut {
-    padding: 34px var(--margin) 120px;
+    padding: 34px var(--margin) 140px;
   }
 
   .case-wave-ut-header {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
   }
 
   .case-wave-ut-card {
@@ -4727,6 +4727,14 @@ picture.case-full-img--gap,
 }
 
 @media (min-width: 1024px) {
+  .case-tehno-ut {
+    padding: 34px var(--margin) 140px;
+  }
+
+  .case-tehno-ut-header {
+    margin-bottom: 80px;
+  }
+
   .case-tehno-ut-cards {
     gap: 0 7.64vw;
   }
@@ -5972,6 +5980,15 @@ picture.case-full-img--gap,
   font-size: 17px;
   line-height: 19px;
   color: black;
+}
+
+.case-tehno-interior .case-tehno-interior-product-info {
+  gap: 6px;
+}
+
+.case-tehno-interior .case-tehno-interior-cart-btn {
+  display: flex;
+  padding: 6px;
 }
 
 .case-tehno-interior-cart-btn img {
