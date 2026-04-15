@@ -4341,6 +4341,9 @@ picture.case-full-img--gap,
 
 .progress-widget {
   --progress-color: white;
+  --progress-font-size: 20.14vw;
+  --progress-svg-width: calc(var(--progress-font-size) * 1.39);
+  --progress-height: calc(var(--progress-font-size) * 0.731);
 }
 
 .progress-target,
@@ -4362,9 +4365,8 @@ picture.case-full-img--gap,
   position: relative;
   display: inline-block;
   width: 100%;
-  --height: 14.72vw;
   --fill: 0%;
-  height: var(--height);
+  height: var(--progress-height);
 }
 
 .case-wave-sub-photo > img {
@@ -4399,8 +4401,8 @@ picture.case-full-img--gap,
 }
 
 .percent-svg {
-  height: var(--height);
-  width: 28vw;
+  height: var(--progress-height);
+  width: var(--progress-svg-width);
   flex-shrink: 0;
   overflow: visible;
 }
@@ -4408,7 +4410,7 @@ picture.case-full-img--gap,
 .percent-stroke {
   font-family: "Kharkiv Tone", sans-serif;
   font-weight: 400;
-  font-size: 20.14vw;
+  font-size: var(--progress-font-size);
   letter-spacing: -0.03em;
   fill: none;
   stroke: var(--progress-color);
@@ -4420,7 +4422,7 @@ picture.case-full-img--gap,
 .percent-fill {
   font-family: "Kharkiv Tone", sans-serif;
   font-weight: 400;
-  font-size: 20.14vw;
+  font-size: var(--progress-font-size);
   letter-spacing: -0.03em;
   fill: var(--progress-color);
   stroke: none;
@@ -4464,7 +4466,7 @@ picture.case-full-img--gap,
 .raised-label {
   position: absolute;
   top: 11px;
-  left: calc(28vw + 1.667vw); /* left edge of drone-wrap */
+  left: calc(var(--progress-svg-width) + 1.667vw); /* left edge of drone-wrap */
   font-family: "Onest", sans-serif;
   font-weight: 400;
   font-size: 1.25vw; /* 18px at 1440 */
@@ -6655,10 +6657,61 @@ picture.case-full-img--gap,
 .case-wave-fundraiser-card {
   width: 72.22%; /* 260/360 */
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
 }
 
-.case-wave-fundraiser-card:last-child {
+.case-wave-fundraiser-card > .progress-widget {
+  --progress-font-size: 12.07vw;
+  width: 100%;
+  margin-left: 0;
+  padding-bottom: 0;
+}
+
+.case-wave-fundraiser-card .progress-target {
+  display: block;
+  width: 7vw;
+  margin-left: auto;
+  text-align: left;
+  font-size: 1.11vw;
+  line-height: 0.76vw;
+  padding-right: 1.18vw;
+}
+
+.case-wave-fundraiser-card .fill-line-top {
+  display: block;
+  height: 2px;
+  margin-bottom: -7px;
+}
+
+.case-wave-fundraiser-card .raised-label {
+  top: auto;
+  left: auto;
+  right: 0;
+  width: 7vw;
+  text-align: left;
+  font-size: 1.11vw;
+}
+
+.case-wave-fundraiser-card:first-child .raised-label {
+  transform: translateY(100%);
+}
+
+.case-wave-fundraiser-card:last-child .raised-label {
+  transform: translateY(16%);
+}
+
+.case-wave-fundraiser-card .percent-svg {
+  margin-left: -6px;
+}
+
+.case-wave-fundraiser-card .fill-line {
+  clip-path: none;
+}
+
+.case-wave-fundraiser-card:first-child {
   align-self: flex-start;
 }
 
@@ -6676,7 +6729,7 @@ picture.case-full-img--gap,
     margin-top: 120px;
   }
 
-  .case-wave-fundraiser-card:last-child {
+  .case-wave-fundraiser-card:first-child {
     align-self: auto;
   }
 
@@ -7016,6 +7069,7 @@ picture.case-full-img--gap,
 .case-wave-zoom {
   overflow: hidden;
   background: #bfccea;
+  contain: layout style paint;
 }
 
 @media (min-width: 1024px) {
@@ -7032,7 +7086,8 @@ picture.case-full-img--gap,
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   padding: 8px;
-  transform: translate(0px, 0px) scale(5);
+  transform: translate3d(0px, 0px, 0) scale(5);
+  will-change: transform;
 }
 
 @media (min-width: 1024px) {
