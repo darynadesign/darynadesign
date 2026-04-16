@@ -1269,13 +1269,28 @@
 
     <!-- ZOOM ANIMATION -->
     <section class="case-tehno-zoom">
-      <video
-        class="case-tehno-zoom-video"
-        src="assets/Tehno/zoom-animation-web.mp4"
-        autoplay
-        loop
-        muted
-        playsinline></video>
+      <div class="case-tehno-zoom-grid">
+        <img src="assets/Tehno/zoom%20animation/1.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/2.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/3.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/4.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/5.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/6.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/10.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/8.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/9.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/7.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/11.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/14.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/12.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/13.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/15.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/16.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/17.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/19.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/18.webp" alt="" class="case-tehno-zoom-img" />
+        <img src="assets/Tehno/zoom%20animation/20.webp" alt="" class="case-tehno-zoom-img" />
+      </div>
     </section>
 
     <!-- KEEP EXPLORING -->
@@ -1489,13 +1504,13 @@
     </script>
     <script>
       (function () {
-        var section = document.querySelector(".case-tehno-ut");
-        var cards = section.querySelectorAll(".case-tehno-ut-card");
-        var label = section.querySelector(".case-tehno-ut-before-label");
-        var originalText = label.textContent;
-        var stagger = 120;
-        var timers = [];
-        var running = false;
+        let section = document.querySelector(".case-tehno-ut");
+        let cards = section.querySelectorAll(".case-tehno-ut-card");
+        let label = section.querySelector(".case-tehno-ut-before-label");
+        let originalText = label.textContent;
+        let stagger = 120;
+        let timers = [];
+        let running = false;
 
         function showAfter() {
           label.textContent = "AFTER";
@@ -1536,7 +1551,7 @@
           label.textContent = originalText;
         }
 
-        var observer = new IntersectionObserver(function (entries) {
+        let observer = new IntersectionObserver(function (entries) {
           if (entries[0].isIntersecting) {
             if (!running) { running = true; loop(); }
           } else {
@@ -1547,14 +1562,14 @@
       })();
 
       (function () {
-        var section = document.querySelector(".case-tehno-popular");
-        var grid = section.querySelector(".case-tehno-popular-cards");
-        var cards = Array.from(grid.querySelectorAll(".case-tehno-popular-card"));
-        var current = -1;
-        var timer = null;
-        var running = false;
+        let section = document.querySelector(".case-tehno-popular");
+        let grid = section.querySelector(".case-tehno-popular-cards");
+        let cards = Array.from(grid.querySelectorAll(".case-tehno-popular-card"));
+        let current = -1;
+        let timer = null;
+        let running = false;
 
-        var cols = [
+        let cols = [
           "1.3fr 0.9fr 0.9fr 0.9fr",
           "0.9fr 1.3fr 0.9fr 0.9fr",
           "0.9fr 0.9fr 1.3fr 0.9fr",
@@ -1578,7 +1593,7 @@
           cards.forEach(function (c) { c.classList.remove("case-tehno-popular-card--active"); });
         }
 
-        var observer = new IntersectionObserver(function (entries) {
+        let observer = new IntersectionObserver(function (entries) {
           if (entries[0].isIntersecting) {
             if (!running) { running = true; step(); }
           } else {
@@ -1589,14 +1604,14 @@
       })();
 
       (function () {
-        var video = document.querySelector(".case-tehno-product-img");
-        var section = document.querySelector(".case-tehno-product");
-        var delayTimer = null;
+        let video = document.querySelector(".case-tehno-product-img");
+        let section = document.querySelector(".case-tehno-product");
+        let delayTimer = null;
 
         video.pause();
         video.currentTime = 0;
 
-        var observer = new IntersectionObserver(function (entries) {
+        let observer = new IntersectionObserver(function (entries) {
           if (entries[0].isIntersecting) {
             if (video.paused && !delayTimer) {
               delayTimer = setTimeout(function () {
@@ -1624,18 +1639,18 @@
       })();
 
       (function () {
-        var section = document.querySelector(".case-tehno-interior");
-        var panels = section.querySelector(".case-tehno-interior-panels");
-        var content = section.querySelector(".case-tehno-interior-content");
-        var tags = section.querySelectorAll(".case-tehno-interior-tag");
-        var hintText = section.querySelector(".case-tehno-interior-card-hint span:last-child");
-        var productImg = section.querySelector(".case-tehno-interior-product-img img");
-        var productName = section.querySelector(".case-tehno-interior-product-name");
-        var colors = section.querySelectorAll(".case-tehno-interior-color");
-        var photoImg = section.querySelector(".case-tehno-interior-photo > img");
-        var photoText = section.querySelector(".case-tehno-interior-photo-text");
+        let section = document.querySelector(".case-tehno-interior");
+        let panels = section.querySelector(".case-tehno-interior-panels");
+        let content = section.querySelector(".case-tehno-interior-content");
+        let tags = section.querySelectorAll(".case-tehno-interior-tag");
+        let hintText = section.querySelector(".case-tehno-interior-card-hint span:last-child");
+        let productImg = section.querySelector(".case-tehno-interior-product-img img");
+        let productName = section.querySelector(".case-tehno-interior-product-name");
+        let colors = section.querySelectorAll(".case-tehno-interior-color");
+        let photoImg = section.querySelector(".case-tehno-interior-photo > img");
+        let photoText = section.querySelector(".case-tehno-interior-photo-text");
 
-        var states = [
+        let states = [
           {
             tag: "Minimalist",
             hint: "neutral-toned appliances, integrated designs, and a clean, minimal aesthetic",
@@ -1674,7 +1689,7 @@
         // Preload all images
         states.forEach(function (s) { new Image().src = s.productImg; new Image().src = s.photoImg; });
 
-        var sequence = [
+        let sequence = [
           { hover: "Scandinavian", activate: true, state: 1 },
           { hover: "High-tech" },
           { hover: "Neoclassic" },
@@ -1684,23 +1699,23 @@
           { hover: "Retro / Vintage", activate: true, state: 2 },
           { hover: "Minimalist", activate: true, state: 0 }
         ];
-        var seqIndex = 0;
+        let seqIndex = 0;
 
-        var productClip = section.querySelector(".case-tehno-interior-product-clip");
-        var productEl = section.querySelector(".case-tehno-interior-product");
-        var photoContainer = section.querySelector(".case-tehno-interior-photo");
+        let productClip = section.querySelector(".case-tehno-interior-product-clip");
+        let productEl = section.querySelector(".case-tehno-interior-product");
+        let photoContainer = section.querySelector(".case-tehno-interior-photo");
 
         function crossFade(state) {
           // === Hint text: update directly ===
           hintText.textContent = state.hint;
 
           // === Product card: slide whole card inside clip ===
-          var newCard = productEl.cloneNode(true);
-          var npi = newCard.querySelector(".case-tehno-interior-product-img img");
+          let newCard = productEl.cloneNode(true);
+          let npi = newCard.querySelector(".case-tehno-interior-product-img img");
           npi.src = state.productImg;
           npi.alt = state.productAlt;
           newCard.querySelector(".case-tehno-interior-product-name").innerHTML = state.productName;
-          var nc = newCard.querySelectorAll(".case-tehno-interior-color");
+          let nc = newCard.querySelectorAll(".case-tehno-interior-color");
           state.colors.forEach(function (col, i) {
             nc[i].style.setProperty("--color", col.c);
             nc[i].style.border = col.border || "";
@@ -1737,7 +1752,7 @@
           }, { once: true });
 
           // === Photo: cross-fade ===
-          var newPhoto = document.createElement("img");
+          let newPhoto = document.createElement("img");
           newPhoto.src = state.photoImg;
           newPhoto.alt = state.photoAlt;
           newPhoto.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.5s";
@@ -1759,7 +1774,7 @@
         }
 
         function runStep() {
-          var step = sequence[seqIndex % sequence.length];
+          let step = sequence[seqIndex % sequence.length];
 
           // Show hover on tag
           tags.forEach(function (t) {
@@ -1776,7 +1791,7 @@
               setTimeout(function () {
                 crossFade(states[step.state]);
                 seqIndex++;
-                var next = sequence[seqIndex % sequence.length];
+                let next = sequence[seqIndex % sequence.length];
                 setTimeout(runStep, next.activate ? 2500 : 1500);
               }, 150);
             }, 500);
@@ -1787,7 +1802,7 @@
           }
         }
 
-        var observer = new IntersectionObserver(function (entries) {
+        let observer = new IntersectionObserver(function (entries) {
           if (entries[0].isIntersecting) {
             setTimeout(runStep, 1000);
             observer.unobserve(section);
@@ -1798,11 +1813,11 @@
     </script>
     <script>
       (function () {
-        var wrap = document.querySelector('.case-tehno-carousel-wrap');
-        var carousel = document.querySelector('.case-tehno-carousel');
+        let wrap = document.querySelector('.case-tehno-carousel-wrap');
+        let carousel = document.querySelector('.case-tehno-carousel');
         if (!wrap || !carousel) return;
         function fit() {
-          var s = wrap.offsetWidth / 596;
+          let s = wrap.offsetWidth / 596;
           carousel.style.transform = 'scale(' + s + ')';
           wrap.style.height = carousel.offsetHeight * s + 'px';
         }
@@ -1810,14 +1825,14 @@
         window.addEventListener('resize', fit);
 
         // Hover animation cycle: cards 1, 2, 3
-        var slots = carousel.querySelectorAll('.case-tehno-carousel-card-slot');
-        var hoverSlots = [slots[0], slots[1], slots[2]];
-        var sequence = [0, 1, 2, 1];
-        var idx = -1;
-        var current = -1;
+        let slots = carousel.querySelectorAll('.case-tehno-carousel-card-slot');
+        let hoverSlots = [slots[0], slots[1], slots[2]];
+        let sequence = [0, 1, 2, 1];
+        let idx = -1;
+        let current = -1;
 
         function cycle() {
-          var prev = current;
+          let prev = current;
           idx = (idx + 1) % sequence.length;
           current = sequence[idx];
           if (prev >= 0) hoverSlots[prev].classList.remove('is-hovered');
@@ -1825,6 +1840,113 @@
           setTimeout(cycle, 1500);
         }
         setTimeout(cycle, 1000);
+      })();
+    </script>
+    <script>
+      (function () {
+        let section = document.querySelector('.case-tehno-zoom');
+        let grid = document.querySelector('.case-tehno-zoom-grid');
+        if (!section || !grid) return;
+        let imgs = grid.querySelectorAll('.case-tehno-zoom-img');
+        let t1 = imgs[16]; // 17.webp — row 2, col 4
+        let t2 = imgs[6];  // 10.webp — row 2, col 2
+        let t3 = imgs[12]; // 13.webp — row 3, col 3
+        if (!t1 || !t2 || !t3) return;
+
+        function pct(el, gridRect) {
+          let r = el.getBoundingClientRect();
+          return {
+            x: 0.5 + (r.left + r.width / 2 - gridRect.left - gridRect.width / 2) / gridRect.width,
+            y: 0.5 + (r.top + r.height / 2 - gridRect.top - gridRect.height / 2) / gridRect.height
+          };
+        }
+
+        function ease(t) {
+          return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        }
+
+        function run(duration, tick, done) {
+          let start;
+          function frame(ts) {
+            if (!start) start = ts;
+            let p = Math.min((ts - start) / duration, 1);
+            tick(ease(p));
+            if (p < 1) requestAnimationFrame(frame);
+            else if (done) done();
+          }
+          requestAnimationFrame(frame);
+        }
+
+        function setTx(s, tx, ty) {
+          grid.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + s + ')';
+        }
+
+        let observer = new IntersectionObserver(function (entries) {
+          if (!entries[0].isIntersecting) return;
+          observer.unobserve(section);
+
+          let s0 = 1.05;
+          let gr = grid.getBoundingClientRect();
+          let sr = section.getBoundingClientRect();
+          let gW = gr.width / s0;
+          let gH = gr.height / s0;
+
+          let c1 = pct(t1, gr);
+          let c2 = pct(t2, gr);
+          let c3 = pct(t3, gr);
+
+          let imgW = t1.getBoundingClientRect().width / s0;
+          let s1 = sr.width * 0.6655 / imgW;
+
+          let txA = -(c1.x - 0.5) * s1 * gW;
+          let tyA = -(c1.y - 0.5) * s1 * gH;
+          let sMid = s1 * 0.65;
+
+          function arc(from, to, done) {
+            run(2420, function (t) {
+              let camX = from.x + (to.x - from.x) * t;
+              let camY = from.y + (to.y - from.y) * t;
+              let s = s1 - (s1 - sMid) * Math.sin(Math.PI * t);
+              setTx(s, -(camX - 0.5) * s * gW, -(camY - 0.5) * s * gH);
+            }, done);
+          }
+
+          function zoomIn(done) {
+            run(1980, function (t) {
+              setTx(s0 + (s1 - s0) * t, txA * t, tyA * t);
+            }, done);
+          }
+
+          function zoomOut(done) {
+            let txC = -(c3.x - 0.5) * s1 * gW;
+            let tyC = -(c3.y - 0.5) * s1 * gH;
+            run(1980, function (t) {
+              setTx(s1 + (s0 - s1) * t, txC * (1 - t), tyC * (1 - t));
+            }, done);
+          }
+
+          function loop() {
+            zoomIn(function () {
+              setTimeout(function () {
+                arc(c1, c2, function () {
+                  setTimeout(function () {
+                    arc(c2, c3, function () {
+                      setTimeout(function () {
+                        zoomOut(function () {
+                          setTimeout(loop, 880);
+                        });
+                      }, 880);
+                    });
+                  }, 880);
+                });
+              }, 880);
+            });
+          }
+
+          setTimeout(loop, 440);
+        }, { threshold: 0.3 });
+
+        observer.observe(section);
       })();
     </script>
   </body>
