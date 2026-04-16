@@ -4533,6 +4533,11 @@ picture.case-full-img--gap,
   gap: 48px;
 }
 
+.case-wave-ut-before-label {
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
 .case-wave-ut-card-img {
   background: white;
   border-radius: 4px;
@@ -4596,6 +4601,10 @@ picture.case-full-img--gap,
     gap: 0 40px;
   }
 
+  .case-wave-ut-card:nth-child(n+2) {
+    padding-top: 40px;
+  }
+
   .case-wave-ut-card-img {
     margin-bottom: 40px;
   }
@@ -4610,7 +4619,7 @@ picture.case-full-img--gap,
     margin-bottom: 80px;
   }
 
-  .case-wave-ut-card {
+  .case-wave-ut-card:nth-child(n+2) {
     padding-top: 40px;
   }
 
@@ -6312,7 +6321,7 @@ picture.case-full-img--gap,
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 7vw;
+  gap: 13vw;
   will-change: transform;
 }
 
@@ -6322,12 +6331,12 @@ picture.case-full-img--gap,
   border-radius: 2px;
   aspect-ratio: 850 / 511;
   width: 56vw;
-  transform: scale(1);
+  transform: scale(1.1);
   transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .case-wave-carousel-slide.is-center {
-  transform: scale(1.18);
+  transform: scale(1.28);
 }
 
 .case-wave-carousel-slide img {
@@ -6346,11 +6355,16 @@ picture.case-full-img--gap,
   }
 
   .case-wave-carousel-track {
-    gap: 6vw;
+    gap: 8vw;
   }
 
   .case-wave-carousel-slide {
     width: 50.14vw;
+    transform: scale(1);
+  }
+
+  .case-wave-carousel-slide.is-center {
+    transform: scale(1.18);
   }
 }
 
@@ -6468,7 +6482,8 @@ picture.case-full-img--gap,
 
 @media (min-width: 1024px) {
   .case-wave-in {
-    height: 68.47vw;
+    --in-anchor: calc(var(--margin) + var(--in-header-h, 99px) + 56px);
+    height: calc(var(--in-anchor) + 55.69vw);
   }
 
   .case-wave-in-header {
@@ -6483,18 +6498,18 @@ picture.case-full-img--gap,
 
   .case-wave-in-img--1 {
     left: 6.11vw; /* 88/1440 */
-    top: 20.83vw; /* 300/1440 */
+    top: calc(var(--in-anchor) + 8.06vw);
     z-index: 2;
   }
 
   .case-wave-in-img--2 {
     left: 36.18vw; /* 521/1440 */
-    top: 12.78vw; /* 184/1440 */
+    top: var(--in-anchor);
     z-index: 1;
   }
 
   .case-wave-in-marquee {
-    top: 56.25vw; /* 810/1440 */
+    top: calc(var(--in-anchor) + 43.47vw);
     height: 2.78vw; /* 40/1440 */
   }
 
@@ -6655,48 +6670,62 @@ picture.case-full-img--gap,
 }
 
 .case-wave-fundraiser-card {
-  width: 72.22%; /* 260/360 */
+  width: 72.22%;
   aspect-ratio: 1 / 1;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
+  container-type: inline-size;
+}
+
+.case-wave-fundraiser-card:first-child {
+  align-self: flex-start;
 }
 
 .case-wave-fundraiser-card > .progress-widget {
-  --progress-font-size: 12.07vw;
+  --progress-font-size: 35.61cqi;
   width: 100%;
   margin-left: 0;
   padding-bottom: 0;
 }
 
+.case-wave-fundraiser-card .percent-number {
+  gap: 3.42cqi;
+  padding-right: 1.71cqi;
+}
+
+.case-wave-fundraiser-card .percent-stroke {
+  stroke-width: 0.205cqi;
+}
+
 .case-wave-fundraiser-card .progress-target {
   display: block;
-  width: 7vw;
+  width: 20.7cqi;
   margin-left: auto;
   text-align: left;
   font-family: "Onest", sans-serif;
   font-weight: 400;
-  font-size: 1.11vw;
-  line-height: 0.76vw;
+  font-size: 3.28cqi;
+  line-height: 2.25cqi;
   letter-spacing: -0.03em;
-  padding-right: 1.18vw;
-  margin-right: 5px;
+  padding-right: 3.48cqi;
+  margin-right: 1.02cqi;
 }
 
 .case-wave-fundraiser-card .fill-line-top {
   display: block;
-  height: 2px;
-  margin-bottom: -7px;
+  height: 0.41cqi;
+  margin-bottom: -1.43cqi;
 }
 
 .case-wave-fundraiser-card .raised-label {
   top: auto;
   left: auto;
-  right: 5px;
-  width: 7vw;
+  right: 1.02cqi;
+  width: 20.7cqi;
   text-align: left;
-  font-size: 1.11vw;
+  font-size: 3.28cqi;
 }
 
 .case-wave-fundraiser-card:first-child .raised-label {
@@ -6708,15 +6737,11 @@ picture.case-full-img--gap,
 }
 
 .case-wave-fundraiser-card .percent-svg {
-  margin-left: -9px;
+  margin-left: -1.84cqi;
 }
 
 .case-wave-fundraiser-card .fill-line {
   clip-path: none;
-}
-
-.case-wave-fundraiser-card:first-child {
-  align-self: flex-start;
 }
 
 @media (min-width: 768px) {
@@ -6729,7 +6754,7 @@ picture.case-full-img--gap,
   .case-wave-fundraiser-cards {
     flex-direction: row;
     justify-content: flex-end;
-    gap: 4.10vw; /* 59/1440 */
+    gap: 4.10vw;
     margin-top: 120px;
   }
 
@@ -6738,7 +6763,7 @@ picture.case-full-img--gap,
   }
 
   .case-wave-fundraiser-card {
-    width: 33.89vw; /* 488/1440 */
+    width: 33.89vw;
   }
 }
 
@@ -6799,6 +6824,7 @@ picture.case-full-img--gap,
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  margin-top: -1px;
 }
 
 .case-wave-footer-video {

@@ -574,6 +574,7 @@
       </div>
       <div class="case-wave-ut-cards">
         <div class="case-wave-ut-card">
+          <p class="before-after-label case-wave-ut-before-label">BEFORE</p>
           <div class="case-wave-ut-card-img">
             <img
               src="assets/Wave/user%20testing%201.webp"
@@ -681,36 +682,6 @@
             src="assets/Wave/carousel%203.webp"
             alt="Meet the team — carousel slide" />
         </div>
-        <div class="case-wave-carousel-slide">
-          <img
-            src="assets/Wave/carousel%201.webp"
-            alt="Partnership application — carousel slide" />
-        </div>
-        <div class="case-wave-carousel-slide">
-          <img
-            src="assets/Wave/carousel%202.webp"
-            alt="Donation subscription — carousel slide" />
-        </div>
-        <div class="case-wave-carousel-slide">
-          <img
-            src="assets/Wave/carousel%203.webp"
-            alt="Meet the team — carousel slide" />
-        </div>
-        <div class="case-wave-carousel-slide">
-          <img
-            src="assets/Wave/carousel%201.webp"
-            alt="Partnership application — carousel slide" />
-        </div>
-        <div class="case-wave-carousel-slide">
-          <img
-            src="assets/Wave/carousel%202.webp"
-            alt="Donation subscription — carousel slide" />
-        </div>
-        <div class="case-wave-carousel-slide">
-          <img
-            src="assets/Wave/carousel%203.webp"
-            alt="Meet the team — carousel slide" />
-        </div>
       </div>
     </section>
 
@@ -753,6 +724,18 @@
         </div>
       </div>
     </section>
+    <script>
+      (function () {
+        var section = document.querySelector(".case-wave-in");
+        var header = document.querySelector(".case-wave-in-header");
+        new ResizeObserver(function () {
+          section.style.setProperty(
+            "--in-header-h",
+            header.offsetHeight + "px"
+          );
+        }).observe(header);
+      })();
+    </script>
 
     <!-- WAVE IN MEDIA -->
     <section class="case-wave-media">
@@ -1622,8 +1605,10 @@
         var slides = Array.from(
           track.querySelectorAll(".case-wave-carousel-slide"),
         );
-        var count = 3;
-        var current = count;
+        /* Slide order: [0]=car1, [1]=car2, [2]=car3
+           Sequence: car2→car3→car2→car1→car2 → repeat */
+        var seq = [1, 2, 1, 0];
+        var step = 0;
         var running = false;
         var timer;
 
@@ -1638,51 +1623,26 @@
           track.style.transition = animate
             ? "transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)"
             : "none";
-          track.style.transform = "translateX(" + getOffset(current) + "px)";
+          track.style.transform =
+            "translateX(" + getOffset(seq[step]) + "px)";
           slides.forEach(function (s, i) {
-            s.classList.toggle("is-center", i === current);
+            s.classList.toggle("is-center", i === seq[step]);
           });
         }
 
         function advance() {
           if (!running) return;
-          current++;
+          step = (step + 1) % seq.length;
           position(true);
-          if (current >= count * 2) {
-            setTimeout(function () {
-              slides.forEach(function (s) {
-                s.style.transition = "none";
-              });
-              current -= count;
-              position(false);
-              requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                  slides.forEach(function (s) {
-                    s.style.transition = "";
-                  });
-                });
-              });
-            }, 1550);
-          }
           timer = setTimeout(advance, 2800);
         }
 
         function start() {
           if (running) return;
           running = true;
-          current = count;
-          slides.forEach(function (s) {
-            s.style.transition = "none";
-          });
+          step = 0;
           position(false);
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              slides.forEach(function (s) {
-                s.style.transition = "";
-              });
-            });
-          });
-          timer = setTimeout(advance, 500);
+          timer = setTimeout(advance, 1000);
         }
 
         function stop() {
