@@ -6241,52 +6241,18 @@ picture.case-full-img--gap,
   }
 }
 
-.case-tehno-zoom-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  padding: 8px;
-  transform: scale(1.05);
+.case-tehno-zoom-picture {
+  display: block;
+  width: 100%;
 }
 
-@media (min-width: 1024px) {
-  .case-tehno-zoom-grid {
-    grid-template-columns: repeat(5, 1fr);
-    transform: translate(0, 0) scale(1.05);
-  }
-
-  .case-tehno-zoom-img:nth-child(9) {
-    grid-row: 4;
-    grid-column: 2;
-  }
-
-  .case-tehno-zoom-img:nth-child(17) {
-    grid-row: 2;
-    grid-column: 4;
-  }
-}
-
-@media (max-width: 1023px) {
-  /* swap 10.webp (child 7) ↔ 6.webp (child 6) */
-  .case-tehno-zoom-img:nth-child(6) { grid-row: 2; grid-column: 3; }
-  .case-tehno-zoom-img:nth-child(7) { grid-row: 2; grid-column: 2; }
-
-  /* swap 17.webp (child 17) ↔ 11.webp (child 11) */
-  .case-tehno-zoom-img:nth-child(11) { grid-row: 5; grid-column: 1; }
-  .case-tehno-zoom-img:nth-child(17) { grid-row: 3; grid-column: 3; }
-
-  /* swap 12.webp (child 13) ↔ 13.webp (child 14) */
-  .case-tehno-zoom-img:nth-child(13) { grid-row: 4; grid-column: 2; }
-  .case-tehno-zoom-img:nth-child(14) { grid-row: 3; grid-column: 2; }
-
-  /* swap 13.webp (child 14) ↔ 7.webp (child 10) */
-  .case-tehno-zoom-img:nth-child(10) { grid-row: 4; grid-column: 1; }
-}
-
-.case-tehno-zoom-img {
+.case-tehno-zoom-atlas {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
+  transform: translate3d(0, 0, 0) scale(1.05);
+  transform-origin: 50% 50%;
+  will-change: transform;
 }
 
 
@@ -7135,9 +7101,6 @@ picture.case-full-img--gap,
 }
 
 .case-wave-zoom-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
   padding: 8px;
   transform: translate3d(0px, 0px, 0) scale(5);
   transform-origin: center center;
@@ -7146,50 +7109,15 @@ picture.case-full-img--gap,
   -webkit-backface-visibility: hidden;
 }
 
-@media (min-width: 1024px) {
-  .case-wave-zoom-grid {
-    grid-template-columns: repeat(7, 1fr);
-  }
+.case-wave-zoom-picture {
+  display: block;
+  width: 100%;
 }
 
-.case-wave-zoom-img {
+.case-wave-zoom-composite {
   width: 100%;
   height: auto;
   display: block;
-  image-rendering: auto;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transition: filter 180ms linear;
-  filter: none;
-}
-
-.case-wave-zoom-img:nth-child(6),
-.case-wave-zoom-img:nth-child(42) {
-  display: none;
-}
-
-.case-wave-zoom-img:nth-child(23) {
-  order: 1;
-}
-
-.case-wave-zoom-img:nth-child(37) {
-  order: 2;
-}
-
-.case-wave-zoom-img--always-soft {
-  filter: blur(0.28px);
-}
-
-@media (min-width: 1024px) {
-  .case-wave-zoom-img:nth-child(6),
-  .case-wave-zoom-img:nth-child(42) {
-    display: block;
-  }
-
-  .case-wave-zoom-img:nth-child(23),
-  .case-wave-zoom-img:nth-child(37) {
-    order: 0;
-  }
 }
 
 /* SPEC CARDS */

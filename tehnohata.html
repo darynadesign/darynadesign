@@ -1269,28 +1269,19 @@
 
     <!-- ZOOM ANIMATION -->
     <section class="case-tehno-zoom">
-      <div class="case-tehno-zoom-grid">
-        <img src="assets/Tehno/zoom%20animation/1.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/2.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/3.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/4.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/5.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/6.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/10.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/8.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/9.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/7.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/11.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/14.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/12.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/13.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/15.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/16.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/17.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/19.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/18.webp" alt="" class="case-tehno-zoom-img" />
-        <img src="assets/Tehno/zoom%20animation/20.webp" alt="" class="case-tehno-zoom-img" />
-      </div>
+      <picture class="case-tehno-zoom-picture">
+        <source
+          media="(min-width: 1024px)"
+          srcset="assets/Tehno/zoom-animation-composite-desktop.webp"
+        />
+        <img
+          src="assets/Tehno/zoom-animation-composite-mobile.webp"
+          alt=""
+          class="case-tehno-zoom-atlas"
+          decoding="async"
+          fetchpriority="low"
+        />
+      </picture>
     </section>
 
     <!-- KEEP EXPLORING -->
@@ -1845,19 +1836,39 @@
     <script>
       (function () {
         let section = document.querySelector('.case-tehno-zoom');
-        let grid = document.querySelector('.case-tehno-zoom-grid');
-        if (!section || !grid) return;
-        let imgs = grid.querySelectorAll('.case-tehno-zoom-img');
-        let t1 = imgs[16]; // 17.webp — row 2, col 4
-        let t2 = imgs[6];  // 10.webp — row 2, col 2
-        let t3 = imgs[12]; // 13.webp — row 3, col 3
-        if (!t1 || !t2 || !t3) return;
+        let atlas = document.querySelector('.case-tehno-zoom-atlas');
+        if (!section || !atlas) return;
 
-        function pct(el, gridRect) {
-          let r = el.getBoundingClientRect();
+        function unitSpan(count, gap, pad) {
+          return count + (count - 1) * gap + 2 * pad;
+        }
+
+        function cellCenter(col, row, cols, rows, gap, pad) {
+          let w = unitSpan(cols, gap, pad);
+          let h = unitSpan(rows, gap, pad);
           return {
-            x: 0.5 + (r.left + r.width / 2 - gridRect.left - gridRect.width / 2) / gridRect.width,
-            y: 0.5 + (r.top + r.height / 2 - gridRect.top - gridRect.height / 2) / gridRect.height
+            x: (pad + (col - 1) * (1 + gap) + 0.5) / w,
+            y: (pad + (row - 1) * (1 + gap) + 0.5) / h
+          };
+        }
+
+        function getLayout() {
+          let desktop = window.matchMedia('(min-width: 1024px)').matches;
+          if (desktop) {
+            return {
+              cols: 5,
+              rows: 4,
+              c1: { col: 4, row: 2 }, // 17.webp
+              c2: { col: 2, row: 2 }, // 10.webp
+              c3: { col: 3, row: 3 }  // 12.webp
+            };
+          }
+          return {
+            cols: 4,
+            rows: 5,
+            c1: { col: 3, row: 3 }, // 17.webp
+            c2: { col: 2, row: 2 }, // 10.webp
+            c3: { col: 2, row: 4 }  // 12.webp
           };
         }
 
@@ -1878,7 +1889,7 @@
         }
 
         function setTx(s, tx, ty) {
-          grid.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + s + ')';
+          atlas.style.transform = 'translate3d(' + tx + 'px, ' + ty + 'px, 0) scale(' + s + ')';
         }
 
         let observer = new IntersectionObserver(function (entries) {
@@ -1886,17 +1897,25 @@
           observer.unobserve(section);
 
           let s0 = 1.05;
-          let gr = grid.getBoundingClientRect();
+          let gapRatio = 0.016;
+          let padRatio = gapRatio;
+          let layout = getLayout();
+
+          setTx(s0, 0, 0);
+
+          let gr = atlas.getBoundingClientRect();
           let sr = section.getBoundingClientRect();
           let gW = gr.width / s0;
           let gH = gr.height / s0;
 
-          let c1 = pct(t1, gr);
-          let c2 = pct(t2, gr);
-          let c3 = pct(t3, gr);
+          let c1 = cellCenter(layout.c1.col, layout.c1.row, layout.cols, layout.rows, gapRatio, padRatio);
+          let c2 = cellCenter(layout.c2.col, layout.c2.row, layout.cols, layout.rows, gapRatio, padRatio);
+          let c3 = cellCenter(layout.c3.col, layout.c3.row, layout.cols, layout.rows, gapRatio, padRatio);
 
-          let imgW = t1.getBoundingClientRect().width / s0;
-          let s1 = sr.width * 0.6655 / imgW;
+          let legacyGapPx = 8;
+          let legacyPadPx = 8;
+          let legacyTileW = (gW - (2 * legacyPadPx) - ((layout.cols - 1) * legacyGapPx)) / layout.cols;
+          let s1 = sr.width * 0.6655 / legacyTileW;
 
           let txA = -(c1.x - 0.5) * s1 * gW;
           let tyA = -(c1.y - 0.5) * s1 * gH;
@@ -1946,7 +1965,14 @@
           setTimeout(loop, 440);
         }, { threshold: 0.3 });
 
-        observer.observe(section);
+        if (atlas.complete) {
+          observer.observe(section);
+        } else {
+          atlas.addEventListener('load', function onLoad() {
+            atlas.removeEventListener('load', onLoad);
+            observer.observe(section);
+          }, { once: true });
+        }
       })();
     </script>
   </body>
