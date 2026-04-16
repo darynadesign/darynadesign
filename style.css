@@ -6675,9 +6675,13 @@ picture.case-full-img--gap,
   width: 7vw;
   margin-left: auto;
   text-align: left;
+  font-family: "Onest", sans-serif;
+  font-weight: 400;
   font-size: 1.11vw;
   line-height: 0.76vw;
+  letter-spacing: -0.03em;
   padding-right: 1.18vw;
+  margin-right: 5px;
 }
 
 .case-wave-fundraiser-card .fill-line-top {
@@ -6689,14 +6693,14 @@ picture.case-full-img--gap,
 .case-wave-fundraiser-card .raised-label {
   top: auto;
   left: auto;
-  right: 0;
+  right: 5px;
   width: 7vw;
   text-align: left;
   font-size: 1.11vw;
 }
 
 .case-wave-fundraiser-card:first-child .raised-label {
-  transform: translateY(100%);
+  transform: translateY(88%);
 }
 
 .case-wave-fundraiser-card:last-child .raised-label {
@@ -6704,7 +6708,7 @@ picture.case-full-img--gap,
 }
 
 .case-wave-fundraiser-card .percent-svg {
-  margin-left: -8px;
+  margin-left: -9px;
 }
 
 .case-wave-fundraiser-card .fill-line {
