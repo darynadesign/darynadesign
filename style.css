@@ -6270,6 +6270,7 @@ picture.case-full-img--gap,
 .case-tehno-zoom {
   overflow: hidden;
   background: #E7E7E7;
+  contain: layout style paint;
 }
 
 @media (min-width: 1024px) {
@@ -6894,44 +6895,269 @@ picture.case-full-img--gap,
   }
 }
 
-/* CHEVRONS */
-.case-wave-chevrons {
+/* FRONTLINE UNITS — static composition, both screens scale together */
+.case-wave-frontline {
   position: relative;
+  width: 100%;
   background: #f1f4f9;
-  height: 100vw;
+  overflow: hidden;
+  aspect-ratio: 1440 / 808;
+  font-family: var(--font);
+  color: #060d2d;
 }
 
-@media (min-width: 768px) {
-  .case-wave-chevrons {
-    height: 56.25vw; /* 810/1440 */
-  }
-}
-
-.case-wave-chevrons-left {
+.case-wave-frontline-inner {
   position: absolute;
-  left: 5vw; /* 72/1440 */
-  top: calc(26.91vw + 5vw);
-  width: 63.06vw; /* 908/1440 */
-  height: auto;
-  border-radius: 4px;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 808px;
+  transform: scale(calc(100vw / 1440px));
+  transform-origin: top left;
 }
 
-.case-wave-chevrons-right {
+.case-wave-frontline-desktop {
   position: absolute;
-  left: 77.64vw; /* 1118/1440 */
-  top: calc(26.91vw + 12.64vw);
-  width: 17.36vw; /* 250/1440 */
-  height: auto;
-  border-radius: 4px;
+  top: 72px;
+  left: 72px;
+  width: 908px;
+  height: 568px;
+  background: #ffffff;
+  box-sizing: border-box;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 
-@media (min-width: 768px) {
-  .case-wave-chevrons-left {
-    top: 5vw; /* 72/1440 */
-  }
+.case-wave-frontline-mobile {
+  position: absolute;
+  top: 232px; /* 72 (frame top) + 160 offset */
+  left: 1140px; /* 72 + 908 (frame width) + 160 gap */
+  width: 227px;
+  height: 504px;
+  background: #ffffff;
+  box-sizing: border-box;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 
-  .case-wave-chevrons-right {
-    top: 12.64vw; /* 182/1440 */
+.case-wave-frontline-mobile .fl-cell--label {
+  margin-bottom: 10px;
+}
+.case-wave-frontline-mobile .fl-cell--info {
+  margin-bottom: 20px;
+}
+
+.fl-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.case-wave-frontline-desktop .fl-cell {
+  padding: 0;
+}
+
+.case-wave-frontline-desktop .fl-cell::after,
+.case-wave-frontline-desktop .fl-cell::before {
+  content: "";
+  position: absolute;
+  background: rgba(54, 56, 255, 0.45);
+}
+.case-wave-frontline-desktop .fl-cell::after {
+  right: 0;
+  top: calc(50% - 77px);
+  height: 154px;
+  width: 1px;
+}
+.case-wave-frontline-desktop .fl-cell::before {
+  bottom: 0;
+  left: calc(50% - 77px);
+  width: 154px;
+  height: 1px;
+}
+.case-wave-frontline-desktop .fl-cell--last-col::after,
+.case-wave-frontline-desktop .fl-cell--count::after {
+  display: none;
+}
+.case-wave-frontline-desktop .fl-cell--last-row::before,
+.case-wave-frontline-desktop .fl-cell--count::before {
+  display: none;
+}
+
+/* Info spans 2 cols — render TWO bottom dividers aligned with col 4 and col 5 centers */
+.case-wave-frontline-desktop .fl-cell--info::before,
+.case-wave-frontline-desktop .fl-cell--info::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  right: auto;
+  height: 1px;
+  width: 154px;
+  background: rgba(54, 56, 255, 0.45);
+  display: block;
+}
+.case-wave-frontline-desktop .fl-cell--info::before {
+  left: calc(25% - 77px);
+}
+.case-wave-frontline-desktop .fl-cell--info::after {
+  left: calc(75% - 77px);
+}
+
+/* Label */
+.fl-cell--label {
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  font-family: "Onest", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #3638ff;
+}
+.fl-cell--label p {
+  margin: 0;
+}
+.case-wave-frontline-desktop .fl-cell--label {
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 8px;
+}
+.case-wave-frontline-mobile .fl-cell--label {
+  font-size: 9px;
+  line-height: 1.2;
+  padding: 0;
+}
+
+/* Info block (heading + description) */
+.fl-cell--info {
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+.case-wave-frontline-desktop .fl-cell--info {
+  grid-column: span 2;
+  gap: 20px;
+  padding: 8px 8px 27px 37px;
+}
+.case-wave-frontline-mobile .fl-cell--info {
+  padding: 0;
+  gap: 6px;
+}
+
+.fl-heading {
+  margin: 0;
+  font-family: "Kharkiv Tone", sans-serif;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #060d2d;
+}
+.case-wave-frontline-desktop .fl-heading {
+  font-size: 30px;
+}
+.case-wave-frontline-mobile .fl-heading {
+  font-size: 20px;
+}
+
+.fl-desc {
+  margin: 0;
+  font-family: "Onest", sans-serif;
+  font-weight: 400;
+  color: rgba(6, 13, 45, 0.7);
+}
+.case-wave-frontline-desktop .fl-desc,
+.case-wave-frontline-mobile .fl-desc {
+  font-size: 10px;
+  line-height: 1.2;
+}
+.case-wave-frontline-desktop .fl-desc {
+  max-width: 250px;
+}
+
+/* Chevrons */
+.fl-img {
+  width: 154px;
+  height: 154px;
+  object-fit: contain;
+  display: block;
+}
+.case-wave-frontline-mobile .fl-cell--chevron-m {
+  flex: 1 1 0;
+  padding: 0;
+}
+
+/* +184 counter */
+.fl-cell--count {
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 0;
+}
+.case-wave-frontline-desktop .fl-cell--count {
+  padding: 8px 8px 0 8px;
+}
+.fl-plus {
+  display: block;
+  color: #3638ff;
+  flex-shrink: 0;
+}
+.case-wave-frontline-desktop .fl-plus {
+  width: auto;
+  height: 36px;
+}
+.fl-count-num {
+  font-family: "Kharkiv Tone", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #3638ff;
+  white-space: nowrap;
+}
+.case-wave-frontline-desktop .fl-count-num {
+  font-size: 40px;
+}
+.fl-count-label {
+  margin: 0;
+  font-family: "Kharkiv Tone", sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #3638ff;
+}
+.case-wave-frontline-desktop .fl-count-label {
+  font-size: 15px;
+}
+
+.fl-count-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.fl-cell--empty {
+  /* placeholder to preserve grid flow */
+}
+
+/* Below desktop: stretch section bg to 1:1, center frames vertically
+   so top of large frame and bottom of mobile frame have equal padding. */
+@media (max-width: 1023px) {
+  .case-wave-frontline {
+    aspect-ratio: 1 / 1;
+  }
+  .case-wave-frontline-inner {
+    height: 1440px;
+  }
+  .case-wave-frontline-desktop {
+    top: 388px;
+  }
+  .case-wave-frontline-mobile {
+    top: 548px;
   }
 }
 
