@@ -576,9 +576,12 @@
         <div class="case-wave-ut-card">
           <p class="before-after-label case-wave-ut-before-label">BEFORE</p>
           <div class="case-wave-ut-card-img">
-            <img
-              src="assets/Wave/user%20testing%201.webp"
-              alt="For the military page — user testing finding" />
+            <img class="case-wave-ut-img-before"
+              src="assets/Wave/UT1%20before.webp"
+              alt="For the military — before user testing" />
+            <img class="case-wave-ut-img-after"
+              src="assets/Wave/UT1%20after.webp"
+              alt="For the military — after user testing" />
           </div>
           <div class="case-wave-ut-card-body">
             <p class="case-wave-ut-num">/01 FOR THE MILITARY</p>
@@ -603,9 +606,12 @@
 
         <div class="case-wave-ut-card">
           <div class="case-wave-ut-card-img">
-            <img
-              src="assets/Wave/user%20testing%202.webp"
-              alt="Principles layout — user testing finding" />
+            <img class="case-wave-ut-img-before"
+              src="assets/Wave/user%20testing%202%20before.webp"
+              alt="Principles layout — before user testing" />
+            <img class="case-wave-ut-img-after"
+              src="assets/Wave/user%20testing%202%20after.webp"
+              alt="Principles layout — after user testing" />
           </div>
           <div class="case-wave-ut-card-body">
             <p class="case-wave-ut-num">/02 PRINCIPLES LAYOUT</p>
@@ -631,9 +637,12 @@
 
         <div class="case-wave-ut-card">
           <div class="case-wave-ut-card-img">
-            <img
-              src="assets/Wave/user%20testing%203.webp"
-              alt="Subscription priority — user testing finding" />
+            <img class="case-wave-ut-img-before"
+              src="assets/Wave/UT3%20before.webp"
+              alt="One-click donation — before user testing" />
+            <img class="case-wave-ut-img-after"
+              src="assets/Wave/UT3%20after.webp"
+              alt="One-click donation — after user testing" />
           </div>
           <div class="case-wave-ut-card-body">
             <p class="case-wave-ut-num">/03 ONE-CLICK DONATION</p>
@@ -734,6 +743,14 @@
             header.offsetHeight + "px"
           );
         }).observe(header);
+
+        let marquee = document.querySelector(".case-wave-in-marquee");
+        if (marquee) {
+          new IntersectionObserver(
+            ([entry]) => marquee.classList.toggle("is-visible", entry.isIntersecting),
+            { threshold: 0 },
+          ).observe(marquee);
+        }
       })();
     </script>
 
@@ -1034,174 +1051,15 @@
     <!-- ZOOM ANIMATION -->
     <section class="case-wave-zoom">
       <div class="case-wave-zoom-grid">
-        <img
-          src="assets/Wave/zoom%20animation/1.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/2.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/3.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/4.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/5.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/6.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/7.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/8.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/9.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/10.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/11.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/12.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/13.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/14.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/15.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/16.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/17.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/18.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/19.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/20.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/21.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/22.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/23.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/24.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/25.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/26.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/27.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/28.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/29.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/30.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/31.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/32.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/33.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/34.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/35.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/36.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/37.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/38.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/39.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/40.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/41.webp"
-          alt=""
-          class="case-wave-zoom-img" />
-        <img
-          src="assets/Wave/zoom%20animation/42.webp"
-          alt=""
-          class="case-wave-zoom-img" />
+        <picture class="case-wave-zoom-picture">
+          <source
+            srcset="assets/Wave/zoom-animation-composite-mobile.webp"
+            media="(max-width: 1023px)" />
+          <img
+            src="assets/Wave/zoom-animation-composite-desktop.webp"
+            alt=""
+            class="case-wave-zoom-composite" />
+        </picture>
       </div>
     </section>
 
@@ -1517,10 +1375,8 @@
       (function () {
         let section = document.querySelector(".case-wave-zoom");
         let grid = document.querySelector(".case-wave-zoom-grid");
-        if (!section || !grid) return;
-        let imgs = grid.querySelectorAll(".case-wave-zoom-img");
-        let target = grid.querySelectorAll(".case-wave-zoom-img")[24]; // image 25
-        if (!target) return;
+        let atlas = grid ? grid.querySelector(".case-wave-zoom-composite") : null;
+        if (!section || !grid || !atlas) return;
 
         let s0 = 5;
         let s1 = 1.05;
@@ -1528,178 +1384,24 @@
         let initialized = false;
         let rafId = 0;
         let timerId = 0;
-        let blurTimers = [];
         let tx0, ty0;
         let dpr = window.devicePixelRatio || 1;
-        let smallTilesClassOn = false;
-        let smallTilesEnter = 1.32;
-        let smallTilesExit = 1.42;
-        let maxSoftenDelay = 1300;
-        let softenJitter = 220;
-
-        function uniqueSortedWithTolerance(values, tolerance) {
-          let sorted = values.slice().sort(function (a, b) {
-            return a - b;
-          });
-          let unique = [];
-          sorted.forEach(function (v) {
-            if (
-              unique.length === 0 ||
-              Math.abs(v - unique[unique.length - 1]) > tolerance
-            ) {
-              unique.push(v);
-            }
-          });
-          return unique;
-        }
-
-        function nearestIndex(values, target) {
-          let bestIdx = 0;
-          let bestDist = Infinity;
-          values.forEach(function (v, i) {
-            let d = Math.abs(v - target);
-            if (d < bestDist) {
-              bestDist = d;
-              bestIdx = i;
-            }
-          });
-          return bestIdx;
-        }
-
-        function assignOuterRingClasses() {
-          let visible = Array.from(imgs).filter(function (img) {
-            return img.offsetParent !== null;
-          });
-
-          imgs.forEach(function (img) {
-            img.classList.remove("case-wave-zoom-img--always-soft");
-          });
-          if (visible.length === 0) return;
-
-          let xs = visible.map(function (img) {
-            let r = img.getBoundingClientRect();
-            return r.left + r.width / 2;
-          });
-          let ys = visible.map(function (img) {
-            let r = img.getBoundingClientRect();
-            return r.top + r.height / 2;
-          });
-
-          let cols = uniqueSortedWithTolerance(xs, 2);
-          let rows = uniqueSortedWithTolerance(ys, 2);
-          if (cols.length < 3 || rows.length < 3) return;
-
-          visible.forEach(function (img) {
-            let r = img.getBoundingClientRect();
-            let cxImg = r.left + r.width / 2;
-            let cyImg = r.top + r.height / 2;
-            let col = nearestIndex(cols, cxImg);
-            let row = nearestIndex(rows, cyImg);
-            let ring = Math.min(
-              row,
-              col,
-              rows.length - 1 - row,
-              cols.length - 1 - col,
-            );
-            if (ring <= 1) {
-              img.classList.add("case-wave-zoom-img--always-soft");
-            }
-          });
-        }
-
-        function clearBlurTimers() {
-          blurTimers.forEach(function (id) {
-            clearTimeout(id);
-          });
-          blurTimers = [];
-        }
-
-        function setImgBlur(img, smallPhaseOn) {
-          let alwaysSoft = img.classList.contains("case-wave-zoom-img--always-soft");
-          if (smallPhaseOn || alwaysSoft) {
-            img.style.filter = "blur(0.28px)";
-          } else {
-            img.style.filter = "none";
-          }
-        }
-
-        function applySmallPhaseBlur(smallPhaseOn) {
-          clearBlurTimers();
-          imgs.forEach(function (img) {
-            let delay = 0;
-            if (smallPhaseOn) {
-              delay = parseFloat(
-                img.style.getPropertyValue("--soften-delay") || "0",
-              );
-            }
-            let id = setTimeout(function () {
-              setImgBlur(img, smallPhaseOn);
-            }, delay);
-            blurTimers.push(id);
-          });
-        }
-
-        function assignSoftenDelays() {
-          let gridRect = grid.getBoundingClientRect();
-          let cx = gridRect.left + gridRect.width / 2;
-          let cy = gridRect.top + gridRect.height / 2;
-          let distances = [];
-          let maxDist = 0;
-
-          imgs.forEach(function (img) {
-            if (img.offsetParent === null) {
-              distances.push(0);
-              return;
-            }
-            let r = img.getBoundingClientRect();
-            let dx = r.left + r.width / 2 - cx;
-            let dy = r.top + r.height / 2 - cy;
-            let dist = Math.hypot(dx, dy);
-            distances.push(dist);
-            if (dist > maxDist) maxDist = dist;
-          });
-
-          if (maxDist === 0) maxDist = 1;
-
-          imgs.forEach(function (img, i) {
-            let norm = distances[i] / maxDist; // edge: ~1, center: ~0
-            let weighted = Math.pow(1 - norm, 1.8) * maxSoftenDelay; // edges switch first, center much later
-            let jitter = Math.random() * softenJitter;
-            img.style.setProperty(
-              "--soften-delay",
-              Math.round(weighted + jitter) + "ms",
-            );
-          });
-        }
-
-        assignOuterRingClasses();
-        assignSoftenDelays();
-        applySmallPhaseBlur(false);
-        window.addEventListener(
-          "resize",
-          function () {
-            assignOuterRingClasses();
-            assignSoftenDelays();
-            applySmallPhaseBlur(smallTilesClassOn);
-          },
-          { passive: true },
-        );
 
         function easeOut(t) {
           return 1 - Math.pow(1 - t, 2);
+        }
+
+        function focusPoint() {
+          if (window.matchMedia("(min-width: 1024px)").matches) {
+            return { x: 0.5, y: 0.5833333333 };
+          }
+          return { x: 0.5, y: 0.5625 };
         }
 
         function setTx(s, tx, ty) {
           let sx = Math.round(s * 1000) / 1000;
           let snappedTx = Math.round(tx * dpr) / dpr;
           let snappedTy = Math.round(ty * dpr) / dpr;
-          let isSmallTilesPhase = smallTilesClassOn
-            ? sx < smallTilesExit
-            : sx <= smallTilesEnter;
-          if (isSmallTilesPhase !== smallTilesClassOn) {
-            applySmallPhaseBlur(isSmallTilesPhase);
-            smallTilesClassOn = isSmallTilesPhase;
-          }
           grid.style.transform =
             "translate(" +
             snappedTx +
@@ -1716,7 +1418,8 @@
             if (!visible) return;
             if (!start) start = ts;
             let p = Math.min((ts - start) / 8000, 1);
-            let t = easeOut(p);
+            let pBlue = Math.min(p * 1.25, 1);
+            let t = easeOut(pBlue);
             setTx(s0 + (s1 - s0) * t, tx0 * (1 - t), ty0 * (1 - t));
             if (p < 1) rafId = requestAnimationFrame(frame);
             else if (done) done();
@@ -1742,23 +1445,36 @@
         }
 
         function init() {
+          if (!atlas.naturalWidth || !atlas.naturalHeight) return false;
           let gr = grid.getBoundingClientRect();
-          let tr = target.getBoundingClientRect();
+          let focus = focusPoint();
           let gW = gr.width / s0;
           let gH = gr.height / s0;
-          let cx = (tr.left + tr.width / 2 - gr.left - gr.width / 2) / gr.width;
-          let cy =
-            (tr.top + tr.height / 2 - gr.top - gr.height / 2) / gr.height;
-          tx0 = -cx * s0 * gW;
-          ty0 = -cy * s0 * gH;
+          tx0 = -(focus.x - 0.5) * s0 * gW;
+          ty0 = -(focus.y - 0.5) * s0 * gH;
           initialized = true;
+          return true;
         }
+
+        atlas.addEventListener("load", function () {
+          initialized = false;
+          if (visible) {
+            if (init()) setTx(s0, tx0, ty0);
+          }
+        });
+
+        window.addEventListener("resize", function () {
+          initialized = false;
+          if (visible) {
+            if (init()) setTx(s0, tx0, ty0);
+          }
+        }, { passive: true });
 
         let observer = new IntersectionObserver(
           function (entries) {
             visible = entries[0].isIntersecting;
             if (visible) {
-              if (!initialized) init();
+              if (!initialized && !init()) return;
               loop();
             } else {
               stop();
@@ -1834,6 +1550,65 @@
         window.addEventListener("resize", function () {
           if (running) position(false);
         });
+      })();
+    </script>
+    <script>
+      (function () {
+        let section = document.querySelector(".case-wave-ut");
+        let cards = section.querySelectorAll(".case-wave-ut-card");
+        let label = section.querySelector(".case-wave-ut-before-label");
+        let originalText = label.textContent;
+        let stagger = 120;
+        let timers = [];
+        let running = false;
+
+        function showAfter() {
+          label.textContent = "AFTER";
+          cards.forEach(function (card, i) {
+            timers.push(setTimeout(function () {
+              card.classList.add("case-wave-ut-card--show-after");
+            }, i * stagger));
+          });
+        }
+
+        function showBefore() {
+          label.textContent = originalText;
+          cards.forEach(function (card, i) {
+            timers.push(setTimeout(function () {
+              card.classList.remove("case-wave-ut-card--show-after");
+            }, i * stagger));
+          });
+        }
+
+        function loop() {
+          if (!running) return;
+          timers.push(setTimeout(function () {
+            showAfter();
+            timers.push(setTimeout(function () {
+              showBefore();
+              timers.push(setTimeout(loop, 3000));
+            }, 3000));
+          }, 1000));
+        }
+
+        function stop() {
+          running = false;
+          timers.forEach(clearTimeout);
+          timers = [];
+          cards.forEach(function (card) {
+            card.classList.remove("case-wave-ut-card--show-after");
+          });
+          label.textContent = originalText;
+        }
+
+        let observer = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            if (!running) { running = true; loop(); }
+          } else {
+            stop();
+          }
+        }, { threshold: 0.3 });
+        observer.observe(section);
       })();
     </script>
   </body>

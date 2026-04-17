@@ -758,6 +758,14 @@ nav.dark .nav-hamburger::after {
   display: block;
 }
 
+.case-image-link {
+  display: contents;
+}
+
+.case-image-link > .case-image {
+  cursor: pointer;
+}
+
 /* CASES — desktop */
 @media (min-width: 1024px) {
   .case-item {
@@ -808,6 +816,11 @@ nav.dark .nav-hamburger::after {
     height: auto;
     max-width: 100%;
     object-fit: contain;
+  }
+
+  .case-image-link > .case-image {
+    pointer-events: none;
+    cursor: default;
   }
 }
 
@@ -3378,6 +3391,11 @@ picture.case-full-img--gap,
   background: url("assets/Landing/long%20page%20for%20scroll.webp") top / 100%
     auto no-repeat;
   animation: clothes-scroll 14s cubic-bezier(0.1, 0.6, 0.3, 1) 0.5s infinite;
+  animation-play-state: paused;
+}
+
+.scene-clothes.is-visible .scene-clothes-desktop {
+  animation-play-state: running;
 }
 
 @keyframes clothes-scroll {
@@ -4539,6 +4557,8 @@ picture.case-full-img--gap,
 }
 
 .case-wave-ut-card-img {
+  position: relative;
+  overflow: hidden;
   background: white;
   border-radius: 4px;
   margin-bottom: 32px;
@@ -4548,6 +4568,25 @@ picture.case-full-img--gap,
   display: block;
   width: 100%;
   height: auto;
+}
+
+.case-wave-ut-img-before,
+.case-wave-ut-img-after {
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.case-wave-ut-img-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.case-wave-ut-card--show-after .case-wave-ut-img-before { opacity: 0; }
+.case-wave-ut-card--show-after .case-wave-ut-img-after { opacity: 1; }
+
+.case-wave-ut-before-label {
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .case-wave-ut-num {
@@ -6255,6 +6294,22 @@ picture.case-full-img--gap,
   will-change: transform;
 }
 
+@media (max-width: 1023px) {
+  .case-tehno-zoom-picture {
+    position: relative;
+    aspect-ratio: 6660 / 7278;
+    overflow: hidden;
+  }
+
+  .case-tehno-zoom-atlas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: 100%;
+  }
+}
+
 
 /* ============================================================
    CASE STUDY — CAROUSEL SHOWCASE
@@ -6403,7 +6458,12 @@ picture.case-full-img--gap,
   gap: 28px;
   white-space: nowrap;
   animation: wave-marquee 15s linear infinite;
+  animation-play-state: paused;
   will-change: transform;
+}
+
+.case-wave-in-marquee.is-visible .case-wave-in-marquee-track {
+  animation-play-state: running;
 }
 
 .case-wave-in-marquee-track span {

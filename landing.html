@@ -755,6 +755,15 @@
     </footer>
 
     <script>
+      (function () {
+        const scene = document.querySelector(".scene-clothes");
+        if (!scene) return;
+        new IntersectionObserver(
+          ([entry]) => scene.classList.toggle("is-visible", entry.isIntersecting),
+          { threshold: 0 },
+        ).observe(scene);
+      })();
+
       if (window.matchMedia("(max-width: 1023px)").matches) {
         const cards = document.querySelectorAll(".colour-palette-card");
         const io = new IntersectionObserver(
@@ -802,13 +811,25 @@
           cursorY = e.clientY;
         });
 
-        (function followCursor() {
+        let followRaf = 0;
+        function followCursor() {
           dotX += (cursorX - dotX) * EASE;
           dotY += (cursorY - dotY) * EASE;
           cursor.style.left = dotX + "px";
           cursor.style.top = dotY + "px";
-          requestAnimationFrame(followCursor);
-        })();
+          followRaf = requestAnimationFrame(followCursor);
+        }
+        new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting && !followRaf) {
+              followRaf = requestAnimationFrame(followCursor);
+            } else if (!entry.isIntersecting && followRaf) {
+              cancelAnimationFrame(followRaf);
+              followRaf = 0;
+            }
+          },
+          { threshold: 0 },
+        ).observe(section);
 
         const table = section.querySelector(".price-list-table");
 
@@ -954,6 +975,8 @@
         let ctaPositions = ["36.8%", "32.2%"];
         let current = 0;
         let HOLD = 1250;
+        let running = false;
+        let cycleTimer = 0;
 
         // Max offsets per position: ramp 20→50
         let maxOffsets = allItems.map(function (_, i) {
@@ -1008,6 +1031,7 @@
           let start = performance.now();
 
           function frame(now) {
+            if (!running) return;
             let t = (now - start) / duration; // 0→1
             if (t > 1) t = 1;
             // Wave center position (in item-index space, relative to sequence)
@@ -1041,23 +1065,40 @@
         }
 
         function cycle() {
+          if (!running) return;
           if (current === 0) {
             wave(2, 6, function () {
+              if (!running) return;
               current = 1;
               activate(1);
-              setTimeout(cycle, HOLD);
+              cycleTimer = setTimeout(cycle, HOLD);
             });
           } else {
             wave(5, 1, function () {
+              if (!running) return;
               current = 0;
               activate(0);
-              setTimeout(cycle, HOLD);
+              cycleTimer = setTimeout(cycle, HOLD);
             });
           }
         }
 
         activate(0);
-        setTimeout(cycle, HOLD);
+
+        new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting && !running) {
+              running = true;
+              cycleTimer = setTimeout(cycle, HOLD);
+            } else if (!entry.isIntersecting && running) {
+              running = false;
+              clearTimeout(cycleTimer);
+              cycleTimer = 0;
+              allItems.forEach((el) => (el.style.transform = ""));
+            }
+          },
+          { threshold: 0 },
+        ).observe(body);
       })();
     </script>
   </body>
