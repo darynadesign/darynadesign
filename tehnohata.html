@@ -1839,33 +1839,32 @@
         let atlas = document.querySelector('.case-tehno-zoom-atlas');
         if (!section || !atlas) return;
 
-        function unitSpan(count, gap, pad) {
-          return count + (count - 1) * gap + 2 * pad;
-        }
-
-        function cellCenter(col, row, cols, rows, gap, pad) {
-          let w = unitSpan(cols, gap, pad);
-          let h = unitSpan(rows, gap, pad);
-          return {
-            x: (pad + (col - 1) * (1 + gap) + 0.5) / w,
-            y: (pad + (row - 1) * (1 + gap) + 0.5) / h
-          };
+        function cellCenter(col, row, L) {
+          let xPx = L.padX + (col - 1) * (L.tileW + L.colGap) + L.tileW / 2;
+          let yPx = L.padY + (row - 1) * (L.tileH + L.rowGap) + L.tileH / 2;
+          return { x: xPx / L.atlasW, y: yPx / L.atlasH };
         }
 
         function getLayout() {
           let desktop = window.matchMedia('(min-width: 1024px)').matches;
           if (desktop) {
             return {
-              cols: 5,
-              rows: 4,
+              cols: 5, rows: 4,
+              atlasW: 15750, atlasH: 7640,
+              tileW: 3089, tileH: 1910,
+              colGap: 61, rowGap: 0, padX: 0, padY: 0,
+              fillRatio: 0.6655,
               c1: { col: 4, row: 2 }, // 17.webp
               c2: { col: 2, row: 2 }, // 10.webp
               c3: { col: 3, row: 3 }  // 12.webp
             };
           }
           return {
-            cols: 4,
-            rows: 5,
+            cols: 4, rows: 5,
+            atlasW: 12600, atlasH: 9550,
+            tileW: 3090, tileH: 1910,
+            colGap: 60, rowGap: 0, padX: 0, padY: 0,
+            fillRatio: 0.5,
             c1: { col: 3, row: 3 }, // 17.webp
             c2: { col: 2, row: 2 }, // 10.webp
             c3: { col: 2, row: 4 }  // 12.webp
@@ -1888,8 +1887,10 @@
           requestAnimationFrame(frame);
         }
 
+        let baseX = 0;
+        let baseY = 0;
         function setTx(s, tx, ty) {
-          atlas.style.transform = 'translate3d(' + tx + 'px, ' + ty + 'px, 0) scale(' + s + ')';
+          atlas.style.transform = 'translate3d(' + (tx + baseX) + 'px, ' + (ty + baseY) + 'px, 0) scale(' + s + ')';
         }
 
         let observer = new IntersectionObserver(function (entries) {
@@ -1897,8 +1898,6 @@
           observer.unobserve(section);
 
           let s0 = 1.05;
-          let gapRatio = 0.016;
-          let padRatio = gapRatio;
           let layout = getLayout();
 
           setTx(s0, 0, 0);
@@ -1908,14 +1907,15 @@
           let gW = gr.width / s0;
           let gH = gr.height / s0;
 
-          let c1 = cellCenter(layout.c1.col, layout.c1.row, layout.cols, layout.rows, gapRatio, padRatio);
-          let c2 = cellCenter(layout.c2.col, layout.c2.row, layout.cols, layout.rows, gapRatio, padRatio);
-          let c3 = cellCenter(layout.c3.col, layout.c3.row, layout.cols, layout.rows, gapRatio, padRatio);
+          baseX = (sr.left + sr.width / 2) - (gr.left + gr.width / 2);
+          baseY = (sr.top + sr.height / 2) - (gr.top + gr.height / 2);
+          setTx(s0, 0, 0);
 
-          let legacyGapPx = 8;
-          let legacyPadPx = 8;
-          let legacyTileW = (gW - (2 * legacyPadPx) - ((layout.cols - 1) * legacyGapPx)) / layout.cols;
-          let s1 = sr.width * 0.6655 / legacyTileW;
+          let c1 = cellCenter(layout.c1.col, layout.c1.row, layout);
+          let c2 = cellCenter(layout.c2.col, layout.c2.row, layout);
+          let c3 = cellCenter(layout.c3.col, layout.c3.row, layout);
+
+          let s1 = layout.fillRatio / (layout.tileW / layout.atlasW);
 
           let txA = -(c1.x - 0.5) * s1 * gW;
           let tyA = -(c1.y - 0.5) * s1 * gH;
