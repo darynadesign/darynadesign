@@ -6594,19 +6594,25 @@ picture.case-full-img--gap,
   height: auto;
 }
 
+/* overlay matches the mockup's bounding box so header/track track the
+   mockup when the section aspect changes (mobile = 1:1 square). */
 .case-wave-media-overlay {
   position: absolute;
-  inset: 0;
+  left: 15.269vw;
+  right: 15.269vw;
+  top: 50%;
+  transform: translateY(-45.87%);
+  height: 51.723vw;                           /* 69.463 × 2181/2929 */
   pointer-events: none;
   color: #fff;
 }
 
 .case-wave-media-header {
   position: absolute;
-  top: 9.907vw;
-  /* visible card edge (20.49vw) + 20px */
-  left: calc(20.49vw + 1.389vw);
-  right: calc(20.49vw + 1.389vw);
+  /* offsets relative to the mockup's top/sides */
+  top: 5.502vw;
+  left: 6.61vw;
+  right: 6.61vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6629,12 +6635,12 @@ picture.case-full-img--gap,
 
 .case-wave-media-track {
   position: absolute;
-  top: 17.255vw;
-  left: calc(20.49vw + 6.25vw);               /* visible card left + 90 */
+  /* offsets relative to the mockup's top/left/right */
+  top: 12.85vw;
+  left: 11.471vw;                             /* visible card left + 90 from mockup edge */
   /* clip at the wave image's drawing edge (inside the browser mockup);
-     measured: soft edge fades to alpha<30 at native x=2739 of 2929
-     canvas = 80.236vw from section left = 19.764vw from section right */
-  right: 19.764vw;
+     4.495vw inset from mockup's right so the last card crops naturally */
+  right: 4.495vw;
   display: flex;
   gap: 0.625vw;                               /* 9/1440 */
   overflow: hidden;
