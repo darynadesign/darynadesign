@@ -6704,6 +6704,7 @@ picture.case-full-img--gap,
   display: flex;
   align-items: center;
   container-type: inline-size;
+  position: relative;
 }
 
 .case-wave-fundraiser-card:first-child {
@@ -6715,6 +6716,7 @@ picture.case-full-img--gap,
   width: 100%;
   margin-left: 0;
   padding-bottom: 0;
+  transform: translateY(4cqi);
 }
 
 .case-wave-fundraiser-card .percent-number {
@@ -6723,7 +6725,7 @@ picture.case-full-img--gap,
 }
 
 .case-wave-fundraiser-card .percent-stroke {
-  stroke-width: 0.205cqi;
+  stroke-width: 1.5px;
 }
 
 .case-wave-fundraiser-card .progress-target {
@@ -6742,8 +6744,8 @@ picture.case-full-img--gap,
 
 .case-wave-fundraiser-card .fill-line-top {
   display: block;
-  height: 2px;
-  margin-bottom: -1.43cqi;
+  height: 1.5px;
+  margin-bottom: -1.1cqi;
 }
 
 .case-wave-fundraiser-card .raised-label {
@@ -6756,11 +6758,11 @@ picture.case-full-img--gap,
 }
 
 .case-wave-fundraiser-card:first-child .raised-label {
-  transform: translateY(100%);
+  transform: translateY(84%);
 }
 
 .case-wave-fundraiser-card:last-child .raised-label {
-  transform: translateY(16%);
+  transform: translateY(3px);
 }
 
 .case-wave-fundraiser-card .percent-svg {
@@ -6768,7 +6770,7 @@ picture.case-full-img--gap,
 }
 
 .case-wave-fundraiser-card .fill-line {
-  height: 2px;
+  height: 1.5px;
   clip-path: none;
   transform: none;
 }
@@ -7042,7 +7044,7 @@ picture.case-full-img--gap,
 }
 .case-wave-frontline-desktop .fl-cell--info {
   grid-column: span 2;
-  gap: 20px;
+  gap: 10px;
   padding: 8px 8px 27px 37px;
 }
 .case-wave-frontline-mobile .fl-cell--info {

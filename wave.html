@@ -1605,10 +1605,7 @@
               fill.textContent = `${value}${suffix}`;
               if (!cache) rebuildCache();
 
-              const fillY = fundraiserMode
-                ? cache.digitBottomY -
-                  (value / 100) * (cache.digitBottomY - cache.targetLineY)
-                : cache.wrapBottom - (value / 100) * cache.wrapH;
+              const fillY = cache.wrapBottom - (value / 100) * cache.wrapH;
 
               const clipTop = fillY - cache.svgTop - cache.fillLineH;
               fillClipRect.setAttribute("y", clipTop);
