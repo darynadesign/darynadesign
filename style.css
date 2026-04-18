@@ -6581,6 +6581,20 @@ picture.case-full-img--gap,
   object-fit: cover;
 }
 
+/* wrapper for the mockup + overlay; scaled down on desktop/tablet so the
+   browser and its animated deck appear smaller inside the background. */
+.case-wave-media-inner {
+  position: absolute;
+  inset: 0;
+}
+
+@media (min-width: 768px) {
+  .case-wave-media-inner {
+    transform: scale(0.8);
+    transform-origin: center center;
+  }
+}
+
 .case-wave-media-img {
   /* image canvas includes ~7.5% shadow padding; element is scaled so the
      visible browser mockup renders at 850×596 at 1440 */
