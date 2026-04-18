@@ -6566,6 +6566,13 @@ picture.case-full-img--gap,
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  .case-wave-media {
+    height: auto;
+    aspect-ratio: 1 / 1;                      /* square background on mobile */
+  }
+}
+
 .case-wave-media-bg {
   position: absolute;
   inset: 0;
