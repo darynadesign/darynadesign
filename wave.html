@@ -1318,15 +1318,22 @@
     <!-- ZOOM ANIMATION -->
     <section class="case-wave-zoom">
       <div class="case-wave-zoom-grid">
-        <picture class="case-wave-zoom-picture">
-          <source
-            srcset="assets/Wave/zoom-animation-composite-mobile.webp"
-            media="(max-width: 1023px)" />
+        <div class="case-wave-zoom-stage">
+          <picture class="case-wave-zoom-picture">
+            <source
+              srcset="assets/Wave/zoom-animation-composite-mobile.webp"
+              media="(max-width: 1023px)" />
+            <img
+              src="assets/Wave/zoom-animation-composite-desktop.webp"
+              alt=""
+              class="case-wave-zoom-composite" />
+          </picture>
           <img
-            src="assets/Wave/zoom-animation-composite-desktop.webp"
+            class="case-wave-zoom-overlay"
+            src="assets/Wave/zoom animation/25.webp"
             alt=""
-            class="case-wave-zoom-composite" />
-        </picture>
+            aria-hidden="true" />
+        </div>
       </div>
     </section>
 
@@ -1567,37 +1574,68 @@
 
             let currentValue = 0;
 
+            const fillLineTopEl = container.querySelector(".fill-line-top");
+            const svgEl = container.querySelector(".percent-svg");
+            const fundraiserMode =
+              fillLineTopEl &&
+              getComputedStyle(fillLineTopEl).display !== "none";
+
+            let cache = null;
+            const rebuildCache = () => {
+              const bbox = stroke.getBBox();
+              const wrapRect = wrap.getBoundingClientRect();
+              const svgRect = svgEl.getBoundingClientRect();
+              cache = {
+                textBottom: bbox.y + bbox.height,
+                wrapBottom: wrapRect.bottom,
+                wrapH: wrapRect.height,
+                svgTop: svgRect.top,
+                digitBottomY: svgRect.top + bbox.y + bbox.height,
+                targetLineY: fundraiserMode
+                  ? fillLineTopEl.getBoundingClientRect().bottom
+                  : 0,
+                fillLineH: fillLine.getBoundingClientRect().height,
+                droneRect: droneWrap ? droneWrap.getBoundingClientRect() : null,
+              };
+            };
+
             const setFill = (value) => {
               currentValue = value;
               stroke.textContent = `${value}${suffix}`;
               fill.textContent = `${value}${suffix}`;
+              if (!cache) rebuildCache();
 
-              const bbox = stroke.getBBox();
-              const textBottom = bbox.y + bbox.height;
-              const wrapRect = wrap.getBoundingClientRect();
-              const wrapH = wrapRect.height;
+              const fillY = fundraiserMode
+                ? cache.digitBottomY -
+                  (value / 100) * (cache.digitBottomY - cache.targetLineY)
+                : cache.wrapBottom - (value / 100) * cache.wrapH;
 
-              const clipTop = wrapH * (1 - value / 100);
+              const clipTop = fillY - cache.svgTop - cache.fillLineH;
               fillClipRect.setAttribute("y", clipTop);
-              fillClipRect.setAttribute("height", textBottom - clipTop);
+              fillClipRect.setAttribute("height", cache.textBottom - clipTop);
 
-              fillLine.style.bottom = `${value}%`;
-              if (!droneWrap) raisedLabel.style.bottom = `${value}%`;
+              const bottomPx = cache.wrapBottom - fillY;
+              fillLine.style.bottom = `${bottomPx}px`;
+              if (!droneWrap) raisedLabel.style.bottom = `${bottomPx}px`;
 
-              if (droneWrap && droneFill) {
-                const fillLineY = wrapRect.bottom - (value / 100) * wrapH;
-                const droneRect = droneWrap.getBoundingClientRect();
+              if (droneWrap && droneFill && cache.droneRect) {
+                const fillLineY =
+                  cache.wrapBottom - (value / 100) * cache.wrapH;
                 const droneClipPx = Math.max(
                   0,
-                  Math.min(droneRect.height, fillLineY - droneRect.top),
+                  Math.min(
+                    cache.droneRect.height,
+                    fillLineY - cache.droneRect.top,
+                  ),
                 );
-                droneFill.style.clipPath = `inset(${((droneClipPx / droneRect.height) * 100).toFixed(2)}% 0 0 0)`;
+                droneFill.style.clipPath = `inset(${((droneClipPx / cache.droneRect.height) * 100).toFixed(2)}% 0 0 0)`;
               }
             };
 
             window.addEventListener(
               "resize",
               () => {
+                cache = null;
                 if (currentValue > 0) setFill(currentValue);
               },
               { passive: true },
@@ -1643,10 +1681,22 @@
         let section = document.querySelector(".case-wave-zoom");
         let grid = document.querySelector(".case-wave-zoom-grid");
         let atlas = grid ? grid.querySelector(".case-wave-zoom-composite") : null;
+        let overlay = grid ? grid.querySelector(".case-wave-zoom-overlay") : null;
         if (!section || !grid || !atlas) return;
 
+        function positionOverlay() {
+          if (!overlay) return;
+          let aw = atlas.offsetWidth;
+          let ah = atlas.offsetHeight;
+          if (!aw || !ah) return;
+          overlay.style.left = (atlas.offsetLeft + aw * 4032 / 9348) + "px";
+          overlay.style.top = (atlas.offsetTop + ah * 2754 / 5444) + "px";
+          overlay.style.width = (aw * 1280 / 9348) + "px";
+          overlay.style.height = (ah * 853 / 5444) + "px";
+        }
+
         let s0 = 5;
-        let s1 = 1.05;
+        let s1 = window.matchMedia("(min-width: 1024px)").matches ? 1.02 : 1.05;
         let visible = false;
         let initialized = false;
         let rafId = 0;
@@ -1713,6 +1763,7 @@
 
         function init() {
           if (!atlas.naturalWidth || !atlas.naturalHeight) return false;
+          positionOverlay();
           let gr = grid.getBoundingClientRect();
           let focus = focusPoint();
           let gW = gr.width / s0;
@@ -1725,6 +1776,7 @@
 
         atlas.addEventListener("load", function () {
           initialized = false;
+          positionOverlay();
           if (visible) {
             if (init()) setTx(s0, tx0, ty0);
           }
@@ -1732,6 +1784,7 @@
 
         window.addEventListener("resize", function () {
           initialized = false;
+          positionOverlay();
           if (visible) {
             if (init()) setTx(s0, tx0, ty0);
           }

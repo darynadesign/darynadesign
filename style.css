@@ -7473,6 +7473,11 @@ picture.case-full-img--gap,
   -webkit-backface-visibility: hidden;
 }
 
+.case-wave-zoom-stage {
+  position: relative;
+  width: 100%;
+}
+
 .case-wave-zoom-picture {
   display: block;
   width: 100%;
@@ -7482,6 +7487,18 @@ picture.case-full-img--gap,
   width: 100%;
   height: auto;
   display: block;
+}
+
+.case-wave-zoom-overlay {
+  display: none;
+  position: absolute;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .case-wave-zoom-overlay {
+    display: block;
+  }
 }
 
 /* SPEC CARDS */
