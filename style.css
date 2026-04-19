@@ -1319,8 +1319,14 @@ img[src="assets/violin.svg"].skills-illus {
 
 /* CONTACT — desktop */
 @media (min-width: 1024px) {
+  .contact-footer-wrap {
+    min-height: auto;
+  }
+
   .contact {
     padding: 140px var(--margin) 120px;
+    min-height: 70vh;
+    flex: none;
   }
 
   .contact-grid {
