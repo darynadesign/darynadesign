@@ -1503,6 +1503,7 @@
         let originalText = labels[0].textContent;
         let mobileMq = window.matchMedia("(max-width: 767px)");
         let getStagger = function () { return mobileMq.matches ? 0 : 120; };
+        let getDwell = function () { return mobileMq.matches ? 1500 : 3000; };
         let timers = [];
         let running = false;
 
@@ -1532,12 +1533,13 @@
 
         function loop() {
           if (!running) return;
+          let d = getDwell();
           timers.push(setTimeout(function () {
             showAfter();
             timers.push(setTimeout(function () {
               showBefore();
-              timers.push(setTimeout(loop, 3000));
-            }, 3000));
+              timers.push(setTimeout(loop, d));
+            }, d));
           }, 1000));
         }
 
