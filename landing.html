@@ -1089,7 +1089,7 @@
           ([entry]) => {
             if (entry.isIntersecting && !running) {
               running = true;
-              cycleTimer = setTimeout(cycle, HOLD);
+              cycle();
             } else if (!entry.isIntersecting && running) {
               running = false;
               clearTimeout(cycleTimer);
