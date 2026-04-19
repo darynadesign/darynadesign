@@ -1545,6 +1545,9 @@ img[src="assets/violin.svg"].skills-illus {
 }
 
 .menu-overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
   display: flex;
   align-items: center;
   background: none;
@@ -1552,15 +1555,16 @@ img[src="assets/violin.svg"].skills-illus {
   cursor: pointer;
   font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--black);
   letter-spacing: 0;
-  line-height: 80%;
-  padding: 0;
-  gap: 8px;
+  line-height: 1;
+  padding: 8px 0;
+  gap: 10px;
 }
 
 .menu-close-dot {
+  box-sizing: border-box;
   display: block;
   width: 10px;
   height: 10px;
@@ -5233,6 +5237,19 @@ picture.case-full-img--gap,
   padding: var(--margin);
   max-width: calc(1100px + 2 * 150px);
   margin: 0 auto;
+}
+
+/* On mobile, force the section to a 1:1 ratio. aspect-ratio auto-adjusts
+   the vertical space needed across viewport widths, equivalent to adding
+   equal extra top/bottom padding to center the content. */
+@media (max-width: 767px) {
+  .case-tehno-payment {
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .case-tehno-payment .case-overview-label {
