@@ -174,8 +174,9 @@ img {
 }
 
 .reveal-h1 {
-  letter-spacing: -0.1em;
-  transition: letter-spacing 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  letter-spacing: var(--reveal-lspace, -0.08em);
+  transition: letter-spacing var(--reveal-dur, 600ms)
+    cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -4655,6 +4656,9 @@ picture.case-full-img--gap,
   background: #bfccea;
   color: var(--black);
   padding: 24px var(--margin) 120px;
+  /* overlap 1px with .case-wave-sub above to hide a sub-pixel white gap
+     on mobile caused by its SVG-only background without a solid fallback */
+  margin-top: -1px;
 }
 
 .case-wave-ut-header {
