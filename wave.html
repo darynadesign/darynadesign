@@ -1412,7 +1412,7 @@
     <!-- WAVE FOOTER -->
     <section class="case-wave-footer">
       <video class="case-wave-footer-video" muted loop playsinline preload="none">
-        <source src="assets/Wave/wave%20texture.mp4" type="video/mp4" />
+        <source src="assets/Wave/wave%20texture%20smooth.mp4" type="video/mp4" />
       </video>
       <img
         src="assets/Wave/footer.webp"
@@ -1425,14 +1425,12 @@
         let video = document.querySelector(".case-wave-footer-video");
         if (!footer || !video) return;
 
-        video.playbackRate = 0.8;
         let started = false;
         new IntersectionObserver(
           ([entry]) => {
             if (entry.isIntersecting && !started) {
               started = true;
               video.load();
-              video.playbackRate = 0.8;
               video.play().catch(() => {});
             }
           },
