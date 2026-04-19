@@ -1207,6 +1207,10 @@ img[src="assets/violin.svg"].skills-illus {
   .contact-actions {
     column-gap: 48px;
   }
+
+  .contact-link:last-child {
+    margin-left: 0;
+  }
 }
 
 /* CONTACT — desktop */
