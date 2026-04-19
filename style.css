@@ -2673,6 +2673,12 @@ picture.case-full-img--gap,
   height: auto;
 }
 
+@media (max-width: 767px) {
+  .case-btn-colour-overlay {
+    width: 78%;
+  }
+}
+
 @media (min-width: 768px) {
   .case-btn-colour {
     flex-direction: row;
@@ -6972,12 +6978,15 @@ picture.case-full-img--gap,
   font-size: 3.28cqi;
 }
 
+/* translateY in cqi so label-to-fill-line offset scales proportionally
+   at every card size. Desktop (488px card) is the model: card 1 was
+   84% of label height ≈ 3.031cqi; card 2 was 3px ≈ 0.615cqi. */
 .case-wave-fundraiser-card:first-child .raised-label {
-  transform: translateY(84%);
+  transform: translateY(3.031cqi);
 }
 
 .case-wave-fundraiser-card:last-child .raised-label {
-  transform: translateY(3px);
+  transform: translateY(0.615cqi);
 }
 
 .case-wave-fundraiser-card .percent-svg {
