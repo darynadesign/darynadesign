@@ -7123,6 +7123,16 @@ picture.case-full-img--gap,
   transform-origin: top left;
 }
 
+@media (max-width: 767px) {
+  .case-wave-frontline {
+    aspect-ratio: 1 / 1;
+  }
+
+  .case-wave-frontline-inner {
+    top: calc((100vw - 56.1111vw) / 2);
+  }
+}
+
 .case-wave-frontline-desktop {
   position: absolute;
   top: 72px;

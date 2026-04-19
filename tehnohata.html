@@ -668,6 +668,7 @@
         </div>
 
         <div class="case-tehno-ut-card">
+          <p class="before-after-label case-tehno-ut-before-label">BEFORE</p>
           <div class="case-tehno-ut-card-img">
             <img class="case-tehno-ut-img-before" src="assets/Tehno/testing%202.webp" alt="Product specs — before user testing" />
             <img class="case-tehno-ut-img-after" src="assets/Tehno/02%20product%20specs.webp" alt="Product specs — after user testing" />
@@ -688,6 +689,7 @@
         </div>
 
         <div class="case-tehno-ut-card">
+          <p class="before-after-label case-tehno-ut-before-label">BEFORE</p>
           <div class="case-tehno-ut-card-img">
             <img class="case-tehno-ut-img-before" src="assets/Tehno/testing%203.webp" alt="Top products — before user testing" />
             <img class="case-tehno-ut-img-after" src="assets/Tehno/03%20top%20products.webp" alt="Top products — after user testing" />
@@ -1497,14 +1499,20 @@
       (function () {
         let section = document.querySelector(".case-tehno-ut");
         let cards = section.querySelectorAll(".case-tehno-ut-card");
-        let label = section.querySelector(".case-tehno-ut-before-label");
-        let originalText = label.textContent;
-        let stagger = 120;
+        let labels = section.querySelectorAll(".case-tehno-ut-before-label");
+        let originalText = labels[0].textContent;
+        let mobileMq = window.matchMedia("(max-width: 767px)");
+        let getStagger = function () { return mobileMq.matches ? 0 : 120; };
         let timers = [];
         let running = false;
 
+        function setLabels(text) {
+          labels.forEach(function (l) { l.textContent = text; });
+        }
+
         function showAfter() {
-          label.textContent = "AFTER";
+          setLabels("AFTER");
+          let stagger = getStagger();
           cards.forEach(function (card, i) {
             timers.push(setTimeout(function () {
               card.classList.add("case-tehno-ut-card--show-after");
@@ -1513,7 +1521,8 @@
         }
 
         function showBefore() {
-          label.textContent = originalText;
+          setLabels(originalText);
+          let stagger = getStagger();
           cards.forEach(function (card, i) {
             timers.push(setTimeout(function () {
               card.classList.remove("case-tehno-ut-card--show-after");
@@ -1539,7 +1548,7 @@
           cards.forEach(function (card) {
             card.classList.remove("case-tehno-ut-card--show-after");
           });
-          label.textContent = originalText;
+          setLabels(originalText);
         }
 
         let observer = new IntersectionObserver(function (entries) {

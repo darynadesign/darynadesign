@@ -171,7 +171,7 @@
     <!-- PROJECT OVERVIEW -->
     <section class="case-overview case-overview--po">
       <div class="case-overview-grid">
-        <div class="case-overview-label">
+        <div class="case-overview-label reveal">
           <span class="case-label-dot"></span>
           <span>PROJECT OVERVIEW</span>
         </div>
@@ -347,7 +347,7 @@
       <div class="case-ia-grid">
         <div class="case-ia-left">
           <div class="case-ia-text">
-            <div class="case-overview-label">
+            <div class="case-overview-label reveal">
               <span class="case-label-dot case-label-dot--light"></span>
               <span>PRELIMINARY IA &amp; WIREFRAMING</span>
             </div>
@@ -378,7 +378,7 @@
     <!-- CONCEPT DEVELOPMENT -->
     <section class="case-concept">
       <div class="case-concept-text">
-        <div class="case-overview-label">
+        <div class="case-overview-label reveal">
           <span class="case-label-dot"></span>
           <span>CONCEPT DEVELOPMENT</span>
         </div>
@@ -605,6 +605,7 @@
         </div>
 
         <div class="case-wave-ut-card">
+          <p class="before-after-label case-wave-ut-before-label">BEFORE</p>
           <div class="case-wave-ut-card-img">
             <img class="case-wave-ut-img-before"
               src="assets/Wave/user%20testing%202%20before.webp"
@@ -636,6 +637,7 @@
         </div>
 
         <div class="case-wave-ut-card">
+          <p class="before-after-label case-wave-ut-before-label">BEFORE</p>
           <div class="case-wave-ut-card-img">
             <img class="case-wave-ut-img-before"
               src="assets/Wave/UT3%20before.webp"
@@ -697,7 +699,7 @@
     <!-- IMAGES & NUMBERS -->
     <section class="case-wave-in">
       <div class="case-wave-in-header">
-        <div class="case-overview-label">
+        <div class="case-overview-label reveal">
           <span class="case-label-dot"></span>
           <span>IMAGES &amp; NUMBERS</span>
         </div>
@@ -767,14 +769,14 @@
         class="case-wave-media-img" />
       <div class="case-wave-media-overlay" aria-label="Wave'91 in media coverage">
         <div class="case-wave-media-header">
-          <span class="case-wave-media-label">[ wave'91 in media ]</span>
+          <span class="case-wave-media-label reveal">[ wave'91 in media ]</span>
           <img
             src="assets/Wave/gallery%20arrows.svg"
             alt=""
             class="case-wave-media-arrows"
             aria-hidden="true" />
         </div>
-        <div class="case-wave-media-track">
+        <div class="case-wave-media-track reveal-group">
           <article class="case-wave-media-card">
             <h3 class="case-wave-media-card-title">
               Spider boots, boxers, hoverboards: when Ukrainian troops ask,
@@ -992,7 +994,7 @@
     <!-- FUNDRAISER CARDS -->
     <section class="case-wave-fundraiser">
       <div class="case-wave-fundraiser-header">
-        <div class="case-overview-label">
+        <div class="case-overview-label reveal">
           <span class="case-label-dot"></span>
           <span>tangible impact</span>
         </div>
@@ -1003,7 +1005,7 @@
           impactful.
         </p>
       </div>
-      <div class="case-wave-fundraiser-cards">
+      <div class="case-wave-fundraiser-cards reveal-group">
         <div
           class="case-wave-fundraiser-card"
           style="
@@ -1118,7 +1120,7 @@
         alt="iMac mockup showing Wave'91 Stand With Us partners page"
         class="case-wave-stand-img" />
       <div class="case-wave-stand-header">
-        <div class="case-overview-label">
+        <div class="case-overview-label reveal">
           <span class="case-label-dot"></span>
           <span>stand with us</span>
         </div>
@@ -1136,7 +1138,7 @@
       <div class="case-wave-frontline-inner">
         <!-- Desktop screen -->
         <div class="case-wave-frontline-desktop">
-          <div class="fl-cell fl-cell--label">
+          <div class="fl-cell fl-cell--label reveal">
             <p>[ SUPPORT FOR<br />FRONTLINE UNITS ]</p>
           </div>
           <div class="fl-cell fl-chev-cell" data-chev="0">
@@ -1236,7 +1238,7 @@
 
         <!-- Mobile screen -->
         <div class="case-wave-frontline-mobile">
-          <div class="fl-cell fl-cell--label">
+          <div class="fl-cell fl-cell--label reveal">
             <p>[ SUPPORT FOR<br />FRONTLINE UNITS ]</p>
           </div>
           <div class="fl-cell fl-cell--info">
@@ -1536,8 +1538,8 @@
 
     <!-- RESULTS & KEY LEARNINGS -->
     <section class="case-wave-results">
-      <p class="case-wave-results-label">Results</p>
-      <p class="case-wave-results-heading">
+      <p class="case-wave-results-label reveal">Results</p>
+      <p class="case-wave-results-heading reveal" style="--reveal-delay: 50ms">
         The client approved the final design direction and described it as "a
         distinctive and compelling design that best captures the spirit and core
         mission of the foundation."
@@ -1574,7 +1576,7 @@
 
     <!-- KEEP EXPLORING -->
     <section class="keep-exploring">
-      <p class="keep-exploring-label">KEEP EXPLORING</p>
+      <p class="keep-exploring-label reveal">KEEP EXPLORING</p>
       <div class="keep-exploring-right">
         <div class="keep-exploring-image">
           <picture>
@@ -2108,14 +2110,20 @@
       (function () {
         let section = document.querySelector(".case-wave-ut");
         let cards = section.querySelectorAll(".case-wave-ut-card");
-        let label = section.querySelector(".case-wave-ut-before-label");
-        let originalText = label.textContent;
-        let stagger = 120;
+        let labels = section.querySelectorAll(".case-wave-ut-before-label");
+        let originalText = labels[0].textContent;
+        let mobileMq = window.matchMedia("(max-width: 767px)");
+        let getStagger = function () { return mobileMq.matches ? 0 : 120; };
         let timers = [];
         let running = false;
 
+        function setLabels(text) {
+          labels.forEach(function (l) { l.textContent = text; });
+        }
+
         function showAfter() {
-          label.textContent = "AFTER";
+          setLabels("AFTER");
+          let stagger = getStagger();
           cards.forEach(function (card, i) {
             timers.push(setTimeout(function () {
               card.classList.add("case-wave-ut-card--show-after");
@@ -2124,7 +2132,8 @@
         }
 
         function showBefore() {
-          label.textContent = originalText;
+          setLabels(originalText);
+          let stagger = getStagger();
           cards.forEach(function (card, i) {
             timers.push(setTimeout(function () {
               card.classList.remove("case-wave-ut-card--show-after");
@@ -2150,7 +2159,7 @@
           cards.forEach(function (card) {
             card.classList.remove("case-wave-ut-card--show-after");
           });
-          label.textContent = originalText;
+          setLabels(originalText);
         }
 
         let observer = new IntersectionObserver(function (entries) {
@@ -2161,6 +2170,35 @@
           }
         }, { threshold: 0.3 });
         observer.observe(section);
+      })();
+    </script>
+    <script>
+      (function () {
+        var els = document.querySelectorAll(
+          ".reveal, .reveal-group, .reveal-num, .reveal-h1"
+        );
+        if (!els.length) return;
+        if (!("IntersectionObserver" in window)) {
+          els.forEach(function (el) { el.classList.add("is-in"); });
+          return;
+        }
+        document.querySelectorAll(".reveal-group").forEach(function (g) {
+          Array.from(g.children).forEach(function (c, i) {
+            c.style.setProperty("--reveal-i", i);
+          });
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+        );
+        els.forEach(function (el) { io.observe(el); });
       })();
     </script>
   </body>
