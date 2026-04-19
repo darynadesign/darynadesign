@@ -6674,6 +6674,7 @@ picture.case-full-img--gap,
 
 @media (max-width: 767px) {
   .case-wave-media {
+    --s: 1.5;                                 /* enlarge mockup on mobile */
     height: auto;
     aspect-ratio: 1 / 1;                      /* square background on mobile */
   }
