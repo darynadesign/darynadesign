@@ -6609,11 +6609,14 @@ picture.case-full-img--gap,
 }
 
 /* overlay matches the mockup's bounding box so header/track track the
-   mockup when the section aspect changes (mobile = 1:1 square). */
+   mockup when the section aspect changes (mobile = 1:1 square).
+   Width is explicit (not left+right) so the bounding box is independent
+   of section width — a scrollbar shrinking the section must not drift
+   the track's right-edge clip past the mockup's drawing edge. */
 .case-wave-media-overlay {
   position: absolute;
   left: 15.269vw;
-  right: 15.269vw;
+  width: 69.463vw;
   top: 50%;
   transform: translateY(-45.87%);
   height: 51.723vw;                           /* 69.463 × 2181/2929 */
