@@ -6655,9 +6655,10 @@ picture.case-full-img--gap,
   /* offsets relative to the mockup's top/left/right */
   top: 12.85vw;
   left: 11.471vw;                             /* visible card left + 90 from mockup edge */
-  /* clip at the wave image's drawing edge (inside the browser mockup);
-     4.495vw inset from mockup's right so the last card crops naturally */
-  right: 4.495vw;
+  /* clip at the inner image's right edge (opaque mockup terminus, not
+     including the drop shadow fade) — PNG canvas x=2709 of 2929 =
+     5.216vw inset from overlay/mockup right edge. */
+  right: 5.216vw;
   display: flex;
   gap: 0.625vw;                               /* 9/1440 */
   overflow: hidden;
