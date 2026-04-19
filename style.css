@@ -906,7 +906,7 @@ nav.dark .nav-hamburger::after {
   }
 
   .case-link {
-    margin-top: 72px;
+    margin-top: 48px;
   }
 
   .case-image {
@@ -923,12 +923,8 @@ nav.dark .nav-hamburger::after {
     width: auto;
     height: auto;
     max-width: 100%;
+    max-height: 97vh;
     object-fit: contain;
-  }
-
-  .case-image-link > .case-image {
-    pointer-events: none;
-    cursor: default;
   }
 }
 
