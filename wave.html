@@ -761,12 +761,11 @@
         alt=""
         class="case-wave-media-bg"
         aria-hidden="true" />
-      <div class="case-wave-media-inner">
-        <img
-          src="assets/Wave/wave%20in%20media.webp"
-          alt="Wave'91 coverage in international media"
-          class="case-wave-media-img" />
-        <div class="case-wave-media-overlay" aria-label="Wave'91 in media coverage">
+      <img
+        src="assets/Wave/wave%20in%20media.webp"
+        alt="Wave'91 coverage in international media"
+        class="case-wave-media-img" />
+      <div class="case-wave-media-overlay" aria-label="Wave'91 in media coverage">
         <div class="case-wave-media-header">
           <span class="case-wave-media-label">[ wave'91 in media ]</span>
           <img
@@ -900,7 +899,6 @@
           </article>
         </div>
       </div>
-      </div>
     </section>
     <script>
       (() => {
@@ -933,11 +931,17 @@
           return { pos: deckTop + (k - deckEnd) * STRIDE, shadow: false, z: k };
         };
 
+        // Read the current scale factor so shift distances match CSS
+        // dimensions at the current breakpoint (mobile: 1, desktop/tablet: 0.8).
+        const getScale = () =>
+          parseFloat(getComputedStyle(section).getPropertyValue("--s")) || 1;
+
         const render = step => {
+          const s = getScale();
           cards.forEach((card, i) => {
             const k = i + 1;
             const { pos, shadow, z } = cardState(step, k);
-            const shift = pos - (k - 1) * STRIDE;
+            const shift = (pos - (k - 1) * STRIDE) * s;
             card.style.transform = `translateX(${shift.toFixed(4)}vw)`;
             card.style.zIndex = z;
             card.style.boxShadow = shadow ? SHADOW : "";
@@ -953,6 +957,9 @@
         };
         const start = () => { if (!timer) timer = setTimeout(tick, INTERVAL_MS); };
         const stop = () => { if (timer) { clearTimeout(timer); timer = null; } };
+
+        // Re-render on viewport crossing the breakpoint so shifts match the new --s.
+        window.addEventListener("resize", () => render(step));
 
         // IO-gate: only animate while the section is on screen.
         new IntersectionObserver(
@@ -1405,7 +1412,7 @@
     <!-- WAVE FOOTER -->
     <section class="case-wave-footer">
       <video class="case-wave-footer-video" muted loop playsinline preload="none">
-        <source src="assets/Wave/wave%20loop.mp4" type="video/mp4" />
+        <source src="assets/Wave/wave%20texture.mp4" type="video/mp4" />
       </video>
       <img
         src="assets/Wave/footer.webp"
@@ -1418,12 +1425,14 @@
         let video = document.querySelector(".case-wave-footer-video");
         if (!footer || !video) return;
 
+        video.playbackRate = 0.8;
         let started = false;
         new IntersectionObserver(
           ([entry]) => {
             if (entry.isIntersecting && !started) {
               started = true;
               video.load();
+              video.playbackRate = 0.8;
               video.play().catch(() => {});
             }
           },
@@ -1433,9 +1442,12 @@
         new IntersectionObserver(
           ([entry]) => {
             if (!started) return;
-            entry.isIntersecting
-              ? video.play().catch(() => {})
-              : video.pause();
+            if (entry.isIntersecting) {
+              video.currentTime = 0;
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
           },
           { threshold: 0 }
         ).observe(footer);

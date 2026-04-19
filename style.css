@@ -6557,10 +6557,13 @@ picture.case-full-img--gap,
 
 
 /* WAVE IN MEDIA
-   Every length is in vw so the section scales uniformly across viewports
-   — at any width, the browser mockup, cards, label, arrows, and animation
-   all shrink together like one image. No mobile-specific layout. */
+   All sizes use calc(Xvw * var(--s)) so the mockup + animation scale as
+   one unit. --s: 1 on mobile (full-width inside a 1:1 square); --s: 0.8
+   on tablet/desktop (smaller mockup inside the 16:9 background).
+   Using actual scaled dimensions (not transform: scale) keeps text crisp
+   during animation and avoids subpixel clip drift. */
 .case-wave-media {
+  --s: 1;
   position: relative;
   height: 56.25vw;                            /* 810/1440 */
   overflow: hidden;
@@ -6573,6 +6576,10 @@ picture.case-full-img--gap,
   }
 }
 
+@media (min-width: 768px) {
+  .case-wave-media { --s: 0.8; }
+}
+
 .case-wave-media-bg {
   position: absolute;
   inset: 0;
@@ -6581,45 +6588,27 @@ picture.case-full-img--gap,
   object-fit: cover;
 }
 
-/* wrapper for the mockup + overlay; scaled down on desktop/tablet so the
-   browser and its animated deck appear smaller inside the background. */
-.case-wave-media-inner {
-  position: absolute;
-  inset: 0;
-}
-
-@media (min-width: 768px) {
-  .case-wave-media-inner {
-    transform: scale(0.8);
-    transform-origin: center center;
-  }
-}
-
 .case-wave-media-img {
   /* image canvas includes ~7.5% shadow padding; element is scaled so the
-     visible browser mockup renders at 850×596 at 1440 */
+     visible browser mockup renders at 850×596 (at s=1) */
   position: absolute;
-  left: 15.269vw;
-  right: 15.269vw;
+  left: 50%;
   top: 50%;
   /* card sits at 45.87% of image; shadow pads the bottom */
-  transform: translateY(-45.87%);
-  width: 69.463vw;
+  transform: translate(-50%, -45.87%);
+  width: calc(69.463vw * var(--s));
   height: auto;
 }
 
-/* overlay matches the mockup's bounding box so header/track track the
-   mockup when the section aspect changes (mobile = 1:1 square).
-   Width is explicit (not left+right) so the bounding box is independent
-   of section width — a scrollbar shrinking the section must not drift
-   the track's right-edge clip past the mockup's drawing edge. */
+/* overlay matches the mockup's bounding box so header/track follow the
+   mockup as the section aspect changes (mobile = 1:1). */
 .case-wave-media-overlay {
   position: absolute;
-  left: 15.269vw;
-  width: 69.463vw;
+  left: 50%;
   top: 50%;
-  transform: translateY(-45.87%);
-  height: 51.723vw;                           /* 69.463 × 2181/2929 */
+  transform: translate(-50%, -45.87%);
+  width: calc(69.463vw * var(--s));
+  height: calc(51.723vw * var(--s));          /* 69.463 × 2181/2929 */
   pointer-events: none;
   color: #fff;
 }
@@ -6627,9 +6616,9 @@ picture.case-full-img--gap,
 .case-wave-media-header {
   position: absolute;
   /* offsets relative to the mockup's top/sides */
-  top: 5.502vw;
-  left: 6.61vw;
-  right: 6.61vw;
+  top: calc(5.502vw * var(--s));
+  left: calc(6.61vw * var(--s));
+  right: calc(6.61vw * var(--s));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6638,38 +6627,36 @@ picture.case-full-img--gap,
 .case-wave-media-label {
   font-family: "Onest", sans-serif;
   font-weight: 500;
-  font-size: 0.833vw;                         /* 12/1440 */
+  font-size: calc(0.833vw * var(--s));        /* 12/1440 */
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .case-wave-media-arrows {
-  width: 4.236vw;                             /* 61/1440 */
-  height: 2.014vw;                            /* 29/1440 */
+  width: calc(4.236vw * var(--s));            /* 61/1440 */
+  height: calc(2.014vw * var(--s));           /* 29/1440 */
   display: block;
 }
 
 .case-wave-media-track {
   position: absolute;
   /* offsets relative to the mockup's top/left/right */
-  top: 12.85vw;
-  left: 11.471vw;                             /* visible card left + 90 from mockup edge */
-  /* clip at the inner image's right edge (opaque mockup terminus, not
-     including the drop shadow fade) — PNG canvas x=2709 of 2929 =
-     5.216vw inset from overlay/mockup right edge. */
-  right: 5.216vw;
+  top: calc(12.85vw * var(--s));
+  left: calc(11.471vw * var(--s));            /* visible card left + 90 from mockup edge */
+  /* clip at the inner image's right edge: PNG canvas x=2709 of 2929 */
+  right: calc(5.216vw * var(--s));
   display: flex;
-  gap: 0.625vw;                               /* 9/1440 */
+  gap: calc(0.625vw * var(--s));              /* 9/1440 */
   overflow: hidden;
 }
 
 .case-wave-media-card {
   flex: 0 0 auto;
   position: relative;
-  width: 13.472vw;                            /* 194/1440 */
-  height: 22.222vw;                           /* 320/1440 */
-  padding: 0.972vw;                           /* 14/1440 */
+  width: calc(13.472vw * var(--s));           /* 194/1440 */
+  height: calc(22.222vw * var(--s));          /* 320/1440 */
+  padding: calc(0.972vw * var(--s));          /* 14/1440 */
   background: #fff;
   color: #000;
   border-radius: 3px;
@@ -6684,17 +6671,17 @@ picture.case-full-img--gap,
   margin: 0;
   font-family: "Onest", sans-serif;
   font-weight: 400;
-  font-size: 1.25vw;                          /* 18/1440 */
+  font-size: calc(1.25vw * var(--s));         /* 18/1440 */
   line-height: 1.2;
   letter-spacing: -0.03em;
   color: #000;
 }
 
 .case-wave-media-card-date {
-  margin: 0.833vw 0 0 0;                      /* 12px gap */
+  margin: calc(0.833vw * var(--s)) 0 0 0;     /* 12px gap */
   font-family: "Onest", sans-serif;
   font-weight: 400;
-  font-size: 0.833vw;                         /* 12/1440 */
+  font-size: calc(0.833vw * var(--s));        /* 12/1440 */
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: #9a9a9a;
@@ -6703,7 +6690,7 @@ picture.case-full-img--gap,
 .case-wave-media-card-logo {
   margin-top: auto;
   width: auto;
-  height: 1.389vw;                            /* 20/1440 */
+  height: calc(1.389vw * var(--s));           /* 20/1440 */
   max-width: 100%;
   object-fit: contain;
   object-position: left center;
