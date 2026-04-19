@@ -122,7 +122,7 @@
             </svg>
           </a>
         </div>
-        <div class="wai-bottom">
+        <div class="wai-bottom reveal-block">
           <div class="wai-photo">
             <img
               src="assets/kid.webp"
@@ -171,7 +171,7 @@
           </picture>
         </div>
         </a>
-        <div class="case-bottom">
+        <div class="case-bottom reveal-block">
           <p class="case-tags">
             #REDESIGN / #USER TESTING / #UX/UI
             <br />
@@ -221,7 +221,7 @@
           </picture>
         </div>
         </a>
-        <div class="case-bottom">
+        <div class="case-bottom reveal-block">
           <p class="case-tags">
             #LANDING / #PERSONAL BRAND / #UI
             <br />
@@ -270,7 +270,7 @@
           </picture>
         </div>
         </a>
-        <div class="case-bottom">
+        <div class="case-bottom reveal-block">
           <p class="case-tags">
             #RESEARCH / #USER TESTING / #UX/UI
             <br />
@@ -306,9 +306,9 @@
 
     <!-- WHAT CAN I DO FOR YOU -->
     <section class="skills" id="skills">
-      <div class="skills-grid">
+      <div class="skills-grid reveal-block">
         <div class="skills-left-wrap">
-          <div class="skills-left reveal-block">
+          <div class="skills-left">
             <span class="skills-label">WHAT CAN I DO FOR YOU?</span>
             <p class="skills-headline">
               My previous experience in architecture and music performance
@@ -317,7 +317,7 @@
             </p>
           </div>
         </div>
-        <div class="skills-items reveal-block" style="--reveal-delay: 100ms">
+        <div class="skills-items">
           <!-- Row 1 -->
           <div class="skills-item">
             <div class="skills-item-top">
@@ -429,7 +429,7 @@
     <!-- CONTACT -->
     <div class="contact-footer-wrap">
       <section class="contact" id="contact">
-        <div class="contact-grid">
+        <div class="contact-grid reveal-block">
           <span class="contact-label">WHAT ELSE IS THERE TO BE DONE?</span>
           <div class="contact-content">
             <p class="contact-headline">
@@ -1029,6 +1029,34 @@
         });
       })();
     </script>
-
+    <script>
+      (function () {
+        var els = document.querySelectorAll(
+          ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1"
+        );
+        if (!els.length) return;
+        if (!("IntersectionObserver" in window)) {
+          els.forEach(function (el) { el.classList.add("is-in"); });
+          return;
+        }
+        document.querySelectorAll(".reveal-group").forEach(function (g) {
+          Array.from(g.children).forEach(function (c, i) {
+            c.style.setProperty("--reveal-i", i);
+          });
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+        );
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>
