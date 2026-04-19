@@ -1103,16 +1103,8 @@
     </script>
     <script>
       (function () {
-        document.querySelectorAll(".reveal-words").forEach(function (el) {
-          var words = el.textContent.trim().split(/\s+/);
-          el.innerHTML = words
-            .map(function (w, i) {
-              return '<span class="reveal-word" style="--word-i:' + i + '">' + w + "</span>";
-            })
-            .join(" ");
-        });
         var els = document.querySelectorAll(
-          ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1, .reveal-words"
+          ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1"
         );
         if (!els.length) return;
         if (!("IntersectionObserver" in window)) {

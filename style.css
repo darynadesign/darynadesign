@@ -153,9 +153,9 @@ img {
 }
 
 .reveal-block {
-  transform: translateY(8px);
-  transition: opacity 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(var(--reveal-rise, 8px));
+  transition: opacity var(--reveal-dur, 500ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform var(--reveal-dur, 500ms) cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -201,40 +201,6 @@ img {
   letter-spacing: normal;
 }
 
-/* Per-word letter-spacing collapse (for case titles, 1-2 lines).
-   JS splits .reveal-words into .reveal-word spans with --word-i index. */
-.reveal-word {
-  display: inline-block;
-  opacity: 0;
-  letter-spacing: -0.04em;
-  transition: opacity 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    letter-spacing 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  transition-delay: calc(var(--word-i, 0) * 80ms + var(--reveal-delay, 0ms));
-}
-.reveal-words.is-in .reveal-word {
-  opacity: 1;
-  letter-spacing: normal;
-}
-
-/* Per-line word stagger — for type-spec headlines spanning the viewport.
-   JS splits .reveal-lines into .reveal-line-word spans with --line-i per line.
-   Opacity-only so letter-spacing, text-indent, and text-transform still work. */
-.reveal-line-word {
-  opacity: 0;
-  transition: opacity 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  transition-delay: calc(
-    var(--line-i, 0) * 100ms + var(--reveal-delay, 0ms)
-  );
-}
-.reveal-lines.is-in .reveal-line-word {
-  opacity: 1;
-}
-
-/* Preserve natural opacity on typography body copy (0.5 by design). */
-.case-wave-typo-desc.reveal-block.is-in {
-  opacity: 0.5;
-}
-
 /* Staged child — animates when its .reveal-block or .reveal ancestor gains .is-in.
    Use for e.g. metadata tables that should follow a label+paragraph reveal. */
 .reveal-staged {
@@ -256,9 +222,7 @@ img {
   .reveal-group > *,
   .reveal-num,
   .reveal-h1,
-  .reveal-word,
-  .reveal-staged,
-  .reveal-line-word {
+  .reveal-staged {
     opacity: 1;
     filter: none;
     transform: none;

@@ -1197,7 +1197,7 @@
         <div class="case-tehno-interior-photo">
           <img src="assets/Tehno/minimalist.webp" alt="Minimalist kitchen interior with wooden dining table" />
           <div class="case-tehno-interior-photo-overlay">
-            <p class="case-tehno-interior-photo-text">All products in minimalist style</p>
+            <p class="case-tehno-interior-photo-text">All products in Minimalist style</p>
             <span class="case-tehno-interior-photo-btn">
               <img src="assets/Tehno/chevron-right.svg" alt="" />
             </span>
@@ -1662,7 +1662,7 @@
             colors: [{ c: "#1D1E1C", active: true }, { c: "#d1d1d1" }, { c: "#888" }],
             photoImg: "assets/Tehno/minimalist.webp",
             photoAlt: "Minimalist kitchen interior",
-            photoText: "All products in minimalist style"
+            photoText: "All products in Minimalist style"
           },
           {
             tag: "Scandinavian",
@@ -1747,10 +1747,20 @@
               colors[i].style.border = col.border || "";
               colors[i].classList.toggle("is-active", !!col.active);
             });
-            newCard.remove();
-            productEl.style.transform = "";
-            productEl.style.transition = "";
-            productEl.style.position = "";
+            // Wait for the new product bitmap to decode before snapping the
+            // original back into the clip and removing the clone, otherwise
+            // the original flashes with the old/unpainted image for 1 frame.
+            const finish = function () {
+              productEl.style.transition = "";
+              productEl.style.transform = "";
+              productEl.style.position = "";
+              newCard.remove();
+            };
+            if (productImg.decode) {
+              productImg.decode().then(finish, finish);
+            } else {
+              finish();
+            }
           }, { once: true });
 
           // === Photo: cross-fade ===
@@ -1769,7 +1779,14 @@
           newPhoto.addEventListener("transitionend", function () {
             photoImg.src = state.photoImg;
             photoImg.alt = state.photoAlt;
-            newPhoto.remove();
+            // Wait for the new bitmap to decode before uncovering photoImg so
+            // there's no 1-frame flash of the old/empty image on mobile.
+            const finish = function () { newPhoto.remove(); };
+            if (photoImg.decode) {
+              photoImg.decode().then(finish, finish);
+            } else {
+              requestAnimationFrame(finish);
+            }
           }, { once: true });
 
           photoText.textContent = state.photoText;
@@ -1988,16 +2005,8 @@
     </script>
     <script>
       (function () {
-        document.querySelectorAll(".reveal-words").forEach(function (el) {
-          var words = el.textContent.trim().split(/\s+/);
-          el.innerHTML = words
-            .map(function (w, i) {
-              return '<span class="reveal-word" style="--word-i:' + i + '">' + w + "</span>";
-            })
-            .join(" ");
-        });
         var els = document.querySelectorAll(
-          ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1, .reveal-words"
+          ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1"
         );
         if (!els.length) return;
         if (!("IntersectionObserver" in window)) {
