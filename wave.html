@@ -955,7 +955,7 @@
           render(step);
           timer = setTimeout(tick, INTERVAL_MS);
         };
-        const start = () => { if (!timer) timer = setTimeout(tick, INTERVAL_MS); };
+        const start = () => { if (!timer) tick(); };
         const stop = () => { if (timer) { clearTimeout(timer); timer = null; } };
 
         // Re-render on viewport crossing the breakpoint so shifts match the new --s.
