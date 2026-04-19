@@ -2149,7 +2149,7 @@
             showAfter();
             timers.push(setTimeout(function () {
               showBefore();
-              timers.push(setTimeout(loop, d));
+              loop();
             }, d));
           }, d));
         }
