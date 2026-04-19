@@ -370,7 +370,7 @@ nav.dark .nav-cta {
   cursor: pointer;
   font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
   letter-spacing: 0;
   padding: 8px 0;
@@ -389,7 +389,7 @@ nav.dark .nav-cta {
   font-size: 14px;
   line-height: 1;
   display: block;
-  margin-left: 8px;
+  margin-left: 10px;
 }
 
 .nav-hamburger:hover {
@@ -1648,7 +1648,6 @@ img[src="assets/violin.svg"].skills-illus {
 }
 
 .case-hero-grid {
-  margin-left: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1666,7 +1665,7 @@ img[src="assets/violin.svg"].skills-illus {
 
 .case-hero-title {
   font-family: var(--font);
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 500;
   line-height: 1;
   text-transform: lowercase;
@@ -1691,7 +1690,7 @@ img[src="assets/violin.svg"].skills-illus {
 
   .case-hero-title {
     grid-column: 5 / -1;
-    font-size: 88px;
+    font-size: clamp(60px, 6.1vw, 88px);
   }
 }
 
