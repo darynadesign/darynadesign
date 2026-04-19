@@ -35,7 +35,7 @@
           id="menuClose"
           aria-label="Close menu"
         >
-          MENU
+          CLOSE
           <span class="menu-close-dot"></span>
         </button>
       </div>
@@ -147,12 +147,12 @@
     <!-- CASE HERO -->
     <section class="case-hero">
       <div class="case-hero-grid">
-        <p class="case-hero-label">
+        <p class="case-hero-label reveal-h1" style="--reveal-lspace: -0.05em; --reveal-dur: 400ms">
           PERSONAL LANDING PAGE
           <br />
           FOR A FASHION STYLIST
         </p>
-        <h1 class="case-hero-title">landing for mm</h1>
+        <h1 class="case-hero-title reveal-h1">landing for mm</h1>
       </div>
     </section>
 
@@ -175,7 +175,7 @@
 
     <!-- PROJECT OVERVIEW -->
     <section class="case-overview case-overview--po">
-      <div class="case-overview-grid">
+      <div class="case-overview-grid reveal-block">
         <div class="case-overview-label">
           <span class="case-label-dot"></span>
           <span>PROJECT OVERVIEW</span>
@@ -197,7 +197,7 @@
               style.
             </p>
           </div>
-          <dl class="case-overview-meta">
+          <dl class="case-overview-meta reveal-staged">
             <div class="case-meta-row">
               <dt>Client</dt>
               <dd>Student project</dd>
@@ -235,7 +235,7 @@
 
     <!-- INSPIRATION -->
     <section class="case-overview">
-      <div class="case-overview-grid">
+      <div class="case-overview-grid reveal-block">
         <div class="case-overview-label">
           <span class="case-label-dot"></span>
           <span>INSPIRATION</span>
@@ -275,7 +275,7 @@
     <!-- TYPOGRAPHY & COLOUR -->
     <section class="case-typo">
       <div class="case-typo-grid">
-        <div class="case-typo-text">
+        <div class="case-typo-text reveal-block">
           <div class="case-overview-label">
             <span class="case-label-dot"></span>
             <span>TYPOGRAPHY &amp; COLOUR</span>
@@ -1099,6 +1099,43 @@
           },
           { threshold: 0 },
         ).observe(body);
+      })();
+    </script>
+    <script>
+      (function () {
+        document.querySelectorAll(".reveal-words").forEach(function (el) {
+          var words = el.textContent.trim().split(/\s+/);
+          el.innerHTML = words
+            .map(function (w, i) {
+              return '<span class="reveal-word" style="--word-i:' + i + '">' + w + "</span>";
+            })
+            .join(" ");
+        });
+        var els = document.querySelectorAll(
+          ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1, .reveal-words"
+        );
+        if (!els.length) return;
+        if (!("IntersectionObserver" in window)) {
+          els.forEach(function (el) { el.classList.add("is-in"); });
+          return;
+        }
+        document.querySelectorAll(".reveal-group").forEach(function (g) {
+          Array.from(g.children).forEach(function (c, i) {
+            c.style.setProperty("--reveal-i", i);
+          });
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+        );
+        els.forEach(function (el) { io.observe(el); });
       })();
     </script>
   </body>

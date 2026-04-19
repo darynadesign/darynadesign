@@ -33,7 +33,7 @@
           class="menu-overlay-close"
           id="menuClose"
           aria-label="Close menu">
-          MENU
+          CLOSE
           <span class="menu-close-dot"></span>
         </button>
       </div>
@@ -146,7 +146,7 @@
     <!-- CASE HERO -->
     <section class="case-hero">
       <div class="case-hero-grid">
-        <p class="case-hero-label reveal-h1">
+        <p class="case-hero-label reveal-h1" style="--reveal-lspace: -0.05em; --reveal-dur: 400ms">
           CHARITY FOUNDATION
           <br />
           SITE REDESIGN
@@ -457,8 +457,8 @@
     <section class="case-wave-typo">
       <div class="case-wave-typo-inner">
         <div class="case-wave-typo-top">
-          <p class="case-wave-typo-tag">[&ensp;TYPOGRAPHY&ensp;]</p>
-          <h2 class="case-wave-typo-heading">
+          <p class="case-wave-typo-tag reveal">[&ensp;TYPOGRAPHY&ensp;]</p>
+          <h2 class="case-wave-typo-heading reveal-lines">
             I&nbsp;used
             <span class="case-wave-typo-blue">Kharkiv Tone</span>
             for
@@ -471,7 +471,7 @@
           </h2>
         </div>
         <div class="case-wave-typo-body">
-          <p class="case-wave-typo-desc">
+          <p class="case-wave-typo-desc reveal-block">
             I&nbsp;used Onest for body copy. Designed for digital use, it
             remains legible and consistent at&nbsp;small sizes. It's clean,
             understated design intentionally contrasts with the&nbsp;bold,
@@ -479,7 +479,8 @@
             a&nbsp;clear hierarchy and balanced typographic system.
           </p>
           <img
-            class="case-wave-typo-btn"
+            class="case-wave-typo-btn reveal-block"
+            style="--reveal-delay: 100ms"
             src="assets/Wave/typo%20button.svg"
             alt="Onest button copy example" />
         </div>
@@ -2187,9 +2188,12 @@
         var els = document.querySelectorAll(
           ".reveal, .reveal-block, .reveal-group, .reveal-num, .reveal-h1, .reveal-words"
         );
-        if (!els.length) return;
-        if (!("IntersectionObserver" in window)) {
+        var hasIO = "IntersectionObserver" in window;
+        if (!hasIO) {
           els.forEach(function (el) { el.classList.add("is-in"); });
+          document.querySelectorAll(".reveal-lines").forEach(function (el) {
+            el.classList.add("is-in");
+          });
           return;
         }
         document.querySelectorAll(".reveal-group").forEach(function (g) {
@@ -2209,6 +2213,58 @@
           { rootMargin: "0px 0px -15% 0px", threshold: 0 }
         );
         els.forEach(function (el) { io.observe(el); });
+
+        // Line-split for .reveal-lines headlines — needs fonts loaded
+        // to measure natural line breaks correctly.
+        function splitLines(container) {
+          var walker = document.createTreeWalker(
+            container,
+            NodeFilter.SHOW_TEXT,
+            null
+          );
+          var textNodes = [];
+          var node;
+          while ((node = walker.nextNode())) textNodes.push(node);
+          textNodes.forEach(function (tn) {
+            if (!tn.nodeValue || !tn.nodeValue.trim()) return;
+            var parts = tn.nodeValue.split(/(\s+)/);
+            var frag = document.createDocumentFragment();
+            parts.forEach(function (p) {
+              if (!p) return;
+              if (/^\s+$/.test(p)) {
+                frag.appendChild(document.createTextNode(p));
+              } else {
+                var span = document.createElement("span");
+                span.className = "reveal-line-word";
+                span.textContent = p;
+                frag.appendChild(span);
+              }
+            });
+            tn.parentNode.replaceChild(frag, tn);
+          });
+          var words = container.querySelectorAll(".reveal-line-word");
+          var lineIdx = -1;
+          var lastTop = null;
+          words.forEach(function (w) {
+            var top = Math.round(w.getBoundingClientRect().top);
+            if (top !== lastTop) {
+              lineIdx++;
+              lastTop = top;
+            }
+            w.style.setProperty("--line-i", lineIdx);
+          });
+        }
+        function setupReveals() {
+          document.querySelectorAll(".reveal-lines").forEach(function (el) {
+            splitLines(el);
+            io.observe(el);
+          });
+        }
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(setupReveals);
+        } else {
+          setupReveals();
+        }
       })();
     </script>
   </body>
