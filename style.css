@@ -311,8 +311,7 @@ nav.dark .nav-cta {
   opacity: 1;
 }
 
-.nav-links li a:hover,
-.nav-cta:hover {
+.nav-links li a:hover {
   opacity: 0.5;
 }
 
@@ -339,10 +338,34 @@ nav.dark .nav-cta {
   border: 1px solid var(--white);
   padding: 10px 24px;
   width: fit-content;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: opacity 0.2s, color 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.nav-cta::before {
+  content: "";
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 0;
+  height: 0;
+  background: var(--white);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.9s cubic-bezier(0.33, 1, 0.68, 1), height 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .nav-cta:hover {
-  opacity: 0.5;
+  color: var(--black);
+}
+
+.nav-cta:hover::before {
+  width: 400px;
+  height: 400px;
 }
 
 .nav-hamburger {
@@ -1289,14 +1312,38 @@ img[src="assets/violin.svg"].skills-illus {
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 12px 32px;
   white-space: nowrap;
-  transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: opacity 0.2s, color 0.3s cubic-bezier(0.33, 1, 0.68, 1) 0.55s, border-color 0.3s cubic-bezier(0.33, 1, 0.68, 1) 0.55s;
   width: 100%;
   text-align: center;
 }
 
+.contact-cta::before {
+  content: "";
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 0;
+  height: 0;
+  background: #0d08c5;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.9s cubic-bezier(0.33, 1, 0.68, 1), height 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .contact-cta:hover {
-  color: #3638FF;
-  border-color: #3638FF;
+  color: var(--white);
+  border-color: #0d08c5;
+  transition: opacity 0.2s, color 0.15s linear, border-color 0.15s linear;
+}
+
+.contact-cta:hover::before {
+  width: 1200px;
+  height: 1200px;
 }
 
 .contact-link {
@@ -1318,11 +1365,11 @@ img[src="assets/violin.svg"].skills-illus {
 }
 
 .contact-link:hover {
-  color: #3638FF;
+  color: #0d08c5;
 }
 
 .contact-link:hover .contact-arrow {
-  filter: brightness(0) saturate(100%) invert(16%) sepia(98%) saturate(7080%) hue-rotate(245deg) brightness(98%) contrast(107%);
+  filter: brightness(0) saturate(100%) invert(8%) sepia(99%) saturate(7461%) hue-rotate(247deg) brightness(96%) contrast(118%);
 }
 
 .contact-arrow {
@@ -1331,6 +1378,7 @@ img[src="assets/violin.svg"].skills-illus {
   height: 21px;
   flex-shrink: 0;
   object-fit: contain;
+  overflow: visible;
   transition: filter 0.2s;
 }
 
