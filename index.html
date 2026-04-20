@@ -68,6 +68,7 @@
         </div>
       </div>
     </div>
+    <div class="menu-overlay-backdrop" id="menuBackdrop" aria-hidden="true"></div>
 
     <!-- HERO -->
     <section class="hero">
@@ -163,10 +164,10 @@
               media="(max-width: 1023px)"
             />
             <img
-              src="assets/case cover wave 2x.webp"
+              src="assets/case cover 1.webp"
               alt="WAVE case"
-              width="3072"
-              height="2100"
+              width="6144"
+              height="3900"
             />
           </picture>
         </div>
@@ -213,10 +214,10 @@
               media="(max-width: 1023px)"
             />
             <img
-              src="assets/case cover mm 2x.webp"
+              src="assets/case cover 2.webp"
               alt="MM case"
-              width="3075"
-              height="2100"
+              width="6144"
+              height="3900"
             />
           </picture>
         </div>
@@ -262,10 +263,10 @@
               media="(max-width: 1023px)"
             />
             <img
-              src="assets/case cover tehno 2x.webp"
+              src="assets/case cover 3.webp"
               alt="Tehno case"
-              width="3072"
-              height="2100"
+              width="6144"
+              height="3900"
             />
           </picture>
         </div>
@@ -518,6 +519,7 @@
       const menuOverlay = document.getElementById("menuOverlay");
       const menuOpen = document.querySelector(".nav-hamburger");
       const menuClose = document.getElementById("menuClose");
+      const menuBackdrop = document.getElementById("menuBackdrop");
 
       // Expose nav height for CSS sticky calc
       function setNavH() {
@@ -615,12 +617,14 @@
 
       function openMenu() {
         menuOverlay.classList.add("is-open");
+        menuBackdrop.classList.add("is-open");
         menuOverlay.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
       }
 
       function closeMenu() {
         menuOverlay.classList.remove("is-open");
+        menuBackdrop.classList.remove("is-open");
         menuOverlay.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
       }
@@ -630,6 +634,7 @@
       });
 
       menuClose.addEventListener("click", closeMenu);
+      menuBackdrop.addEventListener("click", closeMenu);
 
       menuOverlay
         .querySelectorAll(".menu-overlay-link, .menu-overlay-cta")

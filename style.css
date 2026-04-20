@@ -876,6 +876,10 @@ nav.dark .nav-hamburger::after {
 
 /* CASES — desktop */
 @media (min-width: 1024px) {
+  .cases {
+    margin-top: 150px;
+  }
+
   .case-item {
     grid-template-columns: 344px 1fr;
     column-gap: 38px;
@@ -920,10 +924,10 @@ nav.dark .nav-hamburger::after {
   }
 
   .case-image img {
-    width: auto;
-    height: auto;
+    width: calc(100vw * 1024 / 1440);
     max-width: 100%;
-    max-height: 97vh;
+    height: auto;
+    aspect-ratio: 1024 / 650;
     object-fit: contain;
   }
 }
@@ -1510,6 +1514,30 @@ img[src="assets/violin.svg"].skills-illus {
 
 .menu-overlay.is-open {
   transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu-overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1999;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    background 0.4s ease-in-out,
+    backdrop-filter 0.4s ease-in-out,
+    -webkit-backdrop-filter 0.4s ease-in-out,
+    visibility 0.4s ease-in-out;
+}
+
+.menu-overlay-backdrop.is-open {
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   visibility: visible;
   pointer-events: auto;
 }
@@ -3501,13 +3529,22 @@ picture.case-full-img--gap,
 
 .scene-clothes-logo {
   position: absolute;
-  top: 4.4%;
+  top: 24px;
   left: 24px;
+  margin: 0;
   font-family: "Misto", sans-serif;
   font-size: 7.7vw;
+  line-height: 1;
   color: #fff;
   letter-spacing: -0.03em;
   text-transform: capitalize;
+  text-box: trim-both cap alphabetic;
+}
+
+@media (min-width: 768px) {
+  .scene-clothes-logo {
+    font-size: 44px;
+  }
 }
 
 .scene-clothes-desktop {
@@ -3563,9 +3600,8 @@ picture.case-full-img--gap,
   }
 
   .scene-clothes-logo {
-    top: 32px;
-    left: 44px;
-    font-size: 44px;
+    top: 34px;
+    left: 34px;
   }
 
   .scene-clothes-desktop {
@@ -3871,7 +3907,34 @@ picture.case-full-img--gap,
 }
 
 .price-list-cursor {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  top: 50%;
+  right: 33px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #b70600;
+  z-index: 10;
+  text-decoration: none;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.price-list-cursor .price-list-cta-inner {
+  opacity: 1;
+}
+
+.price-list-cursor .price-list-cta-arrow {
+  width: 14px;
+  height: 14px;
+}
+
+.price-list-cursor .price-list-cta-text {
+  font-size: 7px;
 }
 
 .price-list-cta-inner {
@@ -3918,6 +3981,21 @@ picture.case-full-img--gap,
 
   .price-list-price {
     font-size: 24px;
+  }
+
+  .price-list-cursor {
+    width: 170px;
+    height: 170px;
+    right: 90px;
+  }
+
+  .price-list-cursor .price-list-cta-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .price-list-cursor .price-list-cta-text {
+    font-size: 14px;
   }
 }
 
@@ -3978,6 +4056,8 @@ picture.case-full-img--gap,
     position: fixed;
     width: 16px;
     height: 16px;
+    right: auto;
+    bottom: auto;
     border-radius: 50%;
     background: #b70600;
     pointer-events: none;
@@ -4272,11 +4352,12 @@ picture.case-full-img--gap,
   width: 22.7%;
   z-index: 2;
   opacity: 0;
-  transition: opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .active-projects-desc.is-active {
   opacity: 1;
+  transition: opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .active-projects-desc[data-slide="1"] {
