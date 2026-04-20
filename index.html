@@ -126,11 +126,12 @@
         <div class="wai-bottom reveal-block">
           <div class="wai-photo">
             <img
-              src="assets/kid.webp"
+              src="assets/kiddo.png"
               alt="Daria Forsiuk"
               width="656"
               height="560"
             />
+            <img src="assets/notes.svg" class="wai-notes" alt="" aria-hidden="true" />
           </div>
           <div class="wai-bio">
             <p>
@@ -700,9 +701,52 @@
       inlineJitter("assets/globe.svg", "globe-svg");
       inlineJitter("assets/violin.svg", "violin-svg");
 
+      // Notes overlay on kid photo — same stop-motion jitter as skills
+      (function () {
+        const target = document.querySelector(".wai-photo .wai-notes");
+        if (!target) return;
+        fetch("assets/notes.svg")
+          .then((r) => r.text())
+          .then((markup) => {
+            const tmp = document.createElement("div");
+            tmp.innerHTML = markup;
+            const svg = tmp.querySelector("svg");
+            svg.removeAttribute("width");
+            svg.removeAttribute("height");
+            svg.setAttribute("class", "wai-notes");
+            svg.setAttribute("aria-hidden", "true");
+            const strokePaths = [...svg.querySelectorAll("[stroke]")];
+            target.replaceWith(svg);
+
+            let jitterInterval;
+            function jitterFrame() {
+              strokePaths.forEach((path) => {
+                const x = (Math.random() - 0.5) * 2;
+                const y = (Math.random() - 0.5) * 2;
+                path.style.transform = `translate(${x}px, ${y}px)`;
+              });
+            }
+
+            new IntersectionObserver(
+              ([e]) => {
+                if (e.isIntersecting) {
+                  jitterFrame();
+                  jitterInterval = setInterval(jitterFrame, 280);
+                } else {
+                  clearInterval(jitterInterval);
+                  strokePaths.forEach((p) => (p.style.transform = ""));
+                }
+              },
+              { threshold: 0.2 },
+            ).observe(svg);
+          })
+          .catch(() => {});
+      })();
+
       // Shared speed for all squiggly arrows — change once, applies everywhere
-      const ARROW_SPEED = 0.165;
-      const FRAME_MS = 1000 / 60; // lock animations to 60 fps
+      const ARROW_SPEED = 2.77;
+      const FRAME_MS = 280; // stop-motion cadence, matches skills jitter
+      const ARROW_JITTER = 1; // random ±1px wobble per point, matches skills
 
       // Squiggly wave animation for "view case" buttons
       (function () {
@@ -790,11 +834,12 @@
             lastTime = now;
             phase += SPEED;
             const pts = BASE.map((p) => ({
-              x: p.x,
+              x: p.x + (Math.random() - 0.5) * 2 * ARROW_JITTER,
               y:
                 p.y +
                 AMPLITUDE *
-                  Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase),
+                  Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase) +
+                (Math.random() - 0.5) * 2 * ARROW_JITTER,
             }));
             wavePath.setAttribute("d", catmullRom(pts));
             arrowhead.setAttribute("d", buildArrowhead(pts));
@@ -901,11 +946,12 @@
           lastTime = now;
           phase += SPEED;
           const pts = BASE.map((p) => ({
-            x: p.x,
+            x: p.x + (Math.random() - 0.5) * 2 * ARROW_JITTER,
             y:
               p.y +
               AMPLITUDE *
-                Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase),
+                Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase) +
+              (Math.random() - 0.5) * 2 * ARROW_JITTER,
           }));
           wavePath.setAttribute("d", catmullRom(pts));
           arrowhead.setAttribute("d", buildArrowhead(pts));
@@ -1012,9 +1058,10 @@
           offset += SPEED;
           // Shift base pattern + sine overlay (same approach as arrows)
           const pts = BASE.map((p) => ({
-            x: p.x,
+            x: p.x + (Math.random() - 0.5) * 2 * ARROW_JITTER,
             y: getY(p.x - offset * 8) +
-              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - offset),
+              AMPLITUDE * Math.sin(2 * Math.PI * (p.x / W) * FREQUENCY - offset) +
+              (Math.random() - 0.5) * 2 * ARROW_JITTER,
           }));
           wavePath.setAttribute("d", catmullRom(pts));
           rafId = requestAnimationFrame(animateFrame);

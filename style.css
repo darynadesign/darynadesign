@@ -659,12 +659,22 @@ nav.dark .nav-hamburger::after {
   width: 240px;
   height: 209px;
   overflow: hidden;
+  position: relative;
 }
 
-.wai-photo img {
+.wai-photo > img:first-child {
   width: 240px;
   height: 209px;
   object-fit: cover;
+}
+
+.wai-notes {
+  position: absolute;
+  width: 49.39%;
+  right: 10.67%;
+  bottom: 16.43%;
+  height: auto;
+  pointer-events: none;
 }
 
 .wai-bio {
@@ -709,7 +719,7 @@ nav.dark .nav-hamburger::after {
     height: 280px;
   }
 
-  .wai-photo img {
+  .wai-photo > img:first-child {
     width: 328px;
     height: 280px;
   }
