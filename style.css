@@ -884,6 +884,32 @@ nav.dark .nav-hamburger::after {
   cursor: pointer;
 }
 
+.case-image picture {
+  display: block;
+  overflow: hidden;
+}
+
+.case-image img {
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-image-link:hover .case-image img,
+  .case-image-link:focus-visible .case-image img {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-image img {
+    transition: none;
+  }
+  .case-image-link:hover .case-image img,
+  .case-image-link:focus-visible .case-image img {
+    transform: none;
+  }
+}
+
 /* CASES — desktop */
 @media (min-width: 1024px) {
   .cases {
