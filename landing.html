@@ -76,8 +76,10 @@
 
         const navRect = nav.getBoundingClientRect();
         const navMidY = navRect.top + navRect.height / 2;
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
         let overDark = false;
         for (const el of document.querySelectorAll("[data-nav-dark]")) {
+          if (el.getAttribute("data-nav-dark") === "mobile" && !isMobile) continue;
           const rect = el.getBoundingClientRect();
           if (rect.top <= navMidY && rect.bottom > navMidY) {
             overDark = true;
@@ -666,7 +668,7 @@
     </section>
 
     <!-- FITTING ROOM -->
-    <section class="fitting-room">
+    <section class="fitting-room" data-nav-dark="mobile">
       <img
         class="fitting-room-bg"
         src="assets/Landing/fitting%20room%20back.webp"

@@ -75,8 +75,10 @@
 
         const navRect = nav.getBoundingClientRect();
         const navMidY = navRect.top + navRect.height / 2;
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
         let overDark = false;
         for (const el of document.querySelectorAll("[data-nav-dark]")) {
+          if (el.getAttribute("data-nav-dark") === "mobile" && !isMobile) continue;
           const rect = el.getBoundingClientRect();
           if (rect.top <= navMidY && rect.bottom > navMidY) {
             overDark = true;
@@ -350,7 +352,7 @@
     <!-- PRELIMINARY IA & WIREFRAMING -->
     <section class="case-ia">
       <div class="case-ia-grid">
-        <div class="case-ia-left">
+        <div class="case-ia-left" data-nav-dark="mobile">
           <div class="case-ia-text reveal-block">
             <div class="case-overview-label">
               <span class="case-label-dot case-label-dot--light"></span>
@@ -440,6 +442,7 @@
         <p class="case-btn-colour-label">BUTTON DESIGN</p>
         <img
           class="case-btn-colour-back"
+          data-nav-dark="mobile"
           src="assets/Wave/button%20design%20back.webp"
           alt="" />
         <img
@@ -1506,7 +1509,7 @@
           alt="Wave'91 mobile fundraiser page mockup"
           class="case-wave-specs-phone-img" />
       </div>
-      <div class="case-wave-specs-cards">
+      <div class="case-wave-specs-cards" data-nav-dark="mobile">
         <p class="case-wave-specs-label">spec cards</p>
         <img
           src="assets/Wave/spec%20card%201.webp"
