@@ -368,6 +368,15 @@ nav.dark .nav-cta {
   height: 400px;
 }
 
+nav.dark .nav-cta::before {
+  background: #0d08c5;
+}
+
+nav.dark .nav-cta:hover {
+  color: var(--white);
+  border-color: #0d08c5;
+}
+
 .nav-hamburger {
   display: flex;
   grid-column: 2;
