@@ -70,21 +70,22 @@
       const menuClose = document.getElementById("menuClose");
       const menuBackdrop = document.getElementById("menuBackdrop");
 
-      const navSections = [];
+      const darkSections = document.querySelectorAll("[data-nav-dark]");
 
       function updateNav() {
-        nav.classList.add("has-bg", "dark");
+        nav.classList.add("has-bg");
 
         const navRect = nav.getBoundingClientRect();
         const navMidY = navRect.top + navRect.height / 2;
-        for (const section of navSections) {
-          if (!section.el) continue;
-          const rect = section.el.getBoundingClientRect();
+        let overDark = false;
+        for (const el of darkSections) {
+          const rect = el.getBoundingClientRect();
           if (rect.top <= navMidY && rect.bottom > navMidY) {
-            nav.classList.toggle("dark", section.dark);
-            return;
+            overDark = true;
+            break;
           }
         }
+        nav.classList.toggle("dark", !overDark);
       }
 
       window.addEventListener("scroll", updateNav, { passive: true });
@@ -160,7 +161,7 @@
       </div>
     </section>
 
-    <div class="scene1 scene1--wave">
+    <div class="scene1 scene1--wave" data-nav-dark>
       <img
         class="scene1-back"
         src="assets/Wave/hero%20back.webp"
@@ -338,7 +339,7 @@
       </div>
     </section>
 
-    <picture class="case-full-img--square-mob">
+    <picture class="case-full-img--square-mob" data-nav-dark>
       <img
         class="case-full-img"
         src="assets/Wave/drone%20mock%20w%20shadow.webp"
@@ -676,7 +677,7 @@
     </section>
 
     <!-- CAROUSEL SHOWCASE -->
-    <section class="case-wave-carousel">
+    <section class="case-wave-carousel" data-nav-dark>
       <img
         src="assets/Wave/water%20back.webp"
         alt=""
@@ -762,7 +763,7 @@
     </script>
 
     <!-- WAVE IN MEDIA -->
-    <section class="case-wave-media">
+    <section class="case-wave-media" data-nav-dark>
       <img
         src="assets/Wave/background%20media.webp"
         alt=""
@@ -1418,7 +1419,7 @@
     </script>
 
     <!-- WAVE FOOTER -->
-    <section class="case-wave-footer">
+    <section class="case-wave-footer" data-nav-dark>
       <video class="case-wave-footer-video" muted loop playsinline preload="none">
         <source src="assets/Wave/wave%20texture%20smooth.mp4" type="video/mp4" />
       </video>

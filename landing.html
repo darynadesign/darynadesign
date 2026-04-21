@@ -71,21 +71,22 @@
       const menuClose = document.getElementById("menuClose");
       const menuBackdrop = document.getElementById("menuBackdrop");
 
-      const navSections = [];
+      const darkSections = document.querySelectorAll("[data-nav-dark]");
 
       function updateNav() {
-        nav.classList.add("has-bg", "dark");
+        nav.classList.add("has-bg");
 
         const navRect = nav.getBoundingClientRect();
         const navMidY = navRect.top + navRect.height / 2;
-        for (const section of navSections) {
-          if (!section.el) continue;
-          const rect = section.el.getBoundingClientRect();
+        let overDark = false;
+        for (const el of darkSections) {
+          const rect = el.getBoundingClientRect();
           if (rect.top <= navMidY && rect.bottom > navMidY) {
-            nav.classList.toggle("dark", section.dark);
-            return;
+            overDark = true;
+            break;
           }
         }
+        nav.classList.toggle("dark", !overDark);
       }
 
       window.addEventListener("scroll", updateNav, { passive: true });
@@ -328,6 +329,7 @@
 
     <img
       class="case-full-img case-full-img--curtain"
+      data-nav-dark
       src="assets/Landing/mockup red curtain.webp"
       alt="MM Landing red curtain mockup"
       width="2880"
@@ -478,7 +480,7 @@
     </section>
 
     <!-- PRICE LIST -->
-    <section class="price-list">
+    <section class="price-list" data-nav-dark>
       <img
         class="price-list-bg"
         src="assets/Landing/runway.webp"
