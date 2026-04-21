@@ -602,7 +602,7 @@ nav.dark .nav-hamburger::after {
   background: var(--white);
   color: var(--black);
   padding: var(--section-gap) var(--margin) 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .wai-grid {
