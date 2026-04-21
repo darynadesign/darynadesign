@@ -669,6 +669,9 @@
 
             document.querySelector(`img[src="${srcAttr}"]`).replaceWith(svg);
 
+            const parent = svg.closest(".skills-item");
+            if (!parent) return;
+
             let jitterInterval;
 
             function jitterFrame() {
@@ -679,18 +682,14 @@
               });
             }
 
-            new IntersectionObserver(
-              ([e]) => {
-                if (e.isIntersecting) {
-                  jitterFrame();
-                  jitterInterval = setInterval(jitterFrame, 280);
-                } else {
-                  clearInterval(jitterInterval);
-                  strokePaths.forEach((p) => (p.style.transform = ""));
-                }
-              },
-              { threshold: 0.2 },
-            ).observe(svg);
+            parent.addEventListener("mouseenter", () => {
+              jitterFrame();
+              jitterInterval = setInterval(jitterFrame, 280);
+            });
+            parent.addEventListener("mouseleave", () => {
+              clearInterval(jitterInterval);
+              strokePaths.forEach((p) => (p.style.transform = ""));
+            });
           })
           .catch(() => {});
       }
@@ -773,6 +772,9 @@
             const strokePaths = [...svg.querySelectorAll("[stroke]")];
             target.replaceWith(svg);
 
+            const parent = svg.closest(".wai-photo");
+            if (!parent) return;
+
             let jitterInterval;
             function jitterFrame() {
               strokePaths.forEach((path) => {
@@ -782,18 +784,14 @@
               });
             }
 
-            new IntersectionObserver(
-              ([e]) => {
-                if (e.isIntersecting) {
-                  jitterFrame();
-                  jitterInterval = setInterval(jitterFrame, 280);
-                } else {
-                  clearInterval(jitterInterval);
-                  strokePaths.forEach((p) => (p.style.transform = ""));
-                }
-              },
-              { threshold: 0.2 },
-            ).observe(svg);
+            parent.addEventListener("mouseenter", () => {
+              jitterFrame();
+              jitterInterval = setInterval(jitterFrame, 280);
+            });
+            parent.addEventListener("mouseleave", () => {
+              clearInterval(jitterInterval);
+              strokePaths.forEach((p) => (p.style.transform = ""));
+            });
           })
           .catch(() => {});
       })();
