@@ -856,8 +856,9 @@
 
       // Squiggly wave animation for "view case" button
       (function () {
-        const ARROW_SPEED = 0.165;
-        const FRAME_MS = 1000 / 60;
+        const ARROW_SPEED = 2.77;
+        const FRAME_MS = 280; // stop-motion cadence, matches homepage
+        const ARROW_JITTER = 1; // random ±1px wobble per point
         const BASE = [
           { x: 1.57, y: 14.73 },
           { x: 22.87, y: 15.17 },
@@ -942,11 +943,12 @@
             lastTime = now;
             phase += SPEED;
             const pts = BASE.map((p) => ({
-              x: p.x,
+              x: p.x + (Math.random() - 0.5) * 2 * ARROW_JITTER,
               y:
                 p.y +
                 AMPLITUDE *
-                  Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase),
+                  Math.sin(2 * Math.PI * (p.x / 108.36) * FREQUENCY - phase) +
+                (Math.random() - 0.5) * 2 * ARROW_JITTER,
             }));
             wavePath.setAttribute("d", catmullRom(pts));
             arrowhead.setAttribute("d", buildArrowhead(pts));
