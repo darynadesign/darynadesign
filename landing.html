@@ -71,15 +71,13 @@
       const menuClose = document.getElementById("menuClose");
       const menuBackdrop = document.getElementById("menuBackdrop");
 
-      const darkSections = document.querySelectorAll("[data-nav-dark]");
-
       function updateNav() {
         nav.classList.add("has-bg");
 
         const navRect = nav.getBoundingClientRect();
         const navMidY = navRect.top + navRect.height / 2;
         let overDark = false;
-        for (const el of darkSections) {
+        for (const el of document.querySelectorAll("[data-nav-dark]")) {
           const rect = el.getBoundingClientRect();
           if (rect.top <= navMidY && rect.bottom > navMidY) {
             overDark = true;
