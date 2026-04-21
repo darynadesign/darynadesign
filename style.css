@@ -4522,10 +4522,30 @@ picture.case-full-img--gap,
   color: #3638ff;
   margin-bottom: 32px;
 }
+.keep-exploring-image picture {
+  display: block;
+  overflow: hidden;
+}
 .keep-exploring-image img {
   display: block;
   width: 100%;
   height: auto;
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .keep-exploring-right:hover .keep-exploring-image img {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keep-exploring-image img {
+    transition: none;
+  }
+  .keep-exploring-right:hover .keep-exploring-image img {
+    transform: none;
+  }
 }
 .keep-exploring-info {
   margin-top: 24px;
