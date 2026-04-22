@@ -8101,7 +8101,10 @@ picture.case-full-img--gap,
   left: 50%;
   width: 50%;
   height: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 400ms ease;
   pointer-events: none;
 }
 
@@ -8112,7 +8115,19 @@ picture.case-full-img--gap,
   height: 100%;
   object-fit: contain;
   opacity: 0;
+  animation: case-frame-cycle 4000ms steps(1, end) infinite;
 }
+
+.case-frames img:nth-child(1)  { animation-delay: 0ms; }
+.case-frames img:nth-child(2)  { animation-delay: 400ms; }
+.case-frames img:nth-child(3)  { animation-delay: 800ms; }
+.case-frames img:nth-child(4)  { animation-delay: 1200ms; }
+.case-frames img:nth-child(5)  { animation-delay: 1600ms; }
+.case-frames img:nth-child(6)  { animation-delay: 2000ms; }
+.case-frames img:nth-child(7)  { animation-delay: 2400ms; }
+.case-frames img:nth-child(8)  { animation-delay: 2800ms; }
+.case-frames img:nth-child(9)  { animation-delay: 3200ms; }
+.case-frames img:nth-child(10) { animation-delay: 3600ms; }
 
 @keyframes case-frame-cycle {
   0%, 9.999% { opacity: 1; }
@@ -8126,31 +8141,11 @@ picture.case-full-img--gap,
     transition: filter 300ms ease, transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .case-image-link:hover .case-frames img,
-  .case-image-link:focus-visible .case-frames img {
-    animation: case-frame-cycle 2000ms steps(1, end) infinite;
+  .case-image-link:hover .case-frames,
+  .case-image-link:focus-visible .case-frames {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
-
-  .case-image-link:hover .case-frames img:nth-child(1),
-  .case-image-link:focus-visible .case-frames img:nth-child(1) { animation-delay: 0ms; }
-  .case-image-link:hover .case-frames img:nth-child(2),
-  .case-image-link:focus-visible .case-frames img:nth-child(2) { animation-delay: 200ms; }
-  .case-image-link:hover .case-frames img:nth-child(3),
-  .case-image-link:focus-visible .case-frames img:nth-child(3) { animation-delay: 400ms; }
-  .case-image-link:hover .case-frames img:nth-child(4),
-  .case-image-link:focus-visible .case-frames img:nth-child(4) { animation-delay: 600ms; }
-  .case-image-link:hover .case-frames img:nth-child(5),
-  .case-image-link:focus-visible .case-frames img:nth-child(5) { animation-delay: 800ms; }
-  .case-image-link:hover .case-frames img:nth-child(6),
-  .case-image-link:focus-visible .case-frames img:nth-child(6) { animation-delay: 1000ms; }
-  .case-image-link:hover .case-frames img:nth-child(7),
-  .case-image-link:focus-visible .case-frames img:nth-child(7) { animation-delay: 1200ms; }
-  .case-image-link:hover .case-frames img:nth-child(8),
-  .case-image-link:focus-visible .case-frames img:nth-child(8) { animation-delay: 1400ms; }
-  .case-image-link:hover .case-frames img:nth-child(9),
-  .case-image-link:focus-visible .case-frames img:nth-child(9) { animation-delay: 1600ms; }
-  .case-image-link:hover .case-frames img:nth-child(10),
-  .case-image-link:focus-visible .case-frames img:nth-child(10) { animation-delay: 1800ms; }
 }
 
 @media (prefers-reduced-motion: reduce) {
