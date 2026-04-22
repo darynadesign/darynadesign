@@ -8115,7 +8115,6 @@ picture.case-full-img--gap,
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  animation: case-frame-cycle 4000ms steps(1, end) infinite;
 }
 
 .case-frames img:nth-child(1)  { animation-delay: 0ms; }
@@ -8145,6 +8144,11 @@ picture.case-full-img--gap,
   .case-image-link:focus-visible .case-frames {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
+  }
+
+  .case-cover:hover .case-frames img,
+  .case-image-link:focus-visible .case-frames img {
+    animation: case-frame-cycle 4000ms steps(1, end) infinite;
   }
 }
 
