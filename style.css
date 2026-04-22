@@ -8135,13 +8135,13 @@ picture.case-full-img--gap,
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .case-image-link:hover .case-cover > picture img,
+  .case-cover:hover > picture img,
   .case-image-link:focus-visible .case-cover > picture img {
     filter: blur(12px);
     transition: filter 300ms ease, transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .case-image-link:hover .case-frames,
+  .case-cover:hover .case-frames,
   .case-image-link:focus-visible .case-frames {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
@@ -8149,7 +8149,7 @@ picture.case-full-img--gap,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .case-image-link:hover .case-cover > picture img,
+  .case-cover:hover > picture img,
   .case-image-link:focus-visible .case-cover > picture img {
     filter: none;
   }
