@@ -17,6 +17,9 @@
       rel="stylesheet"
     />
     <link rel="icon" href="assets/df..svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="assets/case%20cover%20animations/Wave/8.webp" fetchpriority="low" />
+    <link rel="preload" as="image" href="assets/case%20cover%20animations/Landing/1.webp" fetchpriority="low" />
+    <link rel="preload" as="image" href="assets/case%20cover%20animations/Tehno/1.webp" fetchpriority="low" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -1200,9 +1203,25 @@
               }
             });
           },
-          { rootMargin: "0px" }
+          { rootMargin: "500px 0px" }
         );
         covers.forEach(function (cover) { io.observe(cover); });
+        // Once hero is done, preload any remaining frames during idle time
+        var preloadRest = function () {
+          covers.forEach(function (cover) {
+            loadFrames(cover);
+            io.unobserve(cover);
+          });
+        };
+        var schedulePreload = function () {
+          if ("requestIdleCallback" in window) {
+            requestIdleCallback(preloadRest, { timeout: 3000 });
+          } else {
+            setTimeout(preloadRest, 1500);
+          }
+        };
+        if (document.readyState === "complete") schedulePreload();
+        else window.addEventListener("load", schedulePreload);
       })();
     </script>
     <script>
