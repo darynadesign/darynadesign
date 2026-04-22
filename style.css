@@ -8148,7 +8148,10 @@ picture.case-full-img--gap,
 
   .case-cover:hover .case-frames img,
   .case-image-link:focus-visible .case-frames img {
-    animation: case-frame-cycle 4000ms steps(1, end) infinite;
+    animation-name: case-frame-cycle;
+    animation-duration: 4000ms;
+    animation-timing-function: steps(1, end);
+    animation-iteration-count: infinite;
   }
 }
 
