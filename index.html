@@ -174,16 +174,16 @@
               />
             </picture>
             <div class="case-frames" aria-hidden="true">
-              <img src="assets/case%20cover%20animations/Wave/8.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/3.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/7.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/4.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/2.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/9.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/1.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/6.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/5.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Wave/10.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/8.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/3.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/7.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/4.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/2.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/9.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/1.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/6.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/5.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Wave/10.webp" alt="" />
             </div>
           </div>
         </div>
@@ -238,16 +238,16 @@
               />
             </picture>
             <div class="case-frames" aria-hidden="true">
-              <img src="assets/case%20cover%20animations/Landing/1.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/2.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/3.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/4.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/5.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/6.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/7.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/8.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/9.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Landing/10.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/1.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/2.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/3.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/4.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/5.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/6.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/7.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/8.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/9.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Landing/10.webp" alt="" />
             </div>
           </div>
         </div>
@@ -301,16 +301,16 @@
               />
             </picture>
             <div class="case-frames" aria-hidden="true">
-              <img src="assets/case%20cover%20animations/Tehno/1.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/8.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/6.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/4.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/7.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/10.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/5.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/2.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/9.webp" alt="" />
-              <img src="assets/case%20cover%20animations/Tehno/3.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/1.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/8.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/6.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/4.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/7.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/10.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/5.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/2.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/9.webp" alt="" />
+              <img data-src="assets/case%20cover%20animations/Tehno/3.webp" alt="" />
             </div>
           </div>
         </div>
@@ -1204,6 +1204,41 @@
           { rootMargin: "0px 0px -15% 0px", threshold: 0 }
         );
         els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var video = document.getElementById("heroVideo");
+        var imgs = document.querySelectorAll(".case-frames img[data-src]");
+        if (!imgs.length) return;
+
+        var fired = false;
+        function preloadFrames() {
+          if (fired) return;
+          fired = true;
+          Promise.all(
+            Array.prototype.map.call(imgs, function (img) {
+              return new Promise(function (resolve) {
+                var loader = new Image();
+                loader.decoding = "async";
+                loader.onload = loader.onerror = function () {
+                  img.src = img.dataset.src;
+                  resolve();
+                };
+                loader.src = img.dataset.src;
+              });
+            })
+          );
+        }
+
+        if (!video || video.readyState >= 4) {
+          preloadFrames();
+          return;
+        }
+        video.addEventListener("canplaythrough", preloadFrames, { once: true });
+        video.addEventListener("error", preloadFrames, { once: true });
+        setTimeout(preloadFrames, 5000);
       })();
     </script>
   </body>
