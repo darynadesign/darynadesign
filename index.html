@@ -1219,15 +1219,17 @@
           fired = true;
           Promise.all(
             Array.prototype.map.call(imgs, function (img) {
-              return new Promise(function (resolve) {
-                var loader = new Image();
-                loader.decoding = "async";
-                loader.onload = loader.onerror = function () {
-                  img.src = img.dataset.src;
-                  resolve();
-                };
-                loader.src = img.dataset.src;
-              });
+              var url = img.dataset.src;
+              var loader = new Image();
+              loader.decoding = "async";
+              loader.src = url;
+              // decode() forces a full bitmap decode into memory so the first
+              // paint on hover is instant. Fall back to plain src assignment
+              // if decode() rejects (happens on some browsers for certain
+              // image types — doesn't mean the image won't render).
+              return loader.decode()
+                .catch(function () {})
+                .then(function () { img.src = url; });
             })
           );
         }

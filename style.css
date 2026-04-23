@@ -8134,6 +8134,10 @@ picture.case-full-img--gap,
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .case-cover > picture img {
+    will-change: filter;
+  }
+
   .case-cover:hover > picture img,
   .case-image-link:focus-visible .case-cover > picture img {
     filter: blur(12px);
