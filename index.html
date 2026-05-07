@@ -23,10 +23,9 @@
     <!-- NAV -->
     <nav>
       <a href="./" class="logo">df.</a>
-      <span class="nav-label">PORTFOLIO '26</span>
       <ul class="nav-links">
-        <li><a href="#about">ABOUT</a></li>
         <li><a href="#work">WORK</a></li>
+        <li><a href="#about">ABOUT</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
       <a href="cv.pdf" class="nav-cta" target="_blank">VIEW MY CV</a>
@@ -47,9 +46,9 @@
         </button>
       </div>
       <div class="menu-overlay-nav">
-        <a href="#about" class="menu-overlay-link">ABOUT</a>
         <a href="#work" class="menu-overlay-link">WORK</a>
-        <a href="#skills" class="menu-overlay-link">SKILLS</a>
+        <a href="#about" class="menu-overlay-link">ABOUT</a>
+        <a href="#contact" class="menu-overlay-link">CONTACT</a>
       </div>
       <div class="menu-overlay-footer">
         <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-cta">GET IN TOUCH</a>
@@ -77,82 +76,38 @@
         <source src="assets/hero.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
-      <div class="hero-info">
-        <div class="hero-info-block hero-info-block--left reveal-block" style="--reveal-rise: 40px; --reveal-dur: 800ms; --reveal-delay: 300ms">
-          <p>london, uk</p>
-          <p id="london-time"></p>
-        </div>
-        <div class="hero-info-block hero-info-block--right reveal-block" style="--reveal-rise: 40px; --reveal-dur: 800ms; --reveal-delay: 300ms">
-          <p>ui/ux designer</p>
-          <p>ex-arch. designer</p>
-        </div>
+      <div class="hero-wai reveal-block" style="--reveal-rise: 40px; --reveal-dur: 800ms; --reveal-delay: 300ms">
+        <p class="wai-headline hero-wai-headline">
+          UX/UI designer crafting thoughtful digital experiences with strategic
+          clarity, strong visual craft, and a&nbsp;deep understanding of
+          people. I&nbsp;care about creating work that not only functions
+          beautifully, but also feels human and pulls at the heartstrings.
+        </p>
+        <a href="#work" class="wai-jump hero-wai-jump">
+          <span>JUMP TO CASES</span>
+          <svg
+            class="wai-arrow-img wai-squiggly"
+            viewBox="0 -6 138.41 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              class="wai-wave"
+              fill="none"
+              stroke="#FFFFFF"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path class="wai-arrowhead" fill="#FFFFFF" />
+          </svg>
+        </a>
       </div>
       <h1 class="hero-name reveal-block" style="--reveal-rise: 40px; --reveal-dur: 800ms">daria forsiuk</h1>
     </section>
 
-    <!-- WHO AM I -->
-    <section class="who-am-i" id="about">
-      <div class="wai-grid">
-        <div class="wai-top reveal-block">
-          <span class="wai-label">WHO AM I?</span>
-          <p class="wai-headline">
-            UI/UX designer, curious mind, and enthusiastic human.
-            <br class="mob-br" />
-            I&nbsp;strive to create emotionally resonant experiences that will
-            solve problems but also pull at the&nbsp;heartstrings, making
-            a&nbsp;lasting and memorable impact.
-          </p>
-          <a href="#work" class="wai-jump">
-            <span>JUMP TO CASES</span>
-            <svg
-              class="wai-arrow-img"
-              viewBox="0 -6 138.41 42"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              id="wai-squiggly"
-              aria-hidden="true"
-            >
-              <path
-                id="wai-wave"
-                fill="none"
-                stroke="#7274FF"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path id="wai-arrowhead" fill="#7274FF" />
-            </svg>
-          </a>
-        </div>
-        <div class="wai-bottom reveal-block">
-          <div class="wai-photo">
-            <img
-              src="assets/kiddo.webp"
-              alt="Daria Forsiuk"
-              width="656"
-              height="560"
-            />
-            <img src="assets/notes.svg" class="wai-notes" alt="" aria-hidden="true" />
-          </div>
-          <div class="wai-bio">
-            <p>
-              When&nbsp;I was a&nbsp;kid playing in a&nbsp;school band,
-              I&nbsp;wanted to&nbsp;become a&nbsp;rockstar. At least that's what
-              I&nbsp;wrote in my English essay in seventh grade. And&nbsp;then
-              added, "In case that doesn't work out, my second best option would
-              be a&nbsp;web designer."
-            </p>
-            <p>
-              Since then, I've taken a&nbsp;few detours&nbsp;— a&nbsp;degree in
-              project management, five years in architectural design, and
-              a&nbsp;few wedding gigs&nbsp;— but I've come full circle
-              to&nbsp;those childhood resolutions. I'm not quite a&nbsp;design
-              rockstar (yet) but my twelve-year old self would be proud.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- CASES -->
     <section class="cases" id="work">
@@ -350,6 +305,7 @@
     </section>
 
     <!-- WHAT CAN I DO FOR YOU -->
+    <span id="about" class="anchor-target" aria-hidden="true"></span>
     <section class="skills" id="skills">
       <div class="skills-grid reveal-block" style="--reveal-rise: 0px">
         <div class="skills-left-wrap">
@@ -475,6 +431,7 @@
     <div class="contact-footer-wrap">
       <section class="contact" id="contact">
         <div class="contact-grid reveal-block">
+          <div class="contact-right">
           <span class="contact-label">WHAT ELSE IS THERE TO BE DONE?</span>
           <div class="contact-content">
             <p class="contact-headline">
@@ -519,6 +476,22 @@
               </a>
             </div>
           </div>
+          </div>
+          <div class="contact-photo">
+            <div class="contact-photo-inner">
+              <img
+                src="assets/kiddo.webp"
+                alt="Daria Forsiuk as a kid"
+                width="780"
+                height="656"
+              />
+              <img src="assets/notes.svg" class="wai-notes contact-notes" alt="" aria-hidden="true" />
+            </div>
+            <div class="contact-bio-card">
+              <p>When&nbsp;I was a&nbsp;kid playing in a&nbsp;school band, I&nbsp;wanted to&nbsp;become a&nbsp;rockstar. At least that's what I&nbsp;wrote in my English essay in seventh grade. And&nbsp;then cautiously added, "In case that doesn't work out, my back-up option would be a&nbsp;web designer."</p>
+              <p>Since then, I've taken a&nbsp;few detours: a&nbsp;degree in project management, five years in architectural design, and a&nbsp;few wedding gigs; but I've come full circle to&nbsp;those childhood resolutions. I'm not quite a&nbsp;design rockstar (yet) but my twelve-year old self would be proud.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -536,28 +509,6 @@
     </div>
 
     <script>
-      function updateLondonTime() {
-        const now = new Date();
-        const offset = new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Europe/London",
-          timeZoneName: "short",
-        })
-          .formatToParts(now)
-          .find((p) => p.type === "timeZoneName").value;
-        const time = new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Europe/London",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).format(now);
-        document.getElementById("london-time").textContent =
-          offset + ", " + time;
-      }
-
-      updateLondonTime();
-      setInterval(updateLondonTime, 60000);
-
-
       const nav = document.querySelector("nav");
       const hero = document.querySelector(".hero");
       const menuOverlay = document.getElementById("menuOverlay");
@@ -576,9 +527,19 @@
       setNavH();
       window.addEventListener("resize", setNavH);
 
+      const heroName = document.querySelector(".hero-name");
+      function setHeroNameH() {
+        if (window.innerWidth >= 1024) return;
+        document.documentElement.style.setProperty(
+          "--hero-name-h",
+          heroName.offsetHeight + "px",
+        );
+      }
+      setHeroNameH();
+      window.addEventListener("resize", setHeroNameH);
+
       const navSections = [
         { el: document.querySelector(".hero"), dark: false },
-        { el: document.querySelector(".who-am-i"), dark: true },
         { el: document.querySelector(".cases"), dark: true },
         { el: document.querySelector(".skills"), dark: false },
         { el: document.querySelector(".contact"), dark: true },
@@ -605,6 +566,20 @@
 
       window.addEventListener("scroll", updateNav, { passive: true });
       updateNav();
+
+      // Hero name opacity: 0.7 at top → 1.0 as hero scrolls away
+      (function () {
+        const heroName = document.querySelector(".hero-name");
+        const hero = document.querySelector(".hero");
+        if (!heroName || !hero) return;
+        function updateNameOpacity() {
+          const ratio = Math.min(1, window.scrollY / (hero.offsetHeight * 0.25));
+          const opacity = 0.5 + 0.5 * ratio;
+          heroName.style.setProperty("--name-opacity", opacity.toFixed(3));
+        }
+        window.addEventListener("scroll", updateNameOpacity, { passive: true });
+        updateNameOpacity();
+      })();
 
       // Skills sticky: constrain left-wrap height so sticky stops at last row
       function setSkillsWrapHeight() {
@@ -696,7 +671,7 @@
         }
       });
 
-      // Shared helper: inline an SVG and apply stop-motion stroke jitter
+      // Shared helper: inline an SVG and apply stop-motion stroke jitter via IO
       function inlineJitter(srcAttr, cssClass) {
         fetch(srcAttr)
           .then((r) => r.text())
@@ -712,10 +687,7 @@
 
             document.querySelector(`img[src="${srcAttr}"]`).replaceWith(svg);
 
-            const parent = svg.closest(".skills-item");
-            if (!parent) return;
-
-            let jitterInterval;
+            let jitterInterval = null;
 
             function jitterFrame() {
               strokePaths.forEach((path) => {
@@ -725,14 +697,22 @@
               });
             }
 
-            parent.addEventListener("mouseenter", () => {
-              jitterFrame();
-              jitterInterval = setInterval(jitterFrame, 280);
-            });
-            parent.addEventListener("mouseleave", () => {
-              clearInterval(jitterInterval);
-              strokePaths.forEach((p) => (p.style.transform = ""));
-            });
+            const io = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting && !jitterInterval) {
+                    jitterFrame();
+                    jitterInterval = setInterval(jitterFrame, 280);
+                  } else if (!entry.isIntersecting && jitterInterval) {
+                    clearInterval(jitterInterval);
+                    jitterInterval = null;
+                    strokePaths.forEach((p) => (p.style.transform = ""));
+                  }
+                });
+              },
+              { threshold: 0.1 },
+            );
+            io.observe(svg);
           })
           .catch(() => {});
       }
@@ -798,42 +778,49 @@
         btn.addEventListener("mouseleave", setOrigin);
       });
 
-      // Notes overlay on kid photo — same stop-motion jitter as skills
+      // Notes overlay — continuous stop-motion jitter, gated by IntersectionObserver
       (function () {
-        const target = document.querySelector(".wai-photo .wai-notes");
-        if (!target) return;
+        const targets = document.querySelectorAll(".wai-notes");
+        if (!targets.length) return;
         fetch("assets/notes.svg")
           .then((r) => r.text())
           .then((markup) => {
-            const tmp = document.createElement("div");
-            tmp.innerHTML = markup;
-            const svg = tmp.querySelector("svg");
-            svg.removeAttribute("width");
-            svg.removeAttribute("height");
-            svg.setAttribute("class", "wai-notes");
-            svg.setAttribute("aria-hidden", "true");
-            const strokePaths = [...svg.querySelectorAll("[stroke]")];
-            target.replaceWith(svg);
+            targets.forEach((target) => {
+              const tmp = document.createElement("div");
+              tmp.innerHTML = markup;
+              const svg = tmp.querySelector("svg");
+              if (!svg) return;
+              svg.removeAttribute("width");
+              svg.removeAttribute("height");
+              svg.setAttribute("class", target.className);
+              svg.setAttribute("aria-hidden", "true");
+              const strokePaths = [...svg.querySelectorAll("[stroke]")];
+              target.replaceWith(svg);
 
-            const parent = svg.closest(".wai-photo");
-            if (!parent) return;
+              let intervalId = null;
+              function tick() {
+                strokePaths.forEach((p) => {
+                  const x = (Math.random() - 0.5) * 2;
+                  const y = (Math.random() - 0.5) * 2;
+                  p.style.transform = `translate(${x}px, ${y}px)`;
+                });
+              }
 
-            let jitterInterval;
-            function jitterFrame() {
-              strokePaths.forEach((path) => {
-                const x = (Math.random() - 0.5) * 2;
-                const y = (Math.random() - 0.5) * 2;
-                path.style.transform = `translate(${x}px, ${y}px)`;
-              });
-            }
-
-            parent.addEventListener("mouseenter", () => {
-              jitterFrame();
-              jitterInterval = setInterval(jitterFrame, 280);
-            });
-            parent.addEventListener("mouseleave", () => {
-              clearInterval(jitterInterval);
-              strokePaths.forEach((p) => (p.style.transform = ""));
+              const io = new IntersectionObserver(
+                (entries) => {
+                  entries.forEach((entry) => {
+                    if (entry.isIntersecting && !intervalId) {
+                      tick();
+                      intervalId = setInterval(tick, 280);
+                    } else if (!entry.isIntersecting && intervalId) {
+                      clearInterval(intervalId);
+                      intervalId = null;
+                    }
+                  });
+                },
+                { threshold: 0.1 },
+              );
+              io.observe(svg);
             });
           })
           .catch(() => {});
@@ -957,7 +944,7 @@
         });
       })();
 
-      // Squiggly wave animation for "jump to cases" button
+      // Squiggly wave animation for "jump to cases" button (hero + mobile copies)
       (function () {
         const BASE = [
           { x: 2.07, y: 14.73 },
@@ -971,10 +958,6 @@
         const AMPLITUDE = 3.8;
         const FREQUENCY = 2.8;
         const SPEED = ARROW_SPEED;
-
-        const wavePath = document.getElementById("wai-wave");
-        const arrowhead = document.getElementById("wai-arrowhead");
-        const jumpLink = document.querySelector(".wai-jump");
 
         function catmullRom(pts) {
           let d = `M ${pts[0].x.toFixed(3)} ${pts[0].y.toFixed(3)}`;
@@ -1015,7 +998,7 @@
           ].join(" ");
         }
 
-        function drawStatic() {
+        function drawStatic(wavePath, arrowhead) {
           const pts = BASE.map((p) => ({
             x: p.x,
             y:
@@ -1026,55 +1009,61 @@
           arrowhead.setAttribute("d", buildArrowhead(pts));
         }
 
-        drawStatic();
+        document.querySelectorAll(".wai-jump").forEach((jumpLink) => {
+          const wavePath = jumpLink.querySelector(".wai-wave");
+          const arrowhead = jumpLink.querySelector(".wai-arrowhead");
+          if (!wavePath || !arrowhead) return;
 
-        let phase = 0,
-          rafId = null,
-          animating = false,
-          lastTime = 0;
+          drawStatic(wavePath, arrowhead);
 
-        function animateFrame(now) {
-          if (!animating) return;
-          if (now - lastTime < FRAME_MS) {
+          let phase = 0,
+            rafId = null,
+            animating = false,
+            lastTime = 0;
+
+          function animateFrame(now) {
+            if (!animating) return;
+            if (now - lastTime < FRAME_MS) {
+              rafId = requestAnimationFrame(animateFrame);
+              return;
+            }
+            lastTime = now;
+            phase += SPEED;
+            const pts = BASE.map((p) => ({
+              x: p.x + (Math.random() - 0.5) * 2 * ARROW_JITTER,
+              y:
+                p.y +
+                AMPLITUDE *
+                  Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase) +
+                (Math.random() - 0.5) * 2 * ARROW_JITTER,
+            }));
+            wavePath.setAttribute("d", catmullRom(pts));
+            arrowhead.setAttribute("d", buildArrowhead(pts));
             rafId = requestAnimationFrame(animateFrame);
-            return;
           }
-          lastTime = now;
-          phase += SPEED;
-          const pts = BASE.map((p) => ({
-            x: p.x + (Math.random() - 0.5) * 2 * ARROW_JITTER,
-            y:
-              p.y +
-              AMPLITUDE *
-                Math.sin(2 * Math.PI * (p.x / 138.41) * FREQUENCY - phase) +
-              (Math.random() - 0.5) * 2 * ARROW_JITTER,
-          }));
-          wavePath.setAttribute("d", catmullRom(pts));
-          arrowhead.setAttribute("d", buildArrowhead(pts));
-          rafId = requestAnimationFrame(animateFrame);
-        }
 
-        jumpLink.addEventListener("click", (e) => {
-          e.preventDefault();
-          const target = document.getElementById("work");
-          if (target) {
-            const top =
-              target.getBoundingClientRect().top + window.scrollY - 34;
-            window.scrollTo({ top, behavior: "smooth" });
-          }
-        });
+          jumpLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            const target = document.getElementById("work");
+            if (target) {
+              const top =
+                target.getBoundingClientRect().top + window.scrollY - 34;
+              window.scrollTo({ top, behavior: "smooth" });
+            }
+          });
 
-        jumpLink.addEventListener("mouseenter", () => {
-          animating = true;
-          if (!rafId) rafId = requestAnimationFrame(animateFrame);
-        });
+          jumpLink.addEventListener("mouseenter", () => {
+            animating = true;
+            if (!rafId) rafId = requestAnimationFrame(animateFrame);
+          });
 
-        jumpLink.addEventListener("mouseleave", () => {
-          animating = false;
-          if (rafId) {
-            cancelAnimationFrame(rafId);
-            rafId = null;
-          }
+          jumpLink.addEventListener("mouseleave", () => {
+            animating = false;
+            if (rafId) {
+              cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+          });
         });
       })();
 
