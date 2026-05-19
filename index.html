@@ -81,7 +81,7 @@
           UX/UI designer crafting thoughtful digital experiences with strategic
           clarity, strong visual craft, and a&nbsp;deep understanding of
           people. I&nbsp;care about creating work that not only functions
-          beautifully, but also feels human and pulls at the heartstrings.
+          beautifully, but also feels human and emotionally resonant.
         </p>
         <a href="#work" class="wai-jump hero-wai-jump">
           <span>JUMP TO CASES</span>
@@ -499,12 +499,7 @@
       <footer class="site-footer">
         <a href="./" class="site-footer-logo">df.</a>
         <span class="site-footer-copy">@2026_all rights reserved</span>
-        <ul class="site-footer-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#skills">Skills</a></li>
-        </ul>
-        <a href="#" class="site-footer-top">to top</a>
+<a href="#" class="site-footer-top">to top</a>
       </footer>
     </div>
 
@@ -527,12 +522,12 @@
       setNavH();
       window.addEventListener("resize", setNavH);
 
-      const heroName = document.querySelector(".hero-name");
+      const heroNameEl = document.querySelector(".hero-name");
       function setHeroNameH() {
         if (window.innerWidth >= 1024) return;
         document.documentElement.style.setProperty(
           "--hero-name-h",
-          heroName.offsetHeight + "px",
+          heroNameEl.offsetHeight + "px",
         );
       }
       setHeroNameH();
