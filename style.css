@@ -480,8 +480,6 @@ nav.dark .nav-hamburger::after {
   height: 100%;
   object-fit: cover;
   object-position: 65% center;
-  filter: brightness(0.7);
-
 }
 
 .hero-overlay {
@@ -490,16 +488,16 @@ nav.dark .nav-hamburger::after {
   inset: 0;
   background:
     linear-gradient(
-      0deg,
-      rgba(8, 8, 21, 0) 60%,
-      rgba(8, 8, 21, 0.18) 80%,
-      rgba(8, 8, 21, 0.45) 100%
+      to top,
+      rgba(8, 8, 21, 0.85) 0%,
+      rgba(8, 8, 21, 0.45) 20%,
+      rgba(8, 8, 21, 0) 50%
     ),
     linear-gradient(
-      180deg,
-      rgba(8, 8, 21, 0) 0%,
-      rgba(8, 8, 21, 0.18) 59.62%,
-      rgba(8, 8, 21, 0.45) 83.17%
+      135deg,
+      rgba(8, 8, 21, 0.72) 0%,
+      rgba(8, 8, 21, 0.35) 30%,
+      rgba(8, 8, 21, 0) 58%
     );
   z-index: 1;
   pointer-events: none;
