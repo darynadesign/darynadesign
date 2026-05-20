@@ -710,6 +710,7 @@ nav.dark .nav-hamburger::after {
 
   .hero-wai-headline {
     font-size: 20px;
+    max-width: 360px;
   }
 
   .hero-wai-jump {
@@ -723,9 +724,10 @@ nav.dark .nav-hamburger::after {
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1440px) {
   .hero-wai-headline {
-    font-size: 24px;
+    font-size: 28px;
+    max-width: 500px;
   }
 }
 
