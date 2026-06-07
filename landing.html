@@ -857,6 +857,51 @@
         });
       }
 
+      // Footer link arrows: inline SVG + stop-motion jitter on hover only
+      function inlineJitterOnHover(srcAttr, parentSelector) {
+        const img = document.querySelector(
+          `${parentSelector} img[src="${srcAttr}"]`
+        );
+        if (!img) return;
+        const parent = img.closest(parentSelector);
+        if (!parent) return;
+        fetch(srcAttr)
+          .then((r) => r.text())
+          .then((markup) => {
+            const tmp = document.createElement("div");
+            tmp.innerHTML = markup;
+            const svg = tmp.querySelector("svg");
+            if (!svg) return;
+            svg.removeAttribute("width");
+            svg.removeAttribute("height");
+            svg.setAttribute("class", img.getAttribute("class") || "");
+            svg.setAttribute("aria-hidden", "true");
+
+            img.replaceWith(svg);
+
+            let jitterInterval;
+            const AMP = 3;
+            function jitterFrame() {
+              const x = (Math.random() - 0.5) * 2 * AMP;
+              const y = (Math.random() - 0.5) * 2 * AMP;
+              svg.style.transform = `translate(${x}px, ${y}px)`;
+            }
+
+            parent.addEventListener("mouseenter", () => {
+              jitterFrame();
+              jitterInterval = setInterval(jitterFrame, 280);
+            });
+            parent.addEventListener("mouseleave", () => {
+              clearInterval(jitterInterval);
+              svg.style.transform = "";
+            });
+          })
+          .catch(() => {});
+      }
+
+      inlineJitterOnHover("assets/arrow 1.svg", ".landing-footer-link");
+      inlineJitterOnHover("assets/arrow 2.svg", ".landing-footer-link");
+
       // Squiggly wave animation for "view case" button
       (function () {
         const ARROW_SPEED = 2.77;
