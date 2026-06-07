@@ -1659,11 +1659,11 @@ img[src="assets/violin.svg"].skills-illus {
   letter-spacing: 0;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 }
 
 .site-footer-top:hover {
-  opacity: 0.4;
+  color: #0d08c5;
 }
 
 /* FOOTER — tablet */
