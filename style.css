@@ -1715,7 +1715,7 @@ img[src="assets/violin.svg"].skills-illus {
   }
 
   .site-footer-top::before {
-    content: "back to top";
+    content: "to top";
     font-size: 14px;
   }
 }
