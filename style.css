@@ -4674,7 +4674,8 @@ picture.case-full-img--gap,
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .keep-exploring-right:hover .keep-exploring-image img {
+  .keep-exploring-right:has(.case-link:hover) .keep-exploring-image img,
+  .keep-exploring-right:has(.case-link:focus-visible) .keep-exploring-image img {
     transform: scale(1.04);
   }
 }
@@ -4683,7 +4684,8 @@ picture.case-full-img--gap,
   .keep-exploring-image img {
     transition: none;
   }
-  .keep-exploring-right:hover .keep-exploring-image img {
+  .keep-exploring-right:has(.case-link:hover) .keep-exploring-image img,
+  .keep-exploring-right:has(.case-link:focus-visible) .keep-exploring-image img {
     transform: none;
   }
 }
