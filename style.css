@@ -4787,14 +4787,18 @@ picture.case-full-img--gap,
   align-items: center;
   gap: 16px;
   white-space: nowrap;
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 }
 .landing-footer-link:hover {
-  opacity: 0.4;
+  color: #0d08c5;
 }
 .landing-footer-link .arrow-icon {
   width: 22px;
   height: 21px;
+  transition: filter 0.2s;
+}
+.landing-footer-link:hover .arrow-icon {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(99%) saturate(7461%) hue-rotate(247deg) brightness(96%) contrast(118%);
 }
 
 @media (min-width: 768px) {
