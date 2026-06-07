@@ -17,18 +17,24 @@
       rel="stylesheet"
     />
     <link rel="icon" href="assets/df..svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/lenis@1.3.23/dist/lenis.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- NAV -->
     <nav>
       <a href="./" class="logo">df.</a>
-      <ul class="nav-links">
-        <li><a href="#work">WORK</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-      </ul>
-      <a href="cv.pdf" class="nav-cta" target="_blank">VIEW MY CV</a>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="#work">WORK</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+        <a href="mailto:daria.forsiuk@gmail.com" class="nav-cta">GET IN TOUCH</a>
+      </div>
       <button class="nav-hamburger" aria-label="Open menu">MENU</button>
     </nav>
 
@@ -61,8 +67,8 @@
             LINKEDIN
             <img src="assets/arrow 1.svg" alt="" class="arrow-icon" />
           </a>
-          <a href="cv.pdf" class="menu-overlay-external" target="_blank">
-            VIEW MY CV
+          <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-external">
+            GET IN TOUCH
             <img src="assets/arrow 2.svg" alt="" class="arrow-icon" />
           </a>
         </div>
@@ -503,6 +509,7 @@
       </footer>
     </div>
 
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
     <script>
       const nav = document.querySelector("nav");
       const hero = document.querySelector(".hero");
@@ -510,6 +517,19 @@
       const menuOpen = document.querySelector(".nav-hamburger");
       const menuClose = document.getElementById("menuClose");
       const menuBackdrop = document.getElementById("menuBackdrop");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const lenis =
+        !prefersReducedMotion && window.Lenis
+          ? new Lenis({
+              autoRaf: true,
+              anchors: {
+                offset: -34,
+              },
+              stopInertiaOnNavigate: true,
+            })
+          : null;
 
       // Expose nav height for CSS sticky calc
       function setNavH() {
@@ -634,6 +654,7 @@
         menuBackdrop.classList.add("is-open");
         menuOverlay.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
+        lenis?.stop();
       }
 
       function closeMenu() {
@@ -641,6 +662,7 @@
         menuBackdrop.classList.remove("is-open");
         menuOverlay.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
+        lenis?.start();
       }
 
       menuOpen.addEventListener("click", () => {
@@ -1041,9 +1063,13 @@
             e.preventDefault();
             const target = document.getElementById("work");
             if (target) {
-              const top =
-                target.getBoundingClientRect().top + window.scrollY - 34;
-              window.scrollTo({ top, behavior: "smooth" });
+              if (lenis) {
+                lenis.scrollTo(target, { offset: -34 });
+              } else {
+                const top =
+                  target.getBoundingClientRect().top + window.scrollY - 34;
+                window.scrollTo({ top, behavior: "smooth" });
+              }
             }
           });
 
