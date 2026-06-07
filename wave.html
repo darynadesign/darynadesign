@@ -16,13 +16,14 @@
     <!-- NAV -->
     <nav>
       <a href="./" class="logo">df.</a>
-      <span class="nav-label">PORTFOLIO '26</span>
-      <ul class="nav-links">
-        <li><a href="./#about">ABOUT</a></li>
-        <li><a href="./#work">WORK</a></li>
-        <li><a href="./#contact">CONTACT</a></li>
-      </ul>
-      <a href="cv.pdf" class="nav-cta" target="_blank">VIEW MY CV</a>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="./#work">WORK</a></li>
+          <li><a href="./#about">ABOUT</a></li>
+          <li><a href="./#contact">CONTACT</a></li>
+        </ul>
+        <a href="mailto:daria.forsiuk@gmail.com" class="nav-cta">GET IN TOUCH</a>
+      </div>
       <button class="nav-hamburger" aria-label="Open menu">MENU</button>
     </nav>
 
@@ -91,6 +92,38 @@
 
       window.addEventListener("scroll", updateNav, { passive: true });
       updateNav();
+
+      document.querySelectorAll(".logo, .nav-links li a").forEach((link) => {
+        let jitterInterval = null;
+        const navJitterAmplitude = 2;
+
+        function jitterFrame() {
+          const xOffset = (Math.random() - 0.5) * 2 * navJitterAmplitude;
+          const yOffset = (Math.random() - 0.5) * 2 * navJitterAmplitude;
+          link.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        }
+
+        link.addEventListener("mouseenter", () => {
+          jitterFrame();
+          jitterInterval = setInterval(jitterFrame, 280);
+        });
+
+        link.addEventListener("mouseleave", () => {
+          clearInterval(jitterInterval);
+          jitterInterval = null;
+          link.style.transform = "";
+        });
+      });
+
+      document.querySelectorAll(".nav-cta").forEach((btn) => {
+        const setOrigin = (e) => {
+          const rect = btn.getBoundingClientRect();
+          btn.style.setProperty("--x", `${e.clientX - rect.left}px`);
+          btn.style.setProperty("--y", `${e.clientY - rect.top}px`);
+        };
+        btn.addEventListener("mouseenter", setOrigin);
+        btn.addEventListener("mouseleave", setOrigin);
+      });
 
       // Hide nav on scroll-down, show on scroll-up / mouse-move
       let lastScrollY = window.scrollY;
@@ -1600,12 +1633,7 @@
           </picture>
         </div>
         <div class="keep-exploring-info">
-          <p class="keep-exploring-tags">
-            <span>#RESEARCH</span> <span>/</span> <span>#USER TESTING</span>
-            <span>/</span> <span>#UX/UI</span> <span>/</span>
-            <span>#E&#8209;COMMERCE</span> <span>/</span>
-            <span>#REDESIGN</span>
-          </p>
+          <h3 class="case-title keep-exploring-title">Tehnohata</h3>
           <p class="keep-exploring-desc">
             Redesign for a&nbsp;home appliance store. Improved UI, navigation,
             and&nbsp;product discoverability.

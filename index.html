@@ -150,11 +150,7 @@
         </div>
         </a>
         <div class="case-bottom reveal-block">
-          <p class="case-tags">
-            #REDESIGN / #USER TESTING / #UX/UI
-            <br />
-            #CHARITY / #VISUAL STORYTELLING
-          </p>
+          <h3 class="case-title">Wave’91</h3>
           <p class="case-desc">
             Redesign for a&nbsp;charity foundation to&nbsp;boost donor
             engagement and donation flows; selected among 15 entries, now in
@@ -214,11 +210,7 @@
         </div>
         </a>
         <div class="case-bottom reveal-block">
-          <p class="case-tags">
-            #LANDING / #PERSONAL BRAND / #UI
-            <br />
-            #FASHION / #VISUAL STORYTELLING
-          </p>
+          <h3 class="case-title">Maryna Martyniv</h3>
           <p class="case-desc">
             Landing page for a&nbsp;stylist to&nbsp;strengthen their personal
             brand and draw in clients.
@@ -277,11 +269,7 @@
         </div>
         </a>
         <div class="case-bottom reveal-block">
-          <p class="case-tags">
-            #RESEARCH / #USER TESTING / #UX/UI
-            <br />
-            #E-COMMERCE / #REDESIGN
-          </p>
+          <h3 class="case-title">Tehnohata</h3>
           <p class="case-desc">
             Redesign for a&nbsp;home appliance store. Improved UI, navigation,
             and&nbsp;product discoverability.
@@ -783,6 +771,28 @@
 
       inlineJitterOnHover("assets/arrow 1.svg", ".contact-link");
       inlineJitterOnHover("assets/arrow 2.svg", ".contact-link");
+
+      document.querySelectorAll(".logo, .nav-links li a").forEach((link) => {
+        let jitterInterval = null;
+        const navJitterAmplitude = 2;
+
+        function jitterFrame() {
+          const xOffset = (Math.random() - 0.5) * 2 * navJitterAmplitude;
+          const yOffset = (Math.random() - 0.5) * 2 * navJitterAmplitude;
+          link.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        }
+
+        link.addEventListener("mouseenter", () => {
+          jitterFrame();
+          jitterInterval = setInterval(jitterFrame, 280);
+        });
+
+        link.addEventListener("mouseleave", () => {
+          clearInterval(jitterInterval);
+          jitterInterval = null;
+          link.style.transform = "";
+        });
+      });
 
       // Radial fill originates from cursor entry point
       document.querySelectorAll(".contact-cta, .nav-cta").forEach((btn) => {
