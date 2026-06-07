@@ -1710,13 +1710,8 @@ img[src="assets/violin.svg"].skills-illus {
 
   .site-footer-top {
     grid-column: 12;
-    font-size: 0;
-    justify-self: end;
-  }
-
-  .site-footer-top::before {
-    content: "to top";
     font-size: 14px;
+    justify-self: end;
   }
 }
 
