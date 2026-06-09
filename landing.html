@@ -23,7 +23,7 @@
           <li><a href="./#about">ABOUT</a></li>
           <li><a href="./#contact">CONTACT</a></li>
         </ul>
-        <a href="mailto:daria.forsiuk@gmail.com" class="nav-cta">GET IN TOUCH</a>
+        <a href="mailto:daria.forsiuk@gmail.com" class="nav-cta">WORK WITH ME</a>
       </div>
       <button class="nav-hamburger" aria-label="Open menu">MENU</button>
     </nav>
@@ -47,7 +47,7 @@
         <a href="./#skills" class="menu-overlay-link">SKILLS</a>
       </div>
       <div class="menu-overlay-footer">
-        <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-cta">GET IN TOUCH</a>
+        <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-cta">WORK WITH ME</a>
         <div class="menu-overlay-externals">
           <a
             href="https://www.linkedin.com/in/daria-forsiuk/"
@@ -187,12 +187,41 @@
     <!-- CASE HERO -->
     <section class="case-hero">
       <div class="case-hero-grid">
-        <p class="case-hero-label reveal-h1" style="--reveal-lspace: -0.05em; --reveal-dur: 400ms">
-          PERSONAL LANDING PAGE
+        <p class="case-hero-label case-title-mask" aria-label="personal landing page for a fashion stylist">
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">PERSONAL</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">LANDING</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">PAGE</span></span
+          >
           <br />
-          FOR A FASHION STYLIST
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">FOR</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">A</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">FASHION</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">STYLIST</span></span
+          >
         </p>
-        <h1 class="case-hero-title reveal-h1">landing for mm</h1>
+        <h1 class="case-hero-title case-title-mask" aria-label="landing for mm">
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">landing</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">for</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">mm</span></span
+          >
+        </h1>
       </div>
     </section>
 
@@ -720,7 +749,7 @@
     </section>
 
     <!-- KEEP EXPLORING -->
-    <section class="keep-exploring">
+    <section class="keep-exploring keep-exploring--landing">
       <p class="keep-exploring-label">KEEP EXPLORING</p>
       <div class="keep-exploring-right">
         <div class="keep-exploring-image">
@@ -782,7 +811,7 @@
           <img src="assets/arrow 1.svg" alt="" class="arrow-icon" />
         </a>
         <a href="mailto:daria.forsiuk@gmail.com" class="landing-footer-link">
-          GET IN TOUCH
+          WORK WITH ME
           <img src="assets/arrow 2.svg" alt="" class="arrow-icon" />
         </a>
       </div>
@@ -1181,6 +1210,49 @@
           },
           { threshold: 0 },
         ).observe(body);
+      })();
+    </script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        var titleWordEls = Array.from(
+          document.querySelectorAll(".case-hero-title .case-title-mask-word-inner")
+        );
+        var labelWordEls = Array.from(
+          document.querySelectorAll(".case-hero-label .case-title-mask-word-inner")
+        );
+        var wordEls = titleWordEls.concat(labelWordEls);
+        if (!wordEls.length) return;
+        var chars = [];
+        wordEls.forEach(function (word) {
+          var text = word.textContent;
+          word.textContent = "";
+          Array.from(text).forEach(function (char) {
+            var span = document.createElement("span");
+            span.className = "case-title-mask-char";
+            span.textContent = char;
+            word.appendChild(span);
+            chars.push(span);
+          });
+        });
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce || !window.gsap) {
+          chars.forEach(function (char) {
+            char.style.transform = "none";
+          });
+          return;
+        }
+        gsap.fromTo(
+          chars,
+          { yPercent: 110 },
+          {
+            yPercent: 0,
+            duration: 0.95,
+            ease: "power4.out",
+            stagger: 0.018,
+            delay: 0.15,
+          }
+        );
       })();
     </script>
     <script>
