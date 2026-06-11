@@ -1221,10 +1221,10 @@
         var labelWordEls = Array.from(
           document.querySelectorAll(".case-hero-label .case-title-mask-word-inner")
         );
-        var wordEls = titleWordEls.concat(labelWordEls);
-        if (!wordEls.length) return;
-        var chars = [];
-        wordEls.forEach(function (word) {
+        if (!titleWordEls.length && !labelWordEls.length) return;
+        function splitChars(wordEls) {
+          var groupChars = [];
+          wordEls.forEach(function (word) {
           var text = word.textContent;
           word.textContent = "";
           Array.from(text).forEach(function (char) {
@@ -1232,27 +1232,53 @@
             span.className = "case-title-mask-char";
             span.textContent = char;
             word.appendChild(span);
-            chars.push(span);
+              groupChars.push(span);
           });
         });
+          return groupChars;
+        }
+        var titleChars = splitChars(titleWordEls);
+        var labelChars = splitChars(labelWordEls);
+        var chars = titleChars.concat(labelChars);
         var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var title = document.querySelector(".case-hero-title.case-title-mask");
         if (reduce || !window.gsap) {
           chars.forEach(function (char) {
             char.style.transform = "none";
+            char.style.visibility = "visible";
+            char.style.clipPath = "none";
           });
+          if (title) title.classList.add("case-title-mask--done");
           return;
         }
-        gsap.fromTo(
-          chars,
-          { yPercent: 110 },
-          {
-            yPercent: 0,
-            duration: 0.95,
-            ease: "power4.out",
-            stagger: 0.018,
-            delay: 0.15,
-          }
-        );
+        gsap.set(chars, {
+          yPercent: 100,
+          visibility: "hidden",
+          clipPath: "none",
+        });
+        var tl = gsap.timeline({ delay: 0.15 });
+        function revealChars(groupChars, startAt) {
+          groupChars.forEach(function (char, i) {
+          tl.to(
+            char,
+            {
+              visibility: "visible",
+              onStart: function () {
+                char.style.visibility = "visible";
+              },
+              yPercent: 0,
+              duration: 0.95,
+              ease: "power4.out",
+            },
+              startAt + i * 0.018
+          );
+        });
+        }
+        revealChars(titleChars, 0);
+        revealChars(labelChars, 0.08);
+        tl.call(function () {
+          if (title) title.classList.add("case-title-mask--done");
+        }, null, Math.max(0, (titleChars.length - 1) * 0.018 + 0.95));
       })();
     </script>
     <script>

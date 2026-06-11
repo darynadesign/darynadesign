@@ -1944,14 +1944,28 @@ img[src="assets/violin.svg"].skills-illus {
   font-family: var(--font);
   font-size: 38px;
   font-weight: 500;
-  line-height: 1;
+  line-height: 0.8;
   text-transform: lowercase;
+}
+
+.case-hero + .scene1,
+.case-hero + .case-full-img--square-mob {
+  margin-top: 24px;
 }
 
 .case-title-mask-word {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
+}
+
+.case-hero-title .case-title-mask-word {
+  overflow: clip;
+  overflow-clip-margin: 0.34em;
+}
+
+.case-hero-title.case-title-mask--done .case-title-mask-word {
+  overflow: visible;
 }
 
 .case-title-mask-word-inner {
@@ -2047,7 +2061,6 @@ picture.case-full-img--gap,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 16px;
   background: #dacfcc;
 }
 
