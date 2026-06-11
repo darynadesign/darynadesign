@@ -464,6 +464,12 @@ nav.has-bg .nav-hamburger::after {
   background: var(--black);
 }
 
+@media (max-width: 1023px) {
+  nav.has-bg .logo {
+    color: var(--black);
+  }
+}
+
 /* NAV — desktop */
 @media (min-width: 1024px) {
   nav {
