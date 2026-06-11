@@ -275,7 +275,7 @@ nav::before {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.8) 0%,
     rgba(255, 255, 255, 0.78) 42%,
     rgba(255, 255, 255, 0) 100%
   );
