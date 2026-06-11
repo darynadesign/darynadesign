@@ -113,9 +113,30 @@ body::before {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.78) 42%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.82) 18%,
+    rgba(255, 255, 255, 0.64) 40%,
+    rgba(255, 255, 255, 0.36) 68%,
+    rgba(255, 255, 255, 0.12) 88%,
     rgba(255, 255, 255, 0) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.92) 30%,
+    rgba(0, 0, 0, 0.58) 62%,
+    rgba(0, 0, 0, 0.18) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.92) 30%,
+    rgba(0, 0, 0, 0.58) 62%,
+    rgba(0, 0, 0, 0.18) 86%,
+    rgba(0, 0, 0, 0) 100%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
