@@ -294,7 +294,7 @@ nav.has-bg {
   -webkit-backdrop-filter: none;
 }
 
-nav.has-bg::before {
+nav.has-bg:not(.hidden)::before {
   opacity: 1;
 }
 
