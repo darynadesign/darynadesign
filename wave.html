@@ -16,13 +16,14 @@
     <!-- NAV -->
     <nav>
       <a href="./" class="logo">df.</a>
-      <span class="nav-label">PORTFOLIO '26</span>
-      <ul class="nav-links">
-        <li><a href="./#about">ABOUT</a></li>
-        <li><a href="./#work">WORK</a></li>
-        <li><a href="./#contact">CONTACT</a></li>
-      </ul>
-      <a href="cv.pdf" class="nav-cta" target="_blank">VIEW MY CV</a>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="./#work">WORK</a></li>
+          <li><a href="./#about">ABOUT</a></li>
+          <li><a href="./#contact">CONTACT</a></li>
+        </ul>
+        <a href="mailto:daria.forsiuk@gmail.com" class="nav-cta">WORK WITH ME</a>
+      </div>
       <button class="nav-hamburger" aria-label="Open menu">MENU</button>
     </nav>
 
@@ -45,7 +46,7 @@
       </div>
       <div class="menu-overlay-footer">
         <a href="mailto:daria.forsiuk@gmail.com" class="menu-overlay-cta"
-          >GET IN TOUCH</a
+          >WORK WITH ME</a
         >
         <div class="menu-overlay-externals">
           <a
@@ -91,6 +92,38 @@
 
       window.addEventListener("scroll", updateNav, { passive: true });
       updateNav();
+
+      document.querySelectorAll(".logo, .nav-links li a").forEach((link) => {
+        let jitterInterval = null;
+        const navJitterAmplitude = 2;
+
+        function jitterFrame() {
+          const xOffset = (Math.random() - 0.5) * 2 * navJitterAmplitude;
+          const yOffset = (Math.random() - 0.5) * 2 * navJitterAmplitude;
+          link.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        }
+
+        link.addEventListener("mouseenter", () => {
+          jitterFrame();
+          jitterInterval = setInterval(jitterFrame, 280);
+        });
+
+        link.addEventListener("mouseleave", () => {
+          clearInterval(jitterInterval);
+          jitterInterval = null;
+          link.style.transform = "";
+        });
+      });
+
+      document.querySelectorAll(".nav-cta").forEach((btn) => {
+        const setOrigin = (e) => {
+          const rect = btn.getBoundingClientRect();
+          btn.style.setProperty("--x", `${e.clientX - rect.left}px`);
+          btn.style.setProperty("--y", `${e.clientY - rect.top}px`);
+        };
+        btn.addEventListener("mouseenter", setOrigin);
+        btn.addEventListener("mouseleave", setOrigin);
+      });
 
       // Hide nav on scroll-down, show on scroll-up / mouse-move
       let lastScrollY = window.scrollY;
@@ -153,12 +186,29 @@
     <!-- CASE HERO -->
     <section class="case-hero">
       <div class="case-hero-grid">
-        <p class="case-hero-label reveal-h1" style="--reveal-lspace: -0.05em; --reveal-dur: 400ms">
-          CHARITY FOUNDATION
+        <p class="case-hero-label case-title-mask" aria-label="charity foundation site redesign">
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">CHARITY</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">FOUNDATION</span></span
+          >
           <br />
-          SITE REDESIGN
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">SITE</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">REDESIGN</span></span
+          >
         </p>
-        <h1 class="case-hero-title reveal-h1">wave'91 foundation</h1>
+        <h1 class="case-hero-title case-title-mask" aria-label="wave'91 foundation">
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">wave'91</span></span
+          >
+          <span class="case-title-mask-word"
+            ><span class="case-title-mask-word-inner">foundation</span></span
+          >
+        </h1>
       </div>
     </section>
 
@@ -1600,12 +1650,7 @@
           </picture>
         </div>
         <div class="keep-exploring-info">
-          <p class="keep-exploring-tags">
-            <span>#RESEARCH</span> <span>/</span> <span>#USER TESTING</span>
-            <span>/</span> <span>#UX/UI</span> <span>/</span>
-            <span>#E&#8209;COMMERCE</span> <span>/</span>
-            <span>#REDESIGN</span>
-          </p>
+          <h3 class="case-title keep-exploring-title">Tehnohata</h3>
           <p class="keep-exploring-desc">
             Redesign for a&nbsp;home appliance store. Improved UI, navigation,
             and&nbsp;product discoverability.
@@ -1645,7 +1690,7 @@
           <img src="assets/arrow 1.svg" alt="" class="arrow-icon" />
         </a>
         <a href="mailto:daria.forsiuk@gmail.com" class="landing-footer-link">
-          GET IN TOUCH
+          WORK WITH ME
           <img src="assets/arrow 2.svg" alt="" class="arrow-icon" />
         </a>
       </div>
@@ -1661,6 +1706,51 @@
           wrap.querySelector(".before-after-blur").style.display = "none";
           wrap.querySelector(".sensitive-overlay").style.display = "none";
         });
+
+      // Footer link arrows: inline SVG + stop-motion jitter on hover only
+      function inlineJitterOnHover(srcAttr, parentSelector) {
+        const img = document.querySelector(
+          `${parentSelector} img[src="${srcAttr}"]`
+        );
+        if (!img) return;
+        const parent = img.closest(parentSelector);
+        if (!parent) return;
+        fetch(srcAttr)
+          .then((r) => r.text())
+          .then((markup) => {
+            const tmp = document.createElement("div");
+            tmp.innerHTML = markup;
+            const svg = tmp.querySelector("svg");
+            if (!svg) return;
+            svg.removeAttribute("width");
+            svg.removeAttribute("height");
+            svg.setAttribute("class", img.getAttribute("class") || "");
+            svg.setAttribute("aria-hidden", "true");
+
+            img.replaceWith(svg);
+
+            let jitterInterval;
+            const AMP = 3;
+            function jitterFrame() {
+              const x = (Math.random() - 0.5) * 2 * AMP;
+              const y = (Math.random() - 0.5) * 2 * AMP;
+              svg.style.transform = `translate(${x}px, ${y}px)`;
+            }
+
+            parent.addEventListener("mouseenter", () => {
+              jitterFrame();
+              jitterInterval = setInterval(jitterFrame, 280);
+            });
+            parent.addEventListener("mouseleave", () => {
+              clearInterval(jitterInterval);
+              svg.style.transform = "";
+            });
+          })
+          .catch(() => {});
+      }
+
+      inlineJitterOnHover("assets/arrow 1.svg", ".landing-footer-link");
+      inlineJitterOnHover("assets/arrow 2.svg", ".landing-footer-link");
 
       // Squiggly wave animation for "view case" button
       (function () {
@@ -2183,6 +2273,75 @@
           }
         }, { threshold: 0.3 });
         observer.observe(section);
+      })();
+    </script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        var titleWordEls = Array.from(
+          document.querySelectorAll(".case-hero-title .case-title-mask-word-inner")
+        );
+        var labelWordEls = Array.from(
+          document.querySelectorAll(".case-hero-label .case-title-mask-word-inner")
+        );
+        if (!titleWordEls.length && !labelWordEls.length) return;
+        function splitChars(wordEls) {
+          var groupChars = [];
+          wordEls.forEach(function (word) {
+          var text = word.textContent;
+          word.textContent = "";
+          Array.from(text).forEach(function (char) {
+            var span = document.createElement("span");
+            span.className = "case-title-mask-char";
+            span.textContent = char;
+            word.appendChild(span);
+              groupChars.push(span);
+          });
+        });
+          return groupChars;
+        }
+        var titleChars = splitChars(titleWordEls);
+        var labelChars = splitChars(labelWordEls);
+        var chars = titleChars.concat(labelChars);
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var title = document.querySelector(".case-hero-title.case-title-mask");
+        if (reduce || !window.gsap) {
+          chars.forEach(function (char) {
+            char.style.transform = "none";
+            char.style.visibility = "visible";
+            char.style.clipPath = "none";
+          });
+          if (title) title.classList.add("case-title-mask--done");
+          return;
+        }
+        gsap.set(chars, {
+          yPercent: 100,
+          visibility: "hidden",
+          clipPath: "none",
+        });
+        var tl = gsap.timeline({ delay: 0.15 });
+        function revealChars(groupChars, startAt) {
+          groupChars.forEach(function (char, i) {
+          tl.to(
+            char,
+            {
+              visibility: "visible",
+              onStart: function () {
+                char.style.visibility = "visible";
+              },
+              yPercent: 0,
+              duration: 0.95,
+              ease: "power4.out",
+            },
+              startAt + i * 0.018
+          );
+        });
+        }
+        revealChars(titleChars, 0);
+        revealChars(labelChars, 0.08);
+        tl.call(function () {
+          if (title) title.classList.add("case-title-mask--done");
+        }, null, Math.max(0, (titleChars.length - 1) * 0.018 + 0.95));
       })();
     </script>
     <script>
