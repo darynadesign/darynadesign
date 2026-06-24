@@ -7417,6 +7417,7 @@ picture.case-full-img--gap,
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .case-wave-stand-header {
@@ -7455,6 +7456,14 @@ picture.case-full-img--gap,
 
   .case-wave-stand .case-label-dot {
     background: white;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .case-wave-stand-img {
+    width: 112%;
+    height: 108%;
+    object-position: left top;
   }
 }
 
