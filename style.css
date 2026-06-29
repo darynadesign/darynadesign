@@ -810,7 +810,7 @@ nav.has-bg .nav-hamburger::after {
 
 @media (min-width: 768px) {
   .hero-wai-headline {
-    max-width: 470px;
+    max-width: 360px;
   }
 }
 
