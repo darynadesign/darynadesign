@@ -129,7 +129,7 @@ https://www.figma.com/design/29ep1HAtd5PXg3mduKCw1l/Portfolio?node-id=1499-85144
 
 ## LinkedIn
 
-https://www.linkedin.com/in/daria-forsiuk/
+https://www.linkedin.com/in/forsiuk/
 
 ## Workflow
 
