@@ -3528,7 +3528,7 @@ picture.case-full-img--gap,
   .case-typo-text {
     grid-column: 1 / span 6;
     grid-row: 1;
-    gap: 24px;
+    gap: 16px;
   }
 
   .case-typo-text .case-overview-desc {
